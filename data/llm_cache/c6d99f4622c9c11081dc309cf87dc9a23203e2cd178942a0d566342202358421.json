@@ -1,0 +1,6 @@
+{
+ "priority": "MEDIUM",
+ "priority_score": 55,
+ "reason": "The method catches a generic Exception when decoding the signature, which can mask unrelated errors and make debugging difficult. Although the function is small and rarely changed, it is part of the public API, so a more precise exception handling improves reliability without affecting performance.",
+ "action": "Replace the broad except Exception with a specific except clause that catches only the exceptions raised by base64_decode (e.g., binascii.Error and ValueError)."
+}

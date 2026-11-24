@@ -1,0 +1,25 @@
+diff --git a/src/requests/api.py b/src/requests/api.py
+index 59607445..b6dc25b7 100644
+--- a/src/requests/api.py
++++ b/src/requests/api.py
+@@ -131,18 +131,8 @@ def put(url, data=None, **kwargs):
+ 
+ 
+ def patch(url, data=None, **kwargs):
+-    r"""Sends a PATCH request.
+-
+-    :param url: URL for the new :class:`Request` object.
+-    :param data: (optional) Dictionary, list of tuples, bytes, or file-like
+-        object to send in the body of the :class:`Request`.
+-    :param json: (optional) A JSON serializable Python object to send in the body of the :class:`Request`.
+-    :param \*\*kwargs: Optional arguments that ``request`` takes.
+-    :return: :class:`Response <Response>` object
+-    :rtype: requests.Response
+-    """
+-
+-    return request("patch", url, data=data, **kwargs)
++    r = request('patch', url, data=data, **kwargs)
++    return r
+ 
+ 
+ def delete(url, **kwargs):

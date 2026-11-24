@@ -1,0 +1,5 @@
+{
+ "priority": "HIGH",
+ "priority_score": 80,
+ "reason": "The `get()` function in `requests/api.py` carries technical debt due to its high cyclomatic complexity, low maintainability index, and missing timeout argument for the `request()` method. The function is also not well-tested and has a low test coverage. This item should be refactored as soon as possible to avoid causing or very likely to cause defects or slowing down frequent changes."
+}

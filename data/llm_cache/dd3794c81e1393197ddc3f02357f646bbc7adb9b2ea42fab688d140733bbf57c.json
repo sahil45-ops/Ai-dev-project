@@ -1,0 +1,6 @@
+{
+ "action": "Extract the content into a separate function",
+ "refactoring_type": "extract_method",
+ "expected_benefit": "Reduces cyclomatic complexity, maintainability index, and composite static debt score. Improves readability and maintainability of the code.",
+ "risk": "No risk, as the refactoring does not introduce any new bugs or defects. The extracted function can be used in other parts of the codebase if needed."
+}

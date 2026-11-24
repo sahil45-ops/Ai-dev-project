@@ -13,10 +13,20 @@ Ground-truth fields (post-cutoff history) never appear here.
 
 from __future__ import annotations
 
-from typing import Any
 from pathlib import Path
+from typing import Any
 
 MAX_SOURCE_LINES = 250
+
+
+def coverage_is_known(item: dict[str, Any]) -> bool:
+    """Read explicit provenance, with a conservative migration fallback for old datasets."""
+    known = item.get("coverage_known")
+    if known is not None:
+        return bool(known)
+    # Older records had no provenance bit. Positive measurements prove that
+    # coverage was collected; all-zero legacy records remain unknown.
+    return any(float(item.get(key) or 0) > 0 for key in ("function_coverage", "test_coverage"))
 
 
 def read_function_source(item: dict[str, Any]) -> str:
@@ -75,8 +85,10 @@ def _context_block(item: dict[str, Any], history_window: str) -> str:
         f"  - File-level history (2 years): {item['recent_commits']} commit(s), "
         f"{item['defect_commits']} defect-linked, {item['commit_authors']} author(s), "
         f"last change {item['last_modified_days']} day(s) before snapshot\n"
+        f"  - File code churn (added + deleted lines): {item.get('code_churn', 'not measured')}\n"
+        f"  - Recurring bug-fix file: {item.get('recurring_bug_file', 'not measured')}\n"
         + (f"  - Test coverage: function {item['function_coverage']}%, file {item['test_coverage']}%\n"
-           if item.get("coverage_known", True) else
+           if coverage_is_known(item) else
            "  - Test coverage: not measured (the repository's tests were not executed)\n") +
         f"  - Documentation: \"{doc}\""
     )

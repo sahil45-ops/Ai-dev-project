@@ -1,5 +1,9 @@
 # Intelligent Technical Debt & Refactoring
 
+See [the implemented improvement roadmap](IMPROVEMENT_ROADMAP.md) for comparison
+charts, scalability measurements, matched multi-model experiments, Git-history
+ablations, explainability, reproduction commands, and remaining research limits.
+
 ## Presentation and Docker quick start
 
 Run `docker compose up --build -d` and open `http://127.0.0.1:8501`.

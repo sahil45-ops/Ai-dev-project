@@ -1,0 +1,6 @@
+{
+ "priority": "HIGH",
+ "priority_score": 90,
+ "reason": "The method has a cyclomatic complexity of 18, 55 LOC, and handles multiple distinct concerns (flag sentinel resolution, multiple flag handling, prompting logic). It is part of the public API and is frequently invoked, making it a likely source of defects and a bottleneck for future changes.",
+ "action": "Refactor the method into smaller, single‑responsibility helpers: extract flag sentinel handling, multiple‑flag processing, and prompting logic into separate private methods. Use guard clauses to flatten nested conditionals, reduce LOC, and improve testability."
+}

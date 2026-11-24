@@ -1,0 +1,6 @@
+{
+ "priority": "MEDIUM",
+ "priority_score": 55,
+ "reason": "Option.__init__ has a moderate cyclomatic complexity (6) but 17 parameters and 77 LOC, making it hard to maintain and test. It is part of the public API and has been modified frequently, yet it currently does not cause defects. Refactoring will improve readability and reduce future bugs.",
+ "action": "Extract the prompt handling, flag-kind inference, type inference, and validation into separate private helper methods, and consider grouping related parameters into a configuration object or dataclass to reduce the constructor signature."
+}

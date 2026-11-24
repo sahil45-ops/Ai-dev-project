@@ -1,0 +1,5 @@
+{
+ "priority": "HIGH",
+ "priority_score": 80,
+ "reason": "The patch() function in requests/api.py has a high cyclomatic complexity of 1 and a low maintainability index of 100.0. It also has a high static debt score of 0.2 and is flagged as dead code. The function has 1 code smell and 1 style-only finding, and it has 8 duplicated lines. The function is public and has a high test coverage of 84.2%. These factors indicate that the debt is actively causing or very likely to cause defects or slow down frequent changes, and it is therefore important to fix it as soon as possible."
+}

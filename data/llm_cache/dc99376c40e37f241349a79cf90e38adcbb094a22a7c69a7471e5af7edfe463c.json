@@ -1,0 +1,6 @@
+{
+ "priority": "LOW",
+ "priority_score": 25,
+ "reason": "The function is rarely used (only one call site), has moderate complexity but no critical impact on functionality or performance. It is Windows‑specific and defensive, so refactoring is low risk and can improve readability without affecting existing behavior.",
+ "action": "Add a concise docstring, extract the regex‑building logic into a small helper function, and replace the inline filter with a list comprehension for clarity."
+}

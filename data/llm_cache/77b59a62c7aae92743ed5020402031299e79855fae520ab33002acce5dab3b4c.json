@@ -1,0 +1,5 @@
+{
+ "priority": "MEDIUM",
+ "priority_score": 50,
+ "reason": "The `post()` function in requests/api.py carries technical debt related to missing timeout argument in the request method. This issue can cause the program to hang indefinitely if not handled properly. The debt is moderate in complexity and has a moderate impact on the program's functionality. The issue is also somewhat contained as it is related to a specific function and not a large section of the codebase."
+}

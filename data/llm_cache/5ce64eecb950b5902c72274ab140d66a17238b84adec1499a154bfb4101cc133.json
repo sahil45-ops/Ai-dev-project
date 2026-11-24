@@ -1,0 +1,5 @@
+{
+ "priority": "MEDIUM",
+ "priority_score": 50,
+ "reason": "The function `is_permanent_redirect` in the `requests` library has a complexity of 2 and a maintainability index of 21.89. This indicates that the function is not well-structured and can be improved for better readability and maintainability. Additionally, the function has a composite static debt score of 3.52/10, which further supports the notion that this function carries technical debt."
+}

@@ -1,0 +1,16 @@
+{
+  "generated": "2026-10-07T21:08:42.733259+00:00",
+  "model": "ollama/smollm2:1.7b",
+  "mode": "chain",
+  "effort": "medium",
+  "with_context": true,
+  "snapshot_sha": "72eccc8dd8b7c272e520f22b0256386c80864e94",
+  "item_count": 1,
+  "dataset_sha256": "ed4b7437e36615c15282671d631235cb17fc5d6a2c9a0117a0766b15e961e7ca",
+  "context_sha256": {
+    "requests/__init__.py::_check_cryptography": "a5160fbe6883d7be8c8d7846e5613b2ddd7efa48324f945b32ba8a30da68c91c"
+  },
+  "retrieval_model": "all-MiniLM-L6-v2",
+  "top_k": 5,
+  "usage": "3 API call(s), 0 cache hit(s), 5,215 in / 291 out tokens, ~ $0.00"
+}

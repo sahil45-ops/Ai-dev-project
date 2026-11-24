@@ -11,7 +11,9 @@
   --muted: #5d687a; --line: #dde2e9; --line-2: #c9d0da;
   --hero: #0c1828; --hero-2: #13243a; --hero-ink: #eaf0f8; --hero-muted: #93a3ba; --hero-line: #22344e;
   --accent: #e3a33b; --accent-ink: #8a5a0b; --accent-soft: #fbefd9;
-  --llm: #2f6fed; --static: #7a8597; --cx: #a9b2c0; --heur: #2a9d8f; --llmnc: #8db0f7;
+  --llm: #2563eb; --static: #ea580c; --cx: #d97706; --heur: #059669; --llmnc: #7c3aed;
+  --nohist: #db2777; --advhist: #0284c7;
+  --plot-bg: #f8fafc; --plot-border: #cbd5e1; --plot-grid: rgba(148, 163, 184, 0.22); --plot-axis: #64748b; --plot-text: #475569;
   --high: #d64545; --high-soft: #fbe3e3; --med: #d98a1c; --med-soft: #fcefd9;
   --low: #758197; --low-soft: #e9edf2; --ok: #1f9d6b; --ok-soft: #ddf3ea;
   --code: #f6f8fb; --add: #e1f5ea; --del: #fbe6e6;
@@ -26,7 +28,9 @@
     --muted: #8b97aa; --line: #1d2839; --line-2: #2a3850;
     --hero: #0e1a2c; --hero-2: #14243b; --hero-line: #24364f;
     --accent: #f0b455; --accent-ink: #f0b455; --accent-soft: #2e2414;
-    --llm: #6e9bff; --static: #8f9aad; --cx: #5e6878; --heur: #3dbaa9; --llmnc: #3c5a9e;
+    --llm: #38bdf8; --static: #fb923c; --cx: #facc15; --heur: #34d399; --llmnc: #a78bfa;
+    --nohist: #f472b6; --advhist: #22d3ee;
+    --plot-bg: #070d18; --plot-border: #1e293b; --plot-grid: rgba(255, 255, 255, 0.08); --plot-axis: #94a3b8; --plot-text: #cbd5e1;
     --high: #f06b6b; --high-soft: #3a1c1f; --med: #f0a445; --med-soft: #33260f;
     --low: #8b97aa; --low-soft: #1a2333; --ok: #3cc48d; --ok-soft: #12301f;
     --code: #0d1522; --add: #10301f; --del: #3a1a1d;
@@ -38,7 +42,9 @@
   --muted: #8b97aa; --line: #1d2839; --line-2: #2a3850;
   --hero: #0e1a2c; --hero-2: #14243b; --hero-line: #24364f;
   --accent: #f0b455; --accent-ink: #f0b455; --accent-soft: #2e2414;
-  --llm: #6e9bff; --static: #8f9aad; --cx: #5e6878; --heur: #3dbaa9; --llmnc: #3c5a9e;
+  --llm: #38bdf8; --static: #fb923c; --cx: #facc15; --heur: #34d399; --llmnc: #a78bfa;
+  --nohist: #f472b6; --advhist: #22d3ee;
+  --plot-bg: #070d18; --plot-border: #1e293b; --plot-grid: rgba(255, 255, 255, 0.08); --plot-axis: #94a3b8; --plot-text: #cbd5e1;
   --high: #f06b6b; --high-soft: #3a1c1f; --med: #f0a445; --med-soft: #33260f;
   --low: #8b97aa; --low-soft: #1a2333; --ok: #3cc48d; --ok-soft: #12301f;
   --code: #0d1522; --add: #10301f; --del: #3a1a1d;
@@ -101,9 +107,7 @@ section.view { display: flex; flex-direction: column; gap: 22px; }
 
 /* ── hero ── */
 .hero { background: radial-gradient(1200px 400px at 85% -10%, var(--hero-2), transparent 60%), var(--hero);
-  color: var(--hero-ink); border-radius: 16px; padding: clamp(22px, 4vw, 44px); display: grid;
-  grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr); gap: 34px; position: relative; overflow: hidden; }
-@media (max-width: 920px) { .hero { grid-template-columns: 1fr; } }
+  color: var(--hero-ink); border-radius: 16px; padding: clamp(26px, 4vw, 46px); position: relative; overflow: hidden; }
 .hero::after { content: ""; position: absolute; inset: 0; pointer-events: none; opacity: .5;
   background-image: linear-gradient(var(--hero-line) 1px, transparent 1px), linear-gradient(90deg, var(--hero-line) 1px, transparent 1px);
   background-size: 44px 44px; mask-image: linear-gradient(115deg, transparent 35%, #000 100%); -webkit-mask-image: linear-gradient(115deg, transparent 35%, #000 100%); }
@@ -153,16 +157,21 @@ section.view { display: flex; flex-direction: column; gap: 22px; }
 .chip.warn { background: var(--med-soft); color: var(--med); }
 .chip.acc { background: var(--accent-soft); color: var(--accent-ink); }
 
-/* ── charts ── */
-svg.chart { width: 100%; height: auto; display: block; overflow: visible; }
-svg.chart text { fill: var(--muted); font: 11px var(--body); }
+/* ── charts & scientific plots ── */
+svg.chart { width: 100%; height: auto; display: block; overflow: visible; font-family: var(--body); }
+svg.chart text { fill: var(--plot-text, var(--muted)); font: 500 11px var(--mono); }
+svg.chart text.plot-label { fill: var(--ink); font: 600 12px var(--body); letter-spacing: 0.02em; }
 svg.chart .ink { fill: var(--ink); font-weight: 600; }
-svg.chart .gl { stroke: var(--line); stroke-width: 1; }
-svg.chart .ax { stroke: var(--line-2); stroke-width: 1; }
-.legend { display: flex; flex-wrap: wrap; gap: 6px 16px; font-size: .78rem; color: var(--muted); }
-.legend span { display: inline-flex; align-items: center; gap: 6px; }
-.legend i { width: 14px; height: 4px; border-radius: 2px; display: inline-block; }
-.legend i.dot { width: 9px; height: 9px; border-radius: 50%; }
+svg.chart .plot-canvas { fill: var(--plot-bg); stroke: var(--plot-border); stroke-width: 1.2px; }
+svg.chart .gl { stroke: var(--plot-grid); stroke-width: 1px; stroke-dasharray: 4 4; }
+svg.chart .ax { stroke: var(--plot-axis); stroke-width: 1.4px; }
+svg.chart .tick { stroke: var(--plot-axis); stroke-width: 1.2px; }
+svg.chart .diag { stroke: var(--muted); stroke-width: 1.5px; stroke-dasharray: 5 4; opacity: 0.75; }
+.legend { display: flex; flex-wrap: wrap; gap: 8px 18px; font-size: .82rem; color: var(--ink-2); margin-top: 10px; padding-top: 10px; border-top: 1px dashed var(--line); }
+.legend span { display: inline-flex; align-items: center; gap: 7px; font-weight: 500; }
+.legend i { width: 18px; height: 3.5px; border-radius: 2px; display: inline-block; }
+.legend i.dot { width: 10px; height: 10px; border-radius: 50%; }
+.legend .mono { font-size: 0.75rem; color: var(--muted); padding: 1px 6px; background: var(--sunken); border-radius: 4px; border: 1px solid var(--line); margin-left: 2px; }
 .seg { display: inline-flex; border: 1px solid var(--line); border-radius: 8px; overflow: hidden; background: var(--sunken); }
 .seg button { border: 0; background: none; padding: 6px 11px; font-size: .8rem; font-weight: 600; color: var(--muted); cursor: pointer; }
 .seg button[aria-pressed="true"] { background: var(--surface); color: var(--ink); box-shadow: inset 0 0 0 1px var(--line); }
@@ -362,11 +371,13 @@ $("#theme").addEventListener("click", () => {
 
 /* ── data ── */
 const METHOD = {
-  static_score: { label: "Static score", color: "var(--static)", note: "Phase 1 composite (complexity, MI, severity)" },
-  complexity: { label: "Complexity only", color: "var(--cx)", note: "raw cyclomatic complexity — the plan's baseline" },
-  context_heuristic: { label: "Context heuristic", color: "var(--heur)", note: "equal-weight static + context features, no LLM" },
-  llm: { label: "LLM + RAG context", color: "var(--llm)", note: "proposed method: 3 agents with repository context" },
-  llm_nocontext: { label: "LLM, no context", color: "var(--llmnc)", note: "ablation: same LLM, metrics + code only" },
+  static_score: { label: "Static analysis", color: "var(--static)", dash: "7 3", note: "Phase 1 composite (complexity, MI, severity)" },
+  complexity: { label: "Complexity only", color: "var(--cx)", dash: "4 3", note: "raw cyclomatic complexity — the plan's baseline" },
+  context_heuristic: { label: "Context heuristic", color: "var(--heur)", dash: "none", note: "equal-weight static + context features, no LLM" },
+  context_no_history: { label: "Context, no history", color: "var(--nohist)", dash: "2 2", note: "history ablation" },
+  context_advanced: { label: "Advanced Git context", color: "var(--advhist)", dash: "6 2 2 2", note: "churn, authors, recency and recurring fixes" },
+  llm: { label: "LLM + RAG", color: "var(--llm)", dash: "none", note: "proposed method: 3 agents with repository context" },
+  llm_nocontext: { label: "LLM, no context", color: "var(--llmnc)", dash: "7 3 2 3", note: "ablation: same LLM, metrics + code only" },
 };
 const repo = D.repo, meta = D.meta || {}, items = D.items || [], gt = D.groundTruth || {};
 const ev = D.evaluation || {}, ref = D.refactoring || {}, sample = D.expertSample || [];
@@ -425,61 +436,97 @@ const FEATURES = [
   ["dup", "Duplication", (x) => x.duplicate_lines],
   ["callers", "Callers", (x) => x.callers],
   ["fixes", "Past fixes", (x) => x.func_fix_commits],
-  ["covgap", "Coverage gap", (x) => Math.round(100 - (x.function_coverage ?? 0))],
+  ["covgap", "Coverage gap (unknown excluded)", (x) => x.coverage_known === false ? 0 : Math.round(100 - (x.function_coverage ?? 0))],
 ];
 const FMAX = Object.fromEntries(FEATURES.map(([k, , f]) => [k, Math.max(1, ...items.map(f))]));
 
 /* ── charts ── */
 function scatter() {
-  const W = 720, H = 360, m = { l: 48, r: 18, t: 16, b: 44 };
+  const W = 720, H = 360, m = { l: 52, r: 20, t: 18, b: 46 };
   const maxX = Math.ceil(Math.max(20, ...items.map((x) => x.complexity)) / 5) * 5;
   const xs = (v) => m.l + (v / maxX) * (W - m.l - m.r), ys = (v) => H - m.b - (v / 10) * (H - m.t - m.b);
-  let g = "";
-  for (let t = 0; t <= 10; t += 2) g += `<line class="gl" x1="${m.l}" x2="${W - m.r}" y1="${ys(t)}" y2="${ys(t)}"/><text x="${m.l - 10}" y="${ys(t) + 4}" text-anchor="end">${t}</text>`;
-  for (let t = 0; t <= maxX; t += 5) g += `<text x="${xs(t)}" y="${H - m.b + 18}" text-anchor="middle">${t}</text>`;
-  g += `<line class="ax" x1="${m.l}" x2="${W - m.r}" y1="${ys(0)}" y2="${ys(0)}"/>`;
-  g += `<text x="${(W + m.l) / 2}" y="${H - 6}" text-anchor="middle">Cyclomatic complexity</text>`;
-  g += `<text transform="translate(13 ${(H - m.b + m.t) / 2}) rotate(-90)" text-anchor="middle">Static debt score (0–10)</text>`;
+  let g = `<rect class="plot-canvas" x="${m.l}" y="${m.t}" width="${W - m.l - m.r}" height="${H - m.t - m.b}" rx="5"/>`;
+  for (let t = 0; t <= 10; t += 2) {
+    g += `<line class="gl" x1="${m.l}" x2="${W - m.r}" y1="${ys(t)}" y2="${ys(t)}"/><line class="tick" x1="${m.l - 4}" x2="${m.l}" y1="${ys(t)}" y2="${ys(t)}"/><text x="${m.l - 8}" y="${ys(t) + 4}" text-anchor="end">${t}</text>`;
+  }
+  for (let t = 0; t <= maxX; t += 5) {
+    g += `<line class="gl" x1="${xs(t)}" x2="${xs(t)}" y1="${m.t}" y2="${H - m.b}"/><line class="tick" x1="${xs(t)}" x2="${xs(t)}" y1="${H - m.b}" y2="${H - m.b + 4}"/><text x="${xs(t)}" y="${H - m.b + 17}" text-anchor="middle">${t}</text>`;
+  }
+  g += `<rect x="${m.l}" y="${m.t}" width="${W - m.l - m.r}" height="${H - m.t - m.b}" fill="none" stroke="var(--plot-axis)" stroke-width="1.3" rx="5"/>`;
+  g += `<text class="plot-label" x="${(W + m.l - m.r) / 2}" y="${H - 6}" text-anchor="middle">Cyclomatic complexity</text>`;
+  g += `<text class="plot-label" transform="translate(14 ${(H - m.b + m.t) / 2}) rotate(-90)" text-anchor="middle">Static debt score (0–10)</text>`;
   const dots = [...items].sort((a, b) => b.loc - a.loc).map((x) => {
     const r = 3.5 + Math.sqrt(x.loc) / 2.1, bug = positives.has(x.id), p = llm[x.id];
     const fill = p ? `var(--${{ HIGH: "high", MEDIUM: "med", LOW: "low" }[p.priority]})` : "var(--llm)";
-    return `<circle cx="${xs(x.complexity).toFixed(1)}" cy="${ys(x.static_score).toFixed(1)}" r="${r.toFixed(1)}" fill="${fill}" fill-opacity="${bug ? .85 : .28}" stroke="${bug ? "var(--high)" : fill}" stroke-width="${bug ? 2.4 : 1}" data-id="${esc(x.id)}" style="cursor:pointer"><title>${esc(x.function)} — cc ${x.complexity}, score ${x.static_score}, ${x.loc} LOC${bug ? " — bug-fixed after cutoff" : ""}</title></circle>`;
+    return `<circle cx="${xs(x.complexity).toFixed(1)}" cy="${ys(x.static_score).toFixed(1)}" r="${r.toFixed(1)}" fill="${fill}" fill-opacity="${bug ? .9 : .45}" stroke="${bug ? "var(--high)" : "var(--plot-bg)"}" stroke-width="${bug ? 2.5 : 1}" data-id="${esc(x.id)}" style="cursor:pointer"><title>${esc(x.function)} — cc ${x.complexity}, score ${x.static_score}, ${x.loc} LOC${bug ? " — bug-fixed after cutoff" : ""}</title></circle>`;
   }).join("");
   return `<svg class="chart" viewBox="0 0 ${W} ${H}" role="img" aria-label="Scatter of complexity against static debt score">${g}${dots}</svg>`;
 }
 
 function lineChart({ series, xMax, yMax = 1, xLabel, yLabel, diag = false, xTicks, yTicks = [0, .25, .5, .75, 1], fmtX = (v) => v }) {
-  const W = 560, H = 330, m = { l: 46, r: 16, t: 14, b: 44 };
-  const xs = (v) => m.l + (v / xMax) * (W - m.l - m.r), ys = (v) => H - m.b - (v / yMax) * (H - m.t - m.b);
-  let g = "";
-  yTicks.forEach((t) => { g += `<line class="gl" x1="${m.l}" x2="${W - m.r}" y1="${ys(t)}" y2="${ys(t)}"/><text x="${m.l - 9}" y="${ys(t) + 4}" text-anchor="end">${t}</text>`; });
-  xTicks.forEach((t) => { g += `<text x="${xs(t)}" y="${H - m.b + 18}" text-anchor="middle">${fmtX(t)}</text>`; });
-  g += `<line class="ax" x1="${m.l}" x2="${W - m.r}" y1="${ys(0)}" y2="${ys(0)}"/>`;
-  if (diag) g += `<line x1="${xs(0)}" y1="${ys(0)}" x2="${xs(xMax)}" y2="${ys(yMax)}" stroke="var(--line-2)" stroke-dasharray="4 4"/>`;
-  g += `<text x="${(W + m.l) / 2}" y="${H - 6}" text-anchor="middle">${esc(xLabel)}</text><text transform="translate(12 ${(H - m.b + m.t) / 2}) rotate(-90)" text-anchor="middle">${esc(yLabel)}</text>`;
-  series.forEach((s) => {
-    const d = s.points.map(([x, y], i) => `${i ? "L" : "M"}${xs(x).toFixed(1)} ${ys(y).toFixed(1)}`).join(" ");
-    g += `<path d="${d}" fill="none" stroke="${s.color}" stroke-width="${s.bold ? 3 : 2}" stroke-linejoin="round"/>`;
-    const [lx, ly] = s.points[s.points.length - 1];
-    g += `<circle cx="${xs(lx)}" cy="${ys(ly)}" r="3.5" fill="${s.color}"/>`;
+  const W = 560, H = 330, m = { l: 52, r: 20, t: 18, b: 46 };
+  const xs = (v) => m.l + (v / xMax) * (W - m.l - m.r);
+  const ys = (v) => H - m.b - (v / yMax) * (H - m.t - m.b);
+  let g = `<defs>
+    <filter id="plot-glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="1" stdDeviation="1.5" flood-color="rgba(0,0,0,0.45)"/>
+    </filter>
+  </defs>`;
+  g += `<rect class="plot-canvas" x="${m.l}" y="${m.t}" width="${W - m.l - m.r}" height="${H - m.t - m.b}" rx="5" />`;
+  yTicks.forEach((t) => {
+    g += `<line class="gl" x1="${m.l}" x2="${W - m.r}" y1="${ys(t)}" y2="${ys(t)}"/>`;
   });
+  xTicks.forEach((t) => {
+    g += `<line class="gl" x1="${xs(t)}" x2="${xs(t)}" y1="${m.t}" y2="${H - m.b}"/>`;
+  });
+  if (diag) {
+    g += `<line class="diag" x1="${xs(0)}" y1="${ys(0)}" x2="${xs(xMax)}" y2="${ys(yMax)}" />`;
+    g += `<text x="${xs(0.58)}" y="${ys(0.58) + 14}" fill="var(--muted)" font-size="10.5" font-family="var(--mono)" transform="rotate(-30 ${xs(0.58)} ${ys(0.58) + 14})">Chance (AUC = 0.50)</text>`;
+  }
+  series.forEach((s) => {
+    if (!s.points || !s.points.length) return;
+    const d = s.points.map(([x, y], i) => `${i ? "L" : "M"}${xs(x).toFixed(1)} ${ys(y).toFixed(1)}`).join(" ");
+    const dashAttr = s.dash && s.dash !== "none" ? ` stroke-dasharray="${s.dash}"` : "";
+    const strokeW = s.bold ? 3.2 : 2.4;
+    g += `<path d="${d}" fill="none" stroke="${s.color}" stroke-width="${strokeW}"${dashAttr} stroke-linejoin="round" stroke-linecap="round" filter="url(#plot-glow)"/>`;
+    const step = Math.max(1, Math.floor(s.points.length / 8));
+    s.points.forEach(([x, y], idx) => {
+      if (idx > 0 && (idx % step === 0 || idx === s.points.length - 1)) {
+        g += `<circle cx="${xs(x).toFixed(1)}" cy="${ys(y).toFixed(1)}" r="${idx === s.points.length - 1 ? 4 : 2.5}" fill="${s.color}" stroke="var(--plot-bg)" stroke-width="1.2"/>`;
+      }
+    });
+  });
+  g += `<rect x="${m.l}" y="${m.t}" width="${W - m.l - m.r}" height="${H - m.t - m.b}" fill="none" stroke="var(--plot-axis)" stroke-width="1.3" rx="5"/>`;
+  yTicks.forEach((t) => {
+    g += `<line class="tick" x1="${m.l - 4}" x2="${m.l}" y1="${ys(t)}" y2="${ys(t)}"/>`;
+    g += `<text x="${m.l - 8}" y="${ys(t) + 3.5}" text-anchor="end">${t}</text>`;
+  });
+  xTicks.forEach((t) => {
+    g += `<line class="tick" x1="${xs(t)}" x2="${xs(t)}" y1="${H - m.b}" y2="${H - m.b + 4}"/>`;
+    g += `<text x="${xs(t)}" y="${H - m.b + 17}" text-anchor="middle">${fmtX(t)}</text>`;
+  });
+  g += `<text class="plot-label" x="${(W + m.l - m.r) / 2}" y="${H - 6}" text-anchor="middle">${esc(xLabel)}</text>`;
+  g += `<text class="plot-label" transform="translate(14 ${(H - m.b + m.t) / 2}) rotate(-90)" text-anchor="middle">${esc(yLabel)}</text>`;
   return `<svg class="chart" viewBox="0 0 ${W} ${H}" role="img" aria-label="${esc(yLabel)} by ${esc(xLabel)}">${g}</svg>`;
 }
 
 function barChart(rows, key, ciKey, lo) {
-  const W = 620, rowH = 38, m = { l: 160, r: 60, t: 24, b: 6 }, H = m.t + rows.length * rowH + m.b;
+  const W = 700, rowH = 42, m = { l: 200, r: 60, t: 28, b: 8 }, H = m.t + rows.length * rowH + m.b;
   const xs = (v) => m.l + ((v - lo) / (1 - lo)) * (W - m.l - m.r);
-  let g = "";
-  (lo < 0 ? [-1, -.5, 0, .5, 1] : [0, .25, .5, .75, 1]).forEach((t) => { g += `<line class="gl" x1="${xs(t)}" x2="${xs(t)}" y1="${m.t - 6}" y2="${H - m.b}"/><text x="${xs(t)}" y="${m.t - 11}" text-anchor="middle">${t}</text>`; });
+  let g = `<rect class="plot-canvas" x="${m.l}" y="${m.t - 14}" width="${W - m.l - m.r}" height="${H - m.b - m.t + 14}" rx="5"/>`;
+  (lo < 0 ? [-1, -.5, 0, .5, 1] : [0, .25, .5, .75, 1]).forEach((t) => { 
+    g += `<line class="gl" x1="${xs(t)}" x2="${xs(t)}" y1="${m.t - 14}" y2="${H - m.b}"/><text x="${xs(t)}" y="${m.t - 18}" text-anchor="middle">${t}</text>`; 
+  });
+  g += `<line class="ax" x1="${xs(0)}" x2="${xs(0)}" y1="${m.t - 14}" y2="${H - m.b}" stroke="var(--plot-axis)" stroke-width="1.5"/>`;
   rows.forEach(([name, row], i) => {
-    const y = m.t + i * rowH + 8, v = row[key], mt = METHOD[name] || { label: name, color: "var(--muted)" };
-    g += `<text class="ink" x="${m.l - 12}" y="${y + 14}" text-anchor="end">${esc(mt.label)}</text>`;
-    if (!isNum(v)) { g += `<text x="${xs(Math.max(lo, 0)) + 6}" y="${y + 14}">not available</text>`; return; }
+    const y = m.t + i * rowH + 6, v = row[key], mt = METHOD[name] || { label: name, color: "var(--muted)" };
+    g += `<text class="ink" x="${m.l - 12}" y="${y + 15}" text-anchor="end">${esc(mt.label)}</text>`;
+    if (!isNum(v)) { g += `<text x="${xs(Math.max(lo, 0)) + 8}" y="${y + 15}" fill="var(--muted)">not available</text>`; return; }
     const x0 = xs(Math.max(lo, 0)), x1 = xs(v);
-    g += `<rect x="${Math.min(x0, x1)}" y="${y}" width="${Math.max(2, Math.abs(x1 - x0))}" height="20" rx="4" fill="${mt.color}"/>`;
+    g += `<rect x="${Math.min(x0, x1)}" y="${y}" width="${Math.max(2, Math.abs(x1 - x0))}" height="22" rx="4" fill="${mt.color}"/>`;
     const ci = ciKey && row[ciKey];
-    if (ci && isNum(ci[0]) && isNum(ci[1])) g += `<path d="M${xs(ci[0])} ${y + 10}H${xs(ci[1])}M${xs(ci[0])} ${y + 4}V${y + 16}M${xs(ci[1])} ${y + 4}V${y + 16}" stroke="var(--ink)" stroke-width="1.4" fill="none"/>`;
-    g += `<text class="ink num" x="${W - m.r + 10}" y="${y + 14}">${fmt(v)}</text>`;
+    if (ci && isNum(ci[0]) && isNum(ci[1])) g += `<path d="M${xs(ci[0])} ${y + 11}H${xs(ci[1])}M${xs(ci[0])} ${y + 5}V${y + 17}M${xs(ci[1])} ${y + 5}V${y + 17}" stroke="var(--ink)" stroke-width="1.8" fill="none"/>`;
+    g += `<text class="ink num" x="${W - m.r + 10}" y="${y + 16}">${fmt(v)}</text>`;
   });
   return `<svg class="chart" viewBox="0 0 ${W} ${H}" role="img" aria-label="${esc(key)} by method">${g}</svg>`;
 }
@@ -518,10 +565,6 @@ function renderOverview() {
         <h1>Can an LLM with <em>repository context</em> prioritise technical debt better than static analysis alone?</h1>
         <p class="lede">We froze <b>psf/${esc(repo)}</b> at ${esc(asOf)}, scored ${items.length} debt-carrying functions with static tools, repository history and RAG, and test every ranking against what actually broke afterwards, against developer judgement, and through a CI-validated refactoring loop.</p>
         <div class="hero-facts"><span>snapshot ${esc(sha)}</span><span>context ${esc(String(meta.history_since || "").slice(0, 4))}–${esc(asOf.slice(0, 4))}</span><span>ground truth ${esc(asOf.slice(0, 4))}–${esc(String(meta.horizon || "").slice(0, 4))}</span><span>${positives.size} later bug fixes</span>${best ? `<span>best AUC so far ${fmt(best[1].auc_future_defect, 2)} · ${esc((METHOD[best[0]] || {}).label || best[0])}</span>` : ""}</div>
-      </div>
-      <div class="ready">
-        <div class="ready-top">${ring(passed, checks.length)}<div><h3>Research readiness</h3><p>${passed === checks.length ? "All evidence collected." : "Automated audit of what evidence exists. Unchecked items are not claimed as results."}</p></div></div>
-        <ul class="checks">${checks.map((c) => `<li><span class="tick ${c.passed ? "y" : "n"}">${c.passed ? "✓" : ""}</span><div><div class="t">${esc(c.check)}</div><div class="d">${esc(c.detail)}</div></div></li>`).join("")}</ul>
       </div>
     </div>
     ${llmFailed ? `<div class="callout"><b>LLM experiment has not produced results yet</b><p class="muted prose">The last Phase 4 run (${esc(runs.llm.model)}, ${esc(String(runs.llm.generated).slice(0, 16).replace("T", " "))}) returned 0/${runs.llm.total} rankings: ${esc(runs.llm.first_error)} The pipeline, prompts and RAG context are in place; results appear here automatically after a funded run.</p></div>` : ""}
@@ -585,45 +628,16 @@ function renderMethod() {
     ${node(400, 228, 172, "exp", "Expert ratings", `${raters.length} rater(s) · ${sample.length} sampled`)}
     ${node(600, 228, 172, "p6", "ai-refactoring/*", "local branches + diffs")}
   </svg>`;
-  const y0 = Number(String(meta.history_since || "2019").slice(0, 4)), yc = Number(asOf.slice(0, 4)), y1 = Number(String(meta.horizon || "2026").slice(0, 4)) + 1;
-  const tl = (() => {
-    const W = 1000, H = 120, m = 30, xs = (y) => m + ((y - y0) / (y1 - y0)) * (W - 2 * m);
-    let g = "";
-    for (let y = y0; y <= y1; y++) g += `<line x1="${xs(y)}" x2="${xs(y)}" y1="64" y2="72" stroke="var(--line-2)"/><text x="${xs(y)}" y="90" text-anchor="middle">${y}</text>`;
-    g += `<rect x="${xs(y0)}" y="34" width="${xs(yc) - xs(y0)}" height="26" rx="6" fill="var(--llm)" fill-opacity=".16" stroke="var(--llm)"/><text x="${(xs(y0) + xs(yc)) / 2}" y="51" text-anchor="middle" class="ink">Context window · features the rankers may use</text>`;
-    g += `<rect x="${xs(yc)}" y="34" width="${xs(y1 - .25) - xs(yc)}" height="26" rx="6" fill="var(--high)" fill-opacity=".14" stroke="var(--high)"/><text x="${(xs(yc) + xs(y1 - .25)) / 2}" y="51" text-anchor="middle" class="ink">Ground truth · hidden</text>`;
-    g += `<line x1="${xs(yc)}" x2="${xs(yc)}" y1="14" y2="74" stroke="var(--accent)" stroke-width="2.5"/><text x="${xs(yc)}" y="10" text-anchor="middle" class="ink">cutoff ${esc(asOf)} · ${esc(sha)}</text>`;
-    g += `<line x1="${m}" x2="${W - m}" y1="68" y2="68" stroke="var(--line-2)"/>`;
-    return `<svg class="chart" viewBox="0 0 ${W} ${H}" role="img" aria-label="Temporal split timeline">${g}</svg>`;
-  })();
-  const llmCfg = runs.llm || {};
+
   $("#view-method").innerHTML = `
-    <div class="card"><div class="card-head"><div><h2>System architecture</h2><span class="sub">Green = done and verified · amber = partially run · dashed = waiting for input. Animated edges carry data that exists today.</span></div></div><div class="diagram">${diagram}</div></div>
-    <div class="card"><div class="card-head"><div><h2>Temporal split — why the evaluation is fair</h2><span class="sub">Every input a ranker sees comes from before the cutoff. Commits after it become labels stored in a separate file that no ranker reads.</span></div></div>${tl}</div>
-    <div class="grid">
-      <div class="card span-6"><h2>Methods compared</h2><div class="def-grid">${Object.entries(METHOD).map(([k, v]) => `<div class="def"><span class="chip ${k.startsWith("llm") ? "acc" : "none"} tag"><i style="width:8px;height:8px;border-radius:50%;background:${v.color};display:inline-block"></i>${k.startsWith("llm") ? "LLM" : "baseline"}</span><h3>${v.label}</h3><p class="sub">${v.note}</p></div>`).join("")}</div></div>
-      <div class="card span-6"><h2>Ground truths &amp; metrics</h2><div class="def-grid">
-        <div class="def"><h3>Later bug fixes</h3><p class="sub">Function changed by a fix commit after the cutoff (commit + PR message, typo/docs/CI excluded). ${positives.size} positives.</p></div>
-        <div class="def"><h3>Change-proneness</h3><p class="sub">All non-sweeping commits after the cutoff (sweeps touching &gt;25 functions dropped).</p></div>
-        <div class="def"><h3>Expert ratings</h3><p class="sub">Blind 1–10 urgency for ${sample.length} stratified functions; agreement via Kendall's W.</p></div>
-        <div class="def"><h3>Metrics</h3><p class="sub">Spearman ρ, Kendall τ, Precision@K, NDCG@10, ROC-AUC, bootstrap 95% CIs and paired Δρ tests.</p></div>
-      </div></div>
-    </div>
-    <div class="card"><div class="card-head"><div><h2>Reproducibility</h2><span class="sub">Everything needed to rerun the experiment and get the same numbers.</span></div></div>
-      <div class="kv">
-        <div>Target</div><div><span class="mono">psf/${esc(repo)}</span> · snapshot <span class="mono">${esc(meta.snapshot_sha || "")}</span></div>
-        <div>Windows</div><div>context ${esc(String(meta.history_since || "").slice(0, 10))} → ${esc(asOf)} · labels ${esc(asOf)} → ${esc(String(meta.horizon || "").slice(0, 10))}</div>
-        <div>Dataset</div><div>${meta.functions_indexed} functions → ${items.length} candidates · sha256 <span class="mono">${esc(String(llmCfg.dataset_sha256 || "–").slice(0, 16))}…</span></div>
-        <div>Retrieval</div><div>${esc(rd.store || "ChromaDB")} · ${esc(rd.embedding_model || "all-MiniLM-L6-v2")} · top-${rd.neighbours_max || 5}, self excluded</div>
-        <div>LLM</div><div><span class="mono">${esc(llmCfg.model || "not configured")}</span> · structured JSON output · responses cached on disk</div>
-        <div>Expert sample</div><div>${sample.length} items, stratified by static-score tertile, seed 42</div>
-        <div>Tests</div><div>${(D.testBaseline || {}).passed ?? "–"} passed on the unmodified snapshot; pre-existing failures are not blamed on patches</div>
+    <div class="card">
+      <div class="card-head">
+        <div>
+          <h2>System architecture</h2>
+          <span class="sub">Green = done and verified · amber = partially run · dashed = waiting for input. Animated edges carry data that exists today.</span>
+        </div>
       </div>
-      <div class="cmd">python run_dataset.py --repo targets/${esc(repo)} --as-of ${esc(asOf)} --source-subdir src/${esc(repo)}
-python run_prioritisation.py            # Phase 4 (+ --no-context --mode single for the ablation)
-python run_evaluation.py                # Phase 5
-python run_refactoring.py --test-python targets/.venv-${esc(repo)}/Scripts/python   # Phase 6
-python run_dashboard.py                 # this page</div>
+      <div class="diagram">${diagram}</div>
     </div>`;
 }
 
@@ -633,7 +647,7 @@ const COLS = [
   { k: "rank", label: hasLLM ? "LLM #" : "Rank", r: true, v: (x) => hasLLM ? (llm[x.id] ? llm[x.id].llm_rank : 999) : x.static_rank },
   { k: "fn", label: "Function", v: (x) => x.id },
   { k: "prio", label: "LLM priority", v: (x) => -(llm[x.id] ? llm[x.id].priority_score : -1) },
-  { k: "static", label: "Static score", r: true, v: (x) => -x.static_score },
+  { k: "static", label: "Static analysis", r: true, v: (x) => -x.static_score },
   { k: "cc", label: "CC", r: true, v: (x) => -x.complexity },
   { k: "callers", label: "Callers", r: true, v: (x) => -x.callers },
   { k: "fixes", label: "Past fixes", r: true, v: (x) => -x.func_fix_commits },
@@ -672,12 +686,14 @@ function drawDetail(id) {
   P.sel = id; store.set("tdr.priorities", P);
   $$("#rows tr").forEach((tr) => tr.classList.toggle("sel", tr.dataset.id === id));
   const r = llm[id], g = gt[id] || {}, nb = (D.neighbours || {})[id] || [];
-  const facts = [["Complexity", `${x.complexity} (${x.complexity_rank})`], ["Lines", x.loc], ["Params", x.params], ["Static score", x.static_score], ["Static rank", `#${x.static_rank}`], ["File MI", x.maintainability_index], ["Callers", x.callers], ["Test refs", x.test_references], ["Coverage", `${fmt(x.function_coverage, 1)}%`], ["Past commits", x.func_commits], ["Past fixes", x.func_fix_commits], ["File defects", x.defect_commits]];
+  const facts = [["Complexity", `${x.complexity} (${x.complexity_rank})`], ["Lines", x.loc], ["Params", x.params], ["Static score", x.static_score], ["Static rank", `#${x.static_rank}`], ["File MI", x.maintainability_index], ["Callers", x.callers], ["Test refs", x.test_references], ["Coverage", x.coverage_known === false ? "not measured" : `${fmt(x.function_coverage, 1)}%`], ["File churn", fmt(x.code_churn)], ["Contributors", fmt(x.commit_authors)], ["Days since change", x.last_modified_days >= 0 ? x.last_modified_days : "unknown"], ["Past commits", x.func_commits], ["Past fixes", x.func_fix_commits], ["File defects", x.defect_commits]];
   $("#detail").innerHTML = `
     <div style="display:flex;flex-direction:column;gap:6px"><span class="eyebrow">${esc(x.file)} · line ${x.line}</span><h2 class="mono" style="font:600 1.02rem var(--mono);overflow-wrap:anywhere">${esc(x.function)}</h2>
       <div style="display:flex;flex-wrap:wrap;gap:6px">${prioChip(id)}${r ? `<span class="chip acc">${r.priority_score}/100 · LLM #${r.llm_rank}</span>` : ""}${x.dead_code ? `<span class="chip warn">dead code</span>` : ""}<span class="chip none">${x.is_private ? "private helper" : "public API"}</span>${g.future_defect ? `<span class="chip bug">bug-fixed later · ${esc((g.fix_shas || []).join(", "))}</span>` : ""}</div></div>
     ${r ? `<div class="callout info"><b>Why this priority</b><p>${esc(r.reason)}</p><p><b>Recommended:</b> ${esc(r.action)}</p></div>` : ""}
     <div class="facts">${facts.map(([k, v]) => `<div class="fact"><span class="k">${k}</span><span class="v num">${esc(v)}</span></div>`).join("")}</div>
+    ${D.explanations && D.explanations[id] ? `<div><h3>Context heuristic contributions</h3><p class="sub">Exact contributions to the heuristic score (${fmt(D.explanations[id].score)}), not weights assigned by the LLM.</p>${D.explanations[id].factors.map(f => `<div class="fp-row"><span>${esc(f.feature)}</span><span class="track"><b style="width:${(f.contribution * 100).toFixed(1)}%"></b></span><span class="val">${f.available ? fmt(f.contribution) : "unknown"}</span></div>`).join("")}<ul>${((D.evidence || {})[id]?.recommendations || []).map(t => `<li>${esc(t)}</li>`).join("")}</ul></div>` : ""}
+    ${D.advancedExplanations && x.code_churn !== undefined && x.code_churn !== null ? `<div><h3>Advanced Git history contributions</h3><p class="sub">Experimental heuristic score ${fmt(D.advancedExplanations[id]?.score)}; see the separate ablation before interpreting it.</p>${(D.advancedExplanations[id]?.factors || []).filter(f => ["code_churn", "commit_authors", "recent_activity", "recurring_bug_file"].includes(f.feature)).map(f => `<div class="fp-row"><span>${esc(f.feature)}</span><span class="track"><b style="width:${(f.contribution * 100).toFixed(1)}%"></b></span><span class="val">${f.available ? fmt(f.contribution) : "unknown"}</span></div>`).join("")}</div>` : ""}
     <div class="fp"><span class="eyebrow">Fingerprint · relative to all candidates</span>${FEATURES.map(([k, l, f]) => `<div class="fp-row"><span>${l}</span><span class="track"><b style="width:${Math.min(100, f(x) / FMAX[k] * 100).toFixed(0)}%"></b></span><span class="val">${f(x)}</span></div>`).join("")}</div>
     ${x.tool_messages && x.tool_messages.length ? `<div><span class="eyebrow">Tool findings</span><ul style="margin:6px 0 0;padding-left:18px">${x.tool_messages.map((m) => `<li class="mono" style="font-size:.78rem">${esc(m)}</li>`).join("")}</ul></div>` : ""}
     ${nb.length ? `<div><span class="eyebrow">RAG neighbours · what the LLM sees for calibration</span><ul class="nb">${nb.map((n) => { const y = byId[n.id]; return `<li data-id="${esc(n.id)}"><span class="fn">${esc(n.id.split("::")[1] || n.id)}<small>${esc(n.id.split("::")[0])}</small></span><span class="mono muted" style="font-size:.74rem">d ${n.distance.toFixed(3)}${y ? ` · cc ${y.complexity}` : ""}</span></li>`; }).join("")}</ul></div>` : ""}
@@ -688,63 +704,78 @@ function drawDetail(id) {
 function openItem(id) { P.sel = id; store.set("tdr.priorities", P); if (location.hash === "#priorities") renderPriorities(); else location.hash = "priorities"; }
 
 /* ── evaluation ── */
+const evalNames = Object.keys((ev.defects || {}).methods || {});
+const evalIds = new Set(Object.keys(gt).filter((id) => evalNames.every((name) => id in (scores[name] || {}))));
+const evalPositives = new Set([...evalIds].filter((id) => positives.has(id)));
 const E = store.get("tdr.eval", { metric: "precision@10" });
-function precisionCurve(name, maxK) { const o = orderOf(name); let hit = 0; const pts = []; for (let k = 1; k <= Math.min(maxK, o.length); k++) { if (positives.has(o[k - 1])) hit++; pts.push([k, hit / k]); } return pts; }
+function precisionCurve(name, maxK) { const o = orderOf(name).filter((id) => evalIds.has(id)); let hit = 0; const pts = []; for (let k = 1; k <= Math.min(maxK, o.length); k++) { if (positives.has(o[k - 1])) hit++; pts.push([k, hit / k]); } return pts; }
 function rocCurve(name) {
-  const s = scores[name] || {}; const ids = Object.keys(s).filter((i) => i in gt); const P1 = ids.filter((i) => positives.has(i)).length, N1 = ids.length - P1;
+  const s = scores[name] || {}; const ids = Object.keys(s).filter((i) => evalIds.has(i)); const P1 = ids.filter((i) => positives.has(i)).length, N1 = ids.length - P1;
   if (!P1 || !N1) return [[0, 0], [1, 1]];
   const groups = {}; ids.forEach((i) => { (groups[s[i]] = groups[s[i]] || []).push(i); });
   let tp = 0, fp = 0; const pts = [[0, 0]];
   Object.keys(groups).map(Number).sort((a, b) => b - a).forEach((v) => { groups[v].forEach((i) => positives.has(i) ? tp++ : fp++); pts.push([fp / N1, tp / P1]); });
   return pts;
 }
+function topTenChart(name) {
+  const ids = orderOf(name).slice(0, 10), sc = scores[name] || {};
+  if (!ids.length) return empty("No ranking available", "Run this method to see its highest-priority items.");
+  const max = Math.max(1, ...ids.map(id => sc[id] || 0));
+  return `<ol style="padding-left:24px">${ids.map(id => `<li style="margin:12px 0"><button class="field" data-top-item="${esc(id)}" style="max-width:100%;white-space:normal;text-align:left">${esc(id)}</button><div style="display:flex;gap:10px;align-items:center"><span class="track" style="flex:1"><b style="width:${100 * (sc[id] || 0) / max}%;background:${METHOD[name].color}"></b></span><span class="num">${fmt(sc[id])}</span></div></li>`).join("")}</ol>`;
+}
 function renderEvaluation() {
   const view = $("#view-evaluation"), d = ev.defects;
   if (!d) { view.innerHTML = empty("No evaluation yet", "Run the evaluation to compare methods.", ["python run_evaluation.py", "python run_dashboard.py"]); return; }
-  const names = Object.keys(scores).filter((n) => n !== "llm" || hasLLM);
-  const series = (fn) => names.map((n) => ({ color: METHOD[n].color, bold: n === "llm", points: fn(n) }));
+  // Only the 3 key methods: proposed LLM+RAG, context baseline, static baseline
+  const CHART_METHODS = ["llm", "context_heuristic", "static_score"];
+  const chartSeries = (fn) => CHART_METHODS.map((n) => ({
+    name: n,
+    color: (METHOD[n] || {}).color || "var(--muted)",
+    dash: (METHOD[n] || {}).dash || "none",
+    bold: n === "llm",
+    points: fn(n)
+  }));
   const METRICS = {
-    "precision@10": ["Precision@10 · later bug fixes", "defects", "precision@10", null, 0],
-    "precision@5": ["Precision@5 · later bug fixes", "defects", "precision@5", null, 0],
-    "auc_future_defect": ["ROC-AUC · bug-fixed vs not", "defects", "auc_future_defect", null, 0],
-    "ndcg@10_fix_commits": ["NDCG@10 · bug-fix commits", "defects", "ndcg@10_fix_commits", null, 0],
-    "spearman_vs_change_commits": ["Spearman ρ · later changes (95% CI)", "defects", "spearman_vs_change_commits", "spearman_vs_change_commits_ci95", -1],
+    "precision@10": ["Precision@10 \u00b7 later bug fixes", "defects", "precision@10", "precision@10_ci95", 0],
+    "precision@5": ["Precision@5 \u00b7 later bug fixes", "defects", "precision@5", "precision@5_ci95", 0],
+    "auc_future_defect": ["ROC-AUC \u00b7 bug-fixed vs not", "defects", "auc_future_defect", "auc_future_defect_ci95", 0],
+    "ndcg@10_fix_commits": ["NDCG@10 \u00b7 bug-fix commits", "defects", "ndcg@10_fix_commits", "ndcg@10_fix_commits_ci95", 0],
+    "spearman_vs_change_commits": ["Spearman \u03c1 \u00b7 later changes (95% CI)", "defects", "spearman_vs_change_commits", "spearman_vs_change_commits_ci95", -1],
   };
   const hasExp = ev.experts && ev.experts.methods && Object.keys(ev.experts.methods).length;
-  if (hasExp) { METRICS.exp = ["Spearman ρ · experts (95% CI)", "experts", "spearman", "spearman_ci95", -1]; METRICS.expP = ["Top-10 overlap · experts", "experts", "precision@10", null, 0]; }
+  if (hasExp) { METRICS.exp = ["Spearman \u03c1 \u00b7 experts (95% CI)", "experts", "spearman", "spearman_ci95", -1]; METRICS.expP = ["Top-10 overlap \u00b7 experts", "experts", "precision@10", "precision@10_ci95", 0]; }
   if (!METRICS[E.metric]) E.metric = "precision@10";
   const [, sec, key, ci, lo] = METRICS[E.metric];
-  const legend = `<div class="legend">${names.map((n) => `<span><i style="background:${METHOD[n].color}"></i>${METHOD[n].label}${dm(n, "auc_future_defect") !== null ? ` <span class="mono">AUC ${fmt(dm(n, "auc_future_defect"), 2)}</span>` : ""}</span>`).join("")}</div>`;
   function dm(n, k) { const r = (d.methods || {})[n]; return r && isNum(r[k]) ? r[k] : null; }
+  // Compact 3-method legend with colour-coded labels and the metric value inline
+  function chartLegend(metricKey) {
+    return `<div class="legend" style="gap:18px;margin-top:10px">${CHART_METHODS.map(n => {
+      const m = METHOD[n] || { label: n, color: "var(--muted)", dash: "none" };
+      const v = dm(n, metricKey);
+      const sw = n === "llm" ? "3.4" : "2";
+      const cr = n === "llm" ? "4.5" : "3";
+      return `<span class="legend-item" style="gap:6px"><svg width="30" height="12" style="display:inline-block;overflow:visible;vertical-align:middle"><line x1="0" y1="6" x2="30" y2="6" stroke="${m.color}" stroke-width="${sw}" stroke-dasharray="${m.dash !== 'none' ? m.dash : ''}"/><circle cx="15" cy="6" r="${cr}" fill="${m.color}" stroke="var(--plot-bg)" stroke-width="1.5"/></svg><b style="color:${m.color}">${esc(m.label)}</b>${v !== null ? `<span class="mono" style="font-size:.78em;opacity:.75">${metricKey.startsWith('precision') ? 'P@K' : 'AUC'}&thinsp;${fmt(v, 2)}</span>` : ""}</span>`;
+    }).join("")}</div>`;
+  }
   const table = (s, cols) => `<div class="table-wrap"><table class="data"><thead><tr><th>Method</th>${cols.map(([, l]) => `<th class="r">${l}</th>`).join("")}</tr></thead><tbody>${methodRows(s).map(([n, r]) => { const bestOf = (k) => Math.max(...methodRows(s).map(([, rr]) => isNum(rr[k]) ? rr[k] : -9)); return `<tr><td><span class="legend"><span><i class="dot" style="background:${(METHOD[n] || {}).color}"></i><b style="color:var(--ink)">${esc((METHOD[n] || { label: n }).label)}</b></span></span></td>${cols.map(([k]) => Array.isArray(r[k]) ? `<td class="r num muted">[${fmt(r[k][0], 2)}, ${fmt(r[k][1], 2)}]</td>` : `<td class="r num" style="${isNum(r[k]) && r[k] === bestOf(k) ? "font-weight:700;color:var(--accent-ink)" : ""}">${fmt(r[k])}</td>`).join("")}</tr>`; }).join("")}</tbody></table></div>`;
-  const ag = ev.expert_agreement || {};
   view.innerHTML = `
-    ${(ev.excluded_experiments || []).length ? `<div class="callout"><b>Excluded from comparison</b>${ev.excluded_experiments.map((t) => `<p class="muted">${esc(t)}</p>`).join("")}<p class="muted">Only methods with complete, successful runs are scored, so every number below compares methods on the same ${d.n_items} functions.</p></div>` : ""}
-    <div class="grid">
-      <div class="card span-6"><div class="card-head"><div><h2>Precision@K</h2><span class="sub">Share of each method's top-K that was bug-fixed after the cutoff. Base rate ${pct(positives.size / d.n_items)}.</span></div></div>
-        ${lineChart({ series: series((n) => precisionCurve(n, 30)), xMax: 30, xLabel: "K (top-K functions)", yLabel: "Precision", xTicks: [1, 5, 10, 15, 20, 25, 30] })}${legend}</div>
-      <div class="card span-6"><div class="card-head"><div><h2>ROC curve</h2><span class="sub">How well each score separates functions that later needed a fix (${positives.size}) from those that did not (${d.n_items - positives.size}).</span></div></div>
-        ${lineChart({ series: series(rocCurve), xMax: 1, xLabel: "False positive rate", yLabel: "True positive rate", diag: true, xTicks: [0, .25, .5, .75, 1] })}${legend}</div>
+    <div class="card"><div class="card-head"><div><h2>Method comparison</h2><span class="sub">Evaluation on the same ${d.n_items} functions \u00b7 post-cutoff history as ground truth. <b>Bold</b> = best.</span></div></div>
+      ${table({methods: Object.fromEntries(["static_score", "context_heuristic", "llm"].map((n) => [n, d.methods[n] || {}]))}, [["precision@5", "Prec@5"], ["precision@10", "Prec@10"], ["auc_future_defect", "ROC-AUC"], ["ndcg@10_fix_commits", "NDCG@10"], ["spearman_vs_fix_commits", "Spearman \u03c1"]])}
+      <p class="sub" style="margin-top:10px">Static analysis: composite score (complexity, MI, smells). Context heuristic: adds Git history, callers, coverage. LLM + RAG (proposed): full repository context via RAG retrieval + 3-agent LLM reasoning.</p>
     </div>
-    <div class="card"><div class="card-head"><div><h2>Method comparison</h2><span class="sub">${d.n_items} functions · ${d.n_positive} positives. Whiskers are bootstrap 95% confidence intervals.</span></div>
+    <div class="grid">
+      <div class="card span-6"><div class="card-head"><div><h2>Precision@K</h2><span class="sub">Share of top-K functions that were bug-fixed after the cutoff \u2014 <em>higher is better</em>. Base rate ${pct(evalPositives.size / d.n_items)}.</span></div></div>
+        ${lineChart({ series: chartSeries((n) => precisionCurve(n, 30)), xMax: 30, xLabel: "K (top-K functions)", yLabel: "Precision", xTicks: [1, 5, 10, 15, 20, 25, 30] })}
+        ${chartLegend("precision@10")}</div>
+      <div class="card span-6"><div class="card-head"><div><h2>ROC curve</h2><span class="sub">True vs false positive rate \u2014 <em>closer to top-left = better</em>. Separates ${evalPositives.size} bug-fixed from ${d.n_items - evalPositives.size} clean functions.</span></div></div>
+        ${lineChart({ series: chartSeries(rocCurve), xMax: 1, xLabel: "False positive rate", yLabel: "True positive rate", diag: true, xTicks: [0, .25, .5, .75, 1] })}
+        ${chartLegend("auc_future_defect")}</div>
+    </div>
+    <div class="card"><div class="card-head"><div><h2>Metric bar chart</h2><span class="sub">${d.n_items} functions \u00b7 ${d.n_positive} bug-fixed positives. Whiskers = 95% bootstrap CI. Select metric below.</span></div>
       <select id="metric" class="field" aria-label="Metric">${Object.entries(METRICS).map(([k, v]) => `<option value="${k}" ${k === E.metric ? "selected" : ""}>${v[0]}</option>`).join("")}</select></div>
-      ${barChart(methodRows(ev[sec]), key, ci, lo)}</div>
-    <div class="card"><h2>Against post-cutoff history</h2>${table(d, [["precision@5", "P@5"], ["precision@10", "P@10"], ["precision@20", "P@20"], ["auc_future_defect", "AUC"], ["ndcg@10_fix_commits", "NDCG@10"], ["spearman_vs_fix_commits", "ρ fixes"], ["spearman_vs_change_commits", "ρ changes"], ["spearman_vs_change_commits_ci95", "95% CI"]])}<p class="sub">Bold amber = best value in the column.</p></div>
-    <div class="card"><div class="card-head"><div><h2>Against expert rankings</h2><span class="sub">${hasExp ? `${(ag.raters || []).length} rater(s) · Kendall's W ${fmt(ag.kendalls_w)} · mean pairwise ρ ${fmt(ag.mean_pairwise_spearman)}` : "Primary ground truth in the project plan"}</span></div></div>
-      ${hasExp ? table(ev.experts, [["spearman", "ρ"], ["spearman_ci95", "95% CI"], ["kendall_tau", "τ"], ["precision@5", "P@5"], ["precision@10", "P@10"], ["ndcg@10", "NDCG@10"]]) : empty("Waiting for expert ratings", `${raters.length} of the recommended 2–3 independent raters have submitted. Ratings are collected blind in the Expert review tab.`)}</div>
-    ${(ev.paired || []).length ? `<div class="card"><h2>Paired comparisons</h2><div class="table-wrap"><table class="data"><thead><tr><th>Comparison</th><th>Ground truth</th><th class="r">Δρ</th><th class="r">95% CI</th><th>Significant</th></tr></thead><tbody>${ev.paired.map((p) => `<tr><td>${esc(p.comparison)}</td><td>${esc(p.truth)}</td><td class="r num">${fmt(p.delta_spearman)}</td><td class="r num">[${fmt(p.ci95[0])}, ${fmt(p.ci95[1])}]</td><td>${p.significant ? `<span class="chip ok">yes</span>` : `<span class="chip none">no</span>`}</td></tr>`).join("")}</tbody></table></div></div>` : ""}
-    <div class="card"><h2>Reading the baseline results</h2><ul class="works">
-      <li><span class="chip none">1</span><span>Static analysis is a strong baseline on this repository: the composite score reaches AUC ${fmt(dm("static_score", "auc_future_defect"), 2)} and Precision@10 ${fmt(dm("static_score", "precision@10"), 2)}, so ${Math.round((dm("static_score", "precision@10") || 0) * 10)} of its top 10 functions really were bug-fixed later.</span></li>
-      <li><span class="chip none">2</span><span>Adding repository context without an LLM (context heuristic) raises AUC to ${fmt(dm("context_heuristic", "auc_future_defect"), 2)} but not Precision@10 (${fmt(dm("context_heuristic", "precision@10"), 2)}), which suggests context helps overall ordering more than the very top of the list.</span></li>
-      <li><span class="chip none">3</span><span>All confidence intervals overlap, because only ${positives.size} of ${d.n_items} functions are positives. Differences between baselines are not statistically significant; the LLM must clear this bar by a margin to support the hypothesis.</span></li>
-    </ul></div>`;
+      ${barChart(["llm", "context_heuristic", "static_score"].map(n => [n, ((ev[sec] || {}).methods || {})[n] || {}]), key, ci, lo)}</div>`;
   $("#metric").addEventListener("change", (e) => { E.metric = e.target.value; store.set("tdr.eval", E); renderEvaluation(); });
 }
-
-/* ── expert review ── */
-const R = store.get(`tdr.rating.${repo}`, { rater: "", scores: {}, notes: {}, touched: {} });
-R.touched = R.touched || {};
-const ratingJSON = () => { const s = {}, n = {}; sample.forEach((id) => { s[id] = Number(R.scores[id] ?? 5); if (R.notes[id]) n[id] = R.notes[id]; }); return JSON.stringify({ rater: R.rater || "your-name", scores: s, notes: n }, null, 2); };
 function renderReview() {
   const view = $("#view-review");
   if (!sample.length) { view.innerHTML = empty("No sample drawn yet", "Draw the stratified sample of functions that raters will score.", ["python run_evaluation.py --make-expert-sample", "python run_dashboard.py"]); return; }
@@ -802,7 +833,7 @@ function renderLimits() {
   const d = ev.defects || {};
   const risks = [
     ["HIGH", "Small number of positive labels", `Only ${positives.size} of ${items.length} candidates were bug-fixed after the cutoff, so Precision@K and AUC move a lot with one item and confidence intervals are wide.`, "Report bootstrap CIs and paired tests; add change-proneness and expert ratings as further ground truths; extendable to more repositories or an earlier cutoff."],
-    ["HIGH", "LLM experiment not yet executed", llmFailed ? `The last run returned 0/${runs.llm.total} rankings (${runs.llm.first_error})` : "Phase 4 results are required to answer the research question.", "Pipeline is complete and cached; a funded run fills every chart automatically. No LLM numbers are claimed until then."],
+    ["HIGH", hasLLM ? "LLM run coverage" : "LLM experiment not yet executed", hasLLM ? `${Object.keys(llm).length}/${items.length} candidates have successful LLM rankings; ${(runs.llm || {}).errors || 0} items failed.` : llmFailed ? `The last run returned 0/${runs.llm.total} rankings (${runs.llm.first_error})` : "Phase 4 results are required to answer the research question.", "Saved successful results appear in Evaluation. Failed items are excluded from the shared comparison sample."],
     ["MEDIUM", "Keyword-based bug labels (SZZ-lite)", "Fix commits are found from commit and PR messages and mapped to changed lines; some fixes are missed and some labels are wrong.", "Exclude typo/docs/CI/typing commits and sweeping commits; keep fix SHAs for manual audit."],
     ["MEDIUM", "Few expert raters", `${raters.length} rater(s) so far; ratings from 2–3 students are not a panel of maintainers.`, "Blind form, stratified sample, Kendall's W reported next to every expert metric."],
     ["MEDIUM", "Single repository", `All results come from psf/${repo}, a mature, well-tested library; it may not generalise.`, "The pipeline is repository-agnostic (run_dataset.py --repo); a second target is the next step."],
@@ -816,7 +847,7 @@ function renderLimits() {
     [true, `RAG retrieval runs for all ${(D.retrievalDiagnostics || {}).queries || 0} items with ${((D.retrievalDiagnostics || {}).self_matches || []).length} self-matches.`],
     [true, `Baselines measured end to end with bootstrap CIs (${d.n_items || 0} items).`],
     [(D.testBaseline || {}).passed !== undefined, `Phase 6 test baseline recorded (${(D.testBaseline || {}).passed ?? "–"} passing tests).`],
-    [hasLLM, "LLM + RAG rankings for all candidates."],
+    [Object.keys(llm).length === items.length, `LLM + RAG rankings: ${Object.keys(llm).length}/${items.length} candidates.`],
     [raters.length >= 2, "At least two independent expert raters."],
     [!!ref.summary, "Measured refactoring experiment on real branches."],
   ];

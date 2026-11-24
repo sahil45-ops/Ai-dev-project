@@ -1,0 +1,14 @@
+{
+ "summary": "The 'post()' function in requests/api.py has a high cyclomatic complexity of 1 and a low maintainability index of 100.0, indicating that it is difficult to understand and maintain. Additionally, it has a high static debt score of 0.2 and is flagged as dead code, indicating that it is not currently used in the codebase. The function also has several code smells and style-only findings, and is referenced in 34 files in the repository.",
+ "debt_indicators": [
+  "deep nesting",
+  "mixed responsibilities",
+  "duplicated branches"
+ ],
+ "impact_factors": [
+  "central function",
+  "frequent changes or breaks",
+  "poor test coverage"
+ ],
+ "risk_assessment": "High"
+}

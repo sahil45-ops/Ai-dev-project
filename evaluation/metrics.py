@@ -12,7 +12,7 @@ import random
 from collections import Counter
 from typing import Callable, Sequence
 
-from scipy.stats import kendalltau, spearmanr
+from scipy.stats import kendalltau, rankdata, spearmanr
 
 
 def _aligned(a: dict[str, float], b: dict[str, float]) -> tuple[list[float], list[float]]:
@@ -67,7 +67,9 @@ def roc_auc(scores: dict[str, float], labels: dict[str, bool]) -> float | None:
     neg = [scores[i] for i in scores if i in labels and not labels[i]]
     if not pos or not neg:
         return None
-    wins = sum(1.0 if p > n else 0.5 if p == n else 0.0 for p in pos for n in neg)
+    # Mann-Whitney rank sum: same tie semantics without quadratic pair enumeration.
+    ranks = rankdata(pos + neg)
+    wins = sum(ranks[:len(pos)]) - len(pos) * (len(pos) + 1) / 2
     return round(wins / (len(pos) * len(neg)), 4)
 
 
@@ -86,13 +88,15 @@ def bootstrap_ci(
     """Percentile bootstrap CI of *statistic* over resampled item sets."""
     rng = random.Random(seed)
     ids = list(ids)
+    if not ids or n_boot < 1:
+        return None, None
     values = []
     for _ in range(n_boot):
         sample = [rng.choice(ids) for _ in ids]
         v = statistic(sample)
         if v is not None and not math.isnan(v):
             values.append(v)
-    if len(values) < n_boot * 0.5:
+    if not values or len(values) < n_boot * 0.5:
         return None, None
     values.sort()
     lo = values[int((alpha / 2) * len(values))]

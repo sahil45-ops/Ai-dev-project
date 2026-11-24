@@ -1,0 +1,18 @@
+{
+ "summary": "HTTPAdapter.add_headers() in requests/adapters.py (line 398) carries technical debt due to high cyclomatic complexity, low maintainability index, and unused arguments. The function is not called from user code and is only exposed for subclassing, which makes it a candidate for refactoring.",
+ "debt_indicators": [
+  "Cyclomatic complexity: 1 (Radon rank A)",
+  "LOC: 13 | Parameters: 1",
+  "File maintainability index: 51.8",
+  "Code smells (lint/refactor findings): 2 [lint]",
+  "Style-only findings: 0",
+  "Duplicated lines: 0",
+  "Flagged as dead code: no"
+ ],
+ "impact_factors": [
+  "How central the function is: 0",
+  "How often it changes or breaks: 0",
+  "How well it is tested: 0"
+ ],
+ "risk_assessment": "High"
+}

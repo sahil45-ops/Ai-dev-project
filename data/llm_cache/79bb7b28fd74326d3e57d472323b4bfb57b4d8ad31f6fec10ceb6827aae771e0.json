@@ -1,0 +1,5 @@
+{
+ "priority": "MEDIUM",
+ "priority_score": 50,
+ "reason": "The function generates information for a bug report, which may be relevant for bug reports. However, it includes redundant information like the version of OpenSSL and Chardet, which may not be relevant for bug reports. Additionally, the function is not very complex, but it is not very simple either. Therefore, it is classified as a medium-priority item."
+}

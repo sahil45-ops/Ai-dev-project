@@ -12,6 +12,7 @@ from __future__ import annotations
 
 from datetime import datetime, timezone, timedelta
 from typing import Optional
+from enricher.function_history import is_defect_fix
 
 
 def _open_repo(repo_path: str):
@@ -56,7 +57,6 @@ def build_file_context(
 
     reference = as_of or datetime.now(tz=timezone.utc)
     since = reference - timedelta(days=lookback_days)
-    defect_keywords = {"fix", "bug", "error", "patch", "hotfix", "issue"}
 
     file_stats: dict[str, dict] = {}
 
@@ -67,13 +67,13 @@ def build_file_context(
             iter_kwargs["until"] = as_of.isoformat()
         for commit in repo.iter_commits(**iter_kwargs):
             commit_dt = datetime.fromtimestamp(commit.committed_date, tz=timezone.utc)
-            if commit_dt > reference:
+            if commit_dt >= reference:
                 continue
-            is_defect = any(kw in commit.message.lower() for kw in defect_keywords)
+            is_defect = is_defect_fix(commit.message)
             author = str(commit.author.email or commit.author.name)
             days_since = (reference - commit_dt).days
 
-            for diff in commit.stats.files:
+            for diff, changes in commit.stats.files.items():
                 # diff is a relative path within the repo
                 if not diff.endswith(".py"):
                     continue
@@ -83,9 +83,13 @@ def build_file_context(
                         "defect_commits": 0,
                         "authors": set(),
                         "last_modified_days": days_since,
+                        "lines_added": 0,
+                        "lines_deleted": 0,
                     }
                 s = file_stats[diff]
                 s["recent_commits"] += 1
+                s["lines_added"] += changes.get("insertions", 0)
+                s["lines_deleted"] += changes.get("deletions", 0)
                 if is_defect:
                     s["defect_commits"] += 1
                 s["authors"].add(author)
@@ -104,6 +108,10 @@ def build_file_context(
             "defect_commits": stats["defect_commits"],
             "commit_authors": len(stats["authors"]),
             "last_modified_days": stats["last_modified_days"],
+            "lines_added": stats["lines_added"],
+            "lines_deleted": stats["lines_deleted"],
+            "code_churn": stats["lines_added"] + stats["lines_deleted"],
+            "recurring_bug_file": stats["defect_commits"] >= 2,
         }
 
     return result

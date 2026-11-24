@@ -1,0 +1,6 @@
+{
+ "priority": "MEDIUM",
+ "priority_score": 55,
+ "reason": "The constructor has moderate cyclomatic complexity (7) and 33 LOC with ten parameters, leading to duplicated default assignments and a missing docstring. While it is part of the public API and not currently causing defects, the code is hard to maintain and could introduce bugs if modified. Refactoring will improve readability and reduce future maintenance effort.",
+ "action": "Extract the repeated default‑value logic into a small helper (e.g., `_default_dict_or_list`) and add a comprehensive docstring to the constructor. Keep the public signature unchanged to preserve backward compatibility."
+}

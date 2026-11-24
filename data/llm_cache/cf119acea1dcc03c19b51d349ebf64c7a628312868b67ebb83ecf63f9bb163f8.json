@@ -1,0 +1,6 @@
+{
+ "action": "Extract a separate function to handle the logic of determining if a response is a permanent redirect.",
+ "refactoring_type": "extract_method",
+ "expected_benefit": "Reduces code complexity, improves maintainability, and reduces the risk of technical debt. The extracted function will have a maintainability index of 25.5 and a composite static debt score of 2.52/10.",
+ "risk": "The extracted function will have a composite static debt score of 2.52/10, which is lower than the original function's composite static debt score of 3.52/10. This indicates that the extracted function carries less technical debt than the original function."
+}

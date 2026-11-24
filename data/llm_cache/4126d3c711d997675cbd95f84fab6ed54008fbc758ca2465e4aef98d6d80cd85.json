@@ -1,0 +1,6 @@
+{
+ "priority": "LOW",
+ "priority_score": 15,
+ "reason": "The helper is small, only used in two places, and its complexity is moderate but not problematic. It is unlikely to cause defects or hinder frequent changes, and there is no evidence of bugs or performance issues.",
+ "action": "No immediate refactoring required; optionally extract the error‑handling logic into a separate helper to reduce cyclomatic complexity if future maintenance demands it."
+}

@@ -1,0 +1,111 @@
+{
+  "environment": {
+    "python": "3.13.5 | packaged by Anaconda, Inc. | (main, Jun 12 2025, 16:37:03) [MSC v.1929 64 bit (AMD64)]",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "cpu_count": 18,
+    "ram_mb": 15805.3671875
+  },
+  "budgets": {
+    "seconds": 120.0,
+    "memory_mb": 4096
+  },
+  "enabled_optional_stages": [
+    "--static"
+  ],
+  "runs": [
+    {
+      "stages_seconds": {
+        "function_index": 0.028194200014695525,
+        "static_analysis": 3.4004686000407673,
+        "duplication": 0.002104399958625436,
+        "call_graph": 0.005080799979623407
+      },
+      "scope": {
+        "static": true,
+        "history": false,
+        "rag": false
+      },
+      "source_sha256": "611cf8ab96fe0ec5849577b7fde34fe6ece1e521031125df7b43cf7dec4910de",
+      "python_files": 5,
+      "physical_lines": 495,
+      "kloc": 0.495,
+      "functions": 100,
+      "issues": 210,
+      "status": "complete",
+      "llm_tokens": null,
+      "llm_cost_usd": null,
+      "name": "synthetic_small",
+      "source": "C:\\Users\\ASAD AHMAD\\Downloads\\devvv (3)\\devvv\\Intelligent_Technical_Debt_and_Refactoring-main\\Intelligent_Technical_Debt_and_Refactoring-main\\targets\\benchmark-fixtures\\small",
+      "wall_seconds": 3.6765963999787346,
+      "peak_tree_rss_mb": 80.76953125,
+      "log_tail": "\n============================================================\n  Technical Debt Analyzer \u2014 Phase 1\n  Repository : small\n  Target     : C:\\Users\\ASAD AHMAD\\Downloads\\devvv (3)\\devvv\\Intelligent_Technical_Debt_and_Refactoring-main\\Intelligent_Technical_Debt_and_Refactoring-main\\targets\\benchmark-fixtures\\small\n============================================================\n\n[1/4] Running Radon \u2026\n       Found 5 issue(s)\n[2/4] Running Ruff \u2026\n       Found 0 issue(s)\n[3/4] Running Pylint \u2026\n       Found 105 issue(s)\n[4/4] Running Vulture \u2026\n       Found 100 issue(s)\n",
+      "repeat": 1
+    },
+    {
+      "stages_seconds": {
+        "function_index": 0.2422194000100717,
+        "static_analysis": 3.9397829999797978,
+        "duplication": 0.02002699999138713,
+        "call_graph": 0.04976560000795871
+      },
+      "scope": {
+        "static": true,
+        "history": false,
+        "rag": false
+      },
+      "source_sha256": "1260db70bb2161e469aa752be2dc846e4fad3331befb8170c79981e9c411b0f4",
+      "python_files": 50,
+      "physical_lines": 4950,
+      "kloc": 4.95,
+      "functions": 1000,
+      "issues": 2100,
+      "status": "complete",
+      "llm_tokens": null,
+      "llm_cost_usd": null,
+      "name": "synthetic_medium",
+      "source": "C:\\Users\\ASAD AHMAD\\Downloads\\devvv (3)\\devvv\\Intelligent_Technical_Debt_and_Refactoring-main\\Intelligent_Technical_Debt_and_Refactoring-main\\targets\\benchmark-fixtures\\medium",
+      "wall_seconds": 4.634352600027341,
+      "peak_tree_rss_mb": 92.5078125,
+      "log_tail": "\n============================================================\n  Technical Debt Analyzer \u2014 Phase 1\n  Repository : medium\n  Target     : C:\\Users\\ASAD AHMAD\\Downloads\\devvv (3)\\devvv\\Intelligent_Technical_Debt_and_Refactoring-main\\Intelligent_Technical_Debt_and_Refactoring-main\\targets\\benchmark-fixtures\\medium\n============================================================\n\n[1/4] Running Radon \u2026\n       Found 50 issue(s)\n[2/4] Running Ruff \u2026\n       Found 0 issue(s)\n[3/4] Running Pylint \u2026\n       Found 1050 issue(s)\n[4/4] Running Vulture \u2026\n       Found 1000 issue(s)\n",
+      "repeat": 1
+    },
+    {
+      "stages_seconds": {
+        "function_index": 1.2991804999765009,
+        "static_analysis": 3.7790191000094637,
+        "duplication": 0.11803860001964495,
+        "call_graph": 0.3076415999676101
+      },
+      "scope": {
+        "static": true,
+        "history": false,
+        "rag": false
+      },
+      "source_sha256": "0b718a324e026c19db9ca9266853a1c3b0623ad4c2ff91ad415e878d6d361d64",
+      "python_files": 250,
+      "physical_lines": 24750,
+      "kloc": 24.75,
+      "functions": 5000,
+      "issues": 5250,
+      "status": "complete",
+      "llm_tokens": null,
+      "llm_cost_usd": null,
+      "name": "synthetic_large",
+      "source": "C:\\Users\\ASAD AHMAD\\Downloads\\devvv (3)\\devvv\\Intelligent_Technical_Debt_and_Refactoring-main\\Intelligent_Technical_Debt_and_Refactoring-main\\targets\\benchmark-fixtures\\large",
+      "wall_seconds": 5.963235299976077,
+      "peak_tree_rss_mb": 75.07421875,
+      "log_tail": "\n============================================================\n  Technical Debt Analyzer \u2014 Phase 1\n  Repository : large\n  Target     : C:\\Users\\ASAD AHMAD\\Downloads\\devvv (3)\\devvv\\Intelligent_Technical_Debt_and_Refactoring-main\\Intelligent_Technical_Debt_and_Refactoring-main\\targets\\benchmark-fixtures\\large\n============================================================\n\n[1/4] Running Radon \u2026\n       Found 250 issue(s)\n[2/4] Running Ruff \u2026\n       Found 0 issue(s)\n[3/4] Running Pylint \u2026\n[pylint] command failed: [WinError 206] The filename or extension is too long\n       Found 0 issue(s)\n[4/4] Running Vulture \u2026\n       Found 5000 issue(s)\n",
+      "repeat": 1
+    }
+  ],
+  "largest_successful_kloc": 24.75,
+  "maximum_supported_kloc": null,
+  "limitations": [
+    "Observed bound applies only to these repositories and enabled stages.",
+    "RSS is sampled every 100ms across the process tree; brief peaks can be missed.",
+    "RAG indexes all functions as a load probe; this is not ranking quality evaluation.",
+    "LLM usage and cost are measured separately by run_model_benchmark.py.",
+    "Analyzer wrappers may report empty findings on tool failures; inspect logs.",
+    "Repeated runs can benefit from OS/model caches; record cold and warm runs separately."
+  ]
+}

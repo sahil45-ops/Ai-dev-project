@@ -1,0 +1,14 @@
+{
+ "summary": "The Response.content() function in requests/models.py carries technical debt related to its complexity and maintainability. The function has a cyclomatic complexity of 6, which is ranked as B by Radon. Additionally, the function has a low maintainability index of 21.89, indicating that it is not well-maintained and may require refactoring. The function also has a high composite static debt score of 4.32/10, which suggests that it is a significant source of technical debt in the repository.",
+ "debt_indicators": [
+  "Cyclomatic complexity",
+  "Maintainability index",
+  "Composite static debt score"
+ ],
+ "impact_factors": [
+  "Complexity",
+  "Maintainability index",
+  "Composite static debt score"
+ ],
+ "risk_assessment": "Low"
+}

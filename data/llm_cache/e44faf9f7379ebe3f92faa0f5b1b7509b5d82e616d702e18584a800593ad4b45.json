@@ -1,0 +1,6 @@
+{
+ "priority": "HIGH",
+ "priority_score": 85,
+ "reason": "The constructor is highly complex (cyclomatic 12, 83 LOC) and publicly exposed, yet it redefines built‑in names and mixes two unrelated concepts in the default parameter. This makes maintenance difficult, increases the risk of bugs, and hampers readability for future contributors.",
+ "action": "Refactor the constructor: rename the built‑in parameters to avoid shadowing (e.g., `param_type` and `help_text`), extract the default‑handling logic into a dedicated helper method, and add a comprehensive docstring. This will reduce cyclomatic complexity, improve maintainability, and preserve the public API."
+}

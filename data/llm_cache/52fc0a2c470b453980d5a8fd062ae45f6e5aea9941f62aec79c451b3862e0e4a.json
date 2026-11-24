@@ -1,0 +1,15 @@
+{
+ "summary": "The `Session.put()` function in requests/sessions.py carries technical debt related to its complexity and maintainability. The function has a high complexity score of 1 (rank A) and 60 LOC, indicating that it is a high-risk function. Additionally, the function has a low maintainability index of 38.09, suggesting that it is difficult to understand and modify. The function has no call sites in the library, but it has references from tests. The function is not flagged as dead code, but it has duplicated lines and is not style-only. The composite static debt score for this function is 2.68/10.",
+ "debt_indicators": [
+  "deep nesting",
+  "mixed responsibilities",
+  "duplicated lines",
+  "flagged as dead code"
+ ],
+ "impact_factors": [
+  "how central the function is",
+  "how often it changes or breaks",
+  "how well it is tested"
+ ],
+ "risk_assessment": "high risk"
+}

@@ -1,0 +1,5 @@
+{
+ "priority": "HIGH",
+ "priority_score": 80,
+ "reason": "The function in the requests library carries technical debt related to its complexity and maintainability. The function has a high cyclomatic complexity of 3, indicating that it has multiple conditional statements and nested loops. Additionally, the function is not well-documented, and its purpose is not clearly defined. This lack of documentation and complexity makes it difficult to understand and maintain."
+}

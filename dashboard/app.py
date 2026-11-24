@@ -21,14 +21,21 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 if ROOT not in sys.path:
     sys.path.insert(0, ROOT)
 
-import pandas as pd  # noqa: E402
-import plotly.express as px  # noqa: E402
-import streamlit as st  # noqa: E402
+import pandas as pd
+import plotly.express as px
+import streamlit as st
 
-import config  # noqa: E402
-from agents.prompts import read_function_source, render_item  # noqa: E402
-from evaluation.evaluate import METHOD_LABELS  # noqa: E402
-from evaluation.expert import load_raters, save_rater  # noqa: E402
+import config
+from agents.prompts import coverage_is_known, read_function_source, render_item
+from evaluation.evaluate import METHOD_LABELS, collect_methods
+from evaluation.expert import load_raters, save_rater
+from evaluation.explanations import (
+    ADVANCED,
+    BASE,
+    HISTORY,
+    evidence_for,
+    explain_heuristic,
+)
 
 
 def load(path: str, default=None):
@@ -49,6 +56,12 @@ if not available_repos:
 repo = st.sidebar.selectbox("Repository", available_repos)
 paths = config.dataset_paths(repo)
 items = load(paths["items"], [])
+history_items = load(os.path.join(config.REPORTS_DIR, f"{repo}_history_ablation_items.json"), []) or []
+history_by_id = {x["id"]: x for x in history_items}
+items = [{**item, **{k: history_by_id[item["id"]][k] for k in
+         ("code_churn", "recurring_bug_file") if item["id"] in history_by_id
+         and k in history_by_id[item["id"]]}} for item in items]
+history_evaluation = load(os.path.join(config.REPORTS_DIR, f"{repo}_history_ablation.json"), {})
 meta = load(paths["meta"], {})
 llm = load(paths["llm_rankings"], [])
 evaluation = load(paths["evaluation"], {})
@@ -98,7 +111,10 @@ with tab_rank:
                      "llm_rank": r.get("llm_rank"), "priority": r.get("priority"),
                      "llm_score": r.get("priority_score"), "complexity": x["complexity"],
                      "callers": x["callers"], "past_fixes": x["func_fix_commits"],
-                     "coverage": x["function_coverage"]})
+                     "coverage": ("not measured" if not coverage_is_known(x)
+                                  else x["function_coverage"]),
+                     "code_churn": x.get("code_churn"),
+                     "contributors": x.get("commit_authors")})
     table = pd.DataFrame(rows).sort_values("llm_rank" if llm_by_id else "static_rank")
     st.dataframe(table, use_container_width=True, hide_index=True)
     if not llm_by_id:
@@ -111,6 +127,27 @@ with tab_rank:
             st.markdown(f"**Recommended action:** {r.get('action', '')}")
             if r.get("analysis_summary"):
                 st.markdown(f"**Analysis:** {r['analysis_summary']}")
+        explanation = explain_heuristic(items).get(choice, {})
+        if explanation:
+            st.markdown(f"**Context heuristic score:** {explanation['score']:.3f} "
+                        "(this is an auditable baseline explanation, not an LLM attribution)")
+            st.dataframe(pd.DataFrame(explanation["factors"]), hide_index=True,
+                         use_container_width=True)
+            st.markdown("**Evidence-based recommendations**")
+            for recommendation in evidence_for(by_id[choice])["recommendations"]:
+                st.markdown(f"- {recommendation}")
+        if by_id[choice].get("code_churn") is not None:
+            advanced = explain_heuristic(items, BASE + HISTORY + ADVANCED).get(choice, {})
+            st.markdown(f"**Advanced Git heuristic score:** {advanced.get('score', 0):.3f} "
+                        "(experimental, evaluated separately)")
+            st.dataframe(pd.DataFrame([
+                factor for factor in advanced.get("factors", [])
+                if factor["feature"] in {"code_churn", "commit_authors",
+                                         "recent_activity", "recurring_bug_file"}]),
+                hide_index=True, use_container_width=True)
+        st.markdown("**RAG evidence**")
+        retrieval = load(os.path.join(config.DATA_DIR, f"{repo}_llm_rankings_retrieval.json"), {}) or {}
+        st.code(retrieval.get(choice, "No retrieval record saved."))
         st.code(read_function_source(by_id[choice]), language="python")
 
 with tab_expert:
@@ -155,6 +192,62 @@ with tab_eval:
     if not evaluation:
         st.info("No evaluation yet — run `python run_evaluation.py`.")
     else:
+        comparison_labels = {
+            "static_score": "Static analysis",
+            "context_heuristic": "Context heuristic",
+            "llm": "LLM + RAG",
+            "llm_nocontext": "LLM without context",
+        }
+        st.subheader("Four-method comparison")
+        saved_methods = evaluation.get("defects", {}).get("methods", {})
+        comparison = pd.DataFrame({
+            label: saved_methods.get(key, {}) for key, label in comparison_labels.items()
+        }).T
+        columns = ["precision@10", "auc_future_defect", "ndcg@10_fix_commits",
+                   "spearman_vs_fix_commits", "spearman_vs_change_commits"]
+        st.dataframe(comparison.reindex(columns=columns), use_container_width=True)
+        st.caption("Saved results against post-cutoff history. The Git context method uses "
+                   "the existing context heuristic, which also includes callers and test coverage.")
+        all_methods = collect_methods(
+            items, llm, load(paths["llm_rankings_nocontext"], []) or [])
+        metric_columns = st.columns(2)
+        for column, key, title in zip(metric_columns, ("static_score", "context_heuristic"),
+                                      ("Static analysis: top 10", "Context heuristic: top 10")):
+            ranking = all_methods.get(key, {}).get("order", [])
+            with column:
+                st.markdown(f"**{title}**")
+                st.dataframe(pd.DataFrame([
+                    {"rank": n, "item": item_id, "score": all_methods[key]["scores"][item_id]}
+                    for n, item_id in enumerate(ranking[:10], 1)]),
+                    hide_index=True, use_container_width=True)
+        for column, key, title in zip(metric_columns, ("llm", "llm_nocontext"),
+                                      ("LLM + RAG: top 10", "LLM without context: top 10")):
+            ranking = all_methods.get(key, {}).get("order", [])
+            with column:
+                st.markdown(f"**{title}**")
+                st.dataframe(pd.DataFrame([
+                    {"rank": n, "item": item_id, "score": all_methods[key]["scores"][item_id]}
+                    for n, item_id in enumerate(ranking[:10], 1)]),
+                    hide_index=True, use_container_width=True)
+        if "context_advanced" in all_methods:
+            ranking = all_methods["context_advanced"]["order"][:10]
+            st.markdown("**Advanced Git context: top 10 (separate ablation)**")
+            st.dataframe(pd.DataFrame([
+                {"rank": n, "item": item_id,
+                 "score": all_methods["context_advanced"]["scores"][item_id]}
+                for n, item_id in enumerate(ranking, 1)]),
+                hide_index=True, use_container_width=True)
+        if history_evaluation:
+            st.subheader("Advanced Git history ablation")
+            st.caption("Separate evaluation across all debt candidates; its item set may differ from the core four-method comparison.")
+            history_methods = history_evaluation.get("evaluation", {})
+            history_frame = pd.DataFrame(history_methods.get("methods", {})).T
+            history_frame.index = [METHOD_LABELS.get(i, i) for i in history_frame.index]
+            st.dataframe(history_frame, use_container_width=True)
+            if history_evaluation.get("paired"):
+                st.dataframe(pd.DataFrame(history_evaluation["paired"]),
+                             use_container_width=True, hide_index=True)
+
         def section_frame(section: dict) -> pd.DataFrame:
             frame = pd.DataFrame(section.get("methods", {})).T
             frame.index = [METHOD_LABELS.get(i, i) for i in frame.index]
@@ -176,7 +269,17 @@ with tab_eval:
         df_def = section_frame(d)
         st.dataframe(df_def, use_container_width=True)
         metric = st.selectbox("Metric", [c for c in df_def.columns if not c.endswith("ci95")])
+        ci_col = metric + "_ci95"
+        if ci_col in df_def:
+            df_def["ci_low"] = df_def.apply(
+                lambda row: row[ci_col][0] if isinstance(row.get(ci_col), list) else None, axis=1)
+            df_def["ci_high"] = df_def.apply(
+                lambda row: row[ci_col][1] if isinstance(row.get(ci_col), list) else None, axis=1)
+            df_def["ci_upper_error"] = df_def["ci_high"] - df_def[metric]
+            df_def["ci_lower_error"] = df_def[metric] - df_def["ci_low"]
         st.plotly_chart(px.bar(df_def.reset_index(), x="index", y=metric,
+                               error_y="ci_upper_error" if "ci_upper_error" in df_def else None,
+                               error_y_minus="ci_lower_error" if "ci_lower_error" in df_def else None,
                                labels={"index": "method"}), use_container_width=True)
         if evaluation.get("paired"):
             st.subheader("Paired bootstrap comparisons")

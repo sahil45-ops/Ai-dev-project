@@ -31,6 +31,9 @@ Thumbs.db
 
 # Research pipeline working files
 targets/
-data/llm_cache/
 data/*_test_baseline.json
+
+# Not our work / course material
+MyceliumOps_Paper_preview*.pdf
+Research_Paper_Template_Guidance_AIDEVOPS.pdf
 reports/*.html

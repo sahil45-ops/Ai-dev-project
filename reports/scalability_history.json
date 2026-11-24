@@ -1,0 +1,55 @@
+{
+  "environment": {
+    "python": "3.13.5 | packaged by Anaconda, Inc. | (main, Jun 12 2025, 16:37:03) [MSC v.1929 64 bit (AMD64)]",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "cpu_count": 18,
+    "ram_mb": 15805.3671875
+  },
+  "budgets": {
+    "seconds": 180.0,
+    "memory_mb": 4096
+  },
+  "enabled_optional_stages": [
+    "--history"
+  ],
+  "runs": [
+    {
+      "stages_seconds": {
+        "function_index": 0.276953799999319,
+        "duplication": 0.017051000031642616,
+        "call_graph": 0.04343859996879473,
+        "file_history": 10.856215199979488,
+        "function_history": 2.1000584000139497
+      },
+      "scope": {
+        "static": false,
+        "history": true,
+        "rag": false
+      },
+      "source_sha256": "7bf74d03217e2ddfab298756a48072a946a3204cad778a2516260a85d208cc79",
+      "python_files": 18,
+      "physical_lines": 5426,
+      "kloc": 5.426,
+      "functions": 235,
+      "status": "complete",
+      "llm_tokens": null,
+      "llm_cost_usd": null,
+      "name": "requests_history",
+      "source": "C:\\Users\\ASAD AHMAD\\Downloads\\devvv (3)\\devvv\\Intelligent_Technical_Debt_and_Refactoring-main\\Intelligent_Technical_Debt_and_Refactoring-main\\targets\\requests_snapshot\\src\\requests",
+      "wall_seconds": 13.818345699983183,
+      "peak_tree_rss_mb": 121.1171875,
+      "log_tail": "",
+      "repeat": 1
+    }
+  ],
+  "largest_successful_kloc": 5.426,
+  "maximum_supported_kloc": null,
+  "limitations": [
+    "Observed bound applies only to these repositories and enabled stages.",
+    "RSS is sampled every 100ms across the process tree; brief peaks can be missed.",
+    "RAG indexes all functions as a load probe; this is not ranking quality evaluation.",
+    "LLM usage and cost are measured separately by run_model_benchmark.py.",
+    "Analyzer wrappers may report empty findings on tool failures; inspect logs.",
+    "Repeated runs can benefit from OS/model caches; record cold and warm runs separately."
+  ]
+}

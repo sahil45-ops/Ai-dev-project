@@ -1,0 +1,5 @@
+{
+ "priority": "LOW",
+ "priority_score": 2,
+ "reason": "The function in the requests library raises an HTTPError if an HTTP error occurs. The function carries technical debt in terms of complexity and maintainability. It has a cyclomatic complexity of 6, which is ranked as B, indicating a moderate level of complexity. The function has 28 lines of code, which is a relatively low number. The function is not flagged as dead code, but it has been changed in 1 commit, which is a low number. The function has been tested in 4 tests, which is a relatively low number. The function has been modified in 3 defect-linked commits, which is a low number. The function has 3 author(s), which is a relatively low number. The function has been changed in 108 days before the analysis snapshot, which is a relatively low number. The function has 92.8% test coverage, which is a moderate level of coverage. The function has 92.8% code coverage, which is a moderate level of coverage. The function has 100.0% function coverage, which is a high level of coverage. The function has 92.8% file coverage, which is a moderate level of coverage."
+}

@@ -1,0 +1,14 @@
+{
+ "summary": "This function encodes the request body for a multipart/form-data request. It encodes files when passed as a dict or a list of tuples. The tuples may be 2-tuples (filename, fileobj), 3-tuples (filename, fileobj, contenttype), or 4-tuples (filename, fileobj, contenttype, custom_headers). The function supports encoding files, and it also supports encoding files with explicit filenames.",
+ "debt_indicators": [
+  "deep nesting",
+  "mixed responsibilities",
+  "duplicated branches"
+ ],
+ "impact_factors": [
+  "how central the function is",
+  "how often it changes or breaks",
+  "how well it is tested"
+ ],
+ "risk_assessment": "medium"
+}

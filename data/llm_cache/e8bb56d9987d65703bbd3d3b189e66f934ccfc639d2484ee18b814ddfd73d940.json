@@ -1,0 +1,6 @@
+{
+ "priority": "MEDIUM",
+ "priority_score": 55,
+ "reason": "The unsign method is part of the public API and has a cyclomatic complexity of 14, which makes it hard to maintain. It currently catches a broad Exception when decoding the timestamp, potentially masking unrelated errors and making debugging difficult. While no immediate defects are reported, this pattern can lead to silent failures and is a maintenance risk.",
+ "action": "Refactor the timestamp parsing logic into a dedicated helper method and narrow the exception handling to specific errors (e.g., ValueError, OSError, OverflowError). Replace the broad \"except Exception: pass\" with a targeted catch that raises a BadTimeSignature with context, and move the timestamp extraction and validation into the helper to reduce complexity."
+}

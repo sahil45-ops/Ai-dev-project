@@ -1,0 +1,14 @@
+{
+ "summary": "The `PreparedRequest._get_idna_encoded_host()` function in requests/models.py carries technical debt related to encoding hostnames using IDNA. This issue matters for this repository because it can lead to Unicode errors and make the code harder to maintain. The function has a cyclomatic complexity of 2, indicating a moderate level of complexity. The function is not well-documented, and its maintainability index is 21.89, indicating a moderate level of maintainability. The function has been modified in the past, with 3 defect-linked commits and 3 author(s) in the last 2 years. The function has 10 recent commits, indicating a moderate level of recent activity. The function has 9 lines of code, with 1 parameter. The function has been flagged as dead code, indicating that it is not expected to be used in the future. The composite static debt score for this function is 3.52 out of 10.",
+ "debt_indicators": [
+  "deep nesting",
+  "mixed responsibilities",
+  "duplicated branches"
+ ],
+ "impact_factors": [
+  "how central the function is",
+  "how often it changes or breaks",
+  "how well it is tested"
+ ],
+ "risk_assessment": "Medium"
+}

@@ -254,7 +254,7 @@ def test_evaluation_end_to_end():
     llm = [{"id": f"i{n}", "priority": "HIGH", "priority_score": 100 - n, "llm_rank": n + 1}
            for n in range(10)]
     methods = collect_methods(items, llm, None)
-    assert set(methods) == {"static_score", "complexity", "context_heuristic", "llm"}
+    assert set(methods) == {"static_score", "complexity", "context_heuristic", "context_no_history", "llm"}
     assert len(context_heuristic_scores(items)) == 10
     gt = {f"i{n}": {"future_fix_commits": int(n < 3), "future_commits": 10 - n,
                     "future_defect": n < 3} for n in range(10)}

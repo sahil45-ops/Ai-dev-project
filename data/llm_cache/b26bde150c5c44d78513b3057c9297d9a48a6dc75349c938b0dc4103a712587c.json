@@ -1,0 +1,14 @@
+{
+ "summary": "Session.request() in requests/sessions.py carries technical debt related to complexity, maintainability, and test coverage. The function is simple and has a low complexity score, but it has a high maintainability index score, indicating that it is difficult to maintain and improve. The function is also not well-tested, with a low test coverage score. Additionally, the function has a high composite static debt score, indicating that it is a significant source of technical debt for the repository.",
+ "debt_indicators": [
+  "deep nesting",
+  "mixed responsibilities",
+  "duplicated branches"
+ ],
+ "impact_factors": [
+  "how central the function is",
+  "how often it changes or breaks",
+  "how well it is tested"
+ ],
+ "risk_assessment": "medium to high"
+}

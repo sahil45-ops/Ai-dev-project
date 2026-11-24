@@ -1,0 +1,6 @@
+{
+ "priority": "LOW",
+ "priority_score": 30,
+ "reason": "The constructor is stable, not causing defects, and only has a minor lint issue (redefining built‑in ‘help’) and missing documentation. It is used widely but its complexity is low. Refactoring would improve readability but is not urgent.",
+ "action": "Rename the parameter ‘help’ to ‘help_text’ to avoid shadowing the built‑in, add a concise docstring explaining the parameters, and optionally convert the signature to keyword‑only arguments for clarity."
+}

@@ -1,0 +1,6 @@
+{
+ "priority": "MEDIUM",
+ "priority_score": 55,
+ "reason": "The function is part of the public API and uses eager f‑string formatting in a logging call, which can incur unnecessary string construction when the log level is disabled. Although the function is small and only called twice, the performance penalty and lack of a docstring make it a moderate‑impact debt that should be addressed before frequent changes.",
+ "action": "Replace the f‑string in the logger.info call with lazy formatting (e.g., logger.info(\"Available RAM (%s): %.2f GB\", context, available_gb)) and add a concise docstring explaining the function’s purpose and parameters."
+}

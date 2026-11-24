@@ -1,0 +1,6 @@
+{
+ "priority": "MEDIUM",
+ "priority_score": 55,
+ "reason": "The run() function is a public API used in experiments and catches a broad Exception, which can mask underlying bugs and lead to silent failures. Although the function is not frequently modified and has no defect history, the risk of hidden errors warrants a medium priority.",
+ "action": "Replace the generic except Exception block with specific exception handling (e.g., catch only the exceptions raised by generate_answer or the LLM client), log the error, and re‑raise or return a clear error message. Additionally, add a concise docstring to the function and consider extracting the question‑processing loop into a helper to reduce complexity."
+}

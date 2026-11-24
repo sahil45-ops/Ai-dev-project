@@ -1,0 +1,16 @@
+{
+ "summary": "The get() function in requests/api.py carries technical debt related to missing timeout argument in the request method. This issue can cause the program to hang indefinitely if not handled properly.",
+ "debt_indicators": [
+  "Cyclomatic complexity: 1 (Radon rank A)",
+  "LOC: 12 | Parameters: 2",
+  "File maintainability index: 100.0",
+  "Code smells (lint/refactor findings): 1 [lint]"
+ ],
+ "impact_factors": [
+  "Duplicated lines: 0",
+  "Flagged as dead code: no",
+  "Composite static debt score: 0.2 / 10",
+  "Code smells (lint/refactor findings): 1 [lint]"
+ ],
+ "risk_assessment": "Low"
+}

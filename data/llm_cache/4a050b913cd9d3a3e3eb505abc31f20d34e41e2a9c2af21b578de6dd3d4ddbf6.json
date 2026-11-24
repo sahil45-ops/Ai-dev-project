@@ -1,0 +1,6 @@
+{
+ "priority": "MEDIUM",
+ "priority_score": 55,
+ "reason": "The derive_key method has a moderate cyclomatic complexity (6) and is part of the public API, yet it is rarely called and has no recent defect history. Refactoring it would improve readability and maintainability without impacting current functionality, but it is not urgent enough to warrant a high priority.",
+ "action": "Replace the if‑elif chain with a dictionary mapping of key_derivation values to small helper functions, and perform the unknown‑method check early. This reduces complexity, makes adding new derivations easier, and keeps the method concise."
+}

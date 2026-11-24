@@ -1,0 +1,5 @@
+{
+ "priority": "LOW",
+ "priority_score": 4,
+ "reason": "The function `Response.iter_content.generate()` in requests/models.py carries technical debt related to handling different encoding and decoding errors. This debt matters for this repository because it can lead to unexpected behavior and errors when dealing with different encoding and decoding scenarios. The function's complexity is moderate, and its maintainability index is low. The function has been changed in 5 commit(s), with 3 of them being bug fixes. The function is called in 1 call site in the library, and there are no references from tests. The function's visibility is public, and it is part of the API surface. The function's file-level history shows a mix of recent commits, defect-linked commits, and author(s). The function's test coverage is 100%, but its file coverage is 92.8%. The function's documentation is missing."
+}

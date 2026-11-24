@@ -1,0 +1,6 @@
+{
+ "priority": "MEDIUM",
+ "priority_score": 55,
+ "reason": "The function has moderate cyclomatic complexity (10) and is part of the public API, yet it lacks type hints, uses a generic print statement, and contains mixed concerns (loading, error handling, preprocessing). While it is not currently causing defects, its maintainability could be improved to prevent future regressions.",
+ "action": "Refactor load_pdf into smaller, well‑typed helper functions: extract a dedicated preprocessing routine, replace the print with a logger, add explicit type hints for the return value, and narrow exception handling to specific PDF errors. This will reduce complexity, improve testability, and align the function with library‑wide coding standards."
+}

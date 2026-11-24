@@ -1,0 +1,5 @@
+{
+ "priority": "HIGH",
+ "priority_score": 80,
+ "reason": "SessionRedirectMixin.resolve_redirects() in requests/sessions.py carries technical debt related to handling redirects. The function has a high cyclomatic complexity of 15, indicating multiple possible execution paths. Additionally, it has a low maintainability index of 38.09, suggesting that the function is not well-structured and may be difficult to understand. The function also has a high flagged as dead code score of 6.48, indicating that it is not likely to be executed in the future. The function is central to the requests library, and it is frequently changed or broken. It is not well-tested, and it has a low test coverage. Therefore, it should be refactored to improve its maintainability and reduce the risk of defects."
+}

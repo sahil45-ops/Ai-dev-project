@@ -1,0 +1,6 @@
+{
+ "priority": "MEDIUM",
+ "priority_score": 50,
+ "reason": "The constructor is a public API with moderate cyclomatic complexity (6) and 45 LOC, but it is not heavily used or recently modified. Refactoring would improve readability and maintainability without breaking existing callers.",
+ "action": "Extract the parameter validation and default handling into separate helper methods or a configuration dataclass, add a comprehensive docstring, and reduce the constructor body to a few lines that delegate to these helpers."
+}

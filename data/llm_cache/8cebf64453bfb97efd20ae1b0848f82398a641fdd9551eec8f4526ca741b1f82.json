@@ -1,0 +1,6 @@
+{
+ "priority": "MEDIUM",
+ "priority_score": 55,
+ "reason": "The helper has high cyclomatic complexity (13) and a low maintainability index (19.87), yet it is only called once in the library and rarely touched. Refactoring it into smaller, testable pieces will reduce complexity and improve readability without impacting current functionality.",
+ "action": "Extract the environment setup, color detection, and cleanup logic into separate helper functions (e.g., _prepare_env, _detect_color, _cleanup_pager). Use contextlib.ExitStack to manage the subprocess and its cleanup, thereby lowering the complexity of _pipepager to a manageable level."
+}

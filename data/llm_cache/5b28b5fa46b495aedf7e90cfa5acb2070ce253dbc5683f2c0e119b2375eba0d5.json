@@ -1,0 +1,5 @@
+{
+ "priority": "MEDIUM",
+ "priority_score": 50,
+ "reason": "The function returns the JSON-encoded content of a response, if any. It takes optional arguments that `json.loads` takes. If the response body does not contain valid JSON, it raises a `RequestsJSONDecodeError`. The function has a low impact on future defects and slows down development, but it is not very contained or cosmetic. Therefore, it should be refactored to improve its maintainability and readability."
+}

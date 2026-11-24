@@ -1,0 +1,6 @@
+{
+ "priority": "HIGH",
+ "priority_score": 85,
+ "reason": "The Context.__init__ method is extremely complex (cyclomatic 28, 175 LOC, 16 parameters) and has a maintainability index of 0.0. It is part of the public API with many call sites, making it a high-risk area for bugs and difficult to maintain. Refactoring is needed to reduce complexity and improve testability.",
+ "action": "Extract the parameter handling and default resolution into a separate helper method or dataclass, reduce the number of constructor arguments by grouping related options, and split the logic into smaller, well‑named private methods to lower cyclomatic complexity and improve readability."
+}

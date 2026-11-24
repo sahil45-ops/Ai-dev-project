@@ -1,0 +1,6 @@
+{
+ "priority": "MEDIUM",
+ "priority_score": 55,
+ "reason": "The constructor is moderately complex (cyclomatic 12, 83 LOC) and handles many responsibilities, making it hard to maintain and test. It is part of the public API and is called frequently, so defects here could propagate. Refactoring will improve readability and reduce future bug risk.",
+ "action": "Extract the default handling, help formatting, and validation logic into separate private methods (e.g., _handle_default, _format_help, _validate). This reduces the constructor’s size, improves testability, and keeps the public signature unchanged."
+}

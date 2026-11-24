@@ -1,0 +1,6 @@
+{
+ "priority": "LOW",
+ "priority_score": 25,
+ "reason": "The helper is only called twice, has moderate complexity, and no known defects. Its type hints are incomplete and use deprecated typing syntax, but the function itself is straightforward and unlikely to cause immediate issues.",
+ "action": "Add proper type annotations: import Optional, List, Tuple from typing; change retrieval_query: Optional[str]; use list/tuple literals; update return type to Tuple[List[Document], str]; and optionally extract the formatting loop into a separate helper to keep the function concise."
+}

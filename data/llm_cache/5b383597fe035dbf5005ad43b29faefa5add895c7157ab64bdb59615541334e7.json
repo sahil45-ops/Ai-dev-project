@@ -1,0 +1,5 @@
+{
+ "priority": "MEDIUM",
+ "priority_score": 70,
+ "reason": "Session.patch() in requests/sessions.py carries technical debt related to high complexity and low maintainability. This issue matters for this repository as it can lead to difficulties in understanding and maintaining the codebase, potentially causing bugs or security vulnerabilities."
+}

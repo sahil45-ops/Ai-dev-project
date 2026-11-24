@@ -1,0 +1,5 @@
+{
+ "priority": "LOW",
+ "priority_score": 3,
+ "reason": "The function `_check_cryptography()` in `requests/__init__.py` carries technical debt related to the version of cryptography being used. This debt is considered low severity and can be easily fixed by updating the cryptography version to at least 1.3.4."
+}

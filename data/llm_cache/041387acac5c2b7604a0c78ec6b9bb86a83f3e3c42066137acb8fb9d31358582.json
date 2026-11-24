@@ -1,0 +1,14 @@
+{
+ "summary": "SessionRedirectMixin.rebuild_proxies() in requests/sessions.py carries technical debt related to handling proxy configurations and authentication. This issue matters for this repository because it affects the reliability and security of the requests library. The method re-evaluates proxy configurations based on environment variables, strips proxy configurations for redirected URLs, and sets missing proxy keys for these URLs. Additionally, it replaces the Proxy-Authorization header where necessary. This process can lead to inconsistent proxy configurations and authentication issues if not properly handled. The method also handles proxy authorization for the standard adapter, which is important for secure communication. The code smells and duplicated lines indicate that the method is not well-structured, and the composite static debt score of 3.68/10 suggests that this issue should be addressed.",
+ "debt_indicators": [
+  "deep nesting",
+  "mixed responsibilities",
+  "duplicated lines"
+ ],
+ "impact_factors": [
+  "how central the function is",
+  "how often it changes or breaks",
+  "how well it is tested"
+ ],
+ "risk_assessment": "medium to high"
+}

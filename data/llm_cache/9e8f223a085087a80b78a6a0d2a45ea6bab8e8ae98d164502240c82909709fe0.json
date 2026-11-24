@@ -1,0 +1,5 @@
+{
+ "priority": "HIGH",
+ "priority_score": 80,
+ "reason": "The item under review carries technical debt due to its high cyclomatic complexity (1) and large number of lines of code (7). The function is not used in the library, but it is called by other functions in the repository. The function-level history shows that it has been changed in 0 commit(s) since 2019-2024, and the file-level history shows that it has been modified 4 times in the past 2 years. The debt is considered high-impact and requires immediate attention to avoid future defects or slow down frequent changes."
+}

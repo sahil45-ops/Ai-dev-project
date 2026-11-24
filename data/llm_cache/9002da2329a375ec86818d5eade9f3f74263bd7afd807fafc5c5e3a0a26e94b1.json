@@ -1,0 +1,5 @@
+{
+ "priority": "HIGH",
+ "priority_score": 70,
+ "reason": "The function carries high technical debt due to its high cyclomatic complexity, low maintainability index, and lack of test coverage. It is not well-documented and has a high number of parameters, making it a high-impact issue. Additionally, the function is not used frequently in the repository, and its changes are not well-tracked, which further increases its risk of causing future defects or slowing down development."
+}

@@ -150,6 +150,8 @@ def build_dataset(
                                              "commit_authors": 0, "last_modified_days": -1})
         merged["recent_commits"] += ctx["recent_commits"]
         merged["defect_commits"] += ctx["defect_commits"]
+        for field in ("lines_added", "lines_deleted", "code_churn"):
+            merged[field] = merged.get(field, 0) + ctx.get(field, 0)
         merged["commit_authors"] = max(merged["commit_authors"], ctx["commit_authors"])
         lm = ctx["last_modified_days"]
         if merged["last_modified_days"] < 0 or (0 <= lm < merged["last_modified_days"]):
@@ -177,10 +179,14 @@ def build_dataset(
         fn["defect_commits"] = ctx.get("defect_commits", 0)
         fn["commit_authors"] = ctx.get("commit_authors", 0)
         fn["last_modified_days"] = ctx.get("last_modified_days", -1)
+        for field in ("lines_added", "lines_deleted", "code_churn"):
+            fn[field] = ctx.get(field)
+        fn["recurring_bug_file"] = ctx.get("defect_commits", 0) >= 2
         hist = pre.get(fn["id"], {})
         fn["func_commits"] = hist.get("commits", 0)
         fn["func_fix_commits"] = hist.get("fix_commits", 0)
         entry = cov_files.get(fn["file"])
+        fn["coverage_known"] = entry is not None
         fn["test_coverage"] = round(entry["summary"]["percent_covered"], 1) if entry else 0.0
         fc = function_coverage(entry, fn["start_line"], fn["end_line"]) if entry else None
         fn["function_coverage"] = fc if fc is not None else fn["test_coverage"]

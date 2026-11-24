@@ -1,0 +1,5 @@
+{
+ "priority": "LOW",
+ "priority_score": 2,
+ "reason": "The `HTTPAdapter.cert_verify()` function in requests/adapters.py carries technical debt related to SSL certificate verification. This function should not be called from user code and is only exposed for use when subclassing the HTTPAdapter class. The function has a complexity of 1, maintainability index of 51.8, and is called 1 time in the repository history. The function has no duplicated lines, is not flagged as dead code, and has a composite static debt score of 5.73/10."
+}

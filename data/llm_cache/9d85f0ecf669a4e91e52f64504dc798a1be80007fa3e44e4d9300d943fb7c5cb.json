@@ -1,0 +1,14 @@
+{
+ "summary": "The `super_len()` function in requests/utils.py carries technical debt related to its complexity and maintainability. The function has a cyclomatic complexity of 16, indicating a high level of complexity. Additionally, it has a file maintainability index of 25.2, which suggests that the function is not well-structured and may be difficult to understand and maintain. The function also has a composite static debt score of 7.19, indicating a moderate level of technical debt. The function has been modified in three commit(s) and has been flagged as dead code.",
+ "debt_indicators": [
+  "deep nesting",
+  "mixed responsibilities",
+  "duplicated branches"
+ ],
+ "impact_factors": [
+  "how central the function is",
+  "how often it changes or breaks",
+  "how well it is tested"
+ ],
+ "risk_assessment": "moderate"
+}

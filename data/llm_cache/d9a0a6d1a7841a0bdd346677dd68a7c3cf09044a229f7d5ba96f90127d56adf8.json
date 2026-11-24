@@ -1,0 +1,5 @@
+{
+ "priority": "MEDIUM",
+ "priority_score": 60,
+ "reason": "The `morsel_to_cookie()` function in requests/cookies.py carries technical debt related to handling expired cookies. The function is responsible for converting a Morsel object into a Cookie object. However, it does not handle expired cookies correctly, which can lead to security vulnerabilities. Additionally, the function is not well-documented, and its logic is not clear. The function also has a high cyclomatic complexity and is not well-maintained, with a composite static debt score of 3.41."
+}

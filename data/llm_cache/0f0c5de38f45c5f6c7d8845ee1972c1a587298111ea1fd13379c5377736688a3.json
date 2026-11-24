@@ -1,0 +1,6 @@
+{
+ "priority": "HIGH",
+ "priority_score": 85,
+ "reason": "The function is a public API with high cyclomatic complexity (19) and low maintainability index (22.57). Its large size and intricate logic make it error‑prone and difficult to test or extend, and it is invoked by the library itself and in tests. Refactoring will reduce defects and improve future changeability.",
+ "action": "Extract the no_proxy parsing, IPv4/CIDR handling, and hostname matching into separate helper functions, then rewrite should_bypass_proxies to orchestrate these helpers. This modularization will lower complexity, improve readability, and make unit testing easier."
+}

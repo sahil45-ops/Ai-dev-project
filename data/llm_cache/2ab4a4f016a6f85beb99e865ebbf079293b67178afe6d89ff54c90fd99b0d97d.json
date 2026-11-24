@@ -1,0 +1,6 @@
+{
+ "priority": "HIGH",
+ "priority_score": 85,
+ "reason": "The public API method is 65 LOC with cyclomatic complexity 14, a maintainability index of 0.0, and has been modified frequently (6 commits, 2 bug fixes) in a heavily used file (111 commits, 25 defect‑linked). Its complexity and recent activity make it a likely source of defects and a bottleneck for future changes.",
+ "action": "Refactor the method into smaller, well‑named helper functions: isolate UNSET handling, separate type casting, and extract callback logic into its own method. Use guard clauses and a context‑manager helper to hide UNSET values, reducing nesting and improving readability and testability."
+}

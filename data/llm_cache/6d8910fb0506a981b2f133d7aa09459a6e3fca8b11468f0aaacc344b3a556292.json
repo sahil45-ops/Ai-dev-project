@@ -1,0 +1,6 @@
+{
+ "priority": "HIGH",
+ "priority_score": 90,
+ "reason": "The function has high cyclomatic complexity (14) and a long body (65 LOC) while being part of the public API. It is frequently called, has a history of defect-linked commits, and its maintainability index is 0.0, indicating a high risk of bugs and slow future changes.",
+ "action": "Refactor by extracting the UNSET handling, type casting, and callback logic into separate helper methods. Use guard clauses to reduce nesting, replace the manual UNSET mapping with a context manager that temporarily substitutes UNSET with None, and add unit tests for each extracted piece."
+}

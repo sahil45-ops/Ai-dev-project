@@ -1,0 +1,6 @@
+{
+ "priority": "MEDIUM",
+ "priority_score": 55,
+ "reason": "The helper is moderately complex (cyclomatic 13, 85 LOC) and used in the library’s pager logic. While it isn’t a frequent entry point, its complexity can hinder future maintenance and increase the risk of subtle bugs. Refactoring it into smaller, focused functions will improve readability and maintainability without affecting current behavior.",
+ "action": "Extract the color‑detection logic into a separate helper, move the subprocess cleanup and wait‑loop into another function, and replace the manual while‑loop with a more robust wait that handles KeyboardInterrupt. This will reduce cyclomatic complexity, improve testability, and keep the public API unchanged."
+}

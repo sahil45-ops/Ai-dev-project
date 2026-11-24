@@ -1,0 +1,19 @@
+{
+ "summary": "The `urldefragauth` function in the `requests` library carries technical debt related to handling URL fragments and authentication. This function removes the fragment and authentication part from a URL, but it does not handle cases where the URL does not contain a fragment or authentication part. This can lead to unexpected behavior and errors in certain scenarios. Additionally, the function does not handle cases where the URL is malformed or does not follow the expected format. This technical debt matters for this repository because it can lead to bugs and errors in the code, which can cause issues for users and affect the overall quality of the codebase. The function's complexity is moderate, and its maintainability index is low, indicating that it is not easy to understand and maintain. The function's visibility is public, and it is part of the API surface, which means it is exposed to external users and can be used in various applications. The function's recent commit history shows that it has been changed in the past, but there have been no recent bug fixes. The function's test coverage is 87.8%, indicating that it has been tested, but there may be areas that are not covered. The function's documentation states that it removes the fragment and authentication part from a URL, but it does not provide any details on how it handles malformed or missing fragments. Overall, the `urldefragauth` function carries technical debt related to handling URL fragments and authentication, and it matters for this repository because it can lead to bugs and errors in certain scenarios. The function's complexity, maintainability index, visibility, and recent commit history all indicate that it is not easy to understand and maintain. The function's test coverage and documentation also indicate that there may be areas that are not covered or not well-documented.",
+ "debt_indicators": [
+  "Cyclomatic complexity: 2 (Radon rank A)",
+  "LOC: 15 | Parameters: 1",
+  "File maintainability index: 25.2",
+  "Duplicated lines: 0",
+  "Flagged as dead code: no",
+  "Composite static debt score: 3.39 / 10",
+  "Style-only findings: 0",
+  "Code smells (lint/refactor findings): 2 [lint]"
+ ],
+ "impact_factors": [
+  "How central the function is: 2 (low)",
+  "How often it changes or breaks: 2 (low)",
+  "How well it is tested: 87.8% (low)"
+ ],
+ "risk_assessment": "Low to Moderate"
+}

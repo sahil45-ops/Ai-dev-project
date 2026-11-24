@@ -1,0 +1,10 @@
+{
+  "groq/openai/gpt-oss-20b": [
+    0.075,
+    0.3
+  ],
+  "groq/openai/gpt-oss-120b": [
+    0.15,
+    0.6
+  ]
+}

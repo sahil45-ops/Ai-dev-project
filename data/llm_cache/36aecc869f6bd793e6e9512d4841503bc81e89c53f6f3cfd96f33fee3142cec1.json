@@ -1,0 +1,32 @@
+{
+ "summary": "The function `_implementation()` in the `requests/help.py` file carries technical debt related to Python implementation and version information. The function works best on CPython and PyPy, but it does not support Jython or IronPython. The function returns a dictionary containing the Python implementation and version information. The function has a low severity and is not flagged as dead code.",
+ "debt_indicators": [
+  "Cyclomatic complexity: 6 (Radon rank B)",
+  "LOC: 33 | Parameters: 0",
+  "File maintainability index: 59.54",
+  "Code smells (lint/refactor findings): 8 [lint]",
+  "Style-only findings: 1",
+  "Duplicated lines: 0",
+  "Flagged as dead code: no",
+  "Composite static debt score: 2.82 / 10",
+  "Tool findings: [ruff] [FLY002] Consider f-string instead of string join, [pylint] [no-member] Module 'sys' has no 'pypy_version_info' member, [pylint] [no-member] Module 'sys' has no 'pypy_version_info' member, [pylint] [no-member] Module 'sys' has no 'pypy_version_info' member, [pylint] [no-member] Module 'sys' has no 'pypy_version_info' member, [pylint] [no-member] Module 'sys' has no 'pypy_version_info' member, [ruff] [UP032] Use f-string instead of `format` call, [pylint] [no-member] Module 'sys' has no 'pypy_version_info' member",
+  "Repository context: Call sites in the library: 1 | References from tests: 0, Visibility: private helper, Function-level history (2019-2024): changed in 1 commit(s), 0 of them bug fixes, File-level history (2019-2024): 4 commit(s), 0 defect-linked, 1 author(s), last change 140 day(s) before snapshot, Test coverage: function 35.7%, file 69.4%",
+  "Documentation: 'Return a dict with the Python implementation and version. Provide both the name and the version of the Python implementation currently running. For example, on CPython 3.10.3 it will return {'name': 'CPython', 'version': '3.10.3'}. This function works best on CPython and PyPy: in particular, it probably doesn't work for Jython or IronPython. Future investigation should be done to work out the correct shape of the code for those platforms.'",
+  "impact_factors"
+ ],
+ "impact_factors": [
+  "Cyclomatic complexity: 6 (Radon rank B)",
+  "LOC: 33 | Parameters: 0",
+  "File maintainability index: 59.54",
+  "Code smells (lint/refactor findings): 8 [lint]",
+  "Style-only findings: 1",
+  "Duplicated lines: 0",
+  "Flagged as dead code: no",
+  "Composite static debt score: 2.82 / 10",
+  "Tool findings: [ruff] [FLY002] Consider f-string instead of string join, [pylint] [no-member] Module 'sys' has no 'pypy_version_info' member, [pylint] [no-member] Module 'sys' has no 'pypy_version_info' member, [pylint] [no-member] Module 'sys' has no 'pypy_version_info' member, [pylint] [no-member] Module 'sys' has no 'pypy_version_info' member, [pylint] [no-member] Module 'sys' has no 'pypy_version_info' member, [ruff] [UP032] Consider f-string instead of `format` call, [pylint] [no-member] Module 'sys' has no 'pypy_version_info' member",
+  "Repository context: Call sites in the library: 1 | References from tests: 0, Visibility: private helper, Function-level history (2019-2024): changed in 1 commit(s), 0 of them bug fixes, File-level history (2019-2024): 4 commit(s), 0 defect-linked, 1 author(s), last change 140 day(s) before snapshot, Test coverage: function 35.7%, file 69.4%",
+  "Documentation: 'Return a dict with the Python implementation and version. Provide both the name and the version of the Python implementation currently running. For example, on CPython 3.10.3 it will return {'name': 'CPython', 'version': '3.10.3'}. This function works best on CPython and PyPy: in particular, it probably doesn't work for Jython or IronPython. Future investigation should be done to work out the correct shape of the code for those platforms.'",
+  "recommendations"
+ ],
+ "risk_assessment": "Low"
+}

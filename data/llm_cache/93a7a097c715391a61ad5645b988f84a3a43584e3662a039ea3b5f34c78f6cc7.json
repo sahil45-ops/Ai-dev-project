@@ -1,0 +1,6 @@
+{
+ "priority": "HIGH",
+ "priority_score": 85,
+ "reason": "The constructor is extremely complex (cyclomatic 28, 175 LOC, 16 parameters) and is part of the public API, used by many callers. Its complexity makes maintenance difficult and increases the risk of bugs, especially given recent changes and a defect history. Refactoring will improve readability, testability, and future evolution.",
+ "action": "Refactor the constructor into a smaller, more maintainable form: extract default‑value logic into a separate helper or dataclass, reduce the number of parameters by grouping related options into a configuration object, and split the body into well‑named private methods. Add a comprehensive docstring and unit tests for the new structure."
+}

@@ -1,0 +1,6 @@
+{
+ "priority": "MEDIUM",
+ "priority_score": 55,
+ "reason": "The constructor is moderately complex (cyclomatic 7) and has many parameters, making it error‑prone and hard to maintain. It is part of the public API and called in several places, yet it has no recent defect history and is not heavily touched, so it is a good candidate for a scheduled refactor.",
+ "action": "Extract the parameter handling into a dedicated configuration dataclass or builder, reduce the number of direct parameters, and split the logic into smaller helper methods. Add a comprehensive docstring and type annotations to improve clarity and maintainability."
+}

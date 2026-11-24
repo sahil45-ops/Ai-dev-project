@@ -1,0 +1,6 @@
+{
+ "priority": "MEDIUM",
+ "priority_score": 55,
+ "reason": "The run() function swallows all exceptions from generate_answer, potentially hiding bugs while being a public API used in experiments. Although not critical, this broad exception handling can lead to silent failures and makes debugging harder. It is a moderate risk that should be addressed before frequent changes.",
+ "action": "Replace the broad except Exception block with specific exception handling (e.g., catch LLMError or custom exceptions from generate_answer). Add a docstring explaining the function’s purpose and the error handling strategy, and consider re‑raising unexpected exceptions after logging."
+}

@@ -1,0 +1,6 @@
+{
+ "priority": "HIGH",
+ "priority_score": 90,
+ "reason": "The method is a public API entry point with high cyclomatic complexity (17) and 87 LOC, making it difficult to maintain and test. It performs multiple responsibilities—deprecation handling, type conversion, and arbitration of parameter sources—leading to a maintainability index of 0.0 and a high likelihood of defects during future changes. Refactoring will reduce cognitive load and improve testability.",
+ "action": "Split handle_parse_result into three focused helper methods: _handle_deprecation, _process_value, and _arbitrate_slot. Move the deprecation warning logic into _handle_deprecation, the type conversion into _process_value, and the arbitration logic into _arbitrate_slot. Replace the large block with early returns and clear variable names, reducing LOC and cyclomatic complexity while preserving behavior."
+}

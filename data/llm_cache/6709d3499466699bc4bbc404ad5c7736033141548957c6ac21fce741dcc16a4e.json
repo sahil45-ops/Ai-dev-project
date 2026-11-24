@@ -1,0 +1,5 @@
+{
+ "priority": "LOW",
+ "priority_score": 20,
+ "reason": "The check_compatibility() function in requests/__init__.py carries technical debt related to its complex logic and potential issues with version checking. This function is called multiple times in the library, and its recent changes are mostly bug fixes. The function's complexity is moderate, and its maintainability index is low. The function has been flagged as dead code, and there are no duplicated lines. The function has been flagged as dead code, and there are no duplicated lines. The function has been flagged as dead code, and there are no duplicated lines."
+}

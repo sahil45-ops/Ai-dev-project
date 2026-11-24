@@ -1,0 +1,6 @@
+{
+ "action": "extract_helper",
+ "refactoring_type": "extract_method",
+ "expected_benefit": "Reduces complexity and improves maintainability of Session.patch() in requests/sessions.py.",
+ "risk": "Low risk of introducing bugs or security vulnerabilities due to refactoring Session.patch() into separate methods."
+}

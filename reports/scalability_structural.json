@@ -1,0 +1,259 @@
+{
+  "environment": {
+    "python": "3.13.5 | packaged by Anaconda, Inc. | (main, Jun 12 2025, 16:37:03) [MSC v.1929 64 bit (AMD64)]",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "cpu_count": 18,
+    "ram_mb": 15805.3671875
+  },
+  "budgets": {
+    "seconds": 120.0,
+    "memory_mb": 4096
+  },
+  "enabled_optional_stages": [],
+  "runs": [
+    {
+      "stages_seconds": {
+        "function_index": 0.027376100013498217,
+        "duplication": 0.002910999988671392,
+        "call_graph": 0.005007200001273304
+      },
+      "scope": {
+        "static": false,
+        "history": false,
+        "rag": false
+      },
+      "source_sha256": "611cf8ab96fe0ec5849577b7fde34fe6ece1e521031125df7b43cf7dec4910de",
+      "python_files": 5,
+      "physical_lines": 495,
+      "kloc": 0.495,
+      "functions": 100,
+      "status": "complete",
+      "llm_tokens": null,
+      "llm_cost_usd": null,
+      "name": "synthetic_small",
+      "source": "C:\\Users\\ASAD AHMAD\\Downloads\\devvv (3)\\devvv\\Intelligent_Technical_Debt_and_Refactoring-main\\Intelligent_Technical_Debt_and_Refactoring-main\\targets\\benchmark-fixtures\\small",
+      "wall_seconds": 0.39717599999858066,
+      "peak_tree_rss_mb": 25.22265625,
+      "log_tail": "",
+      "repeat": 1
+    },
+    {
+      "stages_seconds": {
+        "function_index": 0.025958099984563887,
+        "duplication": 0.0020524999708868563,
+        "call_graph": 0.004803500021807849
+      },
+      "scope": {
+        "static": false,
+        "history": false,
+        "rag": false
+      },
+      "source_sha256": "611cf8ab96fe0ec5849577b7fde34fe6ece1e521031125df7b43cf7dec4910de",
+      "python_files": 5,
+      "physical_lines": 495,
+      "kloc": 0.495,
+      "functions": 100,
+      "status": "complete",
+      "llm_tokens": null,
+      "llm_cost_usd": null,
+      "name": "synthetic_small",
+      "source": "C:\\Users\\ASAD AHMAD\\Downloads\\devvv (3)\\devvv\\Intelligent_Technical_Debt_and_Refactoring-main\\Intelligent_Technical_Debt_and_Refactoring-main\\targets\\benchmark-fixtures\\small",
+      "wall_seconds": 0.5078686999622732,
+      "peak_tree_rss_mb": 21.453125,
+      "log_tail": "",
+      "repeat": 2
+    },
+    {
+      "stages_seconds": {
+        "function_index": 0.031837599992286414,
+        "duplication": 0.0022581000230275095,
+        "call_graph": 0.00519009999698028
+      },
+      "scope": {
+        "static": false,
+        "history": false,
+        "rag": false
+      },
+      "source_sha256": "611cf8ab96fe0ec5849577b7fde34fe6ece1e521031125df7b43cf7dec4910de",
+      "python_files": 5,
+      "physical_lines": 495,
+      "kloc": 0.495,
+      "functions": 100,
+      "status": "complete",
+      "llm_tokens": null,
+      "llm_cost_usd": null,
+      "name": "synthetic_small",
+      "source": "C:\\Users\\ASAD AHMAD\\Downloads\\devvv (3)\\devvv\\Intelligent_Technical_Debt_and_Refactoring-main\\Intelligent_Technical_Debt_and_Refactoring-main\\targets\\benchmark-fixtures\\small",
+      "wall_seconds": 0.5063029999728315,
+      "peak_tree_rss_mb": 21.1875,
+      "log_tail": "",
+      "repeat": 3
+    },
+    {
+      "stages_seconds": {
+        "function_index": 0.26463470002636313,
+        "duplication": 0.02659940003650263,
+        "call_graph": 0.04873909999150783
+      },
+      "scope": {
+        "static": false,
+        "history": false,
+        "rag": false
+      },
+      "source_sha256": "1260db70bb2161e469aa752be2dc846e4fad3331befb8170c79981e9c411b0f4",
+      "python_files": 50,
+      "physical_lines": 4950,
+      "kloc": 4.95,
+      "functions": 1000,
+      "status": "complete",
+      "llm_tokens": null,
+      "llm_cost_usd": null,
+      "name": "synthetic_medium",
+      "source": "C:\\Users\\ASAD AHMAD\\Downloads\\devvv (3)\\devvv\\Intelligent_Technical_Debt_and_Refactoring-main\\Intelligent_Technical_Debt_and_Refactoring-main\\targets\\benchmark-fixtures\\medium",
+      "wall_seconds": 1.3001072999904864,
+      "peak_tree_rss_mb": 26.73046875,
+      "log_tail": "",
+      "repeat": 1
+    },
+    {
+      "stages_seconds": {
+        "function_index": 0.2530866999877617,
+        "duplication": 0.01937190000899136,
+        "call_graph": 0.05225160002009943
+      },
+      "scope": {
+        "static": false,
+        "history": false,
+        "rag": false
+      },
+      "source_sha256": "1260db70bb2161e469aa752be2dc846e4fad3331befb8170c79981e9c411b0f4",
+      "python_files": 50,
+      "physical_lines": 4950,
+      "kloc": 4.95,
+      "functions": 1000,
+      "status": "complete",
+      "llm_tokens": null,
+      "llm_cost_usd": null,
+      "name": "synthetic_medium",
+      "source": "C:\\Users\\ASAD AHMAD\\Downloads\\devvv (3)\\devvv\\Intelligent_Technical_Debt_and_Refactoring-main\\Intelligent_Technical_Debt_and_Refactoring-main\\targets\\benchmark-fixtures\\medium",
+      "wall_seconds": 0.7402186999679543,
+      "peak_tree_rss_mb": 27.87890625,
+      "log_tail": "",
+      "repeat": 2
+    },
+    {
+      "stages_seconds": {
+        "function_index": 0.22274060000199825,
+        "duplication": 0.021115500014275312,
+        "call_graph": 0.05213640001602471
+      },
+      "scope": {
+        "static": false,
+        "history": false,
+        "rag": false
+      },
+      "source_sha256": "1260db70bb2161e469aa752be2dc846e4fad3331befb8170c79981e9c411b0f4",
+      "python_files": 50,
+      "physical_lines": 4950,
+      "kloc": 4.95,
+      "functions": 1000,
+      "status": "complete",
+      "llm_tokens": null,
+      "llm_cost_usd": null,
+      "name": "synthetic_medium",
+      "source": "C:\\Users\\ASAD AHMAD\\Downloads\\devvv (3)\\devvv\\Intelligent_Technical_Debt_and_Refactoring-main\\Intelligent_Technical_Debt_and_Refactoring-main\\targets\\benchmark-fixtures\\medium",
+      "wall_seconds": 0.624834300018847,
+      "peak_tree_rss_mb": 26.55859375,
+      "log_tail": "",
+      "repeat": 3
+    },
+    {
+      "stages_seconds": {
+        "function_index": 1.2524028000188991,
+        "duplication": 0.10761210002237931,
+        "call_graph": 0.24801029998343438
+      },
+      "scope": {
+        "static": false,
+        "history": false,
+        "rag": false
+      },
+      "source_sha256": "0b718a324e026c19db9ca9266853a1c3b0623ad4c2ff91ad415e878d6d361d64",
+      "python_files": 250,
+      "physical_lines": 24750,
+      "kloc": 24.75,
+      "functions": 5000,
+      "status": "complete",
+      "llm_tokens": null,
+      "llm_cost_usd": null,
+      "name": "synthetic_large",
+      "source": "C:\\Users\\ASAD AHMAD\\Downloads\\devvv (3)\\devvv\\Intelligent_Technical_Debt_and_Refactoring-main\\Intelligent_Technical_Debt_and_Refactoring-main\\targets\\benchmark-fixtures\\large",
+      "wall_seconds": 4.678509099991061,
+      "peak_tree_rss_mb": 32.6796875,
+      "log_tail": "",
+      "repeat": 1
+    },
+    {
+      "stages_seconds": {
+        "function_index": 1.2712882999912836,
+        "duplication": 0.12015099998097867,
+        "call_graph": 0.263553700002376
+      },
+      "scope": {
+        "static": false,
+        "history": false,
+        "rag": false
+      },
+      "source_sha256": "0b718a324e026c19db9ca9266853a1c3b0623ad4c2ff91ad415e878d6d361d64",
+      "python_files": 250,
+      "physical_lines": 24750,
+      "kloc": 24.75,
+      "functions": 5000,
+      "status": "complete",
+      "llm_tokens": null,
+      "llm_cost_usd": null,
+      "name": "synthetic_large",
+      "source": "C:\\Users\\ASAD AHMAD\\Downloads\\devvv (3)\\devvv\\Intelligent_Technical_Debt_and_Refactoring-main\\Intelligent_Technical_Debt_and_Refactoring-main\\targets\\benchmark-fixtures\\large",
+      "wall_seconds": 2.173842300020624,
+      "peak_tree_rss_mb": 32.84375,
+      "log_tail": "",
+      "repeat": 2
+    },
+    {
+      "stages_seconds": {
+        "function_index": 1.2003660000045784,
+        "duplication": 0.10272870003245771,
+        "call_graph": 0.2969518000027165
+      },
+      "scope": {
+        "static": false,
+        "history": false,
+        "rag": false
+      },
+      "source_sha256": "0b718a324e026c19db9ca9266853a1c3b0623ad4c2ff91ad415e878d6d361d64",
+      "python_files": 250,
+      "physical_lines": 24750,
+      "kloc": 24.75,
+      "functions": 5000,
+      "status": "complete",
+      "llm_tokens": null,
+      "llm_cost_usd": null,
+      "name": "synthetic_large",
+      "source": "C:\\Users\\ASAD AHMAD\\Downloads\\devvv (3)\\devvv\\Intelligent_Technical_Debt_and_Refactoring-main\\Intelligent_Technical_Debt_and_Refactoring-main\\targets\\benchmark-fixtures\\large",
+      "wall_seconds": 1.8983029999653809,
+      "peak_tree_rss_mb": 37.48828125,
+      "log_tail": "",
+      "repeat": 3
+    }
+  ],
+  "largest_successful_kloc": 24.75,
+  "maximum_supported_kloc": null,
+  "limitations": [
+    "Observed bound applies only to these repositories and enabled stages.",
+    "RSS is sampled every 100ms across the process tree; brief peaks can be missed.",
+    "RAG indexes all functions as a load probe; this is not ranking quality evaluation.",
+    "LLM usage and cost are measured separately by run_model_benchmark.py.",
+    "Analyzer wrappers may report empty findings on tool failures; inspect logs.",
+    "Repeated runs can benefit from OS/model caches; record cold and warm runs separately."
+  ]
+}

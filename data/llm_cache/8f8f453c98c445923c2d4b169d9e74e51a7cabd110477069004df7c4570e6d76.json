@@ -1,0 +1,6 @@
+{
+ "action": "Extract a separate function to handle HTTPError handling",
+ "refactoring_type": "extract_method",
+ "expected_benefit": "Reduces cyclomatic complexity, improves maintainability, and increases test coverage. It also reduces the risk of dead code and composite static debt score.",
+ "risk": "The extracted function will have a cyclomatic complexity of 1, which is a low level of complexity. It will also have a maintainability index of 21.89, which is a moderate level of maintainability. The extracted function will have 18 lines of code, which is a relatively low number. The extracted function will have 3 author(s), which is a relatively low number. The extracted function will have 108 days before the analysis snapshot, which is a relatively low number. The extracted function will have 92.8% test coverage, which is a moderate level of coverage. The extracted function will have 92.8% code coverage, which is a moderate level of coverage. The extracted function will have 100.0% function coverage, which is a high level of coverage. The extracted function will have 92.8% file coverage, which is a moderate level of coverage."
+}

@@ -1,0 +1,16 @@
+{
+ "summary": "The `copy()` method in `PreparedRequest` class copies the request's attributes to a new `PreparedRequest` object. However, it does not properly handle the cookies, which are not copied. This can lead to issues if the cookies are used in the request.",
+ "debt_indicators": [
+  "deep_nesting",
+  "mixed_responsibilities",
+  "duplicated_code",
+  "composite_static_debt"
+ ],
+ "impact_factors": [
+  "central_functionality",
+  "frequency_of_changes",
+  "testability",
+  "well_tested"
+ ],
+ "risk_assessment": "Medium"
+}

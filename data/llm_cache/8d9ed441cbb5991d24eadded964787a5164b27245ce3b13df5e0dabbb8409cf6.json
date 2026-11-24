@@ -1,0 +1,16 @@
+{
+ "summary": "The `patch()` function in the requests library carries technical debt due to its high cyclomatic complexity (1) and low maintainability index (100.0). The function is also prone to dead code, as it does not accept any arguments or return any value. Additionally, the function has a high composite static debt score of 0.2/10, indicating that it is not well-maintained and may require significant refactoring.",
+ "debt_indicators": [
+  "deep_nesting",
+  "mixed_responsibilities",
+  "duplicated_lines",
+  "flagged_as_dead_code"
+ ],
+ "impact_factors": [
+  "central_functionality",
+  "frequency_of_changes",
+  "testability",
+  "well_tested"
+ ],
+ "risk_assessment": "High"
+}

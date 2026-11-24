@@ -1,0 +1,5 @@
+{
+ "priority": "HIGH",
+ "priority_score": 80,
+ "reason": "The `to_key_val_list()` function in requests/utils.py carries technical debt related to handling invalid input types. The function has a high cyclomatic complexity of 4, indicating a complex and potentially brittle implementation. Additionally, the function has a low maintainability index of 25.2, suggesting that it may be difficult to understand and modify in the future. The function also has a high composite static debt score of 3.79/10, indicating that it is a significant source of technical debt for the repository."
+}

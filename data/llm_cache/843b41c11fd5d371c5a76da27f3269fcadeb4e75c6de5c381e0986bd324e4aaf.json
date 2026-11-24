@@ -1,0 +1,14 @@
+{
+ "summary": "The `BaseAdapter.send()` function in `requests/adapters.py` has a high cyclomatic complexity of 1 (Radon rank A) and a low maintainability index of 51.8, indicating that it is a complex and difficult-to-maintain function. Additionally, it has 18 lines of code and 6 parameters, which makes it a large and complex function.",
+ "debt_indicators": [
+  "deep nesting",
+  "mixed responsibilities",
+  "duplicated branches"
+ ],
+ "impact_factors": [
+  "centrality",
+  "frequency of changes or breaks",
+  "test coverage"
+ ],
+ "risk_assessment": "High"
+}

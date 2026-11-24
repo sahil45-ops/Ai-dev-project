@@ -1,0 +1,6 @@
+{
+ "action": "no_action",
+ "refactoring_type": "no_action",
+ "expected_benefit": "No change to the codebase",
+ "risk": "Low"
+}

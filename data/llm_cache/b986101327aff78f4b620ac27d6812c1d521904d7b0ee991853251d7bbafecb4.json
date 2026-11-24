@@ -1,0 +1,14 @@
+{
+ "summary": "The `HTTPDigestAuth.build_digest_header()` function in `requests/auth.py` carries technical debt due to its high cyclomatic complexity, low maintainability index, and high static debt score. The function is also flagged with several code smells and style-only findings. Additionally, the function is not used in the repository's tests and has a low test coverage.",
+ "debt_indicators": [
+  "deep nesting",
+  "mixed responsibilities",
+  "duplicated branches"
+ ],
+ "impact_factors": [
+  "centrality",
+  "frequency of changes or breaks",
+  "test coverage"
+ ],
+ "risk_assessment": "High"
+}

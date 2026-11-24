@@ -1,0 +1,6 @@
+{
+ "action": "Extract a separate function for registering hooks.",
+ "refactoring_type": "extract_method",
+ "expected_benefit": "Reduced duplicated code and improved maintainability.",
+ "risk": "Low risk of introducing new bugs or affecting existing functionality. The duplicated code is not severe, and the naming conventions are consistent."
+}

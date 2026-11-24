@@ -1,0 +1,14 @@
+{
+ "summary": "The function `_check_cryptography()` in `requests/__init__.py` has a high cyclomatic complexity of 3 and a low maintainability index of 71.29, indicating that it has a high level of technical debt. The function also has 2 code smells and 1 style-only finding, which may indicate that it needs to be refactored or improved.",
+ "debt_indicators": [
+  "deep nesting",
+  "mixed responsibilities",
+  "duplicated branches"
+ ],
+ "impact_factors": [
+  "central function",
+  "frequent changes or breaks",
+  "poor test coverage"
+ ],
+ "risk_assessment": "High"
+}

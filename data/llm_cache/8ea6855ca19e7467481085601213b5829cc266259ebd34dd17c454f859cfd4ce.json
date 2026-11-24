@@ -1,0 +1,6 @@
+{
+ "priority": "HIGH",
+ "priority_score": 90,
+ "reason": "The function is a public API method with 83 LOC and cyclomatic complexity 35, making it hard to maintain and test. It accesses protected members of the type class and contains many nested branches, increasing the risk of bugs and making future changes costly. Refactoring will improve readability, testability, and reduce defect risk.",
+ "action": "Refactor get_help_extra into smaller, well‑named helper functions: extract envvar handling, default string construction, and range description. Replace direct access to protected members (_NumberRangeBase and _describe_range) with a public interface or a dedicated helper that safely obtains the range string. Add comprehensive docstrings and unit tests for each helper to ensure correctness."
+}

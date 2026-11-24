@@ -1,0 +1,6 @@
+{
+ "action": "Extract the fragment and authentication part into separate variables",
+ "refactoring_type": "extract_method",
+ "expected_benefit": "Reduces the complexity of the code and improves readability by separating the fragment and authentication part into separate variables.",
+ "risk": "Low to Moderate"
+}

@@ -1,0 +1,12 @@
+{
+ "summary": "The `RequestsCookieJar._find_no_duplicates()` function in requests/cookies.py carries technical debt related to duplicated code and potential for future conflicts. The function has a high cyclomatic complexity of 9, indicating multiple possible paths of execution. It also has a low maintainability index of 39.76, suggesting that the function is not well-maintained or easy to understand. Additionally, the function has two style-only findings, suggesting that the code is not following best practices. The function has zero duplicated lines, indicating that there are no redundant lines of code. The function has zero flagged as dead code, indicating that it is not considered obsolete. The composite static debt score is 4.21 out of 10, indicating a moderate level of technical debt. The function has five recent commits, indicating that it has been updated in the past two years. The function has zero defect-linked commits, indicating that it has not been reported as a bug. The function has two author(s), indicating that it was written by two different people. The function has 77.8% test coverage, indicating that it has been tested in the past two years. The function has zero composite static debt score, indicating that it does not carry significant technical debt. The function has zero composite static debt score, indicating that it does not carry significant technical debt. The function has zero composite static debt score, indicating that it does not carry significant technical debt.",
+ "debt_indicators": [
+  "deep nesting",
+  "mixed responsibilities",
+  "duplicated branches"
+ ],
+ "impact_factors": [
+  "how central the function is, how often it changes or breaks, how well it is tested"
+ ],
+ "risk_assessment": "moderate"
+}

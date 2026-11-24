@@ -1,0 +1,6 @@
+{
+ "action": "Extract the logic for generating the docstring into a separate function.",
+ "refactoring_type": "extract_method",
+ "expected_benefit": "Reduces cyclomatic complexity and maintainability index, improves readability and reusability, and reduces composite static debt score.",
+ "risk": "The extracted function may introduce new technical debt if not properly refactored. However, the overall risk is moderate due to the relatively simple logic of the original function."
+}

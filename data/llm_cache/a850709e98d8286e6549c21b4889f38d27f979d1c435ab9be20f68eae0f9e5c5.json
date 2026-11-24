@@ -1,0 +1,6 @@
+{
+ "priority": "HIGH",
+ "priority_score": 85,
+ "reason": "The function is public, used in the library and tests, yet it has a cyclomatic complexity of 18 and a maintainability index of 22.57. Its long, nested logic and lack of documentation make it fragile and hard to modify, increasing the risk of defects during future changes.",
+ "action": "Refactor super_len into smaller, well‑named helper functions (e.g., _len_from_str, _len_from_file, _len_from_fileno, _len_from_tell). Add a comprehensive docstring, type hints, and unit tests for each helper. Simplify the control flow by early returns and removing redundant checks, which will reduce complexity and improve readability."
+}

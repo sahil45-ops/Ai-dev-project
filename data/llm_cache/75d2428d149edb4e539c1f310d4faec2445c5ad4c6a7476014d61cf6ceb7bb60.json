@@ -1,0 +1,5 @@
+{
+ "priority": "HIGH",
+ "priority_score": 80,
+ "reason": "The function `_check_cryptography()` in `requests/__init__.py` has a high cyclomatic complexity of 3 and a low maintainability index of 71.29, indicating that it has a high level of technical debt. The function also has 2 code smells and 1 style-only finding, which may indicate that it needs to be refactored or improved. Additionally, the function is a central function in the repository and has frequent changes or breaks, which increases its impact on the codebase. The function also has poor test coverage, which further highlights its importance and potential for future defects."
+}

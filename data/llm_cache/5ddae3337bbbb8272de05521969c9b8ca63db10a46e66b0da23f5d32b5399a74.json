@@ -1,0 +1,6 @@
+{
+ "priority": "LOW",
+ "priority_score": 25,
+ "reason": "The function has low complexity, is stable, and has no recent defect commits. The pylint warnings are about signature mismatches that do not currently cause runtime errors, and the code is rarely touched. The only potential issue is raising a None exception if no signer is found, which is unlikely but could be guarded.",
+ "action": "Add a guard after the loop: if last_exception is None: raise BadSignature(\"No signer could process the data\") to avoid raising None. Also update the return type annotation to Union[Any, Tuple[Any, int]] to reflect the optional timestamp return."
+}

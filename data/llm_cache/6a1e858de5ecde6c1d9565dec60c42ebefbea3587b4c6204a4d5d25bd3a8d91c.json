@@ -1,0 +1,6 @@
+{
+ "priority": "HIGH",
+ "priority_score": 85,
+ "reason": "The consume_value method is a public API with cyclomatic complexity 18 and 55 LOC, yet it has no test coverage and is called in the library. Its high complexity and lack of tests make it a likely source of defects and a bottleneck for future changes.",
+ "action": "Refactor consume_value into smaller helper methods: extract flag handling, multiple option handling, and prompting logic into separate private methods. Reduce nesting, simplify conditionals, and add unit tests covering each branch."
+}

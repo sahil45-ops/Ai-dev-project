@@ -1,0 +1,5 @@
+{
+ "priority": "LOW",
+ "priority_score": 20,
+ "reason": "The get() function in requests/api.py carries technical debt related to missing timeout argument in the request method. This issue can cause the program to hang indefinitely if not handled properly. The debt is contained and does not affect the overall functionality of the program."
+}

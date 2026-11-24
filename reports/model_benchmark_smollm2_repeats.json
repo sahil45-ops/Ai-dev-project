@@ -1,0 +1,2448 @@
+{
+  "dataset_sha256": "61ab1ca6cee0b4c15d07c19cd86a981901bacbdfb21958c773e052b17f5d5e9c",
+  "truth_sha256": "93c52f7a6965df24b6d947e187c63b6c5ed83c03a5110d49762e882a544bb58a",
+  "full_dataset_sha256": "b1275cd3e0de0146d8a74cdb453436795154ef9662b042b95b5ee9b35f8857ad",
+  "sample_ids": [
+    "requests/adapters.py::BaseAdapter.send",
+    "requests/adapters.py::HTTPAdapter.add_headers",
+    "requests/adapters.py::HTTPAdapter.send",
+    "requests/api.py::delete",
+    "requests/api.py::get",
+    "requests/api.py::head",
+    "requests/api.py::patch",
+    "requests/api.py::post",
+    "requests/auth.py::HTTPBasicAuth.__eq__",
+    "requests/auth.py::_basic_auth_str",
+    "requests/cookies.py::merge_cookies",
+    "requests/help.py::_implementation",
+    "requests/models.py::PreparedRequest.prepare_auth",
+    "requests/models.py::PreparedRequest.prepare_body",
+    "requests/models.py::RequestEncodingMixin._encode_files",
+    "requests/models.py::RequestEncodingMixin._encode_params",
+    "requests/models.py::Response.__setstate__",
+    "requests/models.py::Response.iter_content.generate",
+    "requests/models.py::Response.json",
+    "requests/models.py::Response.raise_for_status",
+    "requests/sessions.py::Session.__init__",
+    "requests/sessions.py::Session.merge_environment_settings",
+    "requests/sessions.py::Session.put",
+    "requests/sessions.py::SessionRedirectMixin.rebuild_method",
+    "requests/sessions.py::SessionRedirectMixin.resolve_redirects",
+    "requests/sessions.py::SessionRedirectMixin.should_strip_auth",
+    "requests/utils.py::extract_zipped_paths",
+    "requests/utils.py::get_encodings_from_content",
+    "requests/utils.py::parse_header_links",
+    "requests/utils.py::prepend_scheme_if_needed"
+  ],
+  "pilot": true,
+  "mode": "single",
+  "workers": 1,
+  "max_output_tokens": 2048,
+  "context_sha256": "7123ad0383e58ef862d574ba68d9e869f96dbf5f09aca820f31618a23cfbd7d6",
+  "models": [
+    "ollama/smollm2:1.7b"
+  ],
+  "repeats": 3,
+  "protocol_sha256": "93eb94e012871efab46db4d243cb5d6022c14b6d74e9bedbf2112d0dcfac94f9",
+  "token_estimates_per_model_per_repeat": {
+    "no_context": [
+      24414,
+      13500
+    ],
+    "rag_context": [
+      47897,
+      13500
+    ]
+  },
+  "status": "complete",
+  "runs": [
+    {
+      "key": "ollama/smollm2:1.7b | no_context | 1",
+      "model": "ollama/smollm2:1.7b",
+      "arm": "no_context",
+      "repeat": 1,
+      "workers": 1,
+      "seconds": 925.0709024999524,
+      "mean_call_seconds": 30.83559137332098,
+      "calls_attempted": 30,
+      "schema_acceptance_rate": 0.9333333333333333,
+      "call_failure_rate": 0.06666666666666667,
+      "item_failure_rate": 0.06666666666666665,
+      "input_tokens": 22767,
+      "output_tokens": 9089,
+      "cached_calls": 0,
+      "cost_usd": null,
+      "pricing_per_million": null,
+      "results": [
+        {
+          "id": "requests/adapters.py::BaseAdapter.send",
+          "file": "requests/adapters.py",
+          "function": "BaseAdapter.send",
+          "line": 76,
+          "priority": "HIGH",
+          "priority_score": 80,
+          "reason": "The `send()` method in BaseAdapter.send() is a critical method that is called frequently in the requests library. It is responsible for sending prepared requests to the server. If this method is not properly implemented, it can lead to potential security vulnerabilities, such as data tampering or unauthorized access. Additionally, if this method is not properly tested, it can cause defects or slow down frequent changes. Therefore, it is recommended to fix this debt item as soon as possible.",
+          "action": "Fix the `send()` method in BaseAdapter.send() to ensure proper implementation and testing. This can be done by refactoring the code to handle the request and response data correctly and by implementing proper error handling and logging mechanisms.",
+          "llm_rank": 1
+        },
+        {
+          "id": "requests/models.py::Response.json",
+          "file": "requests/models.py",
+          "function": "Response.json",
+          "line": 942,
+          "priority": "HIGH",
+          "priority_score": 80,
+          "reason": "The `json()` method in requests/models.py is not properly handling JSON decoding errors. This can lead to unexpected behavior and potential defects in the application. The method should explicitly re-raise the `requests.exceptions.JSONDecodeError` exception using `raise RequestsJSONDecodeError(e.msg, e.doc, e.pos) from e` to ensure that the error is properly propagated and handled.",
+          "action": "Refactor the `json()` method to explicitly re-raise the `requests.exceptions.JSONDecodeError` exception using `raise RequestsJSONDecodeError(e.msg, e.doc, e.pos) from e`. This will ensure that the error is properly propagated and handled, and that the application remains robust and reliable.",
+          "llm_rank": 2
+        },
+        {
+          "id": "requests/sessions.py::Session.__init__",
+          "file": "requests/sessions.py",
+          "function": "Session.__init__",
+          "line": 390,
+          "priority": "HIGH",
+          "priority_score": 80,
+          "reason": "Session.__init__() is a critical method that sets the initial state of the session, including headers, authentication, and proxies. If not properly set, it can lead to security vulnerabilities, such as unauthorized access or data tampering. Additionally, it is a frequently used method, so any changes to it can have a significant impact on the overall performance and security of the application.",
+          "action": "Fix now: Session.__init__() should be reviewed and updated to ensure it is properly set and secure. Consider implementing additional security measures, such as validating user input and using secure protocols for authentication and data transfer.",
+          "llm_rank": 3
+        },
+        {
+          "id": "requests/adapters.py::HTTPAdapter.add_headers",
+          "file": "requests/adapters.py",
+          "function": "HTTPAdapter.add_headers",
+          "line": 398,
+          "priority": "MEDIUM",
+          "priority_score": 50,
+          "reason": "The `add_headers` method in requests/adapters.py is a necessary part of the requests library, but it is not being used in the codebase. This method is used to add headers to a request before sending it, which is important for ensuring that the request is properly formatted and can be handled correctly by the server.",
+          "action": "Refactor the `add_headers` method to use a decorator or a separate function to add headers to the request. This will make the code more readable and maintainable, and will also allow for easier testing and debugging of the request handling logic.",
+          "llm_rank": 4
+        },
+        {
+          "id": "requests/adapters.py::HTTPAdapter.send",
+          "file": "requests/adapters.py",
+          "function": "HTTPAdapter.send",
+          "line": 433,
+          "priority": "MEDIUM",
+          "priority_score": 50,
+          "reason": "HTTPAdapter.send() in requests/adapters.py has a high cyclomatic complexity of 19, indicating a potential for defects or slow down frequent changes. Additionally, it has a moderate LOC of 105 and a moderate file maintainability index of 51.8. There are 15 code smells (lint/refactor findings) and 5 style-only findings. There are 9 duplicated lines, no flagged as dead code, and composite static debt score of 6.73 / 10. Tool findings include [pylint] [raise-missing-from] and [pylint] [raise-missing-from].",
+          "action": "Refactor the send() method to reduce cyclomatic complexity and improve maintainability. Consider using a more robust method for handling exceptions and improving the code's readability and maintainability.",
+          "llm_rank": 5
+        },
+        {
+          "id": "requests/api.py::delete",
+          "file": "requests/api.py",
+          "function": "delete",
+          "line": 148,
+          "priority": "MEDIUM",
+          "priority_score": 50,
+          "reason": "The delete() method in requests/api.py has a missing timeout argument, which can cause the program to hang indefinitely. This is a potential security risk and should be addressed to prevent denial-of-service attacks.",
+          "action": "Add a timeout argument to the delete() method in requests/api.py. This can be done by adding a keyword argument with the value of the timeout parameter, e.g., `request(",
+          "llm_rank": 6
+        },
+        {
+          "id": "requests/api.py::get",
+          "file": "requests/api.py",
+          "function": "get",
+          "line": 62,
+          "priority": "MEDIUM",
+          "priority_score": 50,
+          "reason": "get() in requests/api.py (line 62) is a method that sends a GET request. The method is missing a timeout argument, which can cause the program to hang indefinitely. This is a potential security risk and can lead to unexpected behavior or crashes.",
+          "action": "Add a timeout argument to the get() method in requests/api.py (line 62) to prevent the program from hanging indefinitely. This can be done by adding a timeout parameter to the request method, like this: request(",
+          "llm_rank": 7
+        },
+        {
+          "id": "requests/api.py::head",
+          "file": "requests/api.py",
+          "function": "head",
+          "line": 88,
+          "priority": "MEDIUM",
+          "priority_score": 50,
+          "reason": "The `head()` method in requests/api.py has a cyclomatic complexity of 1, indicating a potential for defects or slow down frequent changes. Additionally, the method does not include a timeout argument, which could cause the program to hang indefinitely. It is recommended to add a timeout argument to the method to prevent such issues.",
+          "action": "Add a timeout argument to the `head()` method in requests/api.py to prevent the program from hanging indefinitely. This can be done by adding a `timeout` parameter to the `requests.Request` constructor, like so: `response = requests.Request(",
+          "llm_rank": 8
+        },
+        {
+          "id": "requests/api.py::patch",
+          "file": "requests/api.py",
+          "function": "patch",
+          "line": 133,
+          "priority": "MEDIUM",
+          "priority_score": 50,
+          "reason": "The patch() method in requests/api.py has a high cyclomatic complexity of 1, indicating a potential for defects or slow down frequent changes. Additionally, the method has a low maintainability index, suggesting that it may be difficult to understand and modify in the future. Furthermore, there are code smells present, such as duplicated lines and a missing timeout argument, which can cause the program to hang indefinitely. These factors contribute to a high level of technical debt and warrant a medium priority for refactoring.",
+          "action": "Refactor the patch() method to improve its maintainability and reduce technical debt. This can be achieved by reducing cyclomatic complexity, improving the file maintainability index, and addressing the code smells. Additionally, consider adding a timeout argument to prevent the program from hanging indefinitely.",
+          "llm_rank": 9
+        },
+        {
+          "id": "requests/api.py::post",
+          "file": "requests/api.py",
+          "function": "post",
+          "line": 103,
+          "priority": "MEDIUM",
+          "priority_score": 50,
+          "reason": "The `post()` function in requests/api.py has a high cyclomatic complexity of 1, indicating a potential for defects or slow down frequent changes. Additionally, the function has a low maintainability index, and there are code smells present. The function also has a composite static debt score of 0.2 / 10, which is a moderate level of debt.",
+          "action": "Refactor the `post()` function to reduce cyclomatic complexity and improve maintainability. Consider using a more robust method for handling data and JSON serialization, such as using a library like `requests-toolbelt` or `json-schema`. This will help prevent potential defects and slow down frequent changes.",
+          "llm_rank": 10
+        },
+        {
+          "id": "requests/auth.py::HTTPBasicAuth.__eq__",
+          "file": "requests/auth.py",
+          "function": "HTTPBasicAuth.__eq__",
+          "line": 83,
+          "priority": "MEDIUM",
+          "priority_score": 50,
+          "reason": "The `__eq__` method in the `HTTPBasicAuth` class is not properly implemented. It does not handle the case where the `other` object is not an instance of `HTTPBasicAuth`. This could potentially lead to unexpected behavior or errors when comparing instances of `HTTPBasicAuth` with other objects.",
+          "action": "Refactor the `__eq__` method to handle the case where `other` is not an instance of `HTTPBasicAuth`. This can be done by adding a check at the beginning of the method to ensure that `other` is an instance of `HTTPBasicAuth` before attempting to compare its attributes with those of the current instance. Additionally, consider adding a docstring to the method to explain its behavior and any assumptions it makes about the input parameters.",
+          "llm_rank": 11
+        },
+        {
+          "id": "requests/auth.py::_basic_auth_str",
+          "file": "requests/auth.py",
+          "function": "_basic_auth_str",
+          "line": 25,
+          "priority": "MEDIUM",
+          "priority_score": 50,
+          "reason": "The code contains duplicated lines and potential style-only findings. Additionally, the code is not following the best practices for handling non-string inputs.",
+          "action": "Refactor the code to remove duplicated lines and improve code readability. Use f-strings instead of `format` calls to improve code quality and maintainability. Additionally, ensure that all inputs are converted to strings before encoding them to avoid potential issues in the future.",
+          "llm_rank": 12
+        },
+        {
+          "id": "requests/cookies.py::merge_cookies",
+          "file": "requests/cookies.py",
+          "function": "merge_cookies",
+          "line": 542,
+          "priority": "MEDIUM",
+          "priority_score": 50,
+          "reason": "The `merge_cookies()` function is used to merge cookies from a dictionary or CookieJar object into a CookieJar object. However, it does not explicitly check if the `cookies` parameter is a dictionary or CookieJar object, which could potentially lead to unexpected behavior or errors. Additionally, the function does not handle the case where the `cookies` parameter is a dictionary and the `cookiejar` parameter is not a CookieJar object, which could result in duplicate cookies being added to the `cookiejar`. To improve the function's robustness and maintainability, it would be beneficial to add input validation and error handling to handle these potential edge cases.",
+          "action": "Add input validation and error handling to handle the case where the `cookies` parameter is a dictionary and the `cookiejar` parameter is not a CookieJar object. This can be achieved by adding a check at the beginning of the function to ensure that the `cookies` parameter is a CookieJar object, and if not, raise a `TypeError` exception. Additionally, consider adding a check to ensure that the `cookiejar` parameter is a CookieJar object, and if not, raise a `TypeError` exception. This will help prevent unexpected behavior and errors when calling the `merge_cookies()` function.",
+          "llm_rank": 13
+        },
+        {
+          "id": "requests/help.py::_implementation",
+          "file": "requests/help.py",
+          "function": "_implementation",
+          "line": 34,
+          "priority": "MEDIUM",
+          "priority_score": 50,
+          "reason": "The code is not causing immediate defects or slow down, but it is a potential issue that could be addressed in the future. The code is also not very readable, which could make it harder to maintain and understand in the long run.",
+          "action": "Refactor the implementation to use a more Pythonic way of returning the implementation and version information. This could involve using a dictionary to store the information instead of a series of if-else statements. Additionally, consider using a more readable way of formatting the output, such as using f-strings instead of string joins.",
+          "llm_rank": 14
+        },
+        {
+          "id": "requests/models.py::PreparedRequest.prepare_auth",
+          "file": "requests/models.py",
+          "function": "PreparedRequest.prepare_auth",
+          "line": 588,
+          "priority": "MEDIUM",
+          "priority_score": 50,
+          "reason": "PreparedRequest.prepare_auth() in requests/models.py is a method that prepares the HTTP authentication data. Although it is not causing immediate defects or slow down, it is a method that can be improved to make the code more maintainable and efficient. The method extracts the authentication data from the URL, which can be a potential source of errors if the URL is not correctly formatted. Additionally, the method does not handle the case where the authentication data is not provided, which can lead to unexpected behavior. Therefore, it is recommended to refactor the method to handle these potential issues and make it more robust.",
+          "action": "Refactor the method to handle the case where the authentication data is not provided and to extract the authentication data from the URL in a more robust way. This can be achieved by adding a check to ensure that the authentication data is provided and by using a more robust method to extract the authentication data from the URL. Additionally, the method can be refactored to handle the case where the authentication data is not provided by raising an exception or returning an error message. This will make the code more maintainable and efficient.",
+          "llm_rank": 15
+        },
+        {
+          "id": "requests/models.py::PreparedRequest.prepare_body",
+          "file": "requests/models.py",
+          "function": "PreparedRequest.prepare_body",
+          "line": 494,
+          "priority": "MEDIUM",
+          "priority_score": 50,
+          "reason": "The prepared request body function in requests/models.py is a critical piece of code that handles the preparation of HTTP request bodies. It is responsible for encoding and formatting the request body data, which is crucial for sending requests to the server. However, the function is not well-documented and lacks proper error handling. Additionally, the function is not optimized for performance, which could lead to slow down of frequent changes.",
+          "action": "Refactor the prepared request body function to improve its performance and add proper error handling. Consider using a more efficient encoding method and adding a retry mechanism to handle any potential encoding errors. Additionally, consider adding a docstring to the function to provide more context and clarity on its purpose and behavior.",
+          "llm_rank": 16
+        },
+        {
+          "id": "requests/models.py::RequestEncodingMixin._encode_files",
+          "file": "requests/models.py",
+          "function": "RequestEncodingMixin._encode_files",
+          "line": 137,
+          "priority": "MEDIUM",
+          "priority_score": 50,
+          "reason": "This method is used to build the body for a multipart/form-data request. It handles encoding files and data, and is called when making requests with the `requests` library. However, it does not handle any potential errors that may occur during the process, and it does not provide any feedback to the user about the success or failure of the request. Additionally, it does not handle any potential security vulnerabilities that may exist in the code.",
+          "action": "Refactor to include error handling and logging to provide more informative feedback to the user about the success or failure of the request. Consider using a more robust library for handling multipart/form-data requests to avoid potential security vulnerabilities.",
+          "llm_rank": 17
+        },
+        {
+          "id": "requests/models.py::RequestEncodingMixin._encode_params",
+          "file": "requests/models.py",
+          "function": "RequestEncodingMixin._encode_params",
+          "line": 107,
+          "priority": "MEDIUM",
+          "priority_score": 50,
+          "reason": "This method is used to encode parameters in a piece of data. It handles both dict and list of 2-tuples, but may not handle all possible types correctly. Additionally, it does not handle encoding of non-string values, which could potentially lead to encoding issues.",
+          "action": "Refactor the method to handle all possible types correctly, including encoding of non-string values. Consider using a more robust encoding library like `ujson` or `json` to handle encoding of non-string values.",
+          "llm_rank": 18
+        },
+        {
+          "id": "requests/models.py::Response.iter_content.generate",
+          "file": "requests/models.py",
+          "function": "Response.iter_content.generate",
+          "line": 811,
+          "priority": "MEDIUM",
+          "priority_score": 50,
+          "reason": "The `generate()` method in requests/models.py is handling different types of exceptions (ProtocolError, DecodeError, ReadTimeoutError, and SSLError) for different types of objects (urllib3.ConnectionPool and standard file-like object). This could potentially lead to unexpected behavior or errors if not handled properly. Additionally, the method does not explicitly re-raise the exceptions, which could lead to silent failures. A refactoring action could be to explicitly re-raise the exceptions using the provided `raise` statements, ensuring that the exceptions are handled consistently and allowing for better error handling and debugging.",
+          "action": "Explicitly re-raise the exceptions using the provided `raise` statements. This will ensure that the exceptions are handled consistently and allow for better error handling and debugging.",
+          "llm_rank": 19
+        },
+        {
+          "id": "requests/sessions.py::Session.merge_environment_settings",
+          "file": "requests/sessions.py",
+          "function": "Session.merge_environment_settings",
+          "line": 750,
+          "priority": "MEDIUM",
+          "priority_score": 50,
+          "reason": "Session.merge_environment_settings() is a crucial method in requests/sessions.py that merges environment settings with the requests settings. It is a high-impact method as it affects the entire request flow. However, the method is not well-documented and lacks proper error handling. Additionally, the method is not thread-safe, which could lead to unexpected behavior in concurrent environments.",
+          "action": "Refactor the merge_environment_settings() method to improve its documentation and add proper error handling. Consider using a thread-safe approach to ensure the method works correctly in concurrent environments.",
+          "llm_rank": 20
+        },
+        {
+          "id": "requests/sessions.py::Session.put",
+          "file": "requests/sessions.py",
+          "function": "Session.put",
+          "line": 639,
+          "priority": "MEDIUM",
+          "priority_score": 50,
+          "reason": "Session.put() in requests/sessions.py is a method that sends a PUT request. While it is not causing immediate defects, it is scheduled for a future refactoring. The method is simple and does not have a significant impact on the codebase. However, it is a good practice to refactor this method to improve code readability and maintainability.",
+          "action": "Refactor the put() method to use a more descriptive variable name, such as `send_put_request`, and consider adding a docstring to explain the purpose of the method. Additionally, consider adding a parameter to allow for more flexibility in the request type (e.g., `method` parameter in the `request()` method).",
+          "llm_rank": 21
+        },
+        {
+          "id": "requests/sessions.py::SessionRedirectMixin.rebuild_method",
+          "file": "requests/sessions.py",
+          "function": "SessionRedirectMixin.rebuild_method",
+          "line": 333,
+          "priority": "MEDIUM",
+          "priority_score": 50,
+          "reason": "SessionRedirectMixin.rebuild_method() in requests/sessions.py is a method that may be called when a redirect occurs. It has a medium priority because it may cause issues with the request method being changed, potentially leading to broken redirects or unexpected behavior. However, it is not a critical issue and can be addressed when the code is being refactored.",
+          "action": "Refactor the method to handle redirects more consistently. Consider using a more robust method to determine the request method based on the response status code and headers. This will ensure that the request method is correctly set and prevent potential issues with redirects.",
+          "llm_rank": 22
+        },
+        {
+          "id": "requests/sessions.py::SessionRedirectMixin.resolve_redirects",
+          "file": "requests/sessions.py",
+          "function": "SessionRedirectMixin.resolve_redirects",
+          "line": 159,
+          "priority": "MEDIUM",
+          "priority_score": 50,
+          "reason": "SessionRedirectMixin.resolve_redirects() in requests/sessions.py has a medium priority due to its potential impact on the application's performance and reliability. The method is used to handle redirects, which can lead to a significant increase in the number of requests made to the server. Additionally, the method is not well-documented and does not follow standard Python naming conventions, which can make it harder to understand and maintain.",
+          "action": "Refactor the SessionRedirectMixin.resolve_redirects() method to improve its readability and maintainability. Consider using a more robust method for handling redirects, such as a dedicated library or framework, and ensure that the method follows standard Python naming conventions. Additionally, consider adding more documentation and comments to explain the purpose and behavior of the method.",
+          "llm_rank": 23
+        },
+        {
+          "id": "requests/sessions.py::SessionRedirectMixin.should_strip_auth",
+          "file": "requests/sessions.py",
+          "function": "SessionRedirectMixin.should_strip_auth",
+          "line": 127,
+          "priority": "MEDIUM",
+          "priority_score": 50,
+          "reason": "The `should_strip_auth()` method in requests/sessions.py is a crucial part of the session management logic. It determines whether the Authorization header should be removed when redirecting. However, the method is not well-documented and lacks clear instructions. Additionally, the method is not well-tested, and there are no clear guidelines on when to use it. This technical debt could potentially lead to security vulnerabilities or performance issues if not addressed.",
+          "action": "Refactor the `should_strip_auth()` method to include clear instructions and guidelines on when to use it. This could involve adding a docstring or a separate section in the documentation that outlines the reasoning behind the method and provides examples of when to use it. Additionally, consider adding unit tests to ensure that the method is working correctly and is not causing any issues.",
+          "llm_rank": 24
+        },
+        {
+          "id": "requests/utils.py::extract_zipped_paths",
+          "file": "requests/utils.py",
+          "function": "extract_zipped_paths",
+          "line": 263,
+          "priority": "MEDIUM",
+          "priority_score": 50,
+          "reason": "Extracting zip paths is a necessary operation, but it involves reading from a zip file, which can be slow. Additionally, the code is not very readable due to the nested if-else statements and the use of atomic_open, which can be error-prone.",
+          "action": "Extract zip paths into a separate function. This will improve readability and make the code more maintainable. Additionally, consider using a more efficient method for extracting zip files, such as using the `zipfile` module's `extract` method, which is faster and more efficient.",
+          "llm_rank": 25
+        },
+        {
+          "id": "requests/utils.py::get_encodings_from_content",
+          "file": "requests/utils.py",
+          "function": "get_encodings_from_content",
+          "line": 484,
+          "priority": "MEDIUM",
+          "priority_score": 50,
+          "reason": "get_encodings_from_content() in requests/utils.py is a method that retrieves encoding information from a given content string. This method is used in various parts of the codebase, and its removal would have a significant impact on the overall functionality of the application. Although the method is deprecated in requests 3.0, it is still used in some parts of the codebase. Therefore, it is recommended to refactor this method to handle the removal of this method and ensure that the application continues to function correctly.",
+          "action": "Refactor the get_encodings_from_content() method to handle the removal of this method and ensure that the application continues to function correctly. This can be done by creating a new method that retrieves encoding information from the content string, and then removing the deprecated method from the codebase. Additionally, it is recommended to update any code that uses the deprecated method to use the new method instead.",
+          "llm_rank": 26
+        },
+        {
+          "id": "requests/utils.py::parse_header_links",
+          "file": "requests/utils.py",
+          "function": "parse_header_links",
+          "line": 909,
+          "priority": "MEDIUM",
+          "priority_score": 50,
+          "reason": "parse_header_links() is a crucial function in the requests library, and its current implementation has a high cyclomatic complexity (6) and a moderate file maintainability index (25.2). The function is also prone to duplicated lines and has a composite static debt score of 4.19/10. Additionally, it has been flagged as dead code by static analysis tools. A refactoring action could be to simplify the function's logic and reduce its cyclomatic complexity.",
+          "action": "Simplify the function's logic by removing duplicated lines and reducing its complexity. This can be achieved by extracting the common logic into a separate function and reducing the number of parameters passed to the function. Additionally, consider using a more efficient data structure to store the parsed link headers.",
+          "llm_rank": 27
+        },
+        {
+          "id": "requests/models.py::Response.raise_for_status",
+          "file": "requests/models.py",
+          "function": "Response.raise_for_status",
+          "line": 992,
+          "priority": "MEDIUM",
+          "priority_score": 40,
+          "reason": "The `raise_for_status()` method in requests/models.py has a high cyclomatic complexity of 6, indicating a potential for defects or slow down frequent changes. Additionally, the method is not well-maintained, with a low file maintainability index of 21.89. There are no code smells or style-only findings, but there is duplicated code. The composite static debt score is 4.32/10, indicating a moderate level of technical debt. The method should be refactored to improve its maintainability and readability.",
+          "action": "Refactor the `raise_for_status()` method to reduce cyclomatic complexity and improve maintainability. Consider using a more Pythonic way of handling HTTP errors, such as using the `response.raise_for_status()` method directly. Additionally, consider extracting the error message into a separate variable to improve readability.",
+          "llm_rank": 28
+        },
+        {
+          "id": "requests/models.py::Response.__setstate__",
+          "file": "requests/models.py",
+          "function": "Response.__setstate__",
+          "line": 719,
+          "error": "The model returned invalid JSON."
+        },
+        {
+          "id": "requests/utils.py::prepend_scheme_if_needed",
+          "file": "requests/utils.py",
+          "function": "prepend_scheme_if_needed",
+          "line": 984,
+          "error": "The model returned invalid JSON."
+        }
+      ]
+    },
+    {
+      "key": "ollama/smollm2:1.7b | no_context | 2",
+      "model": "ollama/smollm2:1.7b",
+      "arm": "no_context",
+      "repeat": 2,
+      "workers": 1,
+      "seconds": 688.0957782999612,
+      "mean_call_seconds": 22.936447490006685,
+      "calls_attempted": 30,
+      "schema_acceptance_rate": 0.9333333333333333,
+      "call_failure_rate": 0.06666666666666667,
+      "item_failure_rate": 0.06666666666666665,
+      "input_tokens": 22767,
+      "output_tokens": 9080,
+      "cached_calls": 0,
+      "cost_usd": null,
+      "pricing_per_million": null,
+      "results": [
+        {
+          "id": "requests/adapters.py::BaseAdapter.send",
+          "file": "requests/adapters.py",
+          "function": "BaseAdapter.send",
+          "line": 76,
+          "priority": "HIGH",
+          "priority_score": 80,
+          "reason": "The `send()` method in BaseAdapter.send() is a critical method that is called frequently in the requests library. It is responsible for sending prepared requests to the server. If this method is not properly implemented, it can lead to potential security vulnerabilities, such as data tampering or unauthorized access. Additionally, if this method is not properly tested, it can cause defects or slow down frequent changes. Therefore, it is recommended to fix this debt item as soon as possible.",
+          "action": "Fix the `send()` method in BaseAdapter.send() to ensure proper implementation and testing. This can be done by refactoring the code to handle the request and response data correctly and by implementing proper error handling and logging mechanisms.",
+          "llm_rank": 1
+        },
+        {
+          "id": "requests/models.py::Response.json",
+          "file": "requests/models.py",
+          "function": "Response.json",
+          "line": 942,
+          "priority": "HIGH",
+          "priority_score": 80,
+          "reason": "The `json()` method in requests/models.py is not properly handling JSON decoding errors. This can lead to unexpected behavior and potential defects in the application. The method should explicitly re-raise the `requests.exceptions.JSONDecodeError` exception using `raise RequestsJSONDecodeError(e.msg, e.doc, e.pos) from e` to ensure that the error is properly propagated and handled.",
+          "action": "Refactor the `json()` method to explicitly re-raise the `requests.exceptions.JSONDecodeError` exception using `raise RequestsJSONDecodeError(e.msg, e.doc, e.pos) from e`. This will ensure that the error is properly propagated and handled, and that the application remains robust and reliable.",
+          "llm_rank": 2
+        },
+        {
+          "id": "requests/sessions.py::Session.__init__",
+          "file": "requests/sessions.py",
+          "function": "Session.__init__",
+          "line": 390,
+          "priority": "HIGH",
+          "priority_score": 80,
+          "reason": "Session.__init__() is a critical method that sets the initial state of the session, including headers, authentication, and proxies. If not properly set, it can lead to security vulnerabilities, such as unauthorized access or data tampering. Additionally, it is a frequently used method, so any changes to it can have a significant impact on the overall performance and security of the application.",
+          "action": "Fix now: Session.__init__() should be reviewed and updated to ensure it is properly set and secure. Consider implementing additional security measures, such as validating user input and using secure protocols for authentication and data transfer.",
+          "llm_rank": 3
+        },
+        {
+          "id": "requests/adapters.py::HTTPAdapter.add_headers",
+          "file": "requests/adapters.py",
+          "function": "HTTPAdapter.add_headers",
+          "line": 398,
+          "priority": "MEDIUM",
+          "priority_score": 50,
+          "reason": "The `add_headers` method in requests/adapters.py is a necessary part of the requests library, but it is not being used in the codebase. This method is used to add headers to a request before sending it, which is important for ensuring that the request is properly formatted and can be handled correctly by the server.",
+          "action": "Refactor the `add_headers` method to use a decorator or a separate function to add headers to the request. This will make the code more readable and maintainable, and will also allow for easier testing and debugging of the request handling logic.",
+          "llm_rank": 4
+        },
+        {
+          "id": "requests/adapters.py::HTTPAdapter.send",
+          "file": "requests/adapters.py",
+          "function": "HTTPAdapter.send",
+          "line": 433,
+          "priority": "MEDIUM",
+          "priority_score": 50,
+          "reason": "HTTPAdapter.send() in requests/adapters.py has a high cyclomatic complexity of 19, indicating a potential for defects or slow down frequent changes. Additionally, it has a moderate LOC of 105 and a moderate file maintainability index of 51.8. There are 15 code smells (lint/refactor findings) and 5 style-only findings. There are 9 duplicated lines, no flagged as dead code, and composite static debt score of 6.73 / 10. Tool findings include [pylint] [raise-missing-from] and [pylint] [raise-missing-from].",
+          "action": "Refactor the send() method to reduce cyclomatic complexity and improve maintainability. Consider using a more robust method for handling exceptions and improving the code's readability and maintainability.",
+          "llm_rank": 5
+        },
+        {
+          "id": "requests/api.py::delete",
+          "file": "requests/api.py",
+          "function": "delete",
+          "line": 148,
+          "priority": "MEDIUM",
+          "priority_score": 50,
+          "reason": "The delete() method in requests/api.py has a missing timeout argument, which can cause the program to hang indefinitely. This is a potential security risk and should be addressed to prevent denial-of-service attacks.",
+          "action": "Add a timeout argument to the delete() method in requests/api.py. This can be done by adding a keyword argument with the value of the timeout parameter, e.g., `request(",
+          "llm_rank": 6
+        },
+        {
+          "id": "requests/api.py::get",
+          "file": "requests/api.py",
+          "function": "get",
+          "line": 62,
+          "priority": "MEDIUM",
+          "priority_score": 50,
+          "reason": "get() in requests/api.py (line 62) is a method that sends a GET request. The method is missing a timeout argument, which can cause the program to hang indefinitely. This is a potential security risk and can lead to unexpected behavior or crashes.",
+          "action": "Add a timeout argument to the get() method in requests/api.py (line 62) to prevent the program from hanging indefinitely. This can be done by adding a timeout parameter to the request method, like this: request(",
+          "llm_rank": 7
+        },
+        {
+          "id": "requests/api.py::head",
+          "file": "requests/api.py",
+          "function": "head",
+          "line": 88,
+          "priority": "MEDIUM",
+          "priority_score": 50,
+          "reason": "The `head()` method in requests/api.py has a cyclomatic complexity of 1, indicating a potential for defects or slow down frequent changes. Additionally, the method does not include a timeout argument, which could cause the program to hang indefinitely. It is recommended to add a timeout argument to the method to prevent such issues.",
+          "action": "Add a timeout argument to the `head()` method in requests/api.py to prevent the program from hanging indefinitely. This can be done by adding a `timeout` parameter to the `requests.Request` constructor, like so: `response = requests.Request(",
+          "llm_rank": 8
+        },
+        {
+          "id": "requests/api.py::patch",
+          "file": "requests/api.py",
+          "function": "patch",
+          "line": 133,
+          "priority": "MEDIUM",
+          "priority_score": 50,
+          "reason": "The patch() method in requests/api.py has a high cyclomatic complexity of 1, indicating a potential for defects or slow down frequent changes. Additionally, the method has a low maintainability index, suggesting that it may be difficult to understand and modify in the future. Furthermore, there are code smells present, such as duplicated lines and a missing timeout argument, which can cause the program to hang indefinitely. These factors contribute to a high level of technical debt and warrant a medium priority for refactoring.",
+          "action": "Refactor the patch() method to improve its maintainability and reduce technical debt. This can be achieved by reducing cyclomatic complexity, improving the file maintainability index, and addressing the code smells. Additionally, consider adding a timeout argument to prevent the program from hanging indefinitely.",
+          "llm_rank": 9
+        },
+        {
+          "id": "requests/api.py::post",
+          "file": "requests/api.py",
+          "function": "post",
+          "line": 103,
+          "priority": "MEDIUM",
+          "priority_score": 50,
+          "reason": "The `post()` function in requests/api.py has a high cyclomatic complexity of 1, indicating a potential for defects or slow down frequent changes. Additionally, the function has a low maintainability index, and there are code smells present. The function also has a composite static debt score of 0.2 / 10, which is a moderate level of debt.",
+          "action": "Refactor the `post()` function to reduce cyclomatic complexity and improve maintainability. Consider using a more robust method for handling data and JSON serialization, such as using a library like `requests-toolbelt` or `json-schema`. This will help prevent potential defects and slow down frequent changes.",
+          "llm_rank": 10
+        },
+        {
+          "id": "requests/auth.py::HTTPBasicAuth.__eq__",
+          "file": "requests/auth.py",
+          "function": "HTTPBasicAuth.__eq__",
+          "line": 83,
+          "priority": "MEDIUM",
+          "priority_score": 50,
+          "reason": "The `__eq__` method in the `HTTPBasicAuth` class is not properly implemented. It does not handle the case where the `other` object is not an instance of `HTTPBasicAuth`. This could potentially lead to unexpected behavior or errors when comparing instances of `HTTPBasicAuth` with other objects.",
+          "action": "Refactor the `__eq__` method to handle the case where `other` is not an instance of `HTTPBasicAuth`. This can be done by adding a check at the beginning of the method to ensure that `other` is an instance of `HTTPBasicAuth` before attempting to compare its attributes with those of the current instance. Additionally, consider adding a docstring to the method to explain its behavior and any assumptions it makes about the input parameters.",
+          "llm_rank": 11
+        },
+        {
+          "id": "requests/auth.py::_basic_auth_str",
+          "file": "requests/auth.py",
+          "function": "_basic_auth_str",
+          "line": 25,
+          "priority": "MEDIUM",
+          "priority_score": 50,
+          "reason": "The code contains duplicated lines and potential style-only findings. Additionally, the code is not following the best practices for handling non-string inputs.",
+          "action": "Refactor the code to remove duplicated lines and improve code readability. Use f-strings instead of `format` calls to improve code quality and maintainability. Additionally, ensure that all inputs are converted to strings before encoding them to avoid potential issues in the future.",
+          "llm_rank": 12
+        },
+        {
+          "id": "requests/cookies.py::merge_cookies",
+          "file": "requests/cookies.py",
+          "function": "merge_cookies",
+          "line": 542,
+          "priority": "MEDIUM",
+          "priority_score": 50,
+          "reason": "The `merge_cookies()` function is used to merge cookies from a dictionary or CookieJar object into a CookieJar object. However, it does not explicitly check if the `cookies` parameter is a dictionary or CookieJar object, which could potentially lead to unexpected behavior or errors. Additionally, the function does not handle the case where the `cookies` parameter is a dictionary and the `cookiejar` parameter is not a CookieJar object, which could result in duplicate cookies being added to the `cookiejar`. To improve the function's robustness and maintainability, it would be beneficial to add input validation and error handling to handle these potential edge cases.",
+          "action": "Add input validation and error handling to handle the case where the `cookies` parameter is a dictionary and the `cookiejar` parameter is not a CookieJar object. This can be achieved by adding a check at the beginning of the function to ensure that the `cookies` parameter is a CookieJar object, and if not, raise a `TypeError` exception. Additionally, consider adding a check to ensure that the `cookiejar` parameter is a CookieJar object, and if not, raise a `TypeError` exception. This will help prevent unexpected behavior and errors when calling the `merge_cookies()` function.",
+          "llm_rank": 13
+        },
+        {
+          "id": "requests/help.py::_implementation",
+          "file": "requests/help.py",
+          "function": "_implementation",
+          "line": 34,
+          "priority": "MEDIUM",
+          "priority_score": 50,
+          "reason": "The code is not causing immediate defects or slow down, but it is a potential issue that could be addressed in the future. The code is also not very readable, which could make it harder to maintain and understand in the long run.",
+          "action": "Refactor the implementation to use a more Pythonic way of returning the implementation and version information. This could involve using a dictionary to store the information instead of a series of if-else statements. Additionally, consider using a more readable way of formatting the output, such as using f-strings instead of string joins.",
+          "llm_rank": 14
+        },
+        {
+          "id": "requests/models.py::PreparedRequest.prepare_auth",
+          "file": "requests/models.py",
+          "function": "PreparedRequest.prepare_auth",
+          "line": 588,
+          "priority": "MEDIUM",
+          "priority_score": 50,
+          "reason": "PreparedRequest.prepare_auth() in requests/models.py is a method that prepares the HTTP authentication data. Although it is not causing immediate defects or slow down, it is a method that can be improved to make the code more maintainable and efficient. The method extracts the authentication data from the URL, which can be a potential source of errors if the URL is not correctly formatted. Additionally, the method does not handle the case where the authentication data is not provided, which can lead to unexpected behavior. Therefore, it is recommended to refactor the method to handle these potential issues and make it more robust.",
+          "action": "Refactor the method to handle the case where the authentication data is not provided and to extract the authentication data from the URL in a more robust way. This can be achieved by adding a check to ensure that the authentication data is provided and by using a more robust method to extract the authentication data from the URL. Additionally, the method can be refactored to handle the case where the authentication data is not provided by raising an exception or returning an error message. This will make the code more maintainable and efficient.",
+          "llm_rank": 15
+        },
+        {
+          "id": "requests/models.py::PreparedRequest.prepare_body",
+          "file": "requests/models.py",
+          "function": "PreparedRequest.prepare_body",
+          "line": 494,
+          "priority": "MEDIUM",
+          "priority_score": 50,
+          "reason": "The prepared request body function in requests/models.py is a critical piece of code that handles the preparation of HTTP request bodies. It is responsible for encoding and formatting the request body data, which is crucial for sending requests to the server. However, the function is not well-documented and lacks proper error handling. Additionally, the function is not optimized for performance, which could lead to slow down of frequent changes.",
+          "action": "Refactor the prepared request body function to improve its performance and add proper error handling. Consider using a more efficient encoding method and adding a retry mechanism to handle any potential encoding errors. Additionally, consider adding a docstring to the function to provide more context and clarity on its purpose and behavior.",
+          "llm_rank": 16
+        },
+        {
+          "id": "requests/models.py::RequestEncodingMixin._encode_files",
+          "file": "requests/models.py",
+          "function": "RequestEncodingMixin._encode_files",
+          "line": 137,
+          "priority": "MEDIUM",
+          "priority_score": 50,
+          "reason": "This method is used to build the body for a multipart/form-data request. It handles encoding files and data, and is called when making requests with the `requests` library. However, it does not handle any potential errors that may occur during the process, and it does not provide any feedback to the user about the success or failure of the request. Additionally, it does not handle any potential security vulnerabilities that may exist in the code.",
+          "action": "Refactor to include error handling and logging to provide more informative feedback to the user about the success or failure of the request. Consider using a more robust library for handling multipart/form-data requests to avoid potential security vulnerabilities.",
+          "llm_rank": 17
+        },
+        {
+          "id": "requests/models.py::RequestEncodingMixin._encode_params",
+          "file": "requests/models.py",
+          "function": "RequestEncodingMixin._encode_params",
+          "line": 107,
+          "priority": "MEDIUM",
+          "priority_score": 50,
+          "reason": "This method is used to encode parameters in a piece of data. It handles both dict and list of 2-tuples, but may not handle all possible types correctly. Additionally, it does not handle encoding of non-string values, which could potentially lead to encoding issues.",
+          "action": "Refactor the method to handle all possible types correctly, including encoding of non-string values. Consider using a more robust encoding library like `ujson` or `json` to handle encoding of non-string values.",
+          "llm_rank": 18
+        },
+        {
+          "id": "requests/models.py::Response.iter_content.generate",
+          "file": "requests/models.py",
+          "function": "Response.iter_content.generate",
+          "line": 811,
+          "priority": "MEDIUM",
+          "priority_score": 50,
+          "reason": "The `generate()` method in requests/models.py is handling different types of exceptions (ProtocolError, DecodeError, ReadTimeoutError, and SSLError) for different types of objects (urllib3.ConnectionPool and standard file-like object). This could potentially lead to unexpected behavior or errors if not handled properly. Additionally, the method does not explicitly re-raise the exceptions, which could lead to silent failures. A refactoring action could be to explicitly re-raise the exceptions using the provided `raise` statements, ensuring that the exceptions are handled consistently and allowing for better error handling and debugging.",
+          "action": "Explicitly re-raise the exceptions using the provided `raise` statements. This will ensure that the exceptions are handled consistently and allow for better error handling and debugging.",
+          "llm_rank": 19
+        },
+        {
+          "id": "requests/sessions.py::Session.merge_environment_settings",
+          "file": "requests/sessions.py",
+          "function": "Session.merge_environment_settings",
+          "line": 750,
+          "priority": "MEDIUM",
+          "priority_score": 50,
+          "reason": "Session.merge_environment_settings() is a crucial method in requests/sessions.py that merges environment settings with the requests settings. It is a high-impact method as it affects the entire request flow. However, the method is not well-documented and lacks proper error handling. Additionally, the method is not thread-safe, which could lead to unexpected behavior in concurrent environments.",
+          "action": "Refactor the merge_environment_settings() method to improve its documentation and add proper error handling. Consider using a thread-safe approach to ensure the method works correctly in concurrent environments.",
+          "llm_rank": 20
+        },
+        {
+          "id": "requests/sessions.py::Session.put",
+          "file": "requests/sessions.py",
+          "function": "Session.put",
+          "line": 639,
+          "priority": "MEDIUM",
+          "priority_score": 50,
+          "reason": "Session.put() in requests/sessions.py is a method that sends a PUT request. While it is not causing immediate defects, it is scheduled for a future refactoring. The method is simple and does not have a high impact on the codebase, but it is a good candidate for improvement to make the codebase more maintainable and efficient.",
+          "action": "Refactor the put() method to use a more Pythonic way of sending PUT requests. Consider using the requests.put() method directly instead of creating a new :class:`Request` object and sending the request manually. This will simplify the code and make it easier to maintain in the future.",
+          "llm_rank": 21
+        },
+        {
+          "id": "requests/sessions.py::SessionRedirectMixin.rebuild_method",
+          "file": "requests/sessions.py",
+          "function": "SessionRedirectMixin.rebuild_method",
+          "line": 333,
+          "priority": "MEDIUM",
+          "priority_score": 50,
+          "reason": "SessionRedirectMixin.rebuild_method() in requests/sessions.py is a method that may be called when a redirect occurs. It has a medium priority because it may cause issues with the request method being changed, potentially leading to broken redirects or unexpected behavior. However, it is not a critical issue and can be addressed when the code is being refactored.",
+          "action": "Refactor the method to handle redirects more consistently. Consider using a more robust method to determine the request method based on the response status code and headers. This will ensure that the request method is correctly set and prevent potential issues with redirects.",
+          "llm_rank": 22
+        },
+        {
+          "id": "requests/sessions.py::SessionRedirectMixin.resolve_redirects",
+          "file": "requests/sessions.py",
+          "function": "SessionRedirectMixin.resolve_redirects",
+          "line": 159,
+          "priority": "MEDIUM",
+          "priority_score": 50,
+          "reason": "SessionRedirectMixin.resolve_redirects() in requests/sessions.py has a medium priority due to its potential impact on the application's performance and reliability. The method is used to handle redirects, which can lead to a significant increase in the number of requests made to the server. Additionally, the method is not well-documented and does not follow standard Python naming conventions, which can make it harder to understand and maintain.",
+          "action": "Refactor the SessionRedirectMixin.resolve_redirects() method to improve its readability and maintainability. Consider using a more robust method for handling redirects, such as a dedicated library or framework, and ensure that the method follows standard Python naming conventions. Additionally, consider adding more documentation and comments to explain the purpose and behavior of the method.",
+          "llm_rank": 23
+        },
+        {
+          "id": "requests/sessions.py::SessionRedirectMixin.should_strip_auth",
+          "file": "requests/sessions.py",
+          "function": "SessionRedirectMixin.should_strip_auth",
+          "line": 127,
+          "priority": "MEDIUM",
+          "priority_score": 50,
+          "reason": "The `should_strip_auth()` method in requests/sessions.py is a crucial part of the session management logic. It determines whether the Authorization header should be removed when redirecting. However, the method is not well-documented and lacks clear instructions. Additionally, the method is not well-tested, and there are no clear guidelines on when to use it. This technical debt could potentially lead to security vulnerabilities or performance issues if not addressed.",
+          "action": "Refactor the `should_strip_auth()` method to include clear instructions and guidelines on when to use it. This could involve adding a docstring or a separate section in the documentation that outlines the reasoning behind the method and provides examples of when to use it. Additionally, consider adding unit tests to ensure that the method is working correctly and is not causing any issues.",
+          "llm_rank": 24
+        },
+        {
+          "id": "requests/utils.py::extract_zipped_paths",
+          "file": "requests/utils.py",
+          "function": "extract_zipped_paths",
+          "line": 263,
+          "priority": "MEDIUM",
+          "priority_score": 50,
+          "reason": "Extracting zip paths is a necessary operation, but it involves reading from a zip file, which can be slow. Additionally, the code is not very readable due to the nested if-else statements and the use of atomic_open, which can be error-prone.",
+          "action": "Extract zip paths into a separate function. This will improve readability and make the code more maintainable. Additionally, consider using a more efficient method for extracting zip files, such as using the `zipfile` module's `extract` method, which is faster and more efficient.",
+          "llm_rank": 25
+        },
+        {
+          "id": "requests/utils.py::get_encodings_from_content",
+          "file": "requests/utils.py",
+          "function": "get_encodings_from_content",
+          "line": 484,
+          "priority": "MEDIUM",
+          "priority_score": 50,
+          "reason": "get_encodings_from_content() in requests/utils.py is a method that retrieves encoding information from a given content string. This method is used in various parts of the codebase, and its removal would have a significant impact on the overall functionality of the application. Although the method is deprecated in requests 3.0, it is still used in some parts of the codebase. Therefore, it is recommended to refactor this method to handle the removal of this method and ensure that the application continues to function correctly.",
+          "action": "Refactor the get_encodings_from_content() method to handle the removal of this method and ensure that the application continues to function correctly. This can be done by creating a new method that retrieves encoding information from the content string, and then removing the deprecated method from the codebase. Additionally, it is recommended to update any code that uses the deprecated method to use the new method instead.",
+          "llm_rank": 26
+        },
+        {
+          "id": "requests/utils.py::parse_header_links",
+          "file": "requests/utils.py",
+          "function": "parse_header_links",
+          "line": 909,
+          "priority": "MEDIUM",
+          "priority_score": 50,
+          "reason": "parse_header_links() is a crucial function in the requests library, and its current implementation has a high cyclomatic complexity (6) and a moderate file maintainability index (25.2). The function is also prone to duplicated lines and has a composite static debt score of 4.19/10. Additionally, it has been flagged as dead code by static analysis tools. A refactoring action could be to simplify the function's logic and reduce its cyclomatic complexity.",
+          "action": "Simplify the function's logic by removing duplicated lines and reducing its complexity. This can be achieved by extracting the common logic into a separate function and reducing the number of parameters passed to the function. Additionally, consider using a more efficient data structure to store the parsed link headers.",
+          "llm_rank": 27
+        },
+        {
+          "id": "requests/models.py::Response.raise_for_status",
+          "file": "requests/models.py",
+          "function": "Response.raise_for_status",
+          "line": 992,
+          "priority": "MEDIUM",
+          "priority_score": 40,
+          "reason": "The `raise_for_status()` method in requests/models.py has a high cyclomatic complexity of 6, indicating a potential for defects or slow down frequent changes. Additionally, the method is not well-maintained, with a low file maintainability index of 21.89. There are no code smells or style-only findings, but there is duplicated code. The composite static debt score is 4.32/10, indicating a moderate level of technical debt. The method should be refactored to improve its maintainability and readability.",
+          "action": "Refactor the `raise_for_status()` method to reduce cyclomatic complexity and improve maintainability. Consider using a more Pythonic way of handling HTTP errors, such as using the `response.raise_for_status()` method directly. Additionally, consider extracting the error message into a separate variable to improve readability.",
+          "llm_rank": 28
+        },
+        {
+          "id": "requests/models.py::Response.__setstate__",
+          "file": "requests/models.py",
+          "function": "Response.__setstate__",
+          "line": 719,
+          "error": "The model returned invalid JSON."
+        },
+        {
+          "id": "requests/utils.py::prepend_scheme_if_needed",
+          "file": "requests/utils.py",
+          "function": "prepend_scheme_if_needed",
+          "line": 984,
+          "error": "The model returned invalid JSON."
+        }
+      ]
+    },
+    {
+      "key": "ollama/smollm2:1.7b | no_context | 3",
+      "model": "ollama/smollm2:1.7b",
+      "arm": "no_context",
+      "repeat": 3,
+      "workers": 1,
+      "seconds": 582.9644699000055,
+      "mean_call_seconds": 19.43206276666994,
+      "calls_attempted": 30,
+      "schema_acceptance_rate": 0.9666666666666667,
+      "call_failure_rate": 0.03333333333333333,
+      "item_failure_rate": 0.033333333333333326,
+      "input_tokens": 22767,
+      "output_tokens": 7301,
+      "cached_calls": 0,
+      "cost_usd": null,
+      "pricing_per_million": null,
+      "results": [
+        {
+          "id": "requests/adapters.py::BaseAdapter.send",
+          "file": "requests/adapters.py",
+          "function": "BaseAdapter.send",
+          "line": 76,
+          "priority": "HIGH",
+          "priority_score": 80,
+          "reason": "The `send()` method in BaseAdapter.send() is a critical method that is called frequently in the requests library. It is responsible for sending prepared requests to the server. If this method is not properly implemented, it can lead to potential security vulnerabilities, such as data tampering or unauthorized access. Additionally, if this method is not properly tested, it can cause defects or slow down frequent changes. Therefore, it is recommended to fix this debt item as soon as possible.",
+          "action": "Fix the `send()` method in BaseAdapter.send() to ensure proper implementation and testing. This can be done by refactoring the code to handle the request and response data correctly and by implementing proper error handling and logging mechanisms.",
+          "llm_rank": 1
+        },
+        {
+          "id": "requests/api.py::get",
+          "file": "requests/api.py",
+          "function": "get",
+          "line": 62,
+          "priority": "HIGH",
+          "priority_score": 80,
+          "reason": "The get() method in requests/api.py is missing a timeout argument, which can cause the program to hang indefinitely. This is a critical issue as it can lead to unexpected behavior and potential security vulnerabilities.",
+          "action": "Add a timeout argument to the get() method in requests/api.py. This can be done by adding a timeout parameter to the request function call. For example, `request(",
+          "llm_rank": 2
+        },
+        {
+          "id": "requests/models.py::Response.json",
+          "file": "requests/models.py",
+          "function": "Response.json",
+          "line": 942,
+          "priority": "HIGH",
+          "priority_score": 80,
+          "reason": "The `json()` method in requests/models.py is not properly handling JSON decoding errors. This can lead to unexpected behavior and potential defects in the application. The method should explicitly re-raise the `requests.exceptions.JSONDecodeError` exception using `raise RequestsJSONDecodeError(e.msg, e.doc, e.pos) from e` to ensure that the error is properly propagated and handled.",
+          "action": "Refactor the `json()` method to explicitly re-raise the `requests.exceptions.JSONDecodeError` exception using `raise RequestsJSONDecodeError(e.msg, e.doc, e.pos) from e`. This will ensure that the error is properly propagated and handled, and that the application remains robust and reliable.",
+          "llm_rank": 3
+        },
+        {
+          "id": "requests/sessions.py::Session.__init__",
+          "file": "requests/sessions.py",
+          "function": "Session.__init__",
+          "line": 390,
+          "priority": "HIGH",
+          "priority_score": 80,
+          "reason": "Session.__init__() is a critical method that sets the initial state of the session, including headers, authentication, and proxies. If not properly set, it can lead to security vulnerabilities, such as unauthorized access or data tampering. Additionally, it is a frequently used method, so any changes to it can have a significant impact on the overall performance and security of the application.",
+          "action": "Fix now: Session.__init__() should be reviewed and updated to ensure it is properly set and secure. Consider implementing additional security measures, such as validating user input and using secure protocols for authentication and data transfer.",
+          "llm_rank": 4
+        },
+        {
+          "id": "requests/adapters.py::HTTPAdapter.add_headers",
+          "file": "requests/adapters.py",
+          "function": "HTTPAdapter.add_headers",
+          "line": 398,
+          "priority": "MEDIUM",
+          "priority_score": 50,
+          "reason": "The `add_headers` method in requests/adapters.py is a necessary part of the requests library, but it is not being used in the codebase. This method is used to add headers to a request before sending it, which is important for ensuring that the request is properly formatted and can be handled correctly by the server.",
+          "action": "Refactor the `add_headers` method to use a decorator or a separate function to add headers to the request. This will make the code more readable and maintainable, and will also allow for easier testing and debugging of the request handling logic.",
+          "llm_rank": 5
+        },
+        {
+          "id": "requests/adapters.py::HTTPAdapter.send",
+          "file": "requests/adapters.py",
+          "function": "HTTPAdapter.send",
+          "line": 433,
+          "priority": "MEDIUM",
+          "priority_score": 50,
+          "reason": "HTTPAdapter.send() in requests/adapters.py has a high cyclomatic complexity of 19, indicating a potential for defects or slow down frequent changes. Additionally, it has a moderate LOC of 105 and a moderate file maintainability index of 51.8. There are 15 code smells (lint/refactor findings) and 5 style-only findings. There are 9 duplicated lines, no flagged as dead code, and composite static debt score of 6.73 / 10. Tool findings include [pylint] [raise-missing-from] and [pylint] [raise-missing-from].",
+          "action": "Refactor the send() method to reduce cyclomatic complexity and improve maintainability. Consider using a more robust method for handling exceptions and improving the code's readability and maintainability.",
+          "llm_rank": 6
+        },
+        {
+          "id": "requests/api.py::delete",
+          "file": "requests/api.py",
+          "function": "delete",
+          "line": 148,
+          "priority": "MEDIUM",
+          "priority_score": 50,
+          "reason": "The delete() method in requests/api.py has a missing timeout argument, which can cause the program to hang indefinitely. This is a potential security risk and should be addressed to prevent denial-of-service attacks.",
+          "action": "Add a timeout argument to the delete() method in requests/api.py. This can be done by adding a keyword argument with the value of the timeout parameter, e.g., `request(",
+          "llm_rank": 7
+        },
+        {
+          "id": "requests/api.py::head",
+          "file": "requests/api.py",
+          "function": "head",
+          "line": 88,
+          "priority": "MEDIUM",
+          "priority_score": 50,
+          "reason": "The `head()` method in requests/api.py has a cyclomatic complexity of 1, indicating a potential for defects or slow down frequent changes. Additionally, the method does not include a timeout argument, which could cause the program to hang indefinitely. It is recommended to add a timeout argument to the method to prevent such issues.",
+          "action": "Add a timeout argument to the `head()` method in requests/api.py to prevent the program from hanging indefinitely. This can be done by adding a `timeout` parameter to the `requests.Request` constructor, like so: `response = requests.Request(",
+          "llm_rank": 8
+        },
+        {
+          "id": "requests/api.py::patch",
+          "file": "requests/api.py",
+          "function": "patch",
+          "line": 133,
+          "priority": "MEDIUM",
+          "priority_score": 50,
+          "reason": "The patch() method in requests/api.py has a high cyclomatic complexity of 1, indicating a potential for defects or slow down frequent changes. Additionally, the method has a low maintainability index, suggesting that it may be difficult to understand and modify in the future. Furthermore, there are code smells present, such as duplicated lines and a missing timeout argument, which can cause the program to hang indefinitely. These factors contribute to a high level of technical debt and warrant a medium priority for refactoring.",
+          "action": "Refactor the patch() method to improve its maintainability and reduce technical debt. This can be achieved by reducing cyclomatic complexity, improving the file maintainability index, and addressing the code smells. Additionally, consider adding a timeout argument to prevent the program from hanging indefinitely.",
+          "llm_rank": 9
+        },
+        {
+          "id": "requests/api.py::post",
+          "file": "requests/api.py",
+          "function": "post",
+          "line": 103,
+          "priority": "MEDIUM",
+          "priority_score": 50,
+          "reason": "The `post()` function in requests/api.py has a high cyclomatic complexity of 1, indicating a potential for defects or slow down frequent changes. Additionally, the function has a low maintainability index, and there are code smells present. The function also has a composite static debt score of 0.2 / 10, which is a moderate level of debt.",
+          "action": "Refactor the `post()` function to reduce cyclomatic complexity and improve maintainability. Consider using a more robust method for handling data and JSON serialization, such as using a library like `requests-toolbelt` or `json-schema`. This will help prevent potential defects and slow down frequent changes.",
+          "llm_rank": 10
+        },
+        {
+          "id": "requests/auth.py::HTTPBasicAuth.__eq__",
+          "file": "requests/auth.py",
+          "function": "HTTPBasicAuth.__eq__",
+          "line": 83,
+          "priority": "MEDIUM",
+          "priority_score": 50,
+          "reason": "The `__eq__` method in the `HTTPBasicAuth` class is not properly implemented. It does not handle the case where the `other` object is not an instance of `HTTPBasicAuth`. This could potentially lead to unexpected behavior or errors when comparing instances of `HTTPBasicAuth` with other objects.",
+          "action": "Refactor the `__eq__` method to handle the case where `other` is not an instance of `HTTPBasicAuth`. This can be done by adding a check at the beginning of the method to ensure that `other` is an instance of `HTTPBasicAuth` before attempting to compare its attributes with those of the current instance. Additionally, consider adding a docstring to the method to explain its behavior and any assumptions it makes about the input parameters.",
+          "llm_rank": 11
+        },
+        {
+          "id": "requests/auth.py::_basic_auth_str",
+          "file": "requests/auth.py",
+          "function": "_basic_auth_str",
+          "line": 25,
+          "priority": "MEDIUM",
+          "priority_score": 50,
+          "reason": "The code contains duplicated lines and potential style-only findings. Additionally, the code is not following the best practices for handling non-string inputs.",
+          "action": "Refactor the code to remove duplicated lines and improve code readability. Use f-strings instead of `format` calls to improve code quality and maintainability. Additionally, ensure that all inputs are converted to strings before encoding them to avoid potential issues in the future.",
+          "llm_rank": 12
+        },
+        {
+          "id": "requests/cookies.py::merge_cookies",
+          "file": "requests/cookies.py",
+          "function": "merge_cookies",
+          "line": 542,
+          "priority": "MEDIUM",
+          "priority_score": 50,
+          "reason": "The `merge_cookies()` function is used to merge cookies from a dictionary or CookieJar object into a CookieJar object. However, it does not explicitly check if the `cookies` parameter is a dictionary or CookieJar object, which could potentially lead to unexpected behavior or errors. Additionally, the function does not handle the case where the `cookies` parameter is a dictionary and the `cookiejar` parameter is not a CookieJar object, which could result in duplicate cookies being added to the `cookiejar`. To improve the function's robustness and maintainability, it would be beneficial to add input validation and error handling to handle these potential edge cases.",
+          "action": "Add input validation and error handling to handle the case where the `cookies` parameter is a dictionary and the `cookiejar` parameter is not a CookieJar object. This can be achieved by adding a check at the beginning of the function to ensure that the `cookies` parameter is a CookieJar object, and if not, raise a `TypeError` exception. Additionally, consider adding a check to ensure that the `cookiejar` parameter is a CookieJar object, and if not, raise a `TypeError` exception. This will help prevent unexpected behavior and errors when calling the `merge_cookies()` function.",
+          "llm_rank": 13
+        },
+        {
+          "id": "requests/help.py::_implementation",
+          "file": "requests/help.py",
+          "function": "_implementation",
+          "line": 34,
+          "priority": "MEDIUM",
+          "priority_score": 50,
+          "reason": "The code is not causing immediate defects or slow down, but it is a potential issue that could be addressed in the future. The code is also not very readable, which could make it harder to maintain and understand in the long run.",
+          "action": "Refactor the implementation to use a more Pythonic way of returning the implementation and version information. This could involve using a dictionary to store the information instead of a series of if-else statements. Additionally, consider using a more readable way of formatting the output, such as using f-strings instead of string joins.",
+          "llm_rank": 14
+        },
+        {
+          "id": "requests/models.py::PreparedRequest.prepare_auth",
+          "file": "requests/models.py",
+          "function": "PreparedRequest.prepare_auth",
+          "line": 588,
+          "priority": "MEDIUM",
+          "priority_score": 50,
+          "reason": "PreparedRequest.prepare_auth() in requests/models.py is a method that prepares the HTTP authentication data. Although it is not causing immediate defects or slow down, it is a method that can be improved to make the code more maintainable and efficient. The method extracts the authentication data from the URL, which can be a potential source of errors if the URL is not correctly formatted. Additionally, the method does not handle the case where the authentication data is not provided, which can lead to unexpected behavior. Therefore, it is recommended to refactor the method to handle these potential issues and make it more robust.",
+          "action": "Refactor the method to handle the case where the authentication data is not provided and to extract the authentication data from the URL in a more robust way. This can be achieved by adding a check to ensure that the authentication data is provided and by using a more robust method to extract the authentication data from the URL. Additionally, the method can be refactored to handle the case where the authentication data is not provided by raising an exception or returning an error message. This will make the code more maintainable and efficient.",
+          "llm_rank": 15
+        },
+        {
+          "id": "requests/models.py::PreparedRequest.prepare_body",
+          "file": "requests/models.py",
+          "function": "PreparedRequest.prepare_body",
+          "line": 494,
+          "priority": "MEDIUM",
+          "priority_score": 50,
+          "reason": "The prepared request body function in requests/models.py is a critical piece of code that handles the preparation of HTTP request bodies. It is responsible for encoding and formatting the request body data, which is crucial for sending requests to the server. However, the function is not well-documented and lacks proper error handling. Additionally, the function is not optimized for performance, which could lead to slow down of frequent changes.",
+          "action": "Refactor the prepared request body function to improve its performance and add proper error handling. Consider using a more efficient encoding method and adding a retry mechanism to handle any potential encoding errors. Additionally, consider adding a docstring to the function to provide more context and clarity on its purpose and behavior.",
+          "llm_rank": 16
+        },
+        {
+          "id": "requests/models.py::RequestEncodingMixin._encode_files",
+          "file": "requests/models.py",
+          "function": "RequestEncodingMixin._encode_files",
+          "line": 137,
+          "priority": "MEDIUM",
+          "priority_score": 50,
+          "reason": "This method is used to build the body for a multipart/form-data request. It handles encoding files and data, and is called when making requests with the `requests` library. However, it does not handle any potential errors that may occur during the process, and it does not provide any feedback to the user about the success or failure of the request. Additionally, it does not handle any potential security vulnerabilities that may exist in the code.",
+          "action": "Refactor to include error handling and logging to provide more informative feedback to the user about the success or failure of the request. Consider using a more robust library for handling multipart/form-data requests to avoid potential security vulnerabilities.",
+          "llm_rank": 17
+        },
+        {
+          "id": "requests/models.py::RequestEncodingMixin._encode_params",
+          "file": "requests/models.py",
+          "function": "RequestEncodingMixin._encode_params",
+          "line": 107,
+          "priority": "MEDIUM",
+          "priority_score": 50,
+          "reason": "This method is used to encode parameters in a piece of data. It handles both dict and list of 2-tuples, but may not handle all possible types correctly. Additionally, it does not handle encoding of non-string values, which could potentially lead to encoding issues.",
+          "action": "Refactor the method to handle all possible types correctly, including encoding of non-string values. Consider using a more robust encoding library like `ujson` or `json` to handle encoding of non-string values.",
+          "llm_rank": 18
+        },
+        {
+          "id": "requests/models.py::Response.__setstate__",
+          "file": "requests/models.py",
+          "function": "Response.__setstate__",
+          "line": 719,
+          "priority": "MEDIUM",
+          "priority_score": 50,
+          "reason": "The `__setstate__` method is used to set the state of an object after deserialization. However, it is not clear if this is a critical issue or just a minor annoyance. The method is called with a dictionary of attribute values, which could potentially lead to attribute name clashes. Additionally, the method sets two additional attributes, `_content_consumed` and ",
+          "action": ", which may be unnecessary. The method is also called after deserialization, which could potentially lead to issues if the object is modified after deserialization. Therefore, it is recommended to refactor the method to handle attribute name clashes and remove the unnecessary attributes. A possible refactoring action could be to use a more robust method for setting attribute values, such as `setattr(self, name, value)` instead of `setattr(self, name, value)`. Additionally, the method could be modified to handle attribute name clashes by using a more robust method for setting attribute values, such as `setattr(self, name, value)` instead of `setattr(self, name, value)`. This would make the method more robust and prevent potential issues with attribute name clashes. Furthermore, the method could be modified to remove the unnecessary attributes, such as `_content_consumed` and ",
+          "llm_rank": 19
+        },
+        {
+          "id": "requests/models.py::Response.iter_content.generate",
+          "file": "requests/models.py",
+          "function": "Response.iter_content.generate",
+          "line": 811,
+          "priority": "MEDIUM",
+          "priority_score": 50,
+          "reason": "The `generate()` method in requests/models.py is handling different types of exceptions (ProtocolError, DecodeError, ReadTimeoutError, and SSLError) for different types of objects (urllib3.ConnectionPool and standard file-like object). This could potentially lead to unexpected behavior or errors if not handled properly. Additionally, the method does not explicitly re-raise the exceptions, which could lead to silent failures. A refactoring action could be to explicitly re-raise the exceptions using the provided `raise` statements, ensuring that the exceptions are handled consistently and allowing for better error handling and debugging.",
+          "action": "Explicitly re-raise the exceptions using the provided `raise` statements. This will ensure that the exceptions are handled consistently and allow for better error handling and debugging.",
+          "llm_rank": 20
+        },
+        {
+          "id": "requests/sessions.py::Session.merge_environment_settings",
+          "file": "requests/sessions.py",
+          "function": "Session.merge_environment_settings",
+          "line": 750,
+          "priority": "MEDIUM",
+          "priority_score": 50,
+          "reason": "Session.merge_environment_settings() is a crucial method in requests/sessions.py that merges environment settings with the requests settings. It is a high-impact method as it affects the entire request flow. However, the method is not well-documented and lacks proper error handling. Additionally, the method is not thread-safe, which could lead to unexpected behavior in concurrent environments.",
+          "action": "Refactor the merge_environment_settings() method to improve its documentation and add proper error handling. Consider using a thread-safe approach to ensure the method works correctly in concurrent environments.",
+          "llm_rank": 21
+        },
+        {
+          "id": "requests/sessions.py::Session.put",
+          "file": "requests/sessions.py",
+          "function": "Session.put",
+          "line": 639,
+          "priority": "MEDIUM",
+          "priority_score": 50,
+          "reason": "Session.put() in requests/sessions.py is a method that sends a PUT request. While it is not causing immediate defects, it is scheduled for a future refactoring. The method is simple and does not have a high impact on the codebase, but it is a good candidate for improvement to make the codebase more maintainable and efficient.",
+          "action": "Refactor the put() method to use a more Pythonic way of sending PUT requests. Consider using the requests.put() method directly instead of creating a new :class:`Request` object and sending the request manually. This will simplify the code and make it easier to maintain in the future.",
+          "llm_rank": 22
+        },
+        {
+          "id": "requests/sessions.py::SessionRedirectMixin.rebuild_method",
+          "file": "requests/sessions.py",
+          "function": "SessionRedirectMixin.rebuild_method",
+          "line": 333,
+          "priority": "MEDIUM",
+          "priority_score": 50,
+          "reason": "SessionRedirectMixin.rebuild_method() in requests/sessions.py is a method that may be called when a redirect occurs. It has a medium priority because it may cause issues with the request method being changed, potentially leading to broken redirects or unexpected behavior. However, it is not a critical issue and can be addressed when the code is being refactored.",
+          "action": "Refactor the method to handle redirects more consistently. Consider using a more robust method to determine the request method based on the response status code and headers. This will ensure that the request method is correctly set and prevent potential issues with redirects.",
+          "llm_rank": 23
+        },
+        {
+          "id": "requests/sessions.py::SessionRedirectMixin.resolve_redirects",
+          "file": "requests/sessions.py",
+          "function": "SessionRedirectMixin.resolve_redirects",
+          "line": 159,
+          "priority": "MEDIUM",
+          "priority_score": 50,
+          "reason": "SessionRedirectMixin.resolve_redirects() in requests/sessions.py has a medium priority due to its potential impact on the application's performance and reliability. The method is used to handle redirects, which can lead to a significant increase in the number of requests made to the server. Additionally, the method is not well-documented and does not follow standard Python naming conventions, which can make it harder to understand and maintain.",
+          "action": "Refactor the SessionRedirectMixin.resolve_redirects() method to improve its readability and maintainability. Consider using a more robust method for handling redirects, such as a dedicated library or framework, and ensure that the method follows standard Python naming conventions. Additionally, consider adding more documentation and comments to explain the purpose and behavior of the method.",
+          "llm_rank": 24
+        },
+        {
+          "id": "requests/sessions.py::SessionRedirectMixin.should_strip_auth",
+          "file": "requests/sessions.py",
+          "function": "SessionRedirectMixin.should_strip_auth",
+          "line": 127,
+          "priority": "MEDIUM",
+          "priority_score": 50,
+          "reason": "The `should_strip_auth()` method in requests/sessions.py is a crucial part of the session management logic. It determines whether the Authorization header should be removed when redirecting. However, the method is not well-documented and lacks clear instructions. Additionally, the method is not well-tested, and there are no clear guidelines on when to use it. This technical debt could potentially lead to security vulnerabilities or performance issues if not addressed.",
+          "action": "Refactor the `should_strip_auth()` method to include clear instructions and guidelines on when to use it. This could involve adding a docstring or a separate section in the documentation that outlines the reasoning behind the method and provides examples of when to use it. Additionally, consider adding unit tests to ensure that the method is working correctly and is not causing any issues.",
+          "llm_rank": 25
+        },
+        {
+          "id": "requests/utils.py::extract_zipped_paths",
+          "file": "requests/utils.py",
+          "function": "extract_zipped_paths",
+          "line": 263,
+          "priority": "MEDIUM",
+          "priority_score": 50,
+          "reason": "Extracting zip paths is a necessary operation, but it involves reading from a zip file, which can be slow. Additionally, the code is not very readable due to the nested if-else statements and the use of atomic_open, which can be error-prone.",
+          "action": "Extract zip paths into a separate function. This will improve readability and make the code more maintainable. Additionally, consider using a more efficient method for extracting zip files, such as using the `zipfile` module's `extract` method, which is faster and more efficient.",
+          "llm_rank": 26
+        },
+        {
+          "id": "requests/utils.py::get_encodings_from_content",
+          "file": "requests/utils.py",
+          "function": "get_encodings_from_content",
+          "line": 484,
+          "priority": "MEDIUM",
+          "priority_score": 50,
+          "reason": "get_encodings_from_content() in requests/utils.py is a method that retrieves encoding information from a given content string. This method is used in various parts of the codebase, and its removal would have a significant impact on the overall functionality of the application. Although the method is deprecated in requests 3.0, it is still used in some parts of the codebase. Therefore, it is recommended to refactor this method to handle the removal of this method and ensure that the application continues to function correctly.",
+          "action": "Refactor the get_encodings_from_content() method to handle the removal of this method and ensure that the application continues to function correctly. This can be done by creating a new method that retrieves encoding information from the content string, and then removing the deprecated method from the codebase. Additionally, it is recommended to update any code that uses the deprecated method to use the new method instead.",
+          "llm_rank": 27
+        },
+        {
+          "id": "requests/utils.py::parse_header_links",
+          "file": "requests/utils.py",
+          "function": "parse_header_links",
+          "line": 909,
+          "priority": "MEDIUM",
+          "priority_score": 50,
+          "reason": "parse_header_links() is a crucial function in the requests library, and its current implementation has a high cyclomatic complexity (6) and a moderate file maintainability index (25.2). The function is also prone to duplicated lines and has a composite static debt score of 4.19/10. Additionally, it has been flagged as dead code by static analysis tools. A refactoring action could be to simplify the function's logic and reduce its cyclomatic complexity.",
+          "action": "Simplify the function's logic by removing duplicated lines and reducing its complexity. This can be achieved by extracting the common logic into a separate function and reducing the number of parameters passed to the function. Additionally, consider using a more efficient data structure to store the parsed link headers.",
+          "llm_rank": 28
+        },
+        {
+          "id": "requests/models.py::Response.raise_for_status",
+          "file": "requests/models.py",
+          "function": "Response.raise_for_status",
+          "line": 992,
+          "priority": "MEDIUM",
+          "priority_score": 40,
+          "reason": "The `raise_for_status()` method in requests/models.py has a high cyclomatic complexity of 6, indicating a potential for defects or slow down frequent changes. Additionally, the method is not well-maintained, with a low file maintainability index of 21.89. There are no code smells or style-only findings, but there is duplicated code. The composite static debt score is 4.32/10, indicating a moderate level of technical debt. The method should be refactored to improve its maintainability and readability.",
+          "action": "Refactor the `raise_for_status()` method to reduce cyclomatic complexity and improve maintainability. Consider using a more Pythonic way of handling HTTP errors, such as using the `response.raise_for_status()` method directly. Additionally, consider extracting the error message into a separate variable to improve readability.",
+          "llm_rank": 29
+        },
+        {
+          "id": "requests/utils.py::prepend_scheme_if_needed",
+          "file": "requests/utils.py",
+          "function": "prepend_scheme_if_needed",
+          "line": 984,
+          "error": "The model returned invalid JSON."
+        }
+      ]
+    },
+    {
+      "key": "ollama/smollm2:1.7b | rag_context | 1",
+      "model": "ollama/smollm2:1.7b",
+      "arm": "rag_context",
+      "repeat": 1,
+      "workers": 1,
+      "seconds": 509.1742286999943,
+      "mean_call_seconds": 16.972388913334967,
+      "calls_attempted": 30,
+      "schema_acceptance_rate": 0.9666666666666667,
+      "call_failure_rate": 0.03333333333333333,
+      "item_failure_rate": 0.033333333333333326,
+      "input_tokens": 54391,
+      "output_tokens": 7441,
+      "cached_calls": 0,
+      "cost_usd": null,
+      "pricing_per_million": null,
+      "results": [
+        {
+          "id": "requests/models.py::Response.json",
+          "file": "requests/models.py",
+          "function": "Response.json",
+          "line": 942,
+          "priority": "MEDIUM",
+          "priority_score": 70,
+          "reason": "The function `json()` in requests/models.py has a high cyclomatic complexity of 8 and is used in 17 call sites. It also has a low maintainability index of 21.89. Additionally, it has 2 code smells (lint/refactor findings) and is not flagged as dead code. The score is used to rank items against each other.",
+          "action": "Refactor the `json()` function to reduce its cyclomatic complexity and improve maintainability. Consider using a more robust method for detecting the encoding of the response body, such as using the `json.loads()` function with the `encoding` parameter. Additionally, consider adding more informative error messages to handle JSON decoding errors.",
+          "llm_rank": 1
+        },
+        {
+          "id": "requests/models.py::PreparedRequest.prepare_body",
+          "file": "requests/models.py",
+          "function": "PreparedRequest.prepare_body",
+          "line": 494,
+          "priority": "MEDIUM",
+          "priority_score": 60,
+          "reason": "PreparedRequest.prepare_body() in requests/models.py has a high cyclomatic complexity of 17 and is a function-level debt item. It is also a recent change with recent commits and defect-linked history. Additionally, it has a composite static debt score of 7.52 / 10, indicating a moderate level of technical debt. A refactoring action could be to simplify the function and reduce its cyclomatic complexity.",
+          "action": "Simplify the function by reducing its cyclomatic complexity. This can be achieved by breaking down the logic into smaller, more manageable functions or by using a more efficient algorithm. Additionally, consider using a more efficient data structure or algorithm to reduce the time complexity of the function. This will not only improve the readability and maintainability of the code but also improve the performance of the application.",
+          "llm_rank": 2
+        },
+        {
+          "id": "requests/models.py::Response.iter_content.generate",
+          "file": "requests/models.py",
+          "function": "Response.iter_content.generate",
+          "line": 811,
+          "priority": "MEDIUM",
+          "priority_score": 60,
+          "reason": "The `generate()` method in the `requests.models.Response` class is generating chunks of content, which can lead to memory issues and potential memory leaks. This is a medium-priority issue because it can cause defects or slow down frequent changes, but it is not actively causing or very likely to cause defects or slow down frequent changes.",
+          "action": "Refactor the `generate()` method to return the content as a single string instead of chunks. This will improve memory efficiency and prevent potential memory leaks.",
+          "llm_rank": 3
+        },
+        {
+          "id": "requests/adapters.py::BaseAdapter.send",
+          "file": "requests/adapters.py",
+          "function": "BaseAdapter.send",
+          "line": 76,
+          "priority": "MEDIUM",
+          "priority_score": 50,
+          "reason": "The `send()` method in requests/adapters.py has a high complexity score of 7 and is called from multiple places in the library. Additionally, it has a relatively low maintainability index of 51.8, indicating that it may be difficult to understand and maintain. Furthermore, the method has a composite static debt score of 2.13 / 10, which is lower than the threshold of 7.0. However, it is still considered a high-priority item due to its complexity and potential impact on the codebase.",
+          "action": "Refactor the `send()` method to improve its readability and maintainability. Consider using a more Pythonic approach to handle the request and response objects, and ensure that the method is properly documented and tested.",
+          "llm_rank": 4
+        },
+        {
+          "id": "requests/api.py::delete",
+          "file": "requests/api.py",
+          "function": "delete",
+          "line": 148,
+          "priority": "MEDIUM",
+          "priority_score": 50,
+          "reason": "The delete() function in requests/api.py has a missing timeout argument, which can cause the program to hang indefinitely. This is a medium-priority issue because it can potentially cause defects or slow down frequent changes.",
+          "action": "Add a timeout argument to the delete() function in requests/api.py. This can be done by adding a timeout parameter to the request method, like this: requests.request('delete', url, timeout=10). This will ensure that the request does not hang indefinitely and will instead return a response object with a timeout attribute.",
+          "llm_rank": 5
+        },
+        {
+          "id": "requests/api.py::get",
+          "file": "requests/api.py",
+          "function": "get",
+          "line": 62,
+          "priority": "MEDIUM",
+          "priority_score": 50,
+          "reason": "The `get()` function in requests/api.py has a missing timeout argument, which can cause the program to hang indefinitely. This is a medium-priority issue because it can potentially cause defects or slow down frequent changes.",
+          "action": "Add a timeout argument to the `get()` function in requests/api.py. This can be done by adding a `timeout` parameter to the `request()` function call. For example: `request(",
+          "llm_rank": 6
+        },
+        {
+          "id": "requests/api.py::head",
+          "file": "requests/api.py",
+          "function": "head",
+          "line": 88,
+          "priority": "MEDIUM",
+          "priority_score": 50,
+          "reason": "The `head` function in requests/api.py has a missing timeout argument, which can cause the program to hang indefinitely. This is a moderate risk, as it can lead to unexpected behavior or crashes, but it is not a critical issue. A refactoring action to add a timeout argument to the `head` function would help mitigate this risk.",
+          "action": "Add a timeout argument to the `head` function in requests/api.py. This can be done by adding a `timeout` parameter to the `request` function call, as shown in the example below. This will ensure that the request is not delayed indefinitely due to a timeout error.",
+          "llm_rank": 7
+        },
+        {
+          "id": "requests/api.py::patch",
+          "file": "requests/api.py",
+          "function": "patch",
+          "line": 133,
+          "priority": "MEDIUM",
+          "priority_score": 50,
+          "reason": "The patch() function in requests/api.py has a missing timeout argument, which can cause the program to hang indefinitely. This is a moderate risk, as it can lead to unexpected behavior or crashes in certain scenarios.",
+          "action": "Add a timeout argument to the patch() function in requests/api.py. This can be done by adding a timeout parameter to the request method, similar to the existing request() function. This will ensure that the request is not blocked indefinitely and will instead return a timeout error if the request takes too long to complete.",
+          "llm_rank": 8
+        },
+        {
+          "id": "requests/auth.py::HTTPBasicAuth.__eq__",
+          "file": "requests/auth.py",
+          "function": "HTTPBasicAuth.__eq__",
+          "line": 83,
+          "priority": "MEDIUM",
+          "priority_score": 50,
+          "reason": "The `HTTPBasicAuth.__eq__()` function in requests/auth.py has a high complexity score of 1 (rank A) and 7 LOC. It is also a function-level history item, and the file-level history shows that it has been changed in 4 commit(s), 0 of them bug fixes. Additionally, the code smells and style-only findings are 0, and the duplicated lines are 7. The static metrics show that the maintainability index is 47.35, and the file code churn is not measured. Recurring bug-fix file is not measured. The test coverage is 87.9%, and the documentation is '(no docstring)'. The static metrics show that the function-level history shows that it has been changed in 4 commit(s), 0 of them bug fixes, and the recent commits show that it has been changed in 4 commit(s), 0 of them bug fixes. The coverage is 87.9%, and the defect-linked commits show that it has been linked to 3 defect commits. The recent commits show that it has been changed in 4 commit(s), 0 of them bug fixes. The code smells show that there are 0, and the style-only findings show that there are 0. The duplicated lines show that there are 7, and the flagged as dead code shows that there are no dead code. The composite static debt score is 2.31 / 10.",
+          "action": "Refactor the `HTTPBasicAuth.__eq__()` function to use a more secure method of authentication, such as OAuth or JWT. This will improve the security of the application and reduce the risk of unauthorized access. Additionally, consider implementing a more secure method of authentication to protect against potential attacks. This will help to ensure the integrity and confidentiality of the application's data.",
+          "llm_rank": 9
+        },
+        {
+          "id": "requests/auth.py::_basic_auth_str",
+          "file": "requests/auth.py",
+          "function": "_basic_auth_str",
+          "line": 25,
+          "priority": "MEDIUM",
+          "priority_score": 50,
+          "reason": "The function is used in multiple places and has a relatively high cyclomatic complexity. Additionally, it has a low maintainability index, indicating that it may be difficult to understand and modify in the future. The function also has a high number of duplicated lines, which could be refactored into a single function.",
+          "action": "Refactor the function to reduce duplicated lines and improve maintainability. Consider using a single function to handle both username and password encoding, and use a more robust method for encoding the credentials. Additionally, consider using a more secure method for encoding the credentials, such as using a secure random number generator to generate a random salt and then encoding the credentials with the salt. This would help to prevent common attacks such as dictionary attacks and rainbow table attacks.",
+          "llm_rank": 10
+        },
+        {
+          "id": "requests/cookies.py::merge_cookies",
+          "file": "requests/cookies.py",
+          "function": "merge_cookies",
+          "line": 542,
+          "priority": "MEDIUM",
+          "priority_score": 50,
+          "reason": "The `merge_cookies()` function in requests/cookies.py has a high cyclomatic complexity of 6 and is used in a variety of call sites. Additionally, it has a low maintainability index of 39.76, indicating that it is not well-maintained and may be prone to errors. Furthermore, it has a composite static debt score of 3.61 / 10, which is lower than the threshold for HIGH. However, it is still a critical function that is frequently used, so it should be prioritized for refactoring.",
+          "action": "Refactor the `merge_cookies()` function to reduce its cyclomatic complexity and improve its maintainability. Consider using a more efficient algorithm or data structure to handle the merging of cookies. Additionally, consider adding more comprehensive testing to ensure that the function works correctly in all scenarios.",
+          "llm_rank": 11
+        },
+        {
+          "id": "requests/help.py::_implementation",
+          "file": "requests/help.py",
+          "function": "_implementation",
+          "line": 34,
+          "priority": "MEDIUM",
+          "priority_score": 50,
+          "reason": "This function is used in multiple places and is a part of the requests library. It is also used to provide information about the Python implementation and version. While it is not causing any immediate issues, it is a good practice to refactor this function to make it more Pythonic and easier to maintain.",
+          "action": "Refactor the function to use f-strings instead of string joins. This will improve readability and make the code more Pythonic. Additionally, consider adding a docstring to explain the purpose of the function and its parameters.",
+          "llm_rank": 12
+        },
+        {
+          "id": "requests/models.py::PreparedRequest.prepare_auth",
+          "file": "requests/models.py",
+          "function": "PreparedRequest.prepare_auth",
+          "line": 588,
+          "priority": "MEDIUM",
+          "priority_score": 50,
+          "reason": "PreparedRequest.prepare_auth() in requests/models.py is a function that prepares the HTTP auth data. This function is used in multiple places in the library, and it is also called from tests. The function is not used in a way that would cause defects or slow down frequent changes, but it is a potential source of technical debt. Therefore, I recommend refactoring this function to make it more efficient and easier to maintain.",
+          "action": "Refactor the prepare_auth() function to make it more efficient and easier to maintain. This could involve simplifying the logic, reducing the number of checks, or using more efficient data structures. Additionally, consider adding unit tests to ensure that the function behaves correctly in different scenarios.",
+          "llm_rank": 13
+        },
+        {
+          "id": "requests/models.py::RequestEncodingMixin._encode_files",
+          "file": "requests/models.py",
+          "function": "RequestEncodingMixin._encode_files",
+          "line": 137,
+          "priority": "MEDIUM",
+          "priority_score": 50,
+          "reason": "The function `_encode_files` in the `requests` library has a high complexity score of 7 and is frequently called. It also has a low maintainability index of 21.89, indicating that it is not well-maintained and may cause defects or slow down frequent changes. Additionally, it has a high cyclomatic complexity of 21, which suggests that it has many conditional statements and loops, making it harder to understand and maintain. Therefore, it is recommended to refactor this function to improve its maintainability and reduce its complexity.",
+          "action": "Refactor the `_encode_files` function to improve its maintainability and reduce its complexity. This can be done by breaking down the function into smaller, more manageable pieces, and using more efficient algorithms to encode the files. Additionally, it may be beneficial to add more comments and documentation to explain the purpose and behavior of the function.",
+          "llm_rank": 14
+        },
+        {
+          "id": "requests/models.py::Response.__setstate__",
+          "file": "requests/models.py",
+          "function": "Response.__setstate__",
+          "line": 719,
+          "priority": "MEDIUM",
+          "priority_score": 50,
+          "reason": "The `Response.__setstate__` function is a part of the `requests` library, which is used for handling HTTP responses. However, the function is not well-documented and does not follow standard Python naming conventions. Additionally, the function is not used in any critical parts of the codebase, but it is called in some places where it could potentially cause issues. Therefore, it is recommended to refactor the function to follow standard naming conventions and add documentation to make it more understandable and maintainable.",
+          "action": "Refactor the `Response.__setstate__` function to follow standard Python naming conventions and add documentation. This will improve the readability and maintainability of the codebase.",
+          "llm_rank": 15
+        },
+        {
+          "id": "requests/sessions.py::Session.__init__",
+          "file": "requests/sessions.py",
+          "function": "Session.__init__",
+          "line": 390,
+          "priority": "MEDIUM",
+          "priority_score": 50,
+          "reason": "Session.__init__() in requests/sessions.py (line 390) is a function that sets up the session, which is a critical component of the requests library. This function is called from multiple places in the codebase, including the `requests.session()` function and the `Session` class. This function is also used to set up the session for each request, which is a critical step in the request processing pipeline. As such, this function should be refactored to improve its performance and maintainability.",
+          "action": "Refactor the `Session.__init__()` function to improve its performance and maintainability. This can be achieved by extracting the common setup logic into a separate method or class, and by using a more efficient data structure to store the session configuration. Additionally, the function can be optimized by reducing the number of database queries or by using a more efficient data structure to store the session configuration. By refactoring this function, the overall performance and maintainability of the codebase can be improved.",
+          "llm_rank": 16
+        },
+        {
+          "id": "requests/sessions.py::Session.merge_environment_settings",
+          "file": "requests/sessions.py",
+          "function": "Session.merge_environment_settings",
+          "line": 750,
+          "priority": "MEDIUM",
+          "priority_score": 50,
+          "reason": "The `merge_environment_settings()` function in requests/sessions.py has a high complexity score of 8, indicating that it is likely to cause or have a high impact on defects or slow down frequent changes. Additionally, it has a relatively low maintainability index of 38.09, suggesting that it may not be easy to understand or maintain. Furthermore, the function is called from multiple places in the library, indicating that it is likely to be frequently used. Therefore, I recommend refactoring this function to improve its readability, maintainability, and performance.",
+          "action": "Refactor the `merge_environment_settings()` function to improve its readability, maintainability, and performance. Consider using a more robust method for merging environment settings, such as using a configuration file or a library like `configparser`. Additionally, consider adding more comments and docstrings to explain the purpose and behavior of the function.",
+          "llm_rank": 17
+        },
+        {
+          "id": "requests/sessions.py::Session.put",
+          "file": "requests/sessions.py",
+          "function": "Session.put",
+          "line": 639,
+          "priority": "MEDIUM",
+          "priority_score": 50,
+          "reason": "The `put` method in the `requests` library has a high complexity score of 6 and a moderate number of parameters (2). It is also frequently called, with 11 recent commits and 3 defect-linked commits. Additionally, the method is not covered by tests, which could indicate a potential issue. The method's maintainability index is 38.09, which is lower than the library's average. The method's code smells are 0, and it has no duplicated lines. The method is not flagged as dead code, and its visibility is public. The composite static debt score is 2.68/10.",
+          "action": "Refactor the `put` method to improve its maintainability and readability. Consider using a more descriptive method name and adding docstrings to explain the method's purpose and parameters. Additionally, consider adding unit tests to ensure the method works correctly and is not prone to defects.",
+          "llm_rank": 18
+        },
+        {
+          "id": "requests/sessions.py::SessionRedirectMixin.should_strip_auth",
+          "file": "requests/sessions.py",
+          "function": "SessionRedirectMixin.should_strip_auth",
+          "line": 127,
+          "priority": "MEDIUM",
+          "priority_score": 50,
+          "reason": "SessionRedirectMixin.should_strip_auth() in requests/sessions.py (line 127) is a function that decides whether the Authorization header should be removed when redirecting. This function is used in the library and has a moderate impact on the codebase. It is a good candidate for refactoring to improve maintainability and reduce technical debt.",
+          "action": "Refactor the `SessionRedirectMixin.should_strip_auth()` function to make it more efficient and easier to understand. Consider using a more robust method to determine whether the Authorization header should be removed, such as using a library like `urllib.parse` to handle the hostname and port changes.",
+          "llm_rank": 19
+        },
+        {
+          "id": "requests/utils.py::extract_zipped_paths",
+          "file": "requests/utils.py",
+          "function": "extract_zipped_paths",
+          "line": 263,
+          "priority": "MEDIUM",
+          "priority_score": 50,
+          "reason": "Extracting zip paths is a common operation that can be performed in multiple ways. The current implementation uses string join, which can be replaced with f-string for better readability and maintainability. Additionally, the extracted path is not validated, which can lead to potential issues if the extracted path is not a valid file.",
+          "action": "Replace string join with f-string and validate the extracted path to ensure it is a valid file.",
+          "llm_rank": 20
+        },
+        {
+          "id": "requests/utils.py::get_encodings_from_content",
+          "file": "requests/utils.py",
+          "function": "get_encodings_from_content",
+          "line": 484,
+          "priority": "MEDIUM",
+          "priority_score": 50,
+          "reason": "The function `get_encodings_from_content` in requests/utils.py has a medium priority score due to its moderate complexity (9) and maintainability index (25.2). The function is used in various call sites, including 3 in the library and 8 in tests. Additionally, it is a function-level debt item, and its recent commits are 18, indicating that it is a relatively recent addition to the codebase. The function also has a composite static debt score of 3.19 / 10, which is a moderate score. The tool findings suggest that the function could be improved by using a single `if` statement instead of nested `if` statements, and the code smells indicate that the function could be improved by using a regular expression alias `re.I` instead of `re.I` alias `re.I`.",
+          "action": "Refactor the function `get_encodings_from_content` to use a single `if` statement instead of nested `if` statements. Additionally, use a regular expression alias `re.I` instead of `re.I` alias `re.I` to improve code readability and maintainability. This refactoring will improve the function's performance and make it easier to maintain in the future.",
+          "llm_rank": 21
+        },
+        {
+          "id": "requests/utils.py::parse_header_links",
+          "file": "requests/utils.py",
+          "function": "parse_header_links",
+          "line": 909,
+          "priority": "MEDIUM",
+          "priority_score": 50,
+          "reason": "parse_header_links() in requests/utils.py is a function that parses header links from a string. While it is not causing any immediate defects, it is a function that is frequently called and has a relatively high complexity score. Therefore, it is recommended to refactor this function to improve its maintainability and readability.",
+          "action": "Refactor the parse_header_links() function to improve its maintainability and readability. Consider using a more Pythonic way of parsing header links, such as using the `urlparse` module or a dedicated library like `linkparser`. This will make the function easier to understand and modify in the future, and will also improve its performance.",
+          "llm_rank": 22
+        },
+        {
+          "id": "requests/utils.py::prepend_scheme_if_needed",
+          "file": "requests/utils.py",
+          "function": "prepend_scheme_if_needed",
+          "line": 984,
+          "priority": "MEDIUM",
+          "priority_score": 50,
+          "reason": "The function `prepend_scheme_if_needed()` in requests/utils.py has a medium priority score due to its potential impact on the codebase. The function is used in various parts of the library, and a change to it could affect the overall maintainability and performance of the code. Additionally, the function has a medium complexity score, indicating that it may require some refactoring to improve its readability and maintainability. The function also has a medium code smell score, indicating that it may have some redundant or unnecessary code that could be refactored. Overall, the function is not critical, but a change to it could have a moderate impact on the codebase.",
+          "action": "Refactor the function `prepend_scheme_if_needed()` to improve its readability and maintainability. Consider using a more Pythonic way of handling the `auth` and `netloc` variables, and remove any redundant or unnecessary code. Additionally, consider adding more tests to ensure that the function works correctly in all scenarios.",
+          "llm_rank": 23
+        },
+        {
+          "id": "requests/adapters.py::HTTPAdapter.add_headers",
+          "file": "requests/adapters.py",
+          "function": "HTTPAdapter.add_headers",
+          "line": 398,
+          "priority": "MEDIUM",
+          "priority_score": 35,
+          "reason": "The function `add_headers` in the `requests/adapters.py` file is a function that is not used in the codebase. It is not called anywhere and is not necessary for the functionality of the library. However, it is still present in the codebase and could potentially be useful in the future. Therefore, it is recommended to refactor this function to remove it and make the code more efficient.",
+          "action": "Remove the `add_headers` function from the `requests/adapters.py` file. This will make the code more efficient and reduce the amount of code that needs to be maintained.",
+          "llm_rank": 24
+        },
+        {
+          "id": "requests/adapters.py::HTTPAdapter.send",
+          "file": "requests/adapters.py",
+          "function": "HTTPAdapter.send",
+          "line": 433,
+          "priority": "MEDIUM",
+          "priority_score": 35,
+          "reason": "HTTPAdapter.send() in requests/adapters.py (line 433) has a Cyclomatic complexity of 19 and is a function_debt item. It has been rated as MEDIUM by the static analysis tool.",
+          "action": "Refactor the send() method in requests/adapters.py to make it more efficient and easier to maintain. Consider using a more efficient method for handling the request and response objects, and make sure to handle any potential exceptions that may occur during the request process.",
+          "llm_rank": 25
+        },
+        {
+          "id": "requests/api.py::post",
+          "file": "requests/api.py",
+          "function": "post",
+          "line": 103,
+          "priority": "MEDIUM",
+          "priority_score": 35,
+          "reason": "The `post()` function in requests/api.py has a missing timeout argument, which can cause the program to hang indefinitely. This is a medium-priority issue because it can potentially cause defects or slow down frequent changes.",
+          "action": "Add a timeout argument to the `post()` function in requests/api.py. This can be done by adding a `timeout` parameter to the `request()` function call. For example: `request(",
+          "llm_rank": 26
+        },
+        {
+          "id": "requests/models.py::RequestEncodingMixin._encode_params",
+          "file": "requests/models.py",
+          "function": "RequestEncodingMixin._encode_params",
+          "line": 107,
+          "priority": "MEDIUM",
+          "priority_score": 35,
+          "reason": "The function `RequestEncodingMixin._encode_params()` is a helper function that encodes parameters in a piece of data. It is used in the `requests` library and is called by other functions. The function is not directly causing defects or slowing down frequent changes, but it is a potential source of bugs if not implemented correctly. Therefore, it is recommended to refactor this function to improve its readability and maintainability.",
+          "action": "Refactor the `RequestEncodingMixin._encode_params()` function to improve its readability and maintainability. Consider using a more Pythonic way of encoding and decoding data, such as using the `json` module or a library like `ujson`. Additionally, consider adding docstrings to the function to explain its purpose and usage.",
+          "llm_rank": 27
+        },
+        {
+          "id": "requests/models.py::Response.raise_for_status",
+          "file": "requests/models.py",
+          "function": "Response.raise_for_status",
+          "line": 992,
+          "priority": "MEDIUM",
+          "priority_score": 35,
+          "reason": "Response.raise_for_status() in requests/models.py (line 992) is a technical debt item that needs to be refactored.",
+          "action": "Refactor the `Response.raise_for_status()` method to improve code readability and maintainability. This can be achieved by extracting the HTTP status code and reason into separate variables, and then raising an `HTTPError` with a more informative message. This refactoring will also improve the overall code quality and make it easier to maintain in the future.",
+          "llm_rank": 28
+        },
+        {
+          "id": "requests/sessions.py::SessionRedirectMixin.rebuild_method",
+          "file": "requests/sessions.py",
+          "function": "SessionRedirectMixin.rebuild_method",
+          "line": 333,
+          "priority": "MEDIUM",
+          "priority_score": 35,
+          "reason": "SessionRedirectMixin.rebuild_method() in requests/sessions.py (line 333) is a function that may need to be modified based on certain specs or browser behavior. It has a moderate impact on the code and is relatively recent, with a recent commit.",
+          "action": "Refactor the function to handle redirects based on specific specs or browser behavior. This can be done by adding a new method to the SessionRedirectMixin class that checks the status code and method of the response and updates the request method accordingly. This refactoring can improve the code's maintainability and reduce the likelihood of future bugs.",
+          "llm_rank": 29
+        },
+        {
+          "id": "requests/sessions.py::SessionRedirectMixin.resolve_redirects",
+          "file": "requests/sessions.py",
+          "function": "SessionRedirectMixin.resolve_redirects",
+          "line": 159,
+          "error": "The model returned invalid JSON."
+        }
+      ]
+    },
+    {
+      "key": "ollama/smollm2:1.7b | rag_context | 2",
+      "model": "ollama/smollm2:1.7b",
+      "arm": "rag_context",
+      "repeat": 2,
+      "workers": 1,
+      "seconds": 709.4548315999564,
+      "mean_call_seconds": 23.64835168332017,
+      "calls_attempted": 30,
+      "schema_acceptance_rate": 0.9666666666666667,
+      "call_failure_rate": 0.03333333333333333,
+      "item_failure_rate": 0.033333333333333326,
+      "input_tokens": 54391,
+      "output_tokens": 7441,
+      "cached_calls": 0,
+      "cost_usd": null,
+      "pricing_per_million": null,
+      "results": [
+        {
+          "id": "requests/models.py::Response.json",
+          "file": "requests/models.py",
+          "function": "Response.json",
+          "line": 942,
+          "priority": "MEDIUM",
+          "priority_score": 70,
+          "reason": "The function `json()` in requests/models.py has a high cyclomatic complexity of 8 and is used in 17 call sites. It also has a low maintainability index of 21.89. Additionally, it has 2 code smells (lint/refactor findings) and is not flagged as dead code. The score is used to rank items against each other.",
+          "action": "Refactor the `json()` function to reduce its cyclomatic complexity and improve maintainability. Consider using a more robust method for detecting the encoding of the response body, such as using the `json.loads()` function with the `encoding` parameter. Additionally, consider adding more informative error messages to handle JSON decoding errors.",
+          "llm_rank": 1
+        },
+        {
+          "id": "requests/models.py::PreparedRequest.prepare_body",
+          "file": "requests/models.py",
+          "function": "PreparedRequest.prepare_body",
+          "line": 494,
+          "priority": "MEDIUM",
+          "priority_score": 60,
+          "reason": "PreparedRequest.prepare_body() in requests/models.py has a high cyclomatic complexity of 17 and is a function-level debt item. It is also a recent change with recent commits and defect-linked history. Additionally, it has a composite static debt score of 7.52 / 10, indicating a moderate level of technical debt. A refactoring action could be to simplify the function and reduce its cyclomatic complexity.",
+          "action": "Simplify the function by reducing its cyclomatic complexity. This can be achieved by breaking down the logic into smaller, more manageable functions or by using a more efficient algorithm. Additionally, consider using a more efficient data structure or algorithm to reduce the time complexity of the function. This will not only improve the readability and maintainability of the code but also improve the performance of the application.",
+          "llm_rank": 2
+        },
+        {
+          "id": "requests/models.py::Response.iter_content.generate",
+          "file": "requests/models.py",
+          "function": "Response.iter_content.generate",
+          "line": 811,
+          "priority": "MEDIUM",
+          "priority_score": 60,
+          "reason": "The `generate()` method in the `requests.models.Response` class is generating chunks of content, which can lead to memory issues and potential memory leaks. This is a medium-priority issue because it can cause defects or slow down frequent changes, but it is not actively causing or very likely to cause defects or slow down frequent changes.",
+          "action": "Refactor the `generate()` method to return the content as a single string instead of chunks. This will improve memory efficiency and prevent potential memory leaks.",
+          "llm_rank": 3
+        },
+        {
+          "id": "requests/adapters.py::BaseAdapter.send",
+          "file": "requests/adapters.py",
+          "function": "BaseAdapter.send",
+          "line": 76,
+          "priority": "MEDIUM",
+          "priority_score": 50,
+          "reason": "The `send()` method in requests/adapters.py has a high complexity score of 7 and is called from multiple places in the library. Additionally, it has a relatively low maintainability index of 51.8, indicating that it may be difficult to understand and maintain. Furthermore, the method has a composite static debt score of 2.13 / 10, which is lower than the threshold of 7.0. However, it is still considered a high-priority item due to its complexity and potential impact on the codebase.",
+          "action": "Refactor the `send()` method to improve its readability and maintainability. Consider using a more Pythonic approach to handle the request and response objects, and ensure that the method is properly documented and tested.",
+          "llm_rank": 4
+        },
+        {
+          "id": "requests/api.py::delete",
+          "file": "requests/api.py",
+          "function": "delete",
+          "line": 148,
+          "priority": "MEDIUM",
+          "priority_score": 50,
+          "reason": "The delete() function in requests/api.py has a missing timeout argument, which can cause the program to hang indefinitely. This is a medium-priority issue because it can potentially cause defects or slow down frequent changes.",
+          "action": "Add a timeout argument to the delete() function in requests/api.py. This can be done by adding a timeout parameter to the request method, like this: requests.request('delete', url, timeout=10). This will ensure that the request does not hang indefinitely and will instead return a response object with a timeout attribute.",
+          "llm_rank": 5
+        },
+        {
+          "id": "requests/api.py::get",
+          "file": "requests/api.py",
+          "function": "get",
+          "line": 62,
+          "priority": "MEDIUM",
+          "priority_score": 50,
+          "reason": "The `get()` function in requests/api.py has a missing timeout argument, which can cause the program to hang indefinitely. This is a medium-priority issue because it can potentially cause defects or slow down frequent changes.",
+          "action": "Add a timeout argument to the `get()` function in requests/api.py. This can be done by adding a `timeout` parameter to the `request()` function call. For example: `request(",
+          "llm_rank": 6
+        },
+        {
+          "id": "requests/api.py::head",
+          "file": "requests/api.py",
+          "function": "head",
+          "line": 88,
+          "priority": "MEDIUM",
+          "priority_score": 50,
+          "reason": "The `head` function in requests/api.py has a missing timeout argument, which can cause the program to hang indefinitely. This is a moderate risk, as it can lead to unexpected behavior or crashes, but it is not a critical issue. A refactoring action to add a timeout argument to the `head` function would help mitigate this risk.",
+          "action": "Add a timeout argument to the `head` function in requests/api.py. This can be done by adding a `timeout` parameter to the `request` function call, as shown in the example below. This will ensure that the request is not delayed indefinitely due to a timeout error.",
+          "llm_rank": 7
+        },
+        {
+          "id": "requests/api.py::patch",
+          "file": "requests/api.py",
+          "function": "patch",
+          "line": 133,
+          "priority": "MEDIUM",
+          "priority_score": 50,
+          "reason": "The patch() function in requests/api.py has a missing timeout argument, which can cause the program to hang indefinitely. This is a moderate risk, as it can lead to unexpected behavior or crashes in certain scenarios.",
+          "action": "Add a timeout argument to the patch() function in requests/api.py. This can be done by adding a timeout parameter to the request method, similar to the existing request() function. This will ensure that the request is not blocked indefinitely and will instead return a timeout error if the request takes too long to complete.",
+          "llm_rank": 8
+        },
+        {
+          "id": "requests/auth.py::HTTPBasicAuth.__eq__",
+          "file": "requests/auth.py",
+          "function": "HTTPBasicAuth.__eq__",
+          "line": 83,
+          "priority": "MEDIUM",
+          "priority_score": 50,
+          "reason": "The `HTTPBasicAuth.__eq__()` function in requests/auth.py has a high complexity score of 1 (rank A) and 7 LOC. It is also a function-level history item, and the file-level history shows that it has been changed in 4 commit(s), 0 of them bug fixes. Additionally, the code smells and style-only findings are 0, and the duplicated lines are 7. The static metrics show that the maintainability index is 47.35, and the file code churn is not measured. Recurring bug-fix file is not measured. The test coverage is 87.9%, and the documentation is '(no docstring)'. The static metrics show that the function-level history shows that it has been changed in 4 commit(s), 0 of them bug fixes, and the recent commits show that it has been changed in 4 commit(s), 0 of them bug fixes. The coverage is 87.9%, and the defect-linked commits show that it has been linked to 3 defect commits. The recent commits show that it has been changed in 4 commit(s), 0 of them bug fixes. The code smells show that there are 0, and the style-only findings show that there are 0. The duplicated lines show that there are 7, and the flagged as dead code shows that there are no dead code. The composite static debt score is 2.31 / 10.",
+          "action": "Refactor the `HTTPBasicAuth.__eq__()` function to use a more secure method of authentication, such as OAuth or JWT. This will improve the security of the application and reduce the risk of unauthorized access. Additionally, consider implementing a more secure method of authentication to protect against potential attacks. This will help to ensure the integrity and confidentiality of the application's data.",
+          "llm_rank": 9
+        },
+        {
+          "id": "requests/auth.py::_basic_auth_str",
+          "file": "requests/auth.py",
+          "function": "_basic_auth_str",
+          "line": 25,
+          "priority": "MEDIUM",
+          "priority_score": 50,
+          "reason": "The function is used in multiple places and has a relatively high cyclomatic complexity. Additionally, it has a low maintainability index, indicating that it may be difficult to understand and modify in the future. The function also has a high number of duplicated lines, which could be refactored into a single function.",
+          "action": "Refactor the function to reduce duplicated lines and improve maintainability. Consider using a single function to handle both username and password encoding, and use a more robust method for encoding the credentials. Additionally, consider using a more secure method for encoding the credentials, such as using a secure random number generator to generate a random salt and then encoding the credentials with the salt. This would help to prevent common attacks such as dictionary attacks and rainbow table attacks.",
+          "llm_rank": 10
+        },
+        {
+          "id": "requests/cookies.py::merge_cookies",
+          "file": "requests/cookies.py",
+          "function": "merge_cookies",
+          "line": 542,
+          "priority": "MEDIUM",
+          "priority_score": 50,
+          "reason": "The `merge_cookies()` function in requests/cookies.py has a high cyclomatic complexity of 6 and is used in a variety of call sites. Additionally, it has a low maintainability index of 39.76, indicating that it is not well-maintained and may be prone to errors. Furthermore, it has a composite static debt score of 3.61 / 10, which is lower than the threshold for HIGH. However, it is still a critical function that is frequently used, so it should be prioritized for refactoring.",
+          "action": "Refactor the `merge_cookies()` function to reduce its cyclomatic complexity and improve its maintainability. Consider using a more efficient algorithm or data structure to handle the merging of cookies. Additionally, consider adding more comprehensive testing to ensure that the function works correctly in all scenarios.",
+          "llm_rank": 11
+        },
+        {
+          "id": "requests/help.py::_implementation",
+          "file": "requests/help.py",
+          "function": "_implementation",
+          "line": 34,
+          "priority": "MEDIUM",
+          "priority_score": 50,
+          "reason": "This function is used in multiple places and is a part of the requests library. It is also used to provide information about the Python implementation and version. While it is not causing any immediate issues, it is a good practice to refactor this function to make it more Pythonic and easier to maintain.",
+          "action": "Refactor the function to use f-strings instead of string joins. This will improve readability and make the code more Pythonic. Additionally, consider adding a docstring to explain the purpose of the function and its parameters.",
+          "llm_rank": 12
+        },
+        {
+          "id": "requests/models.py::PreparedRequest.prepare_auth",
+          "file": "requests/models.py",
+          "function": "PreparedRequest.prepare_auth",
+          "line": 588,
+          "priority": "MEDIUM",
+          "priority_score": 50,
+          "reason": "PreparedRequest.prepare_auth() in requests/models.py is a function that prepares the HTTP auth data. This function is used in multiple places in the library, and it is also called from tests. The function is not used in a way that would cause defects or slow down frequent changes, but it is a potential source of technical debt. Therefore, I recommend refactoring this function to make it more efficient and easier to maintain.",
+          "action": "Refactor the prepare_auth() function to make it more efficient and easier to maintain. This could involve simplifying the logic, reducing the number of checks, or using more efficient data structures. Additionally, consider adding unit tests to ensure that the function behaves correctly in different scenarios.",
+          "llm_rank": 13
+        },
+        {
+          "id": "requests/models.py::RequestEncodingMixin._encode_files",
+          "file": "requests/models.py",
+          "function": "RequestEncodingMixin._encode_files",
+          "line": 137,
+          "priority": "MEDIUM",
+          "priority_score": 50,
+          "reason": "The function `_encode_files` in the `requests` library has a high complexity score of 7 and is frequently called. It also has a low maintainability index of 21.89, indicating that it is not well-maintained and may cause defects or slow down frequent changes. Additionally, it has a high cyclomatic complexity of 21, which suggests that it has many conditional statements and loops, making it harder to understand and maintain. Therefore, it is recommended to refactor this function to improve its maintainability and reduce its complexity.",
+          "action": "Refactor the `_encode_files` function to improve its maintainability and reduce its complexity. This can be done by breaking down the function into smaller, more manageable pieces, and using more efficient algorithms to encode the files. Additionally, it may be beneficial to add more comments and documentation to explain the purpose and behavior of the function.",
+          "llm_rank": 14
+        },
+        {
+          "id": "requests/models.py::Response.__setstate__",
+          "file": "requests/models.py",
+          "function": "Response.__setstate__",
+          "line": 719,
+          "priority": "MEDIUM",
+          "priority_score": 50,
+          "reason": "The `Response.__setstate__` function is a part of the `requests` library, which is used for handling HTTP responses. However, the function is not well-documented and does not follow standard Python naming conventions. Additionally, the function is not used in any critical parts of the codebase, but it is called in some places where it could potentially cause issues. Therefore, it is recommended to refactor the function to follow standard naming conventions and add documentation to make it more understandable and maintainable.",
+          "action": "Refactor the `Response.__setstate__` function to follow standard Python naming conventions and add documentation. This will improve the readability and maintainability of the codebase.",
+          "llm_rank": 15
+        },
+        {
+          "id": "requests/sessions.py::Session.__init__",
+          "file": "requests/sessions.py",
+          "function": "Session.__init__",
+          "line": 390,
+          "priority": "MEDIUM",
+          "priority_score": 50,
+          "reason": "Session.__init__() in requests/sessions.py (line 390) is a function that sets up the session, which is a critical component of the requests library. This function is called from multiple places in the codebase, including the `requests.session()` function and the `Session` class. This function is also used to set up the session for each request, which is a critical step in the request processing pipeline. As such, this function should be refactored to improve its performance and maintainability.",
+          "action": "Refactor the `Session.__init__()` function to improve its performance and maintainability. This can be achieved by extracting the common setup logic into a separate method or class, and by using a more efficient data structure to store the session configuration. Additionally, the function can be optimized by reducing the number of database queries or by using a more efficient data structure to store the session configuration. By refactoring this function, the overall performance and maintainability of the codebase can be improved.",
+          "llm_rank": 16
+        },
+        {
+          "id": "requests/sessions.py::Session.merge_environment_settings",
+          "file": "requests/sessions.py",
+          "function": "Session.merge_environment_settings",
+          "line": 750,
+          "priority": "MEDIUM",
+          "priority_score": 50,
+          "reason": "The `merge_environment_settings()` function in requests/sessions.py has a high complexity score of 8, indicating that it is likely to cause or have a high impact on defects or slow down frequent changes. Additionally, it has a relatively low maintainability index of 38.09, suggesting that it may not be easy to understand or maintain. Furthermore, the function is called from multiple places in the library, indicating that it is likely to be frequently used. Therefore, I recommend refactoring this function to improve its readability, maintainability, and performance.",
+          "action": "Refactor the `merge_environment_settings()` function to improve its readability, maintainability, and performance. Consider using a more robust method for merging environment settings, such as using a configuration file or a library like `configparser`. Additionally, consider adding more comments and docstrings to explain the purpose and behavior of the function.",
+          "llm_rank": 17
+        },
+        {
+          "id": "requests/sessions.py::Session.put",
+          "file": "requests/sessions.py",
+          "function": "Session.put",
+          "line": 639,
+          "priority": "MEDIUM",
+          "priority_score": 50,
+          "reason": "The `put` method in the `requests` library has a high complexity score of 6 and a moderate number of parameters (2). It is also frequently called, with 11 recent commits and 3 defect-linked commits. Additionally, the method is not covered by tests, which could indicate a potential issue. The method's maintainability index is 38.09, which is lower than the library's average. The method's code smells are 0, and it has no duplicated lines. The method is not flagged as dead code, and its visibility is public. The composite static debt score is 2.68/10.",
+          "action": "Refactor the `put` method to improve its maintainability and readability. Consider using a more descriptive method name and adding docstrings to explain the method's purpose and parameters. Additionally, consider adding unit tests to ensure the method works correctly and is not prone to defects.",
+          "llm_rank": 18
+        },
+        {
+          "id": "requests/sessions.py::SessionRedirectMixin.should_strip_auth",
+          "file": "requests/sessions.py",
+          "function": "SessionRedirectMixin.should_strip_auth",
+          "line": 127,
+          "priority": "MEDIUM",
+          "priority_score": 50,
+          "reason": "SessionRedirectMixin.should_strip_auth() in requests/sessions.py (line 127) is a function that decides whether the Authorization header should be removed when redirecting. This function is used in the library and has a moderate impact on the codebase. It is a good candidate for refactoring to improve maintainability and reduce technical debt.",
+          "action": "Refactor the `SessionRedirectMixin.should_strip_auth()` function to make it more efficient and easier to understand. Consider using a more robust method to determine whether the Authorization header should be removed, such as using a library like `urllib.parse` to handle the hostname and port changes.",
+          "llm_rank": 19
+        },
+        {
+          "id": "requests/utils.py::extract_zipped_paths",
+          "file": "requests/utils.py",
+          "function": "extract_zipped_paths",
+          "line": 263,
+          "priority": "MEDIUM",
+          "priority_score": 50,
+          "reason": "Extracting zip paths is a common operation that can be performed in multiple ways. The current implementation uses string join, which can be replaced with f-string for better readability and maintainability. Additionally, the extracted path is not validated, which can lead to potential issues if the extracted path is not a valid file.",
+          "action": "Replace string join with f-string and validate the extracted path to ensure it is a valid file.",
+          "llm_rank": 20
+        },
+        {
+          "id": "requests/utils.py::get_encodings_from_content",
+          "file": "requests/utils.py",
+          "function": "get_encodings_from_content",
+          "line": 484,
+          "priority": "MEDIUM",
+          "priority_score": 50,
+          "reason": "The function `get_encodings_from_content` in requests/utils.py has a medium priority score due to its moderate complexity (9) and maintainability index (25.2). The function is used in various call sites, including 3 in the library and 8 in tests. Additionally, it is a function-level debt item, and its recent commits are 18, indicating that it is a relatively recent addition to the codebase. The function also has a composite static debt score of 3.19 / 10, which is a moderate score. The tool findings suggest that the function could be improved by using a single `if` statement instead of nested `if` statements, and the code smells indicate that the function could be improved by using a regular expression alias `re.I` instead of `re.I` alias `re.I`.",
+          "action": "Refactor the function `get_encodings_from_content` to use a single `if` statement instead of nested `if` statements. Additionally, use a regular expression alias `re.I` instead of `re.I` alias `re.I` to improve code readability and maintainability. This refactoring will improve the function's performance and make it easier to maintain in the future.",
+          "llm_rank": 21
+        },
+        {
+          "id": "requests/utils.py::parse_header_links",
+          "file": "requests/utils.py",
+          "function": "parse_header_links",
+          "line": 909,
+          "priority": "MEDIUM",
+          "priority_score": 50,
+          "reason": "parse_header_links() in requests/utils.py is a function that parses header links from a string. While it is not causing any immediate defects, it is a function that is frequently called and has a relatively high complexity score. Therefore, it is recommended to refactor this function to improve its maintainability and readability.",
+          "action": "Refactor the parse_header_links() function to improve its maintainability and readability. Consider using a more Pythonic way of parsing header links, such as using the `urlparse` module or a dedicated library like `linkparser`. This will make the function easier to understand and modify in the future, and will also improve its performance.",
+          "llm_rank": 22
+        },
+        {
+          "id": "requests/utils.py::prepend_scheme_if_needed",
+          "file": "requests/utils.py",
+          "function": "prepend_scheme_if_needed",
+          "line": 984,
+          "priority": "MEDIUM",
+          "priority_score": 50,
+          "reason": "The function `prepend_scheme_if_needed()` in requests/utils.py has a medium priority score due to its potential impact on the codebase. The function is used in various parts of the library, and a change to it could affect the overall maintainability and performance of the code. Additionally, the function has a medium complexity score, indicating that it may require some refactoring to improve its readability and maintainability. The function also has a medium code smell score, indicating that it may have some redundant or unnecessary code that could be refactored. Overall, the function is not critical, but a change to it could have a moderate impact on the codebase.",
+          "action": "Refactor the function `prepend_scheme_if_needed()` to improve its readability and maintainability. Consider using a more Pythonic way of handling the `auth` and `netloc` variables, and remove any redundant or unnecessary code. Additionally, consider adding more tests to ensure that the function works correctly in all scenarios.",
+          "llm_rank": 23
+        },
+        {
+          "id": "requests/adapters.py::HTTPAdapter.add_headers",
+          "file": "requests/adapters.py",
+          "function": "HTTPAdapter.add_headers",
+          "line": 398,
+          "priority": "MEDIUM",
+          "priority_score": 35,
+          "reason": "The function `add_headers` in the `requests/adapters.py` file is a function that is not used in the codebase. It is not called anywhere and is not necessary for the functionality of the library. However, it is still present in the codebase and could potentially be useful in the future. Therefore, it is recommended to refactor this function to remove it and make the code more efficient.",
+          "action": "Remove the `add_headers` function from the `requests/adapters.py` file. This will make the code more efficient and reduce the amount of code that needs to be maintained.",
+          "llm_rank": 24
+        },
+        {
+          "id": "requests/adapters.py::HTTPAdapter.send",
+          "file": "requests/adapters.py",
+          "function": "HTTPAdapter.send",
+          "line": 433,
+          "priority": "MEDIUM",
+          "priority_score": 35,
+          "reason": "HTTPAdapter.send() in requests/adapters.py (line 433) has a Cyclomatic complexity of 19 and is a function_debt item. It has been rated as MEDIUM by the static analysis tool.",
+          "action": "Refactor the send() method in requests/adapters.py to make it more efficient and easier to maintain. Consider using a more efficient method for handling the request and response objects, and make sure to handle any potential exceptions that may occur during the request process.",
+          "llm_rank": 25
+        },
+        {
+          "id": "requests/api.py::post",
+          "file": "requests/api.py",
+          "function": "post",
+          "line": 103,
+          "priority": "MEDIUM",
+          "priority_score": 35,
+          "reason": "The `post()` function in requests/api.py has a missing timeout argument, which can cause the program to hang indefinitely. This is a medium-priority issue because it can potentially cause defects or slow down frequent changes.",
+          "action": "Add a timeout argument to the `post()` function in requests/api.py. This can be done by adding a `timeout` parameter to the `request()` function call. For example: `request(",
+          "llm_rank": 26
+        },
+        {
+          "id": "requests/models.py::RequestEncodingMixin._encode_params",
+          "file": "requests/models.py",
+          "function": "RequestEncodingMixin._encode_params",
+          "line": 107,
+          "priority": "MEDIUM",
+          "priority_score": 35,
+          "reason": "The function `RequestEncodingMixin._encode_params()` is a helper function that encodes parameters in a piece of data. It is used in the `requests` library and is called by other functions. The function is not directly causing defects or slowing down frequent changes, but it is a potential source of bugs if not implemented correctly. Therefore, it is recommended to refactor this function to improve its readability and maintainability.",
+          "action": "Refactor the `RequestEncodingMixin._encode_params()` function to improve its readability and maintainability. Consider using a more Pythonic way of encoding and decoding data, such as using the `json` module or a library like `ujson`. Additionally, consider adding docstrings to the function to explain its purpose and usage.",
+          "llm_rank": 27
+        },
+        {
+          "id": "requests/models.py::Response.raise_for_status",
+          "file": "requests/models.py",
+          "function": "Response.raise_for_status",
+          "line": 992,
+          "priority": "MEDIUM",
+          "priority_score": 35,
+          "reason": "Response.raise_for_status() in requests/models.py (line 992) is a technical debt item that needs to be refactored.",
+          "action": "Refactor the `Response.raise_for_status()` method to improve code readability and maintainability. This can be achieved by extracting the HTTP status code and reason into separate variables, and then raising an `HTTPError` with a more informative message. This refactoring will also improve the overall code quality and make it easier to maintain in the future.",
+          "llm_rank": 28
+        },
+        {
+          "id": "requests/sessions.py::SessionRedirectMixin.rebuild_method",
+          "file": "requests/sessions.py",
+          "function": "SessionRedirectMixin.rebuild_method",
+          "line": 333,
+          "priority": "MEDIUM",
+          "priority_score": 35,
+          "reason": "SessionRedirectMixin.rebuild_method() in requests/sessions.py (line 333) is a function that may need to be modified based on certain specs or browser behavior. It has a moderate impact on the code and is relatively recent, with a recent commit.",
+          "action": "Refactor the function to handle redirects based on specific specs or browser behavior. This can be done by adding a new method to the SessionRedirectMixin class that checks the status code and method of the response and updates the request method accordingly. This refactoring can improve the code's maintainability and reduce the likelihood of future bugs.",
+          "llm_rank": 29
+        },
+        {
+          "id": "requests/sessions.py::SessionRedirectMixin.resolve_redirects",
+          "file": "requests/sessions.py",
+          "function": "SessionRedirectMixin.resolve_redirects",
+          "line": 159,
+          "error": "The model returned invalid JSON."
+        }
+      ]
+    },
+    {
+      "key": "ollama/smollm2:1.7b | rag_context | 3",
+      "model": "ollama/smollm2:1.7b",
+      "arm": "rag_context",
+      "repeat": 3,
+      "workers": 1,
+      "seconds": 747.2407971000066,
+      "mean_call_seconds": 24.907867259997875,
+      "calls_attempted": 30,
+      "schema_acceptance_rate": 0.9666666666666667,
+      "call_failure_rate": 0.03333333333333333,
+      "item_failure_rate": 0.033333333333333326,
+      "input_tokens": 54391,
+      "output_tokens": 7441,
+      "cached_calls": 0,
+      "cost_usd": null,
+      "pricing_per_million": null,
+      "results": [
+        {
+          "id": "requests/models.py::Response.json",
+          "file": "requests/models.py",
+          "function": "Response.json",
+          "line": 942,
+          "priority": "MEDIUM",
+          "priority_score": 70,
+          "reason": "The function `json()` in requests/models.py has a high cyclomatic complexity of 8 and is used in 17 call sites. It also has a low maintainability index of 21.89. Additionally, it has 2 code smells (lint/refactor findings) and is not flagged as dead code. The score is used to rank items against each other.",
+          "action": "Refactor the `json()` function to reduce its cyclomatic complexity and improve maintainability. Consider using a more robust method for detecting the encoding of the response body, such as using the `json.loads()` function with the `encoding` parameter. Additionally, consider adding more informative error messages to handle JSON decoding errors.",
+          "llm_rank": 1
+        },
+        {
+          "id": "requests/models.py::PreparedRequest.prepare_body",
+          "file": "requests/models.py",
+          "function": "PreparedRequest.prepare_body",
+          "line": 494,
+          "priority": "MEDIUM",
+          "priority_score": 60,
+          "reason": "PreparedRequest.prepare_body() in requests/models.py has a high cyclomatic complexity of 17 and is a function-level debt item. It is also a recent change with recent commits and defect-linked history. Additionally, it has a composite static debt score of 7.52 / 10, indicating a moderate level of technical debt. A refactoring action could be to simplify the function and reduce its cyclomatic complexity.",
+          "action": "Simplify the function by reducing its cyclomatic complexity. This can be achieved by breaking down the logic into smaller, more manageable functions or by using a more efficient algorithm. Additionally, consider using a more efficient data structure or algorithm to reduce the time complexity of the function. This will not only improve the readability and maintainability of the code but also improve the performance of the application.",
+          "llm_rank": 2
+        },
+        {
+          "id": "requests/models.py::Response.iter_content.generate",
+          "file": "requests/models.py",
+          "function": "Response.iter_content.generate",
+          "line": 811,
+          "priority": "MEDIUM",
+          "priority_score": 60,
+          "reason": "The `generate()` method in the `requests.models.Response` class is generating chunks of content, which can lead to memory issues and potential memory leaks. This is a medium-priority issue because it can cause defects or slow down frequent changes, but it is not actively causing or very likely to cause defects or slow down frequent changes.",
+          "action": "Refactor the `generate()` method to return the content as a single string instead of chunks. This will improve memory efficiency and prevent potential memory leaks.",
+          "llm_rank": 3
+        },
+        {
+          "id": "requests/adapters.py::BaseAdapter.send",
+          "file": "requests/adapters.py",
+          "function": "BaseAdapter.send",
+          "line": 76,
+          "priority": "MEDIUM",
+          "priority_score": 50,
+          "reason": "The `send()` method in requests/adapters.py has a high complexity score of 7 and is called from multiple places in the library. Additionally, it has a relatively low maintainability index of 51.8, indicating that it may be difficult to understand and maintain. Furthermore, the method has a composite static debt score of 2.13 / 10, which is lower than the threshold of 7.0. However, it is still considered a high-priority item due to its complexity and potential impact on the codebase.",
+          "action": "Refactor the `send()` method to improve its readability and maintainability. Consider using a more Pythonic approach to handle the request and response objects, and ensure that the method is properly documented and tested.",
+          "llm_rank": 4
+        },
+        {
+          "id": "requests/api.py::delete",
+          "file": "requests/api.py",
+          "function": "delete",
+          "line": 148,
+          "priority": "MEDIUM",
+          "priority_score": 50,
+          "reason": "The delete() function in requests/api.py has a missing timeout argument, which can cause the program to hang indefinitely. This is a medium-priority issue because it can potentially cause defects or slow down frequent changes.",
+          "action": "Add a timeout argument to the delete() function in requests/api.py. This can be done by adding a timeout parameter to the request method, like this: requests.request('delete', url, timeout=10). This will ensure that the request does not hang indefinitely and will instead return a response object with a timeout attribute.",
+          "llm_rank": 5
+        },
+        {
+          "id": "requests/api.py::get",
+          "file": "requests/api.py",
+          "function": "get",
+          "line": 62,
+          "priority": "MEDIUM",
+          "priority_score": 50,
+          "reason": "The `get()` function in requests/api.py has a missing timeout argument, which can cause the program to hang indefinitely. This is a medium-priority issue because it can potentially cause defects or slow down frequent changes.",
+          "action": "Add a timeout argument to the `get()` function in requests/api.py. This can be done by adding a `timeout` parameter to the `request()` function call. For example: `request(",
+          "llm_rank": 6
+        },
+        {
+          "id": "requests/api.py::head",
+          "file": "requests/api.py",
+          "function": "head",
+          "line": 88,
+          "priority": "MEDIUM",
+          "priority_score": 50,
+          "reason": "The `head` function in requests/api.py has a missing timeout argument, which can cause the program to hang indefinitely. This is a moderate risk, as it can lead to unexpected behavior or crashes, but it is not a critical issue. A refactoring action to add a timeout argument to the `head` function would help mitigate this risk.",
+          "action": "Add a timeout argument to the `head` function in requests/api.py. This can be done by adding a `timeout` parameter to the `request` function call, as shown in the example below. This will ensure that the request is not delayed indefinitely due to a timeout error.",
+          "llm_rank": 7
+        },
+        {
+          "id": "requests/api.py::patch",
+          "file": "requests/api.py",
+          "function": "patch",
+          "line": 133,
+          "priority": "MEDIUM",
+          "priority_score": 50,
+          "reason": "The patch() function in requests/api.py has a missing timeout argument, which can cause the program to hang indefinitely. This is a moderate risk, as it can lead to unexpected behavior or crashes in certain scenarios.",
+          "action": "Add a timeout argument to the patch() function in requests/api.py. This can be done by adding a timeout parameter to the request method, similar to the existing request() function. This will ensure that the request is not blocked indefinitely and will instead return a timeout error if the request takes too long to complete.",
+          "llm_rank": 8
+        },
+        {
+          "id": "requests/auth.py::HTTPBasicAuth.__eq__",
+          "file": "requests/auth.py",
+          "function": "HTTPBasicAuth.__eq__",
+          "line": 83,
+          "priority": "MEDIUM",
+          "priority_score": 50,
+          "reason": "The `HTTPBasicAuth.__eq__()` function in requests/auth.py has a high complexity score of 1 (rank A) and 7 LOC. It is also a function-level history item, and the file-level history shows that it has been changed in 4 commit(s), 0 of them bug fixes. Additionally, the code smells and style-only findings are 0, and the duplicated lines are 7. The static metrics show that the maintainability index is 47.35, and the file code churn is not measured. Recurring bug-fix file is not measured. The test coverage is 87.9%, and the documentation is '(no docstring)'. The static metrics show that the function-level history shows that it has been changed in 4 commit(s), 0 of them bug fixes, and the recent commits show that it has been changed in 4 commit(s), 0 of them bug fixes. The coverage is 87.9%, and the defect-linked commits show that it has been linked to 3 defect commits. The recent commits show that it has been changed in 4 commit(s), 0 of them bug fixes. The code smells show that there are 0, and the style-only findings show that there are 0. The duplicated lines show that there are 7, and the flagged as dead code shows that there are no dead code. The composite static debt score is 2.31 / 10.",
+          "action": "Refactor the `HTTPBasicAuth.__eq__()` function to use a more secure method of authentication, such as OAuth or JWT. This will improve the security of the application and reduce the risk of unauthorized access. Additionally, consider implementing a more secure method of authentication to protect against potential attacks. This will help to ensure the integrity and confidentiality of the application's data.",
+          "llm_rank": 9
+        },
+        {
+          "id": "requests/auth.py::_basic_auth_str",
+          "file": "requests/auth.py",
+          "function": "_basic_auth_str",
+          "line": 25,
+          "priority": "MEDIUM",
+          "priority_score": 50,
+          "reason": "The function is used in multiple places and has a relatively high cyclomatic complexity. Additionally, it has a low maintainability index, indicating that it may be difficult to understand and modify in the future. The function also has a high number of duplicated lines, which could be refactored into a single function.",
+          "action": "Refactor the function to reduce duplicated lines and improve maintainability. Consider using a single function to handle both username and password encoding, and use a more robust method for encoding the credentials. Additionally, consider using a more secure method for encoding the credentials, such as using a secure random number generator to generate a random salt and then encoding the credentials with the salt. This would help to prevent common attacks such as dictionary attacks and rainbow table attacks.",
+          "llm_rank": 10
+        },
+        {
+          "id": "requests/cookies.py::merge_cookies",
+          "file": "requests/cookies.py",
+          "function": "merge_cookies",
+          "line": 542,
+          "priority": "MEDIUM",
+          "priority_score": 50,
+          "reason": "The `merge_cookies()` function in requests/cookies.py has a high cyclomatic complexity of 6 and is used in a variety of call sites. Additionally, it has a low maintainability index of 39.76, indicating that it is not well-maintained and may be prone to errors. Furthermore, it has a composite static debt score of 3.61 / 10, which is lower than the threshold for HIGH. However, it is still a critical function that is frequently used, so it should be prioritized for refactoring.",
+          "action": "Refactor the `merge_cookies()` function to reduce its cyclomatic complexity and improve its maintainability. Consider using a more efficient algorithm or data structure to handle the merging of cookies. Additionally, consider adding more comprehensive testing to ensure that the function works correctly in all scenarios.",
+          "llm_rank": 11
+        },
+        {
+          "id": "requests/help.py::_implementation",
+          "file": "requests/help.py",
+          "function": "_implementation",
+          "line": 34,
+          "priority": "MEDIUM",
+          "priority_score": 50,
+          "reason": "This function is used in multiple places and is a part of the requests library. It is also used to provide information about the Python implementation and version. While it is not causing any immediate issues, it is a good practice to refactor this function to make it more Pythonic and easier to maintain.",
+          "action": "Refactor the function to use f-strings instead of string joins. This will improve readability and make the code more Pythonic. Additionally, consider adding a docstring to explain the purpose of the function and its parameters.",
+          "llm_rank": 12
+        },
+        {
+          "id": "requests/models.py::PreparedRequest.prepare_auth",
+          "file": "requests/models.py",
+          "function": "PreparedRequest.prepare_auth",
+          "line": 588,
+          "priority": "MEDIUM",
+          "priority_score": 50,
+          "reason": "PreparedRequest.prepare_auth() in requests/models.py is a function that prepares the HTTP auth data. This function is used in multiple places in the library, and it is also called from tests. The function is not used in a way that would cause defects or slow down frequent changes, but it is a potential source of technical debt. Therefore, I recommend refactoring this function to make it more efficient and easier to maintain.",
+          "action": "Refactor the prepare_auth() function to make it more efficient and easier to maintain. This could involve simplifying the logic, reducing the number of checks, or using more efficient data structures. Additionally, consider adding unit tests to ensure that the function behaves correctly in different scenarios.",
+          "llm_rank": 13
+        },
+        {
+          "id": "requests/models.py::RequestEncodingMixin._encode_files",
+          "file": "requests/models.py",
+          "function": "RequestEncodingMixin._encode_files",
+          "line": 137,
+          "priority": "MEDIUM",
+          "priority_score": 50,
+          "reason": "The function `_encode_files` in the `requests` library has a high complexity score of 7 and is frequently called. It also has a low maintainability index of 21.89, indicating that it is not well-maintained and may cause defects or slow down frequent changes. Additionally, it has a high cyclomatic complexity of 21, which suggests that it has many conditional statements and loops, making it harder to understand and maintain. Therefore, it is recommended to refactor this function to improve its maintainability and reduce its complexity.",
+          "action": "Refactor the `_encode_files` function to improve its maintainability and reduce its complexity. This can be done by breaking down the function into smaller, more manageable pieces, and using more efficient algorithms to encode the files. Additionally, it may be beneficial to add more comments and documentation to explain the purpose and behavior of the function.",
+          "llm_rank": 14
+        },
+        {
+          "id": "requests/models.py::Response.__setstate__",
+          "file": "requests/models.py",
+          "function": "Response.__setstate__",
+          "line": 719,
+          "priority": "MEDIUM",
+          "priority_score": 50,
+          "reason": "The `Response.__setstate__` function is a part of the `requests` library, which is used for handling HTTP responses. However, the function is not well-documented and does not follow standard Python naming conventions. Additionally, the function is not used in any critical parts of the codebase, but it is called in some places where it could potentially cause issues. Therefore, it is recommended to refactor the function to follow standard naming conventions and add documentation to make it more understandable and maintainable.",
+          "action": "Refactor the `Response.__setstate__` function to follow standard Python naming conventions and add documentation. This will improve the readability and maintainability of the codebase.",
+          "llm_rank": 15
+        },
+        {
+          "id": "requests/sessions.py::Session.__init__",
+          "file": "requests/sessions.py",
+          "function": "Session.__init__",
+          "line": 390,
+          "priority": "MEDIUM",
+          "priority_score": 50,
+          "reason": "Session.__init__() in requests/sessions.py (line 390) is a function that sets up the session, which is a critical component of the requests library. This function is called from multiple places in the codebase, including the `requests.session()` function and the `Session` class. This function is also used to set up the session for each request, which is a critical step in the request processing pipeline. As such, this function should be refactored to improve its performance and maintainability.",
+          "action": "Refactor the `Session.__init__()` function to improve its performance and maintainability. This can be achieved by extracting the common setup logic into a separate method or class, and by using a more efficient data structure to store the session configuration. Additionally, the function can be optimized by reducing the number of database queries or by using a more efficient data structure to store the session configuration. By refactoring this function, the overall performance and maintainability of the codebase can be improved.",
+          "llm_rank": 16
+        },
+        {
+          "id": "requests/sessions.py::Session.merge_environment_settings",
+          "file": "requests/sessions.py",
+          "function": "Session.merge_environment_settings",
+          "line": 750,
+          "priority": "MEDIUM",
+          "priority_score": 50,
+          "reason": "The `merge_environment_settings()` function in requests/sessions.py has a high complexity score of 8, indicating that it is likely to cause or have a high impact on defects or slow down frequent changes. Additionally, it has a relatively low maintainability index of 38.09, suggesting that it may not be easy to understand or maintain. Furthermore, the function is called from multiple places in the library, indicating that it is likely to be frequently used. Therefore, I recommend refactoring this function to improve its readability, maintainability, and performance.",
+          "action": "Refactor the `merge_environment_settings()` function to improve its readability, maintainability, and performance. Consider using a more robust method for merging environment settings, such as using a configuration file or a library like `configparser`. Additionally, consider adding more comments and docstrings to explain the purpose and behavior of the function.",
+          "llm_rank": 17
+        },
+        {
+          "id": "requests/sessions.py::Session.put",
+          "file": "requests/sessions.py",
+          "function": "Session.put",
+          "line": 639,
+          "priority": "MEDIUM",
+          "priority_score": 50,
+          "reason": "The `put` method in the `requests` library has a high complexity score of 6 and a moderate number of parameters (2). It is also frequently called, with 11 recent commits and 3 defect-linked commits. Additionally, the method is not covered by tests, which could indicate a potential issue. The method's maintainability index is 38.09, which is lower than the library's average. The method's code smells are 0, and it has no duplicated lines. The method is not flagged as dead code, and its visibility is public. The composite static debt score is 2.68/10.",
+          "action": "Refactor the `put` method to improve its maintainability and readability. Consider using a more descriptive method name and adding docstrings to explain the method's purpose and parameters. Additionally, consider adding unit tests to ensure the method works correctly and is not prone to defects.",
+          "llm_rank": 18
+        },
+        {
+          "id": "requests/sessions.py::SessionRedirectMixin.should_strip_auth",
+          "file": "requests/sessions.py",
+          "function": "SessionRedirectMixin.should_strip_auth",
+          "line": 127,
+          "priority": "MEDIUM",
+          "priority_score": 50,
+          "reason": "SessionRedirectMixin.should_strip_auth() in requests/sessions.py (line 127) is a function that decides whether the Authorization header should be removed when redirecting. This function is used in the library and has a moderate impact on the codebase. It is a good candidate for refactoring to improve maintainability and reduce technical debt.",
+          "action": "Refactor the `SessionRedirectMixin.should_strip_auth()` function to make it more efficient and easier to understand. Consider using a more robust method to determine whether the Authorization header should be removed, such as using a library like `urllib.parse` to handle the hostname and port changes.",
+          "llm_rank": 19
+        },
+        {
+          "id": "requests/utils.py::extract_zipped_paths",
+          "file": "requests/utils.py",
+          "function": "extract_zipped_paths",
+          "line": 263,
+          "priority": "MEDIUM",
+          "priority_score": 50,
+          "reason": "Extracting zip paths is a common operation that can be performed in multiple ways. The current implementation uses string join, which can be replaced with f-string for better readability and maintainability. Additionally, the extracted path is not validated, which can lead to potential issues if the extracted path is not a valid file.",
+          "action": "Replace string join with f-string and validate the extracted path to ensure it is a valid file.",
+          "llm_rank": 20
+        },
+        {
+          "id": "requests/utils.py::get_encodings_from_content",
+          "file": "requests/utils.py",
+          "function": "get_encodings_from_content",
+          "line": 484,
+          "priority": "MEDIUM",
+          "priority_score": 50,
+          "reason": "The function `get_encodings_from_content` in requests/utils.py has a medium priority score due to its moderate complexity (9) and maintainability index (25.2). The function is used in various call sites, including 3 in the library and 8 in tests. Additionally, it is a function-level debt item, and its recent commits are 18, indicating that it is a relatively recent addition to the codebase. The function also has a composite static debt score of 3.19 / 10, which is a moderate score. The tool findings suggest that the function could be improved by using a single `if` statement instead of nested `if` statements, and the code smells indicate that the function could be improved by using a regular expression alias `re.I` instead of `re.I` alias `re.I`.",
+          "action": "Refactor the function `get_encodings_from_content` to use a single `if` statement instead of nested `if` statements. Additionally, use a regular expression alias `re.I` instead of `re.I` alias `re.I` to improve code readability and maintainability. This refactoring will improve the function's performance and make it easier to maintain in the future.",
+          "llm_rank": 21
+        },
+        {
+          "id": "requests/utils.py::parse_header_links",
+          "file": "requests/utils.py",
+          "function": "parse_header_links",
+          "line": 909,
+          "priority": "MEDIUM",
+          "priority_score": 50,
+          "reason": "parse_header_links() in requests/utils.py is a function that parses header links from a string. While it is not causing any immediate defects, it is a function that is frequently called and has a relatively high complexity score. Therefore, it is recommended to refactor this function to improve its maintainability and readability.",
+          "action": "Refactor the parse_header_links() function to improve its maintainability and readability. Consider using a more Pythonic way of parsing header links, such as using the `urlparse` module or a dedicated library like `linkparser`. This will make the function easier to understand and modify in the future, and will also improve its performance.",
+          "llm_rank": 22
+        },
+        {
+          "id": "requests/utils.py::prepend_scheme_if_needed",
+          "file": "requests/utils.py",
+          "function": "prepend_scheme_if_needed",
+          "line": 984,
+          "priority": "MEDIUM",
+          "priority_score": 50,
+          "reason": "The function `prepend_scheme_if_needed()` in requests/utils.py has a medium priority score due to its potential impact on the codebase. The function is used in various parts of the library, and a change to it could affect the overall maintainability and performance of the code. Additionally, the function has a medium complexity score, indicating that it may require some refactoring to improve its readability and maintainability. The function also has a medium code smell score, indicating that it may have some redundant or unnecessary code that could be refactored. Overall, the function is not critical, but a change to it could have a moderate impact on the codebase.",
+          "action": "Refactor the function `prepend_scheme_if_needed()` to improve its readability and maintainability. Consider using a more Pythonic way of handling the `auth` and `netloc` variables, and remove any redundant or unnecessary code. Additionally, consider adding more tests to ensure that the function works correctly in all scenarios.",
+          "llm_rank": 23
+        },
+        {
+          "id": "requests/adapters.py::HTTPAdapter.add_headers",
+          "file": "requests/adapters.py",
+          "function": "HTTPAdapter.add_headers",
+          "line": 398,
+          "priority": "MEDIUM",
+          "priority_score": 35,
+          "reason": "The function `add_headers` in the `requests/adapters.py` file is a function that is not used in the codebase. It is not called anywhere and is not necessary for the functionality of the library. However, it is still present in the codebase and could potentially be useful in the future. Therefore, it is recommended to refactor this function to remove it and make the code more efficient.",
+          "action": "Remove the `add_headers` function from the `requests/adapters.py` file. This will make the code more efficient and reduce the amount of code that needs to be maintained.",
+          "llm_rank": 24
+        },
+        {
+          "id": "requests/adapters.py::HTTPAdapter.send",
+          "file": "requests/adapters.py",
+          "function": "HTTPAdapter.send",
+          "line": 433,
+          "priority": "MEDIUM",
+          "priority_score": 35,
+          "reason": "HTTPAdapter.send() in requests/adapters.py (line 433) has a Cyclomatic complexity of 19 and is a function_debt item. It has been rated as MEDIUM by the static analysis tool.",
+          "action": "Refactor the send() method in requests/adapters.py to make it more efficient and easier to maintain. Consider using a more efficient method for handling the request and response objects, and make sure to handle any potential exceptions that may occur during the request process.",
+          "llm_rank": 25
+        },
+        {
+          "id": "requests/api.py::post",
+          "file": "requests/api.py",
+          "function": "post",
+          "line": 103,
+          "priority": "MEDIUM",
+          "priority_score": 35,
+          "reason": "The `post()` function in requests/api.py has a missing timeout argument, which can cause the program to hang indefinitely. This is a medium-priority issue because it can potentially cause defects or slow down frequent changes.",
+          "action": "Add a timeout argument to the `post()` function in requests/api.py. This can be done by adding a `timeout` parameter to the `request()` function call. For example: `request(",
+          "llm_rank": 26
+        },
+        {
+          "id": "requests/models.py::RequestEncodingMixin._encode_params",
+          "file": "requests/models.py",
+          "function": "RequestEncodingMixin._encode_params",
+          "line": 107,
+          "priority": "MEDIUM",
+          "priority_score": 35,
+          "reason": "The function `RequestEncodingMixin._encode_params()` is a helper function that encodes parameters in a piece of data. It is used in the `requests` library and is called by other functions. The function is not directly causing defects or slowing down frequent changes, but it is a potential source of bugs if not implemented correctly. Therefore, it is recommended to refactor this function to improve its readability and maintainability.",
+          "action": "Refactor the `RequestEncodingMixin._encode_params()` function to improve its readability and maintainability. Consider using a more Pythonic way of encoding and decoding data, such as using the `json` module or a library like `ujson`. Additionally, consider adding docstrings to the function to explain its purpose and usage.",
+          "llm_rank": 27
+        },
+        {
+          "id": "requests/models.py::Response.raise_for_status",
+          "file": "requests/models.py",
+          "function": "Response.raise_for_status",
+          "line": 992,
+          "priority": "MEDIUM",
+          "priority_score": 35,
+          "reason": "Response.raise_for_status() in requests/models.py (line 992) is a technical debt item that needs to be refactored.",
+          "action": "Refactor the `Response.raise_for_status()` method to improve code readability and maintainability. This can be achieved by extracting the HTTP status code and reason into separate variables, and then raising an `HTTPError` with a more informative message. This refactoring will also improve the overall code quality and make it easier to maintain in the future.",
+          "llm_rank": 28
+        },
+        {
+          "id": "requests/sessions.py::SessionRedirectMixin.rebuild_method",
+          "file": "requests/sessions.py",
+          "function": "SessionRedirectMixin.rebuild_method",
+          "line": 333,
+          "priority": "MEDIUM",
+          "priority_score": 35,
+          "reason": "SessionRedirectMixin.rebuild_method() in requests/sessions.py (line 333) is a function that may need to be modified based on certain specs or browser behavior. It has a moderate impact on the code and is relatively recent, with a recent commit.",
+          "action": "Refactor the function to handle redirects based on specific specs or browser behavior. This can be done by adding a new method to the SessionRedirectMixin class that checks the status code and method of the response and updates the request method accordingly. This refactoring can improve the code's maintainability and reduce the likelihood of future bugs.",
+          "llm_rank": 29
+        },
+        {
+          "id": "requests/sessions.py::SessionRedirectMixin.resolve_redirects",
+          "file": "requests/sessions.py",
+          "function": "SessionRedirectMixin.resolve_redirects",
+          "line": 159,
+          "error": "The model returned invalid JSON."
+        }
+      ]
+    }
+  ],
+  "summary": [
+    {
+      "model": "ollama/smollm2:1.7b",
+      "arm": "no_context",
+      "repeats": 3,
+      "mean_metrics": {
+        "auc_future_defect": 0.4541,
+        "ndcg@10_fix_commits": 0.24056666666666665,
+        "precision@10": 0.1,
+        "spearman_vs_change_commits": 0.2011
+      },
+      "mean_seconds": 732.043716899973,
+      "mean_call_seconds": 24.4013672099992,
+      "mean_cost_usd": null,
+      "mean_item_failure_rate": 0.055555555555555546,
+      "mean_schema_acceptance_rate": 0.9444444444444444,
+      "quality_n_items": 28,
+      "quality_n_positives": 3,
+      "pilot_interpretation": "descriptive only; repeat and dataset size are insufficient for a general model winner"
+    },
+    {
+      "model": "ollama/smollm2:1.7b",
+      "arm": "rag_context",
+      "repeats": 3,
+      "mean_metrics": {
+        "auc_future_defect": 0.5321,
+        "ndcg@10_fix_commits": 0.2015,
+        "precision@10": 0.1,
+        "spearman_vs_change_commits": 0.1603
+      },
+      "mean_seconds": 655.2899524666524,
+      "mean_call_seconds": 21.842869285551004,
+      "mean_cost_usd": null,
+      "mean_item_failure_rate": 0.033333333333333326,
+      "mean_schema_acceptance_rate": 0.9666666666666667,
+      "quality_n_items": 29,
+      "quality_n_positives": 3,
+      "pilot_interpretation": "descriptive only; repeat and dataset size are insufficient for a general model winner"
+    }
+  ],
+  "evaluation": {
+    "n_items": 30,
+    "n_positive": 3,
+    "methods": {
+      "ollama/smollm2:1.7b | no_context | 1": {
+        "spearman_vs_fix_commits": -0.0705,
+        "spearman_vs_change_commits": 0.2297,
+        "auc_future_defect": 0.46,
+        "ndcg@10_fix_commits": 0.2471,
+        "ndcg@10_change_commits": 0.3141,
+        "precision@5": 0.2,
+        "precision@10": 0.1,
+        "precision@20": 0.15,
+        "spearman_vs_change_commits_ci95": [
+          -0.1399,
+          0.5443
+        ],
+        "auc_future_defect_ci95": [
+          0.3889,
+          0.5385
+        ],
+        "ndcg@10_fix_commits_ci95": [
+          0.0,
+          0.6149
+        ],
+        "precision@5_ci95": [
+          0.0,
+          0.6
+        ],
+        "precision@10_ci95": [
+          0.0,
+          0.4
+        ],
+        "precision@20_ci95": [
+          0.0,
+          0.3
+        ]
+      },
+      "ollama/smollm2:1.7b | no_context | 2": {
+        "spearman_vs_fix_commits": -0.0705,
+        "spearman_vs_change_commits": 0.2297,
+        "auc_future_defect": 0.46,
+        "ndcg@10_fix_commits": 0.2471,
+        "ndcg@10_change_commits": 0.3141,
+        "precision@5": 0.2,
+        "precision@10": 0.1,
+        "precision@20": 0.15,
+        "spearman_vs_change_commits_ci95": [
+          -0.1399,
+          0.5443
+        ],
+        "auc_future_defect_ci95": [
+          0.3889,
+          0.5385
+        ],
+        "ndcg@10_fix_commits_ci95": [
+          0.0,
+          0.6149
+        ],
+        "precision@5_ci95": [
+          0.0,
+          0.6
+        ],
+        "precision@10_ci95": [
+          0.0,
+          0.4
+        ],
+        "precision@20_ci95": [
+          0.0,
+          0.3
+        ]
+      },
+      "ollama/smollm2:1.7b | no_context | 3": {
+        "spearman_vs_fix_commits": -0.0926,
+        "spearman_vs_change_commits": 0.1439,
+        "auc_future_defect": 0.4423,
+        "ndcg@10_fix_commits": 0.2275,
+        "ndcg@10_change_commits": 0.2651,
+        "precision@5": 0.0,
+        "precision@10": 0.1,
+        "precision@20": 0.15,
+        "spearman_vs_change_commits_ci95": [
+          -0.2212,
+          0.4754
+        ],
+        "auc_future_defect_ci95": [
+          0.3519,
+          0.5185
+        ],
+        "ndcg@10_fix_commits_ci95": [
+          0.0,
+          0.5188
+        ],
+        "precision@5_ci95": [
+          0.0,
+          0.4
+        ],
+        "precision@10_ci95": [
+          0.0,
+          0.3
+        ],
+        "precision@20_ci95": [
+          0.0,
+          0.3
+        ]
+      },
+      "ollama/smollm2:1.7b | rag_context | 1": {
+        "spearman_vs_fix_commits": 0.0203,
+        "spearman_vs_change_commits": 0.1603,
+        "auc_future_defect": 0.5321,
+        "ndcg@10_fix_commits": 0.2015,
+        "ndcg@10_change_commits": 0.4408,
+        "precision@5": 0.2,
+        "precision@10": 0.1,
+        "precision@20": 0.1,
+        "spearman_vs_change_commits_ci95": [
+          -0.3057,
+          0.5653
+        ],
+        "auc_future_defect_ci95": [
+          0.0714,
+          0.963
+        ],
+        "ndcg@10_fix_commits_ci95": [
+          0.0,
+          0.8922
+        ],
+        "precision@5_ci95": [
+          0.0,
+          0.6
+        ],
+        "precision@10_ci95": [
+          0.0,
+          0.3
+        ],
+        "precision@20_ci95": [
+          0.0,
+          0.25
+        ]
+      },
+      "ollama/smollm2:1.7b | rag_context | 2": {
+        "spearman_vs_fix_commits": 0.0203,
+        "spearman_vs_change_commits": 0.1603,
+        "auc_future_defect": 0.5321,
+        "ndcg@10_fix_commits": 0.2015,
+        "ndcg@10_change_commits": 0.4408,
+        "precision@5": 0.2,
+        "precision@10": 0.1,
+        "precision@20": 0.1,
+        "spearman_vs_change_commits_ci95": [
+          -0.3057,
+          0.5653
+        ],
+        "auc_future_defect_ci95": [
+          0.0714,
+          0.963
+        ],
+        "ndcg@10_fix_commits_ci95": [
+          0.0,
+          0.8922
+        ],
+        "precision@5_ci95": [
+          0.0,
+          0.6
+        ],
+        "precision@10_ci95": [
+          0.0,
+          0.3
+        ],
+        "precision@20_ci95": [
+          0.0,
+          0.25
+        ]
+      },
+      "ollama/smollm2:1.7b | rag_context | 3": {
+        "spearman_vs_fix_commits": 0.0203,
+        "spearman_vs_change_commits": 0.1603,
+        "auc_future_defect": 0.5321,
+        "ndcg@10_fix_commits": 0.2015,
+        "ndcg@10_change_commits": 0.4408,
+        "precision@5": 0.2,
+        "precision@10": 0.1,
+        "precision@20": 0.1,
+        "spearman_vs_change_commits_ci95": [
+          -0.3057,
+          0.5653
+        ],
+        "auc_future_defect_ci95": [
+          0.0714,
+          0.963
+        ],
+        "ndcg@10_fix_commits_ci95": [
+          0.0,
+          0.8922
+        ],
+        "precision@5_ci95": [
+          0.0,
+          0.6
+        ],
+        "precision@10_ci95": [
+          0.0,
+          0.3
+        ],
+        "precision@20_ci95": [
+          0.0,
+          0.25
+        ]
+      }
+    },
+    "method_n": {
+      "ollama/smollm2:1.7b | no_context | 1": 28,
+      "ollama/smollm2:1.7b | no_context | 2": 28,
+      "ollama/smollm2:1.7b | no_context | 3": 29,
+      "ollama/smollm2:1.7b | rag_context | 1": 29,
+      "ollama/smollm2:1.7b | rag_context | 2": 29,
+      "ollama/smollm2:1.7b | rag_context | 3": 29
+    },
+    "method_positive": {
+      "ollama/smollm2:1.7b | no_context | 1": 3,
+      "ollama/smollm2:1.7b | no_context | 2": 3,
+      "ollama/smollm2:1.7b | no_context | 3": 3,
+      "ollama/smollm2:1.7b | rag_context | 1": 3,
+      "ollama/smollm2:1.7b | rag_context | 2": 3,
+      "ollama/smollm2:1.7b | rag_context | 3": 3
+    }
+  },
+  "consistency": [
+    {
+      "model": "ollama/smollm2:1.7b",
+      "arm": "no_context",
+      "runs": [
+        1,
+        2
+      ],
+      "n_shared": 28,
+      "spearman": 1.0,
+      "exact_score_agreement": 1.0
+    },
+    {
+      "model": "ollama/smollm2:1.7b",
+      "arm": "no_context",
+      "runs": [
+        2,
+        3
+      ],
+      "n_shared": 28,
+      "spearman": 0.8855,
+      "exact_score_agreement": 0.9642857142857143
+    },
+    {
+      "model": "ollama/smollm2:1.7b",
+      "arm": "rag_context",
+      "runs": [
+        1,
+        2
+      ],
+      "n_shared": 29,
+      "spearman": 1.0,
+      "exact_score_agreement": 1.0
+    },
+    {
+      "model": "ollama/smollm2:1.7b",
+      "arm": "rag_context",
+      "runs": [
+        2,
+        3
+      ],
+      "n_shared": 29,
+      "spearman": 1.0,
+      "exact_score_agreement": 1.0
+    }
+  ],
+  "paired_model_comparisons": [],
+  "notes": [
+    "All quality metrics use the intersection of successful items across every run.",
+    "Inspect failure rates and shared sample size before comparing quality.",
+    "Schema acceptance includes transport/refusal failures; raw invalid-JSON rate is not exposed by every provider.",
+    "Costs use supplied per-million token rates; unknown prices are null. Provider retries may incur unreported usage.",
+    "Independent repeats use no disk cache. No best model is declared from incomplete evidence."
+  ]
+}

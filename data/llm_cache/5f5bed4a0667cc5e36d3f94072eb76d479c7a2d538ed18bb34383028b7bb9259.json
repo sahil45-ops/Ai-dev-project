@@ -1,0 +1,6 @@
+{
+ "priority": "HIGH",
+ "priority_score": 85,
+ "reason": "The send method has a cyclomatic complexity of 20, 115 LOC, and numerous lint warnings, duplicated code, and missing exception chaining. It is part of the public API, heavily used, and its complexity makes it fragile and hard to maintain, increasing the risk of defects during future changes.",
+ "action": "Refactor send into smaller, focused helper methods: extract timeout resolution, header handling, and exception handling into separate functions. Add explicit 'raise ... from e' for all re‑raised exceptions, remove duplicated logic, and simplify control flow to reduce complexity."
+}

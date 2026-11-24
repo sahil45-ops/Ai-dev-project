@@ -1,0 +1,5 @@
+{
+ "priority": "MEDIUM",
+ "priority_score": 60,
+ "reason": "The `remove_cookie_by_name()` function in requests/cookies.py carries technical debt related to duplicated code and inconsistent naming conventions. This debt matters for this repository because it can lead to code duplication, make maintenance more challenging, and potentially cause bugs to be introduced or harder to track down. The function is moderately complex (8 complexity) and has a moderate visibility (8 maintainability index). The score is calculated as a weighted average of the impact factors, with a higher weight given to the centrality of the function and the frequency of changes or breaks. The score is 60, indicating that this item should be refactored with a medium-high urgency."
+}

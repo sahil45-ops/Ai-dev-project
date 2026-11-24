@@ -1,0 +1,5 @@
+{
+ "priority": "LOW",
+ "priority_score": 2,
+ "reason": "The function `add_headers` in the `requests` library is a cosmetic change and does not have any significant impact on the code. It is not necessary to refactor this function and can be left as is."
+}

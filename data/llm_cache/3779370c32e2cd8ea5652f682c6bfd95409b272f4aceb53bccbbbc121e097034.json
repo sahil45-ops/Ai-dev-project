@@ -1,0 +1,6 @@
+{
+ "priority": "HIGH",
+ "priority_score": 85,
+ "reason": "The constructor is extremely complex (cyclomatic 28, 175 LOC, 16 parameters) and forms part of the public API with many call sites. Such a large, monolithic init is hard to maintain, test, and extend, and is likely to hide bugs or regressions. Refactoring will reduce cognitive load and improve reliability.",
+ "action": "Refactor the Context.__init__ method by extracting parameter handling into dedicated helper methods or a configuration dataclass, reducing the number of parameters, and splitting the logic into smaller, well‑named functions. This will lower cyclomatic complexity, improve readability, and make the constructor easier to test."
+}

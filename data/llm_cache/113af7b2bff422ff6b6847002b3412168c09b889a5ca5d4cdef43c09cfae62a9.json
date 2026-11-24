@@ -1,0 +1,6 @@
+{
+ "priority": "LOW",
+ "priority_score": 15,
+ "reason": "The helper function has an unused parameter, which is a lint warning and can confuse future maintainers. It is small, only called once, and not currently causing defects, so it is low impact.",
+ "action": "Remove the unused 'poolmanager' argument from the function signature and update the single call site accordingly."
+}

@@ -1,0 +1,5 @@
+{
+ "priority": "LOW",
+ "priority_score": 20,
+ "reason": "The function's visibility is private, and it has not been changed in the past two years. The function's recent commits are five, and none of them were bug fixes. The function's recent commits are not recent, and the function's coverage is 77.8%. The function's documentation is incomplete, and it does not provide a clear explanation of its purpose. The function's style-only findings include a warning about using a single `if` statement instead of nested `if` statements. The function's composite static debt score is 3.81 out of 10."
+}

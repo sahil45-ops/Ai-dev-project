@@ -1,0 +1,5 @@
+{
+ "priority": "LOW",
+ "priority_score": 20,
+ "reason": "The function `prepare_url()` in the `requests/models.py` file carries technical debt related to URL preparation. This debt is considered low severity."
+}

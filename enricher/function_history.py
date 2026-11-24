@@ -141,7 +141,7 @@ def parse_changed_lines(diff_text: str) -> dict[str, set[int]]:
 def _merge_messages(repo_path: str, since: str, until: str) -> dict[str, str]:
     """Map commit sha -> message of the merge commit that brought it into mainline."""
     out = _git(repo_path, "log", "--merges", "--first-parent",
-               f"--since={since}", f"--until={until}", "--format=%H %P%x1f%B%x1e")
+               f"--since={since}", f"--until={until}", "--format=%H %P %ct%x1f%B%x1e")
     inherited: dict[str, str] = {}
     for record in out.split("\x1e"):
         record = record.strip()
@@ -149,9 +149,11 @@ def _merge_messages(repo_path: str, since: str, until: str) -> dict[str, str]:
             continue
         header, message = record.split("\x1f", 1)
         parts = header.split()
-        if len(parts) < 3:
+        if len(parts) < 4:
             continue
-        p1, p2 = parts[1], parts[2]
+        p1, p2, timestamp = parts[1], parts[2], int(parts[3])
+        if not datetime.fromisoformat(since).timestamp() <= timestamp < datetime.fromisoformat(until).timestamp():
+            continue
         try:
             shas = _git(repo_path, "rev-list", f"{p1}..{p2}").split()
         except RuntimeError:
@@ -214,17 +216,21 @@ def build_function_history(
     """
     since_s, until_s = since.isoformat(), until.isoformat()
     log = _git(repo_path, "log", "--no-merges", f"--since={since_s}", f"--until={until_s}",
-               "--format=%x1e%H%x1f%B%x1f", "-p", "--unified=0", "--no-color", "-M",
+               "--format=%x1e%H%x1f%ct%x1f%B%x1f", "-p", "--unified=0", "--no-color", "-M",
                "--", *pathspec)
     inherited = _merge_messages(repo_path, since_s, until_s)
 
-    records = [r for r in log.split("\x1e") if r.count("\x1f") >= 2]
+    records = [r for r in log.split("\x1e") if r.count("\x1f") >= 3]
     history: dict[str, dict] = {}
     span_cache: dict[tuple[str, str], list[tuple[str, int, int]]] = {}
     blobs = _BlobReader(repo_path)
     try:
         for done, record in enumerate(records, 1):
-            sha, message, diff = record.split("\x1f", 2)
+            sha, timestamp, message, diff = record.split("\x1f", 3)
+            if not since.timestamp() <= int(timestamp) < until.timestamp():
+                continue
+            # Each (sha, path) is visited once; retain spans only for this commit.
+            span_cache.clear()
             sha = sha.strip()
             is_fix = is_defect_fix(message) or is_defect_fix(inherited.get(sha, ""))
 

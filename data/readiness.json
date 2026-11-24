@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-07T17:20:52.148537+00:00",
+  "generated": "2026-10-27T19:35:51.359437+00:00",
   "research_complete": false,
   "checks": [
     {
@@ -15,7 +15,7 @@
     {
       "check": "LLM + RAG experiment",
       "passed": false,
-      "detail": "0/84 successful rankings"
+      "detail": "71/84 successful rankings"
     },
     {
       "check": "Matched no-context experiment",
@@ -29,12 +29,12 @@
     },
     {
       "check": "Measured refactoring experiment",
-      "passed": false,
-      "detail": "0/0 proposals passed the gate"
+      "passed": true,
+      "detail": "0/5 proposals passed the gate"
     },
     {
       "check": "API credential configured",
-      "passed": true,
+      "passed": false,
       "detail": "Presence only; account balance and access are not verified by this audit"
     }
   ]

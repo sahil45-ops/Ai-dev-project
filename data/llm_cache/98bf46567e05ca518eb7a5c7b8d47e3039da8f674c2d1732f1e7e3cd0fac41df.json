@@ -1,0 +1,6 @@
+{
+ "priority": "HIGH",
+ "priority_score": 85,
+ "reason": "The public get_params method has a cyclomatic complexity of 17 and a maintainability index of 0.0, making it difficult to understand and maintain. It is frequently called within the library (9 call sites) and could silently introduce bugs through duplicate option or name handling. Refactoring will reduce complexity, improve testability, and lower the risk of defects.",
+ "action": "Extract the duplicate‑option and duplicate‑name warning logic into two private helper methods (e.g., _warn_duplicate_opts and _warn_duplicate_names). Simplify get_params to build the params list, call the helpers, and return the list. Add a concise docstring and type hints for clarity."
+}

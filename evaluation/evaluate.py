@@ -20,9 +20,18 @@ from __future__ import annotations
 import math
 from typing import Any
 
-from evaluation.metrics import (bootstrap_ci, kendall, ndcg_at_k, order_from_scores,
-                                precision_at_k, resampled_spearman, roc_auc, spearman,
-                                topk_overlap)
+from evaluation.explanations import ADVANCED, BASE, HISTORY, explain_heuristic
+from evaluation.metrics import (
+    bootstrap_ci,
+    kendall,
+    ndcg_at_k,
+    order_from_scores,
+    precision_at_k,
+    resampled_spearman,
+    roc_auc,
+    spearman,
+    topk_overlap,
+)
 
 METHOD_LABELS = {
     "static_score": "Static analysis (composite score)",
@@ -30,6 +39,8 @@ METHOD_LABELS = {
     "context_heuristic": "Context heuristic (no LLM)",
     "llm": "LLM + RAG context (proposed)",
     "llm_nocontext": "LLM without context (ablation)",
+    "context_no_history": "Context heuristic without Git history",
+    "context_advanced": "Context heuristic with advanced Git history",
 }
 
 _HEURISTIC_FEATURES = (
@@ -44,14 +55,7 @@ _HEURISTIC_FEATURES = (
 
 def context_heuristic_scores(items: list[dict]) -> dict[str, float]:
     """Equal-weight mean of min–max normalised features."""
-    columns = {name: [f(x) for x in items] for name, f in _HEURISTIC_FEATURES}
-    scores = {x["id"]: 0.0 for x in items}
-    for values in columns.values():
-        lo, hi = min(values), max(values)
-        span = (hi - lo) or 1.0
-        for x, v in zip(items, values):
-            scores[x["id"]] += (v - lo) / span / len(columns)
-    return {k: round(v, 5) for k, v in scores.items()}
+    return {k: v["score"] for k, v in explain_heuristic(items).items()}
 
 
 def collect_methods(items: list[dict], llm: list[dict] | None,
@@ -67,6 +71,12 @@ def collect_methods(items: list[dict], llm: list[dict] | None,
     methods["complexity"] = {"scores": cx, "order": order_from_scores(cx)}
     ch = context_heuristic_scores(items)
     methods["context_heuristic"] = {"scores": ch, "order": order_from_scores(ch)}
+    for name, features in (("context_no_history", BASE),
+                           ("context_advanced", BASE + HISTORY + ADVANCED)):
+        if name == "context_advanced" and not any(x.get("code_churn") is not None for x in items):
+            continue
+        sc = {k: v["score"] for k, v in explain_heuristic(items, features).items()}
+        methods[name] = {"scores": sc, "order": order_from_scores(sc)}
     for name, results in (("llm", llm), ("llm_nocontext", llm_nocontext)):
         ok = [r for r in (results or []) if "error" not in r and "llm_rank" in r]
         if ok:
@@ -80,6 +90,28 @@ def collect_methods(items: list[dict], llm: list[dict] | None,
 def _restrict(method: dict, ids: set[str]) -> dict:
     return {"scores": {k: v for k, v in method["scores"].items() if k in ids},
             "order": [i for i in method["order"] if i in ids]}
+
+
+def _ranking_intervals(method, gains, labels, ks, n_boot=500):
+    """Item bootstrap, retaining duplicate observations and the original tie order."""
+    ids = sorted(gains)
+    positions = {item: rank for rank, item in enumerate(method["order"])}
+    def statistic(sample, metric):
+        ordered = sorted(range(len(sample)), key=lambda j: (positions[sample[j]], j))
+        scores = {str(j): method["scores"][item] for j, item in enumerate(sample)}
+        sampled_gains = {str(j): gains[item] for j, item in enumerate(sample)}
+        order = [str(j) for j in ordered]
+        if metric == "auc_future_defect":
+            return roc_auc(scores, {str(j): labels[item] for j, item in enumerate(sample)})
+        if metric == "ndcg@10_fix_commits":
+            return ndcg_at_k(order, sampled_gains, 10)
+        k = int(metric.split("@")[1])
+        relevant = {str(j) for j, item in enumerate(sample) if labels[item]}
+        return precision_at_k(order, relevant, k)
+    keys = ["auc_future_defect", "ndcg@10_fix_commits"] + [
+        f"precision@{k}" for k in ks if k <= len(ids)]
+    return {key + "_ci95": list(bootstrap_ci(ids, lambda s, key=key: statistic(s, key), n_boot=n_boot))
+            for key in keys}
 
 
 def evaluate_against_defects(methods: dict, ground_truth: dict, ks=(5, 10, 20)) -> dict:
@@ -103,6 +135,7 @@ def evaluate_against_defects(methods: dict, ground_truth: dict, ks=(5, 10, 20)) 
                 row[f"precision@{k}"] = precision_at_k(m["order"], relevant, k)
         lo, hi = bootstrap_ci(sorted(ids), lambda s, sc=m["scores"]: resampled_spearman(sc, changes, s))
         row["spearman_vs_change_commits_ci95"] = [lo, hi]
+        row.update(_ranking_intervals(m, fixes, labels, ks))
         out["methods"][name] = row
     return out
 
@@ -145,5 +178,6 @@ def paired_difference(method_a: dict, method_b: dict, truth: dict[str, float]) -
     point_b = spearman(method_b["scores"], shared_truth)
     lo, hi = bootstrap_ci(ids, diff)
     point = None if point_a is None or point_b is None else round(point_a - point_b, 4)
-    return {"delta_spearman": point, "ci95": [lo, hi],
-            "significant": lo is not None and (lo > 0 or hi < 0)}
+    return {"delta_spearman": point, "ci95": [lo, hi], "n_items": len(ids),
+            "inference": "Exploratory paired item bootstrap; unadjusted for multiple comparisons.",
+            "significant": bool(lo is not None and (lo > 0 or hi < 0))}

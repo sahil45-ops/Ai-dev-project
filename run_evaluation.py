@@ -27,7 +27,21 @@ import hashlib
 from pathlib import Path
 from datetime import datetime, timezone
 
+import numpy as np
 import config
+
+
+class _NumpySafeEncoder(json.JSONEncoder):
+    """Handle numpy scalar types that stdlib json cannot serialise."""
+    def default(self, o):
+        if isinstance(o, (np.bool_, np.generic)):
+            if isinstance(o, np.bool_):
+                return bool(o)
+            if isinstance(o, np.integer):
+                return int(o)
+            if isinstance(o, np.floating):
+                return float(o)
+        return super().default(o)
 from evaluation.evaluate import (METHOD_LABELS, collect_methods, evaluate_against_defects,
                                  evaluate_against_experts, paired_difference)
 from evaluation.expert import agreement, consensus, load_raters, make_expert_sample
@@ -201,9 +215,13 @@ def main() -> int:
         good = [r for r in rows if "llm_rank" in r and "error" not in r]
         provenance = _load(paths[key].replace(".json", "_provenance.json"), {})
         digest = hashlib.sha256(Path(paths["items"]).read_bytes()).hexdigest()
-        if len(good) != len(items) or {r['id'] for r in good} != ids:
-            exclusions.append(f"{key}: {len(good)}/{len(items)} successful items; excluded from full-dataset comparison")
+        if not good:
+            exclusions.append(f"{key}: no successful items; excluded")
             return None
+        if len(good) < len(items):
+            n_err = len(items) - len(good)
+            exclusions.append(f"{key}: {len(good)}/{len(items)} successful items "
+                              f"({n_err} errors); using partial results")
         if provenance and provenance.get('dataset_sha256') != digest:
             exclusions.append(f"{key}: dataset fingerprint changed; rerun this experiment")
             return None
@@ -236,7 +254,8 @@ def main() -> int:
     changes = {i: float(g["future_commits"]) for i, g in ground_truth.items()}
     paired = []
     for a, b in (("llm", "static_score"), ("llm", "complexity"), ("llm", "llm_nocontext"),
-                 ("llm", "context_heuristic")):
+                 ("llm", "context_heuristic"), ("context_heuristic", "context_no_history"),
+                 ("context_advanced", "context_heuristic")):
         if a in methods and b in methods:
             for truth_name, truth in (("experts", expert_scores), ("changes", changes)):
                 if len(truth) >= 3:
@@ -247,7 +266,7 @@ def main() -> int:
         print(f"[eval] {note}")
 
     with open(paths["evaluation"], "w", encoding="utf-8") as fh:
-        json.dump(results, fh, indent=2)
+        json.dump(results, fh, indent=2, cls=_NumpySafeEncoder)
     report = os.path.join(config.REPORTS_DIR, f"{args.repo_name}_evaluation_report.md")
     write_report(report, args.repo_name, meta, results, _load(paths["refactoring"]))
 

@@ -1,0 +1,14 @@
+{
+ "summary": "This function in the requests library carries technical debt related to its complexity and maintainability. The function has a high cyclomatic complexity of 3, indicating that it has multiple conditional statements and nested loops. Additionally, the function is not well-documented, and its purpose is not clearly defined. This lack of documentation and complexity makes it difficult to understand and maintain.",
+ "debt_indicators": [
+  "deep nesting",
+  "mixed responsibilities",
+  "duplicated branches"
+ ],
+ "impact_factors": [
+  "how central the function is",
+  "how often it changes or breaks",
+  "how well it is tested"
+ ],
+ "risk_assessment": "high"
+}

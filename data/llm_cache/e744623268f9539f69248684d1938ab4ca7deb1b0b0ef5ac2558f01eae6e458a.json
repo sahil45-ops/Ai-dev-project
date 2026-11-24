@@ -1,0 +1,14 @@
+{
+ "summary": "This function in the `requests` library carries technical debt due to its high complexity and low maintainability index. The function's complexity is ranked as A, indicating a high risk of future maintenance issues. Additionally, the function has 7 lines of code, which is a moderate indicator of potential issues. The function is not flagged as dead code, but it is worth considering refactoring to improve its maintainability.",
+ "debt_indicators": [
+  "high complexity",
+  "low maintainability index",
+  "moderate LOC"
+ ],
+ "impact_factors": [
+  "moderate risk of future maintenance issues",
+  "moderate potential for code duplication",
+  "moderate potential for duplicated lines"
+ ],
+ "risk_assessment": "low"
+}

@@ -1,0 +1,6 @@
+{
+ "priority": "LOW",
+ "priority_score": 30,
+ "reason": "The unused ``kwargs`` parameter in ``Serializer.loads`` is a cosmetic lint issue that does not affect functionality or performance. It only adds unnecessary noise to the public API and could mislead callers. Removing or documenting the parameter would improve clarity without impacting existing behavior.",
+ "action": "Remove the unused ``kwargs`` parameter from the method signature and add a comment explaining that it is retained for backward compatibility, or deprecate it if no longer needed."
+}

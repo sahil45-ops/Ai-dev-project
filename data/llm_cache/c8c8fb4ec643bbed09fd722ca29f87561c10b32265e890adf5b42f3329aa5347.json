@@ -1,0 +1,14 @@
+{
+ "summary": "Session.send() in requests/sessions.py carries technical debt related to handling redirects, cookies, and response manipulation. This debt matters for this repository because it can lead to issues with redirect handling, cookie management, and response manipulation. The debt is moderate, with a composite score of 5.68 out of 10.",
+ "debt_indicators": [
+  "deep nesting",
+  "mixed responsibilities",
+  "duplicated branches"
+ ],
+ "impact_factors": [
+  "how central the function is",
+  "how often it changes or breaks",
+  "how well it is tested"
+ ],
+ "risk_assessment": "moderate"
+}

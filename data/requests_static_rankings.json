@@ -294,7 +294,7 @@
     "static_score": 3.99,
     "complexity": 5,
     "static_rank": 33,
-    "complexity_rank": 47
+    "complexity_rank": 48
   },
   {
     "id": "requests/sessions.py::SessionRedirectMixin.rebuild_method",
@@ -330,7 +330,16 @@
     "static_score": 3.79,
     "complexity": 4,
     "static_rank": 37,
-    "complexity_rank": 49
+    "complexity_rank": 50
+  },
+  {
+    "id": "requests/utils.py::rewind_body",
+    "file": "requests/utils.py",
+    "function": "rewind_body",
+    "static_score": 3.79,
+    "complexity": 4,
+    "static_rank": 38,
+    "complexity_rank": 51
   },
   {
     "id": "requests/models.py::Response.__getstate__",
@@ -338,8 +347,8 @@
     "function": "Response.__getstate__",
     "static_score": 3.72,
     "complexity": 3,
-    "static_rank": 38,
-    "complexity_rank": 52
+    "static_rank": 39,
+    "complexity_rank": 56
   },
   {
     "id": "requests/sessions.py::Session.prepare_request",
@@ -347,7 +356,7 @@
     "function": "Session.prepare_request",
     "static_score": 3.68,
     "complexity": 6,
-    "static_rank": 39,
+    "static_rank": 40,
     "complexity_rank": 31
   },
   {
@@ -356,7 +365,7 @@
     "function": "SessionRedirectMixin.rebuild_proxies",
     "static_score": 3.68,
     "complexity": 6,
-    "static_rank": 40,
+    "static_rank": 41,
     "complexity_rank": 34
   },
   {
@@ -365,7 +374,7 @@
     "function": "merge_cookies",
     "static_score": 3.61,
     "complexity": 6,
-    "static_rank": 41,
+    "static_rank": 42,
     "complexity_rank": 39
   },
   {
@@ -374,7 +383,7 @@
     "function": "RequestsCookieJar.get_dict",
     "static_score": 3.61,
     "complexity": 6,
-    "static_rank": 42,
+    "static_rank": 43,
     "complexity_rank": 42
   },
   {
@@ -383,8 +392,26 @@
     "function": "from_key_val_list",
     "static_score": 3.59,
     "complexity": 3,
-    "static_rank": 43,
-    "complexity_rank": 50
+    "static_rank": 44,
+    "complexity_rank": 52
+  },
+  {
+    "id": "requests/models.py::PreparedRequest.copy",
+    "file": "requests/models.py",
+    "function": "PreparedRequest.copy",
+    "static_score": 3.52,
+    "complexity": 2,
+    "static_rank": 45,
+    "complexity_rank": 59
+  },
+  {
+    "id": "requests/models.py::PreparedRequest._get_idna_encoded_host",
+    "file": "requests/models.py",
+    "function": "PreparedRequest._get_idna_encoded_host",
+    "static_score": 3.52,
+    "complexity": 2,
+    "static_rank": 46,
+    "complexity_rank": 61
   },
   {
     "id": "requests/models.py::Response.__setstate__",
@@ -392,8 +419,26 @@
     "function": "Response.__setstate__",
     "static_score": 3.52,
     "complexity": 2,
-    "static_rank": 44,
-    "complexity_rank": 55
+    "static_rank": 47,
+    "complexity_rank": 62
+  },
+  {
+    "id": "requests/models.py::Response.is_permanent_redirect",
+    "file": "requests/models.py",
+    "function": "Response.is_permanent_redirect",
+    "static_score": 3.52,
+    "complexity": 2,
+    "static_rank": 48,
+    "complexity_rank": 63
+  },
+  {
+    "id": "requests/cookies.py::morsel_to_cookie",
+    "file": "requests/cookies.py",
+    "function": "morsel_to_cookie",
+    "static_score": 3.41,
+    "complexity": 5,
+    "static_rank": 49,
+    "complexity_rank": 47
   },
   {
     "id": "requests/utils.py::urldefragauth",
@@ -401,8 +446,8 @@
     "function": "urldefragauth",
     "static_score": 3.39,
     "complexity": 2,
-    "static_rank": 45,
-    "complexity_rank": 53
+    "static_rank": 50,
+    "complexity_rank": 57
   },
   {
     "id": "requests/utils.py::proxy_bypass",
@@ -410,8 +455,8 @@
     "function": "proxy_bypass",
     "static_score": 3.39,
     "complexity": 2,
-    "static_rank": 46,
-    "complexity_rank": 54
+    "static_rank": 51,
+    "complexity_rank": 60
   },
   {
     "id": "requests/models.py::PreparedRequest.prepare",
@@ -419,8 +464,8 @@
     "function": "PreparedRequest.prepare",
     "static_score": 3.32,
     "complexity": 1,
-    "static_rank": 47,
-    "complexity_rank": 58
+    "static_rank": 52,
+    "complexity_rank": 67
   },
   {
     "id": "requests/models.py::Response.__bool__",
@@ -428,8 +473,8 @@
     "function": "Response.__bool__",
     "static_score": 3.32,
     "complexity": 1,
-    "static_rank": 48,
-    "complexity_rank": 67
+    "static_rank": 53,
+    "complexity_rank": 80
   },
   {
     "id": "requests/models.py::Response.__nonzero__",
@@ -437,8 +482,8 @@
     "function": "Response.__nonzero__",
     "static_score": 3.32,
     "complexity": 1,
-    "static_rank": 49,
-    "complexity_rank": 68
+    "static_rank": 54,
+    "complexity_rank": 81
   },
   {
     "id": "requests/sessions.py::Session.request",
@@ -446,8 +491,8 @@
     "function": "Session.request",
     "static_score": 3.28,
     "complexity": 4,
-    "static_rank": 50,
-    "complexity_rank": 48
+    "static_rank": 55,
+    "complexity_rank": 49
   },
   {
     "id": "requests/utils.py::get_encodings_from_content",
@@ -455,8 +500,8 @@
     "function": "get_encodings_from_content",
     "static_score": 3.19,
     "complexity": 1,
-    "static_rank": 51,
-    "complexity_rank": 59
+    "static_rank": 56,
+    "complexity_rank": 68
   },
   {
     "id": "requests/__init__.py::check_compatibility",
@@ -464,7 +509,7 @@
     "function": "check_compatibility",
     "static_score": 3.15,
     "complexity": 10,
-    "static_rank": 52,
+    "static_rank": 57,
     "complexity_rank": 15
   },
   {
@@ -473,7 +518,7 @@
     "function": "HTTPDigestAuth.handle_401",
     "static_score": 3.11,
     "complexity": 5,
-    "static_rank": 53,
+    "static_rank": 58,
     "complexity_rank": 45
   },
   {
@@ -482,8 +527,26 @@
     "function": "_basic_auth_str",
     "static_score": 3.11,
     "complexity": 5,
-    "static_rank": 54,
+    "static_rank": 59,
     "complexity_rank": 46
+  },
+  {
+    "id": "requests/cookies.py::extract_cookies_to_jar",
+    "file": "requests/cookies.py",
+    "function": "extract_cookies_to_jar",
+    "static_score": 3.01,
+    "complexity": 3,
+    "static_rank": 60,
+    "complexity_rank": 53
+  },
+  {
+    "id": "requests/cookies.py::RequestsCookieJar.update",
+    "file": "requests/cookies.py",
+    "function": "RequestsCookieJar.update",
+    "static_score": 3.01,
+    "complexity": 3,
+    "static_rank": 61,
+    "complexity_rank": 55
   },
   {
     "id": "requests/help.py::info",
@@ -491,7 +554,7 @@
     "function": "info",
     "static_score": 2.82,
     "complexity": 6,
-    "static_rank": 55,
+    "static_rank": 62,
     "complexity_rank": 30
   },
   {
@@ -500,8 +563,17 @@
     "function": "_implementation",
     "static_score": 2.82,
     "complexity": 6,
-    "static_rank": 56,
+    "static_rank": 63,
     "complexity_rank": 33
+  },
+  {
+    "id": "requests/cookies.py::RequestsCookieJar.get",
+    "file": "requests/cookies.py",
+    "function": "RequestsCookieJar.get",
+    "static_score": 2.81,
+    "complexity": 2,
+    "static_rank": 64,
+    "complexity_rank": 58
   },
   {
     "id": "requests/sessions.py::Session.__init__",
@@ -509,8 +581,8 @@
     "function": "Session.__init__",
     "static_score": 2.68,
     "complexity": 1,
-    "static_rank": 57,
-    "complexity_rank": 57
+    "static_rank": 65,
+    "complexity_rank": 66
   },
   {
     "id": "requests/sessions.py::Session.patch",
@@ -518,8 +590,8 @@
     "function": "Session.patch",
     "static_score": 2.68,
     "complexity": 1,
-    "static_rank": 58,
-    "complexity_rank": 65
+    "static_rank": 66,
+    "complexity_rank": 76
   },
   {
     "id": "requests/sessions.py::Session.put",
@@ -527,8 +599,17 @@
     "function": "Session.put",
     "static_score": 2.68,
     "complexity": 1,
-    "static_rank": 59,
-    "complexity_rank": 66
+    "static_rank": 67,
+    "complexity_rank": 77
+  },
+  {
+    "id": "requests/auth.py::HTTPDigestAuth.handle_redirect",
+    "file": "requests/auth.py",
+    "function": "HTTPDigestAuth.handle_redirect",
+    "static_score": 2.51,
+    "complexity": 2,
+    "static_rank": 68,
+    "complexity_rank": 64
   },
   {
     "id": "requests/auth.py::HTTPBasicAuth.__eq__",
@@ -536,8 +617,8 @@
     "function": "HTTPBasicAuth.__eq__",
     "static_score": 2.31,
     "complexity": 1,
-    "static_rank": 60,
-    "complexity_rank": 69
+    "static_rank": 69,
+    "complexity_rank": 82
   },
   {
     "id": "requests/auth.py::HTTPDigestAuth.__eq__",
@@ -545,8 +626,8 @@
     "function": "HTTPDigestAuth.__eq__",
     "static_score": 2.31,
     "complexity": 1,
-    "static_rank": 61,
-    "complexity_rank": 70
+    "static_rank": 70,
+    "complexity_rank": 83
   },
   {
     "id": "requests/adapters.py::BaseAdapter.send",
@@ -554,8 +635,8 @@
     "function": "BaseAdapter.send",
     "static_score": 2.13,
     "complexity": 1,
-    "static_rank": 62,
-    "complexity_rank": 60
+    "static_rank": 71,
+    "complexity_rank": 69
   },
   {
     "id": "requests/adapters.py::HTTPAdapter.add_headers",
@@ -563,8 +644,17 @@
     "function": "HTTPAdapter.add_headers",
     "static_score": 2.13,
     "complexity": 1,
-    "static_rank": 63,
-    "complexity_rank": 61
+    "static_rank": 72,
+    "complexity_rank": 70
+  },
+  {
+    "id": "requests/adapters.py::BaseAdapter.__init__",
+    "file": "requests/adapters.py",
+    "function": "BaseAdapter.__init__",
+    "static_score": 2.13,
+    "complexity": 1,
+    "static_rank": 73,
+    "complexity_rank": 84
   },
   {
     "id": "requests/status_codes.py::_init",
@@ -572,7 +662,7 @@
     "function": "_init",
     "static_score": 1.83,
     "complexity": 6,
-    "static_rank": 64,
+    "static_rank": 74,
     "complexity_rank": 41
   },
   {
@@ -581,8 +671,8 @@
     "function": "_check_cryptography",
     "static_score": 1.75,
     "complexity": 3,
-    "static_rank": 65,
-    "complexity_rank": 51
+    "static_rank": 75,
+    "complexity_rank": 54
   },
   {
     "id": "requests/hooks.py::dispatch_hook",
@@ -590,7 +680,7 @@
     "function": "dispatch_hook",
     "static_score": 1.48,
     "complexity": 6,
-    "static_rank": 66,
+    "static_rank": 76,
     "complexity_rank": 43
   },
   {
@@ -599,8 +689,17 @@
     "function": "_init.doc",
     "static_score": 1.03,
     "complexity": 2,
-    "static_rank": 67,
-    "complexity_rank": 56
+    "static_rank": 77,
+    "complexity_rank": 65
+  },
+  {
+    "id": "requests/api.py::head",
+    "file": "requests/api.py",
+    "function": "head",
+    "static_score": 0.2,
+    "complexity": 1,
+    "static_rank": 78,
+    "complexity_rank": 71
   },
   {
     "id": "requests/api.py::patch",
@@ -608,8 +707,8 @@
     "function": "patch",
     "static_score": 0.2,
     "complexity": 1,
-    "static_rank": 68,
-    "complexity_rank": 62
+    "static_rank": 79,
+    "complexity_rank": 72
   },
   {
     "id": "requests/api.py::post",
@@ -617,8 +716,8 @@
     "function": "post",
     "static_score": 0.2,
     "complexity": 1,
-    "static_rank": 69,
-    "complexity_rank": 63
+    "static_rank": 80,
+    "complexity_rank": 73
   },
   {
     "id": "requests/api.py::put",
@@ -626,7 +725,34 @@
     "function": "put",
     "static_score": 0.2,
     "complexity": 1,
-    "static_rank": 70,
-    "complexity_rank": 64
+    "static_rank": 81,
+    "complexity_rank": 74
+  },
+  {
+    "id": "requests/api.py::get",
+    "file": "requests/api.py",
+    "function": "get",
+    "static_score": 0.2,
+    "complexity": 1,
+    "static_rank": 82,
+    "complexity_rank": 75
+  },
+  {
+    "id": "requests/api.py::delete",
+    "file": "requests/api.py",
+    "function": "delete",
+    "static_score": 0.2,
+    "complexity": 1,
+    "static_rank": 83,
+    "complexity_rank": 78
+  },
+  {
+    "id": "requests/api.py::options",
+    "file": "requests/api.py",
+    "function": "options",
+    "static_score": 0.2,
+    "complexity": 1,
+    "static_rank": 84,
+    "complexity_rank": 79
   }
 ]

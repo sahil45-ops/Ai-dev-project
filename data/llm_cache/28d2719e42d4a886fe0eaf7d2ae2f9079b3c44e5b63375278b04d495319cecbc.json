@@ -1,0 +1,18 @@
+{
+ "summary": "This function generates information for a bug report. It uses various libraries and functions to retrieve information such as platform details, implementation version, SSL version, and cryptography version. However, it also includes some redundant information like the version of OpenSSL and Chardet, which may not be relevant for bug reports.",
+ "debt_indicators": [
+  "function_debt",
+  "function_debt",
+  "function_debt",
+  "function_debt",
+  "function_debt"
+ ],
+ "impact_factors": [
+  "medium",
+  "medium",
+  "medium",
+  "medium",
+  "medium"
+ ],
+ "risk_assessment": "medium"
+}

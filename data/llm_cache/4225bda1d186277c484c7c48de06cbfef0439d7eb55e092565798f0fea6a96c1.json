@@ -1,0 +1,5 @@
+{
+ "priority": "MEDIUM",
+ "priority_score": 7,
+ "reason": "The `proxy_bypass()` function carries technical debt related to duplicated code and unclear function naming. This issue matters for this repository because duplicated code can lead to maintenance challenges and increased complexity. Additionally, unclear function naming can make the code harder to understand and maintain."
+}

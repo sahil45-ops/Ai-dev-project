@@ -1,0 +1,5 @@
+{
+ "priority": "HIGH",
+ "priority_score": 80,
+ "reason": "The `update()` method in RequestsCookieJar.py has technical debt. It carries a high level of technical debt due to its complexity and the fact that it is not well-maintained. The method has a cyclomatic complexity of 3, indicating that it has multiple conditional statements. Additionally, the method has a low maintainability index, indicating that it is not easy to understand and modify. The method also has a high composite static debt score, indicating that it is a significant source of technical debt for the repository."
+}

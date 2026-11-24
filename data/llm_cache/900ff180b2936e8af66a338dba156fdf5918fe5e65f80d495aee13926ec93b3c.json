@@ -1,0 +1,14 @@
+{
+ "summary": "The function `prepare_url()` in the `requests/models.py` file carries technical debt related to URL preparation. This debt is considered low severity.",
+ "debt_indicators": [
+  "Cyclomatic complexity: 17",
+  "LOC: 73 | Parameters: 2",
+  "File maintainability index: 21.89"
+ ],
+ "impact_factors": [
+  "How central the function is: 21.89",
+  "How often it changes or breaks: 2",
+  "How well it is tested: 92.8%"
+ ],
+ "risk_assessment": "Low"
+}

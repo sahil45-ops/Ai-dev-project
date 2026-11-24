@@ -1,0 +1,6 @@
+{
+ "priority": "HIGH",
+ "priority_score": 85,
+ "reason": "The method is a public API entry point with high cyclomatic complexity (14) and 65 LOC, yet it handles multiple concerns: UNSET handling, type casting, required checks, and legacy callback context manipulation. Its history shows frequent changes and defect links, indicating it is a maintenance hotspot that can easily introduce bugs or slow down future changes.",
+ "action": "Refactor by extracting distinct responsibilities into helper methods: 1) a method to normalize the value (handle UNSET and type casting), 2) a method to validate requiredness, and 3) a method to invoke the callback with proper context handling. Use guard clauses to reduce nesting, replace the long context manipulation block with a context manager that temporarily patches UNSET values, and add unit tests for each helper. This will lower cyclomatic complexity, improve readability, and make future changes safer."
+}

@@ -1,0 +1,6 @@
+{
+ "priority": "MEDIUM",
+ "priority_score": 55,
+ "reason": "The function has a cyclomatic complexity of 35 and 83 LOC, making it hard to maintain and test. It is part of the public API and is used in help formatting, so simplifying it will reduce future bugs and improve readability.",
+ "action": "Refactor get_help_extra into smaller helper methods: extract envvar handling, default value formatting, and range description into separate private functions, add a concise docstring, and replace nested conditionals with guard clauses to lower complexity."
+}

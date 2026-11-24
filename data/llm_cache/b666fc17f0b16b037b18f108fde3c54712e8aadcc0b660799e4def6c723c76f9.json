@@ -1,0 +1,13 @@
+{
+ "summary": "parse_header_links() in requests/utils.py carries technical debt related to complex logic and duplicated code. This issue matters for this repository because it can lead to performance issues, security vulnerabilities, and maintenance challenges. The function's complexity score of 6 (rank B) and 35 LOC indicate a moderate level of technical debt. The function's maintainability index of 25.2 suggests that it is not well-maintained and may require refactoring. The function-level history shows that it has been changed in 0 commit(s), which indicates minimal impact on the repository's functionality. The file-level history shows that it has been changed in 0 commit(s), which also indicates minimal impact on the repository's functionality. The test coverage is 100%, indicating that the function is thoroughly tested. The documentation is ",
+ "debt_indicators": [
+  "function_debt"
+ ],
+ "impact_factors": [
+  "severity",
+  "centrality",
+  "frequency",
+  "testability"
+ ],
+ "risk_assessment": "low"
+}

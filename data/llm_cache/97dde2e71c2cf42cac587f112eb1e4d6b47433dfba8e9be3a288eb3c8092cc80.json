@@ -1,0 +1,14 @@
+{
+ "summary": "HTTPBasicAuth.__eq__() in requests/auth.py (line 83) carries technical debt due to its high cyclomatic complexity (1) and large lines of code (7). The function is not well-maintained, with a maintainability index of 47.35 and a low test coverage of 87.9%. The function is also not well-documented, with a lack of docstrings.",
+ "debt_indicators": [
+  "deep nesting",
+  "mixed responsibilities",
+  "duplicated branches"
+ ],
+ "impact_factors": [
+  "central function",
+  "frequent changes or breaks",
+  "poor testing"
+ ],
+ "risk_assessment": "low"
+}

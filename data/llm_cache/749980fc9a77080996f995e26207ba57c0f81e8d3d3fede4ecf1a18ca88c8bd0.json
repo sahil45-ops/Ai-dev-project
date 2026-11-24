@@ -1,0 +1,5 @@
+{
+ "priority": "HIGH",
+ "priority_score": 80,
+ "reason": "The `should_bypass_proxies()` function in requests/utils.py carries technical debt related to handling proxy bypassing. The function has a high cyclomatic complexity of 17, indicating multiple possible execution paths. Additionally, it has a low maintainability index of 25.2, suggesting that the function is not well-structured and may be difficult to understand and maintain. The function is also a call site in the library, references from tests, and has a high centrality, indicating that it is likely to cause defects or slow down frequent changes. Furthermore, it has a low test coverage, suggesting that it is not well-tested. The function is also a composite function, which means that it is composed of multiple smaller functions. This makes it harder to understand and maintain. The function has a high risk of causing defects or slowing down development due to its complexity and lack of testing. Therefore, it should be refactored to improve its maintainability and reduce its risk of causing defects or slowing down development."
+}

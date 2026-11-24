@@ -22,7 +22,16 @@ from dataclasses import dataclass, field
 from typing import Any, Callable, Protocol
 
 # USD per million tokens (input, output) — keep in sync with Anthropic pricing.
-_PRICING: dict[str, tuple[float, float]] = {}  # Supply verified prices before estimating USD.
+_PRICING: dict[str, tuple[float, float]] = {
+    "ollama/codellama:latest": (0.0, 0.0),
+    "codellama:latest": (0.0, 0.0),
+    "ollama/codellama": (0.0, 0.0),
+    "codellama": (0.0, 0.0),
+    "ollama/smollm2:1.7b": (0.0, 0.0),
+    "smollm2:1.7b": (0.0, 0.0),
+    "ollama/smollm2": (0.0, 0.0),
+    "smollm2": (0.0, 0.0),
+}
 
 
 class LLMError(RuntimeError):
@@ -130,7 +139,9 @@ class OpenAIClient:
                  provider: str = "openai"):
         from openai import OpenAI
 
-        kwargs: dict[str, Any] = {"timeout": 120, "max_retries": 2}
+        timeout = 90 if provider == "ollama" else 120
+        retries = 1 if provider == "ollama" else 2
+        kwargs: dict[str, Any] = {"timeout": timeout, "max_retries": retries}
         if base_url:
             kwargs["base_url"] = base_url
         if api_key:
@@ -151,11 +162,17 @@ class OpenAIClient:
         if cached is not None:
             self.usage.add_cached()
             return _validate(cached, schema)
-        kwargs = dict(model=self.model, max_completion_tokens=max_tokens,
+        effective_max = min(max_tokens, 2048) if self.provider == "ollama" else max_tokens
+        kwargs = dict(model=self.model,
                       messages=[{"role": "system", "content": system},
                                 {"role": "user", "content": prompt}],
                       response_format={"type": "json_schema", "json_schema": {
                           "name": "technical_debt_result", "strict": True, "schema": schema}})
+        if self.provider == "ollama":
+            kwargs["max_tokens"] = effective_max
+            kwargs["extra_body"] = {"options": {"num_ctx": 8192}}
+        else:
+            kwargs["max_completion_tokens"] = effective_max
         if self.provider == "openai":
             kwargs["store"] = False
         if self.model.startswith(("gpt-5", "o3", "o4")):
@@ -171,11 +188,14 @@ class OpenAIClient:
                 raise LLMUnavailableError("OpenAI API credits are exhausted. Add credits or configure a funded key in .env.") from exc
             if getattr(exc, "status_code", None) in (401, 403):
                 raise LLMUnavailableError("OpenAI authentication/access failed. Check the configured API key and model access.") from exc
+            if self.provider == "ollama":
+                raise LLMError(f"Ollama local LLM request failed ({type(exc).__name__}: {exc}). Check that Ollama is running and model '{self.model}' is available.") from exc
             raise LLMError(f"{self.provider.capitalize()} request failed ({type(exc).__name__}); check credentials, model and quota.") from exc
         if response.usage:
             self.usage.add(response.usage.prompt_tokens, response.usage.completion_tokens)
         choice = response.choices[0]
-        if choice.finish_reason != "stop" or choice.message.refusal:
+        valid_reasons = ("stop", "length") if self.provider == "ollama" else ("stop",)
+        if choice.finish_reason not in valid_reasons or choice.message.refusal:
             raise LLMError(f"No complete usable response (finish_reason={choice.finish_reason}).")
         try:
             data = _validate(json.loads(choice.message.content or ""), schema)
@@ -256,14 +276,26 @@ class MockClient:
 
 
 GROQ_BASE_URL = "https://api.groq.com/openai/v1"
+OLLAMA_BASE_URL = "http://localhost:11434/v1"
 
 
 def make_client(model: str, effort: str, cache_dir: str | None) -> LLMClient:
     """Build the real client, failing early with a clear message if no key is set.
 
     Model prefixes: ``claude-*`` → Anthropic, ``groq/<model>`` → Groq's
-    OpenAI-compatible endpoint (GROQ_API_KEY), anything else → OpenAI.
+    OpenAI-compatible endpoint (GROQ_API_KEY), ``ollama/<model>`` → local Ollama,
+    anything else → OpenAI.
     """
+    if model.startswith("ollama/"):
+        return OpenAIClient(model=model[len("ollama/"):], effort=effort, cache_dir=cache_dir,
+                            base_url=os.environ.get("OLLAMA_BASE_URL", OLLAMA_BASE_URL),
+                            api_key=os.environ.get("OLLAMA_API_KEY", "ollama"),
+                            provider="ollama")
+    if model in ("codellama", "codellama:latest", "smollm2", "smollm2:1.7b", "gemma3:1b", "qwen2.5:0.5b"):
+        return OpenAIClient(model=model, effort=effort, cache_dir=cache_dir,
+                            base_url=os.environ.get("OLLAMA_BASE_URL", OLLAMA_BASE_URL),
+                            api_key=os.environ.get("OLLAMA_API_KEY", "ollama"),
+                            provider="ollama")
     if model.startswith("groq/"):
         if not os.environ.get("GROQ_API_KEY"):
             raise SystemExit("[error] GROQ_API_KEY is required for groq/* models. Set it in .env.")

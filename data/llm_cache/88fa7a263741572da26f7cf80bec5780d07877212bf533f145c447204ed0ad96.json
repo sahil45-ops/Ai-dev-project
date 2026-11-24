@@ -1,0 +1,16 @@
+{
+ "summary": "The `prepare()` method in the `requests.models.Request` class carries technical debt related to its complexity and maintainability. The method prepares the entire request with the given parameters, which involves multiple steps such as preparing the method, URL, headers, cookies, body, and authentication. The complexity of the method is 6, indicating a moderate level of complexity. The maintainability index of the method is 21.89, indicating a moderate level of maintainability. The method has 27 lines of code, 10 parameters, and is called from 2 call sites in the library and 50 references from tests. The method has been changed in 0 commits, and 3 of them were bug fixes. The method has a composite static debt score of 3.32/10.",
+ "debt_indicators": [
+  "deep nesting",
+  "mixed responsibilities",
+  "duplicated lines",
+  "flagged as dead code",
+  "composite static debt score"
+ ],
+ "impact_factors": [
+  "how central the function is",
+  "how often it changes or breaks",
+  "how well it is tested"
+ ],
+ "risk_assessment": "moderate"
+}

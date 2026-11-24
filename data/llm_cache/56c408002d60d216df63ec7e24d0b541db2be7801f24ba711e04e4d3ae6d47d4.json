@@ -1,0 +1,15 @@
+{
+ "summary": "This function sends a prepared request and returns a response. It carries technical debt in the form of deep nesting, mixed responsibilities, duplicated branches, and a composite static debt score of 6.73/10.",
+ "debt_indicators": [
+  "deep nesting",
+  "mixed responsibilities",
+  "duplicated branches",
+  "composite static debt score"
+ ],
+ "impact_factors": [
+  "how central the function is",
+  "how often it changes or breaks",
+  "how well it is tested"
+ ],
+ "risk_assessment": "Medium"
+}

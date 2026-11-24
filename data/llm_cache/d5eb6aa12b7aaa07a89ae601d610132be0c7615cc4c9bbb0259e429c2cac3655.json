@@ -1,0 +1,5 @@
+{
+ "priority": "LOW",
+ "priority_score": 20,
+ "reason": "from_key_val_list() in requests/utils.py carries technical debt related to handling invalid input types. The function is not well-documented and does not provide clear error messages. Additionally, the function is not well-tested, and there are no calls to it in the library or tests."
+}

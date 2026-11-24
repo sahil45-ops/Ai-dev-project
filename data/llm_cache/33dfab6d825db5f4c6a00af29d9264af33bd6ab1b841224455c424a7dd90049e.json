@@ -1,0 +1,6 @@
+{
+ "priority": "MEDIUM",
+ "priority_score": 55,
+ "reason": "The constructor has a moderate cyclomatic complexity (7) and 45 LOC with seven parameters, making it error‑prone and hard to maintain. It is part of the public API and is called from multiple places, yet it has not been updated in over a year and lacks documentation, increasing the risk of future regressions.",
+ "action": "Refactor the __init__ method to accept a single configuration dataclass (or use keyword‑only arguments) that encapsulates secret_key, salt, serializer, signer, and fallback_signers. Extract default handling into helper methods, add a comprehensive docstring, and remove duplicated logic to reduce complexity and improve readability."
+}

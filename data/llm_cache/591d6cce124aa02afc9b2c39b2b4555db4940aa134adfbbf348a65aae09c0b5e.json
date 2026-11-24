@@ -1,0 +1,12 @@
+{
+ "summary": "The `get()` method in RequestsCookieJar.py has technical debt that needs to be addressed. The method has a high cyclomatic complexity of 2, indicating that it has multiple conditional statements and loops. This complexity can make the code harder to understand and maintain. Additionally, the method has a low maintainability index of 39.76, indicating that it is not well-organized and follows good coding practices. The method also has a high number of duplicated lines, which can make it harder to understand and maintain. Furthermore, the method is flagged as dead code, indicating that it is not being used in the codebase. The method has a composite static debt score of 2.81 out of 10, indicating that it is a low-priority issue. The method has been changed in 0 commit(s), 0 of them bug fixes, and has been tested in 130 call sites and 130 references from tests. The method has a low documentation score of 80%, indicating that it is not well-documented. The method has a warning message that explains the performance implications of the method, but it is not clear how to improve the performance of the method.",
+ "debt_indicators": [
+  "deep nesting",
+  "mixed responsibilities",
+  "duplicated branches"
+ ],
+ "impact_factors": [
+  "how central the function is, how often it changes or breaks, how well it is tested"
+ ],
+ "risk_assessment": "low"
+}

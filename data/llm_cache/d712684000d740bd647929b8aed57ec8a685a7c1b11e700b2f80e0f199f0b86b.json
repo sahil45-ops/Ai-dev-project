@@ -1,0 +1,5 @@
+{
+ "priority": "HIGH",
+ "priority_score": 70,
+ "reason": "The issue under review is a function named `__init__` in the `requests/adapters.py` file of the `requests` repository. The function has a cyclomatic complexity of 1 (Radon rank A) and 2 lines of code (LOC). The file maintainability index is 51.8, and the function is flagged as having a code smell (lint/refactor finding) in PyLint. The issue carries a moderate level of technical debt, with a composite score of 2.13 out of 10. The function is called from 6 places in the library, and has 1 defect-linked commit in the file-level history. The function is also tested with 92.8% test coverage. The issue is considered high priority because it is actively causing or very likely to cause defects or slow down frequent changes."
+}

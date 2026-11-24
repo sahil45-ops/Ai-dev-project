@@ -1,0 +1,5 @@
+{
+ "priority": "MEDIUM",
+ "priority_score": 60,
+ "reason": "The `doc()` function in `requests/status_codes.py` carries technical debt related to its complexity and maintainability. The function has a cyclomatic complexity of 2, indicating a relatively simple logic. However, its maintainability index of 84.22 suggests that it is not well-structured and could be improved for better readability and reusability. Additionally, the function has a composite static debt score of 1.03/10, indicating a moderate level of technical debt. The function is not flagged as dead code, but it has a composite static debt score of 1.03/10, which could be improved by refactoring or rewriting the function."
+}

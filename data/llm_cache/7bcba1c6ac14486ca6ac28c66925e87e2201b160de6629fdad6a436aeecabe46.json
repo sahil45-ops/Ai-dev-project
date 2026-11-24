@@ -1,0 +1,26 @@
+{
+ "summary": "This function returns the JSON-encoded content of a response, if any. It takes optional arguments that `json.loads` takes. If the response body does not contain valid JSON, it raises a `RequestsJSONDecodeError`.",
+ "debt_indicators": [
+  "Cyclomatic complexity: 8 (Radon rank B)",
+  "LOC: 32 | Parameters: 0",
+  "File maintainability index: 21.89",
+  "Code smells (lint/refactor findings): 2 [lint]",
+  "Style-only findings: 0",
+  "Duplicated lines: 0",
+  "Flagged as dead code: no",
+  "Composite static debt score: 4.72 / 10",
+  "Tool findings: [pylint] [raise-missing-from] Consider explicitly re-raising using 'raise RequestsJSONDecodeError(e.msg, e.doc, e.pos) from e'"
+ ],
+ "impact_factors": [
+  "Severity: MEDIUM",
+  "Severity: LOW",
+  "Severity: LOW",
+  "Severity: LOW",
+  "Severity: LOW",
+  "Severity: LOW",
+  "Severity: LOW",
+  "Severity: LOW",
+  "Severity: LOW"
+ ],
+ "risk_assessment": "Medium"
+}

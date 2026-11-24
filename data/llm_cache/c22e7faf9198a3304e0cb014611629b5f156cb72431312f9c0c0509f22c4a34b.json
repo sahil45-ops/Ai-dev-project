@@ -1,0 +1,14 @@
+{
+ "summary": "The `RequestsCookieJar._find()` function in the `requests/cookies.py` file carries technical debt related to inconsistent cookie handling and inconsistent cookie retrieval. This issue matters for this repository because it can lead to unexpected behavior and errors when dealing with cookies. The function's complexity is moderate (7), and its maintainability index is low (39.76). Additionally, the function has been modified in the past, and it has not been linked to any defects. The function's call sites are limited, and it is not referenced in any tests. The function's visibility is private, and it has not been changed in the past two years. The function's recent commits are five, and none of them were bug fixes. The function's recent commits are not recent, and the function's coverage is 77.8%. The function's documentation is incomplete, and it does not provide a clear explanation of its purpose. The function's style-only findings include a warning about using a single `if` statement instead of nested `if` statements. The function's composite static debt score is 3.81 out of 10.",
+ "debt_indicators": [
+  "deep nesting",
+  "mixed responsibilities",
+  "duplicated branches"
+ ],
+ "impact_factors": [
+  "centrality of the function",
+  "frequency of changes or breaks",
+  "well-testedness"
+ ],
+ "risk_assessment": "LOW"
+}

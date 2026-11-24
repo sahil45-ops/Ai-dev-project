@@ -1,0 +1,6 @@
+{
+ "priority": "HIGH",
+ "priority_score": 85,
+ "reason": "The method has a cyclomatic complexity of 14 and 65 LOC, making it hard to read and maintain. It is part of the public API, has been recently modified, and is called from multiple places, increasing the risk of defects and slowing future changes. Refactoring will improve testability and reduce future maintenance burden.",
+ "action": "Extract the UNSET handling, type casting, and callback logic into separate helper methods. Use guard clauses to early‑return on simple cases, and employ a context manager to temporarily replace UNSET values in the context. This will reduce the method to ~30 LOC and lower its complexity to a manageable level."
+}

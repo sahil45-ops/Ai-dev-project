@@ -1,0 +1,5 @@
+{
+ "priority": "MEDIUM",
+ "priority_score": 60,
+ "reason": "The function is called from multiple places in the library, and recent commits have been made to fix bugs. The function's visibility is public, and it is part of the API surface. The function's documentation is not clear, and its recent commits have been made to fix bugs. The function's test coverage is 100%, indicating that it is well-tested. However, the function's recent commits have been made to fix bugs, which may indicate that it is not well-maintained."
+}

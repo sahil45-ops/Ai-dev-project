@@ -1,0 +1,5 @@
+{
+ "priority": "HIGH",
+ "priority_score": 80,
+ "reason": "The `check_compatibility()` function in `requests/__init__.py` has a high cyclomatic complexity of 10 (Radon rank B) and a low maintainability index of 71.29, indicating that it may be difficult to understand and maintain. The function also has several code smells and style-only findings, and it is not well-tested. Additionally, it has a high static debt score of 3.15 / 10. This makes it a high-priority item for refactoring, as it is likely to cause or very likely to cause defects or slow down frequent changes."
+}

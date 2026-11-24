@@ -1,0 +1,14 @@
+{
+ "summary": "Extract_cookies_to_jar() in requests/cookies.py carries technical debt related to extracting cookies from a response into a CookieJar. This issue matters for this repository because it affects the overall maintainability and reliability of the codebase. The function has a high cyclomatic complexity of 3, indicating that it has multiple conditional statements and nested loops, which can make it harder to understand and maintain. Additionally, the function has a low code maintainability index of 39.76, indicating that it is not well-organized and follows good coding practices. The function also has two code smells, one being a protected access issue and the other being a redundant access issue, which can make it harder to understand and maintain. Furthermore, the function has a composite static debt score of 3.01, indicating that it carries a significant amount of technical debt. The function is called from six call sites in the library and has references from no tests, indicating that it is not well-tested. The function is also not flagged as dead code, indicating that it is still being used in the codebase.",
+ "debt_indicators": [
+  "deep nesting",
+  "mixed responsibilities",
+  "duplicated branches"
+ ],
+ "impact_factors": [
+  "how central the function is",
+  "how often it changes or breaks",
+  "how well it is tested"
+ ],
+ "risk_assessment": "high"
+}

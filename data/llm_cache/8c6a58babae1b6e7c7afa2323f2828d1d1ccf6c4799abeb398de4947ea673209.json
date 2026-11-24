@@ -1,0 +1,5 @@
+{
+ "priority": "MEDIUM",
+ "priority_score": 60,
+ "reason": "The function complexity is moderate (rank A), and the maintainability index is low (38.09). The function is called from multiple places in the library, and recent commits have been made to fix related issues. The function is also documented, stating that it decides whether the Authorization header should be removed when redirecting."
+}

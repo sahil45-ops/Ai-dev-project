@@ -1,0 +1,15 @@
+{
+ "summary": "The `handle_401()` function in the `requests/auth.py` file carries technical debt related to handling 401 authentication responses. This function attempts to handle digest authentication by parsing the `www-authenticate` header and extracting the necessary credentials. However, it has a high cyclomatic complexity (5) and a low maintainability index (47.35), indicating potential issues with code readability and maintainability. Additionally, the function has a composite static debt score of 3.11/10, suggesting that it carries significant technical debt. The function also has multiple code smells (lint/refactor findings) and has been changed in 2 commit(s), with 0 defect-linked commits. The function has been called 0 times in the last 2 years, and its recent commits have been made by 1 author. The function has a composite static debt score of 3.11/10, suggesting that it carries significant technical debt. The function has been called 0 times in the last 2 years, and its recent commits have been made by 1 author.",
+ "debt_indicators": [
+  "deep_nesting",
+  "mixed_responsibilities",
+  "duplicated_lines",
+  "flagged_as_dead_code"
+ ],
+ "impact_factors": [
+  "how_central_the_function_is",
+  "how_often_it_changes_or_breaks",
+  "how_well_it_is_tested"
+ ],
+ "risk_assessment": "High"
+}

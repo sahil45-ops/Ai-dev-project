@@ -1,0 +1,6 @@
+{
+ "action": "Extract the code that defines the `codes` dictionary into a separate function, and rename it to something more descriptive. This will improve the maintainability and readability of the code.",
+ "refactoring_type": "extract_method",
+ "expected_benefit": "Reduced cyclomatic complexity by 1, improved maintainability index by 1, and reduced duplicated lines.",
+ "risk": "Medium to High"
+}

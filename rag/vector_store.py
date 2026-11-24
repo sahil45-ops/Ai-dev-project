@@ -59,41 +59,23 @@ class DebtVectorStore:
         if not issues:
             return 0
 
-        documents: list[str] = []
-        ids: list[str] = []
-        metadatas: list[dict[str, Any]] = []
-
-        for idx, issue in enumerate(issues):
-            doc_text = format_issue_document(issue)
-            # Create a unique ID incorporating repo, file, function, and index
-            repo = issue.get("repo", "repo")
-            func = issue.get("function", "module") or "module"
-            line = issue.get("line", 0)
-            doc_id = f"{repo}_{issue.get('tool', 'tool')}_{idx}_{func}_{line}"
-
-            documents.append(doc_text)
-            ids.append(doc_id)
-            metadatas.append(_sanitize_metadata(issue))
-
-        # Generate embeddings in batches
-        embeddings = self.embedder.encode_batch(documents)
-
-        # Ingest into ChromaDB in batches
-        total = len(ids)
-        for i in range(0, total, batch_size):
-            chunk_ids = ids[i : i + batch_size]
-            chunk_docs = documents[i : i + batch_size]
-            chunk_metas = metadatas[i : i + batch_size]
-            chunk_embs = embeddings[i : i + batch_size]
-
+        if batch_size < 1:
+            raise ValueError("batch_size must be positive")
+        # Bound document, metadata and embedding memory to one batch.
+        for offset in range(0, len(issues), batch_size):
+            batch = issues[offset:offset + batch_size]
+            documents = [format_issue_document(issue) for issue in batch]
+            ids = []
+            for idx, issue in enumerate(batch, offset):
+                repo = issue.get("repo", "repo")
+                func = issue.get("function", "module") or "module"
+                ids.append(f"{repo}_{issue.get('tool', 'tool')}_{idx}_{func}_{issue.get('line', 0)}")
             self.collection.upsert(
-                ids=chunk_ids,
-                documents=chunk_docs,
-                metadatas=chunk_metas,
-                embeddings=chunk_embs,
+                ids=ids, documents=documents,
+                metadatas=[_sanitize_metadata(issue) for issue in batch],
+                embeddings=self.embedder.encode_batch(documents),
             )
-
-        return total
+        return len(issues)
 
     def search_similar(
         self,

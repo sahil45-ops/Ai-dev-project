@@ -1,0 +1,116 @@
+{
+  "id": "requests/models.py::PreparedRequest.prepare_body",
+  "function": "PreparedRequest.prepare_body",
+  "file": "requests/models.py",
+  "branch": "ai-refactoring/preparedrequest-prepare-body",
+  "llm_rank": 5,
+  "priority": "HIGH",
+  "recommendation": "Extract the file upload logic into a separate function to reduce technical debt.",
+  "before": {
+    "complexity_target": 17,
+    "ruff_findings": 6,
+    "duplicate_lines": 36
+  },
+  "attempts": [
+    {
+      "attempt": 1,
+      "explanation": "Extract the file upload logic into a separate function to reduce technical debt.",
+      "after": {
+        "complexity_target": 17,
+        "complexity_block": 17,
+        "functions_in_block": [
+          "PreparedRequest.prepare_body"
+        ],
+        "ruff_findings": 6,
+        "duplicate_lines": 36
+      },
+      "tests": {
+        "passed": 593,
+        "failed": 0,
+        "errors": 0,
+        "duration_s": 152.5
+      },
+      "new_failures": [],
+      "tests_ok": false,
+      "complexity_lower": false,
+      "quality_ok": true
+    },
+    {
+      "attempt": 2,
+      "explanation": "The `PreparedRequest.prepare_body()` function in the `requests` library carries technical debt related to handling multi-part file uploads. This function is responsible for preparing the HTTP body data for a request, and it has several issues that contribute to technical debt. The function has a high cyclomatic complexity of 17, indicating that it has many conditional statements and nested loops. Additionally, the function has a low maintainability index of 21.89, indicating that it is not easy to understand and maintain. The function also has several code smells, including deep nesting and duplicated lines. Furthermore, the function has a composite static debt score of 7.52 out of 10, indicating that it is a significant source of technical debt for the repository. \n\nThe recommended refactoring is to extract the file upload logic into a separate function to reduce technical debt. This will make the code easier to understand and maintain, and it will also reduce the technical debt associated with the function.",
+      "after": {
+        "complexity_target": 15,
+        "complexity_block": 15,
+        "functions_in_block": [
+          "PreparedRequest.prepare_body"
+        ],
+        "ruff_findings": 7,
+        "duplicate_lines": 36
+      },
+      "tests": {
+        "passed": 578,
+        "failed": 15,
+        "errors": 0,
+        "duration_s": 143.8
+      },
+      "new_failures": [
+        "tests.test_lowlevel::test_chunked_upload",
+        "tests.test_lowlevel::test_chunked_upload_doesnt_skip_host_header",
+        "tests.test_lowlevel::test_chunked_upload_uses_only_specified_host_header",
+        "tests.test_requests.TestRequests::test_HTTP_307_ALLOW_REDIRECT_POST_WITH_SEEKABLE",
+        "tests.test_requests.TestRequests::test_chunked_upload_does_not_set_content_length_header",
+        "tests.test_requests.TestRequests::test_empty_stream_with_auth_does_not_set_content_length_header",
+        "tests.test_requests.TestRequests::test_json_param_post_content_type_works",
+        "tests.test_requests.TestRequests::test_rewind_body",
+        "tests.test_requests.TestRequests::test_rewind_body_failed_seek",
+        "tests.test_requests.TestRequests::test_rewind_body_failed_tell",
+        "tests.test_requests.TestRequests::test_rewind_body_no_seek",
+        "tests.test_requests.TestRequests::test_rewind_partially_read_body",
+        "tests.test_requests.TestRequests::test_stream_with_auth_does_not_set_transfer_encoding_header",
+        "tests.test_requests.TestRequests::test_transfer_enc_removal_on_redirect",
+        "tests.test_requests::test_json_encodes_as_bytes"
+      ],
+      "tests_ok": false,
+      "complexity_lower": true,
+      "quality_ok": false
+    }
+  ],
+  "success": false,
+  "after": {
+    "complexity_target": 15,
+    "complexity_block": 15,
+    "functions_in_block": [
+      "PreparedRequest.prepare_body"
+    ],
+    "ruff_findings": 7,
+    "duplicate_lines": 36
+  },
+  "tests": {
+    "passed": 578,
+    "failed": 15,
+    "errors": 0,
+    "duration_s": 143.8
+  },
+  "new_failures": [
+    "tests.test_lowlevel::test_chunked_upload",
+    "tests.test_lowlevel::test_chunked_upload_doesnt_skip_host_header",
+    "tests.test_lowlevel::test_chunked_upload_uses_only_specified_host_header",
+    "tests.test_requests.TestRequests::test_HTTP_307_ALLOW_REDIRECT_POST_WITH_SEEKABLE",
+    "tests.test_requests.TestRequests::test_chunked_upload_does_not_set_content_length_header",
+    "tests.test_requests.TestRequests::test_empty_stream_with_auth_does_not_set_content_length_header",
+    "tests.test_requests.TestRequests::test_json_param_post_content_type_works",
+    "tests.test_requests.TestRequests::test_rewind_body",
+    "tests.test_requests.TestRequests::test_rewind_body_failed_seek",
+    "tests.test_requests.TestRequests::test_rewind_body_failed_tell",
+    "tests.test_requests.TestRequests::test_rewind_body_no_seek",
+    "tests.test_requests.TestRequests::test_rewind_partially_read_body",
+    "tests.test_requests.TestRequests::test_stream_with_auth_does_not_set_transfer_encoding_header",
+    "tests.test_requests.TestRequests::test_transfer_enc_removal_on_redirect",
+    "tests.test_requests::test_json_encodes_as_bytes"
+  ],
+  "complexity_reduction_target": 2,
+  "complexity_reduction_block": 2,
+  "ruff_delta": 1,
+  "duplicate_delta": 0,
+  "commit": "3a7438f2ae5f06a531b895e91b3970f6779dd4b6"
+}

@@ -1,0 +1,14 @@
+{
+ "summary": "The `build_digest_header()` function in the `requests/auth.py` file carries technical debt related to the implementation of the HTTP Digest Authentication protocol. The function is complex with a cyclomatic complexity of 19 and a maintainability index of 47.35. This indicates that the function is difficult to understand and maintain due to its complexity. Additionally, the function has 4 duplicated lines, which can be considered as a sign of duplicated code. The function also has 11 style-only findings, which can be considered as a sign of stylistic issues. The function has a composite static debt score of 6.91 out of 10, which indicates that it carries a moderate amount of technical debt. The function is not flagged as dead code, which means that it is still being used in the repository.",
+ "debt_indicators": [
+  "deep nesting",
+  "mixed responsibilities",
+  "duplicated branches"
+ ],
+ "impact_factors": [
+  "how central the function is",
+  "how often it changes or breaks",
+  "how well it is tested"
+ ],
+ "risk_assessment": "moderate"
+}

@@ -1,0 +1,6 @@
+{
+ "priority": "MEDIUM",
+ "priority_score": 55,
+ "reason": "The constructor is part of the public API and contains duplicated logic for handling secret keys and serializers, which can lead to maintenance issues and future bugs. Although it currently has low complexity and no defect history, the duplication and lack of documentation make it a moderate risk that should be addressed before further changes.",
+ "action": "Extract the duplicated handling of secret_key, salt, and serializer into a dedicated helper method, consolidate the overloads, and add a comprehensive docstring explaining the parameters and behavior."
+}

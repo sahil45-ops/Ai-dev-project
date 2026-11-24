@@ -1,0 +1,14 @@
+{
+ "summary": "The delete() function in requests/api.py carries technical debt related to missing timeout argument in the request method. This issue can cause the program to hang indefinitely if not handled properly.",
+ "debt_indicators": [
+  "deep nesting",
+  "mixed responsibilities",
+  "duplicated branches"
+ ],
+ "impact_factors": [
+  "how central the function is",
+  "how often it changes or breaks",
+  "how well it is tested"
+ ],
+ "risk_assessment": "Severity: LOW"
+}

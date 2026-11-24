@@ -1,0 +1,6 @@
+{
+ "action": "Extract the first valid part of the provided path and treat it as a zip archive, then search for the member in the zip archive. If the member is not found, return the original path.",
+ "refactoring_type": "extract_method",
+ "expected_benefit": "Reduces technical debt, improves maintainability, and avoids potential issues with invalid zip archives or missing members.",
+ "risk": "Medium to high risk of issues with invalid zip archives or missing members if the function is not implemented correctly."
+}

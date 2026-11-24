@@ -1,0 +1,6 @@
+{
+ "priority": "HIGH",
+ "priority_score": 90,
+ "reason": "The constructor is highly complex (cyclomatic 12, 83 LOC, 14 parameters) and uses built‑in names (`type`, `help`) that shadow Python built‑ins, leading to subtle bugs and confusing API usage. It also contains legacy default‑handling logic that is documented as problematic and is a frequent source of defects. Refactoring will improve maintainability, reduce future bugs, and make the public API clearer.",
+ "action": "Rename the parameters `type` to `param_type` and `help` to `help_text`. Extract the default‑handling logic into a separate helper method or a small helper class. Add a comprehensive docstring explaining the legacy default behaviour and the intended future split. Reduce the number of parameters by grouping related options into a configuration object or using keyword‑only arguments. This will lower cyclomatic complexity, eliminate built‑in shadowing, and make the constructor easier to test and maintain."
+}

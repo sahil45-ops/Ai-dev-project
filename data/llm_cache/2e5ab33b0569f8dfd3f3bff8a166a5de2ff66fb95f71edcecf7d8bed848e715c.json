@@ -1,0 +1,6 @@
+{
+ "priority": "HIGH",
+ "priority_score": 85,
+ "reason": "The public get_params method has a cyclomatic complexity of 17 and a maintainability index of 0.0, yet it is called by nine internal callers and has no test coverage. Such a complex, untested public API is highly likely to introduce defects or hinder future changes, warranting immediate attention.",
+ "action": "Refactor get_params by extracting the duplicate option and duplicate name checks into separate helper functions (e.g., _warn_duplicate_options and _warn_duplicate_names). This will reduce the method’s complexity, improve readability, and make the logic easier to test and maintain."
+}

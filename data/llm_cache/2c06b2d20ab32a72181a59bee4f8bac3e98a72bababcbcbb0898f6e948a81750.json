@@ -1,0 +1,19 @@
+{
+ "summary": "The check_compatibility() function in requests/__init__.py carries technical debt related to its complex logic and potential issues with version checking. This function is called multiple times in the library, and its recent changes are mostly bug fixes. The function's complexity is moderate, and its maintainability index is low. The function has been flagged as dead code, and there are no duplicated lines. The function has been flagged as dead code, and there are no duplicated lines. The function has been flagged as dead code, and there are no duplicated lines. The function has been flagged as dead code, and there are no duplicated lines.",
+ "debt_indicators": [
+  "Cyclomatic complexity: 10",
+  "LOC: 29 | Parameters: 3",
+  "File maintainability index: 71.29",
+  "Code smells (lint/refactor findings): 5",
+  "Style-only findings: 1",
+  "Duplicated lines: 0",
+  "Flagged as dead code: no",
+  "Composite static debt score: 3.15 / 10"
+ ],
+ "impact_factors": [
+  "How central the function is: 71.29",
+  "How often it changes or breaks: 68.4%",
+  "How well it is tested: 62.7%"
+ ],
+ "risk_assessment": "Low"
+}

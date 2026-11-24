@@ -1,0 +1,14 @@
+{
+ "summary": "The `get_netrc_auth()` function in requests/utils.py carries technical debt related to handling netrc authentication. This function retrieves the netrc file for a given URL and attempts to parse it using the netrc module. However, this function does not handle potential errors that may occur during the parsing process. Additionally, the function does not handle the case where the netrc file is not found or is not in the expected format.",
+ "debt_indicators": [
+  "deep nesting",
+  "mixed responsibilities",
+  "duplicated branches"
+ ],
+ "impact_factors": [
+  "how central the function is",
+  "how often it changes or breaks",
+  "how well it is tested"
+ ],
+ "risk_assessment": "Medium"
+}

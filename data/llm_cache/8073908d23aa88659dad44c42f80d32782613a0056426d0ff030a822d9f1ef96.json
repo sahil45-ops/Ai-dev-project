@@ -1,0 +1,5 @@
+{
+ "priority": "LOW",
+ "priority_score": 20,
+ "reason": "The delete() function in requests/api.py carries technical debt related to missing timeout argument in the request method. This issue can cause the program to hang indefinitely if not handled properly. The function is not central, it is rarely touched, and there is no recent change in the code. The impact is low, as the function is not causing any defects or slowing down frequent changes. The score is used to rank items against each other. The reason in 2-3 sentences that cite the decisive evidence is: The function is not central, it is rarely touched, and there is no recent change in the code. The score is used to rank items against each other. The reason in 2-3 sentences that cite the decisive evidence is: The function is not central, it is rarely touched, and there is no recent change in the code."
+}

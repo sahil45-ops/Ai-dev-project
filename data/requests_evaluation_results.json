@@ -1,61 +1,240 @@
 {
-  "generated": "2026-10-07T17:20:43+00:00",
+  "generated": "2026-11-24T16:37:01+00:00",
   "methods": [
     "static_score",
     "complexity",
-    "context_heuristic"
+    "context_heuristic",
+    "context_no_history",
+    "llm"
   ],
   "excluded_experiments": [
-    "llm_rankings: 0/84 successful items; excluded from full-dataset comparison",
-    "llm_rankings_nocontext: 0/84 successful items; excluded from full-dataset comparison"
+    "llm_rankings: 71/84 successful items (13 errors); using partial results",
+    "llm_rankings_nocontext: no successful items; excluded"
   ],
   "defects": {
-    "n_items": 84,
-    "n_positive": 7,
+    "n_items": 71,
+    "n_positive": 5,
     "methods": {
       "static_score": {
-        "spearman_vs_fix_commits": 0.3331,
-        "spearman_vs_change_commits": 0.4231,
-        "auc_future_defect": 0.8516,
-        "ndcg@10_fix_commits": 0.4724,
-        "ndcg@10_change_commits": 0.6729,
-        "precision@5": 0.4,
-        "precision@10": 0.4,
-        "precision@20": 0.3,
+        "spearman_vs_fix_commits": 0.277,
+        "spearman_vs_change_commits": 0.4135,
+        "auc_future_defect": 0.8152,
+        "ndcg@10_fix_commits": 0.4684,
+        "ndcg@10_change_commits": 0.5462,
+        "precision@5": 0.2,
+        "precision@10": 0.3,
+        "precision@20": 0.2,
         "spearman_vs_change_commits_ci95": [
-          0.216,
-          0.6057
+          0.1792,
+          0.5991
+        ],
+        "auc_future_defect_ci95": [
+          0.5303,
+          0.9783
+        ],
+        "ndcg@10_fix_commits_ci95": [
+          0.0,
+          0.7602
+        ],
+        "precision@5_ci95": [
+          0.0,
+          0.8
+        ],
+        "precision@10_ci95": [
+          0.0,
+          0.6
+        ],
+        "precision@20_ci95": [
+          0.05,
+          0.35
         ]
       },
       "complexity": {
-        "spearman_vs_fix_commits": 0.3293,
-        "spearman_vs_change_commits": 0.5199,
-        "auc_future_defect": 0.8432,
-        "ndcg@10_fix_commits": 0.5276,
-        "ndcg@10_change_commits": 0.7438,
-        "precision@5": 0.6,
-        "precision@10": 0.4,
-        "precision@20": 0.25,
+        "spearman_vs_fix_commits": 0.2775,
+        "spearman_vs_change_commits": 0.5075,
+        "auc_future_defect": 0.8106,
+        "ndcg@10_fix_commits": 0.6107,
+        "ndcg@10_change_commits": 0.6158,
+        "precision@5": 0.4,
+        "precision@10": 0.3,
+        "precision@20": 0.15,
         "spearman_vs_change_commits_ci95": [
-          0.3411,
-          0.662
+          0.3075,
+          0.6603
+        ],
+        "auc_future_defect_ci95": [
+          0.5686,
+          0.9891
+        ],
+        "ndcg@10_fix_commits_ci95": [
+          0.0,
+          1.0
+        ],
+        "precision@5_ci95": [
+          0.0,
+          0.8
+        ],
+        "precision@10_ci95": [
+          0.0,
+          0.6
+        ],
+        "precision@20_ci95": [
+          0.0,
+          0.3
         ]
       },
       "context_heuristic": {
-        "spearman_vs_fix_commits": 0.3804,
-        "spearman_vs_change_commits": 0.4119,
-        "auc_future_defect": 0.8961,
-        "ndcg@10_fix_commits": 0.5463,
-        "ndcg@10_change_commits": 0.5122,
+        "spearman_vs_fix_commits": 0.3663,
+        "spearman_vs_change_commits": 0.4236,
+        "auc_future_defect": 0.9121,
+        "ndcg@10_fix_commits": 0.6668,
+        "ndcg@10_change_commits": 0.5491,
         "precision@5": 0.6,
         "precision@10": 0.3,
-        "precision@20": 0.3,
+        "precision@20": 0.25,
         "spearman_vs_change_commits_ci95": [
-          0.2226,
-          0.5745
+          0.2118,
+          0.5944
+        ],
+        "auc_future_defect_ci95": [
+          0.8039,
+          1.0
+        ],
+        "ndcg@10_fix_commits_ci95": [
+          0.0,
+          1.0
+        ],
+        "precision@5_ci95": [
+          0.0,
+          0.8
+        ],
+        "precision@10_ci95": [
+          0.0,
+          0.6
+        ],
+        "precision@20_ci95": [
+          0.05,
+          0.4
+        ]
+      },
+      "context_no_history": {
+        "spearman_vs_fix_commits": 0.3377,
+        "spearman_vs_change_commits": 0.3634,
+        "auc_future_defect": 0.8788,
+        "ndcg@10_fix_commits": 0.4008,
+        "ndcg@10_change_commits": 0.3006,
+        "precision@5": 0.4,
+        "precision@10": 0.2,
+        "precision@20": 0.25,
+        "spearman_vs_change_commits_ci95": [
+          0.1505,
+          0.5495
+        ],
+        "auc_future_defect_ci95": [
+          0.7761,
+          0.9706
+        ],
+        "ndcg@10_fix_commits_ci95": [
+          0.0,
+          0.839
+        ],
+        "precision@5_ci95": [
+          0.0,
+          0.6
+        ],
+        "precision@10_ci95": [
+          0.0,
+          0.5
+        ],
+        "precision@20_ci95": [
+          0.05,
+          0.45
+        ]
+      },
+      "llm": {
+        "spearman_vs_fix_commits": -0.006,
+        "spearman_vs_change_commits": 0.1387,
+        "auc_future_defect": 0.4939,
+        "ndcg@10_fix_commits": 0.0762,
+        "ndcg@10_change_commits": 0.2214,
+        "precision@5": 0.2,
+        "precision@10": 0.1,
+        "precision@20": 0.05,
+        "spearman_vs_change_commits_ci95": [
+          -0.0949,
+          0.3505
+        ],
+        "auc_future_defect_ci95": [
+          0.2015,
+          0.7788
+        ],
+        "ndcg@10_fix_commits_ci95": [
+          0.0,
+          0.3041
+        ],
+        "precision@5_ci95": [
+          0.0,
+          0.4
+        ],
+        "precision@10_ci95": [
+          0.0,
+          0.3
+        ],
+        "precision@20_ci95": [
+          0.0,
+          0.15
         ]
       }
     }
   },
-  "paired": []
+  "paired": [
+    {
+      "comparison": "llm vs static_score",
+      "truth": "changes",
+      "delta_spearman": -0.2748,
+      "ci95": [
+        -0.5704,
+        0.0349
+      ],
+      "n_items": 71,
+      "inference": "Exploratory paired item bootstrap; unadjusted for multiple comparisons.",
+      "significant": false
+    },
+    {
+      "comparison": "llm vs complexity",
+      "truth": "changes",
+      "delta_spearman": -0.3688,
+      "ci95": [
+        -0.6371,
+        -0.0696
+      ],
+      "n_items": 71,
+      "inference": "Exploratory paired item bootstrap; unadjusted for multiple comparisons.",
+      "significant": true
+    },
+    {
+      "comparison": "llm vs context_heuristic",
+      "truth": "changes",
+      "delta_spearman": -0.2849,
+      "ci95": [
+        -0.5514,
+        0.0047
+      ],
+      "n_items": 71,
+      "inference": "Exploratory paired item bootstrap; unadjusted for multiple comparisons.",
+      "significant": false
+    },
+    {
+      "comparison": "context_heuristic vs context_no_history",
+      "truth": "changes",
+      "delta_spearman": 0.0497,
+      "ci95": [
+        -0.1622,
+        0.2599
+      ],
+      "n_items": 84,
+      "inference": "Exploratory paired item bootstrap; unadjusted for multiple comparisons.",
+      "significant": false
+    }
+  ]
 }

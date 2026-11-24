@@ -1,0 +1,6 @@
+{
+ "action": "Extract a separate function to handle invalid input types.",
+ "refactoring_type": "extract_method",
+ "expected_benefit": "Reduces cyclomatic complexity, improves maintainability index, and decreases composite static debt score.",
+ "risk": "The extracted function may introduce new technical debt if not properly designed. However, the overall impact is positive due to the reduction in technical debt in the original function."
+}

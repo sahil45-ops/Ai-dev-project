@@ -1,0 +1,5 @@
+{
+ "priority": "HIGH",
+ "priority_score": 80,
+ "reason": "The function carries high technical debt due to its high cyclomatic complexity, low maintainability index, and unused arguments. It is not called from user code and is only exposed for subclassing, which makes it a candidate for refactoring. The impact factors are also favorable, with the function being central, rarely changing, and not tested well. The risk assessment is high, indicating that the function is actively causing or very likely to cause defects or slow down frequent changes."
+}

@@ -1,0 +1,6 @@
+{
+ "priority": "HIGH",
+ "priority_score": 85,
+ "reason": "The public Command.main method is highly complex (cyclomatic 19, 135 LOC) and has a maintainability index of 0.0. It is frequently used, recently modified, and lacks test coverage, making it a prime candidate for defects and difficult maintenance. Refactoring will reduce cognitive load and improve reliability.",
+ "action": "Extract the argument preparation, shell‑completion handling, command execution, and exception handling into separate helper methods to lower cyclomatic complexity and improve testability."
+}

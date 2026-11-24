@@ -1,0 +1,5 @@
+{
+ "priority": "LOW",
+ "priority_score": 20,
+ "reason": "The function `head()` in requests/api.py carries technical debt related to missing timeout argument in the `request` method. This issue can cause the program to hang indefinitely if not handled properly. The debt is not complex and is contained, making it a low-priority item."
+}

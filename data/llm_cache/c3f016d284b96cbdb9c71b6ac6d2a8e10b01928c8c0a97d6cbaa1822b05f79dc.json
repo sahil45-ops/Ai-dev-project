@@ -1,0 +1,17 @@
+{
+ "summary": "The 'options()' function in requests/api.py has a high cyclomatic complexity of 1 and a low maintainability index of 100.0, indicating that it is difficult to understand and maintain. Additionally, it has a low test coverage of 50.0% and a low documentation coverage of 84.2%. The function is also flagged as dead code, indicating that it is not currently used in the codebase. The function is also a candidate for refactoring, as it has a high static debt score of 0.2 and is a potential candidate for code smells.",
+ "debt_indicators": [
+  "cyclomatic_complexity",
+  "maintainability_index",
+  "test_coverage",
+  "dead_code",
+  "code_smells"
+ ],
+ "impact_factors": [
+  "function_size",
+  "function_churn",
+  "function_test_coverage",
+  "function_documentation_coverage"
+ ],
+ "risk_assessment": "High"
+}

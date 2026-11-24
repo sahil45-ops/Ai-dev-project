@@ -7,6 +7,7 @@ from __future__ import annotations
 
 from typing import Any
 
+from agents.prompts import coverage_is_known
 
 
 def format_issue_document(issue: dict[str, Any]) -> str:
@@ -39,6 +40,7 @@ def format_issue_document(issue: dict[str, Any]) -> str:
     last_modified_days = int(last_mod_val) if last_mod_val is not None else -1
     cov_val = issue.get("test_coverage")
     test_coverage = float(cov_val) if cov_val is not None else 0.0
+    coverage_text = f"{test_coverage:.1f}%" if coverage_is_known(issue) else "not measured"
 
     doc_text = (
         f"Repository: {repo}\n"
@@ -50,7 +52,7 @@ def format_issue_document(issue: dict[str, Any]) -> str:
         f"LOC={loc}, Composite Debt Score={static_score:.2f}\n"
         f"Repository Context: Callers={callers}, Recent Commits ({'2 years' if issue.get('tool') == 'aggregate' else '90d'})={recent_commits}, "
         f"Defect Commits={defect_commits}, Distinct Authors={commit_authors}, "
-        f"Days Since Last Commit={last_modified_days}, Test Coverage={test_coverage:.1f}%"
+        f"Days Since Last Commit={last_modified_days}, Test Coverage={coverage_text}"
     )
     return doc_text
 

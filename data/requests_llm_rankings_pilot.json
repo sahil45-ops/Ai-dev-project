@@ -1,0 +1,31 @@
+[
+  {
+    "id": "requests/__init__.py::_check_cryptography",
+    "file": "requests/__init__.py",
+    "function": "_check_cryptography",
+    "line": 89,
+    "priority": "LOW",
+    "priority_score": 3,
+    "reason": "The function `_check_cryptography()` in `requests/__init__.py` carries technical debt related to the version of cryptography being used. This debt is considered low severity and can be easily fixed by updating the cryptography version to at least 1.3.4.",
+    "action": "Update the cryptography version to at least 1.3.4 in the function `_check_cryptography()` in `requests/__init__.py` to eliminate technical debt.",
+    "refactoring_type": "no_action",
+    "expected_benefit": "No change in behavior or functionality.",
+    "refactoring_risk": "Low",
+    "analysis_summary": "The function `_check_cryptography()` in `requests/__init__.py` carries technical debt related to the version of cryptography being used. This debt is considered low severity and can be easily fixed by updating the cryptography version to at least 1.3.4.",
+    "debt_indicators": [
+      "deep nesting",
+      "mixed responsibilities",
+      "duplicated branches"
+    ],
+    "impact_factors": [
+      "how central the function is",
+      "how often it changes or breaks",
+      "how well it is tested"
+    ],
+    "llm_rank": 1,
+    "mode": "chain",
+    "backend": "native",
+    "with_context": true,
+    "model": "ollama/smollm2:1.7b"
+  }
+]

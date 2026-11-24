@@ -1,0 +1,14 @@
+[
+  {
+    "name": "synthetic_small",
+    "source": "C:\\Users\\ASAD AHMAD\\Downloads\\devvv (3)\\devvv\\Intelligent_Technical_Debt_and_Refactoring-main\\Intelligent_Technical_Debt_and_Refactoring-main\\targets\\benchmark-fixtures\\small"
+  },
+  {
+    "name": "synthetic_medium",
+    "source": "C:\\Users\\ASAD AHMAD\\Downloads\\devvv (3)\\devvv\\Intelligent_Technical_Debt_and_Refactoring-main\\Intelligent_Technical_Debt_and_Refactoring-main\\targets\\benchmark-fixtures\\medium"
+  },
+  {
+    "name": "synthetic_large",
+    "source": "C:\\Users\\ASAD AHMAD\\Downloads\\devvv (3)\\devvv\\Intelligent_Technical_Debt_and_Refactoring-main\\Intelligent_Technical_Debt_and_Refactoring-main\\targets\\benchmark-fixtures\\large"
+  }
+]

@@ -1,0 +1,6 @@
+{
+ "priority": "MEDIUM",
+ "priority_score": 55,
+ "reason": "The unsign method has a cyclomatic complexity of 14 and contains deeply nested error handling logic, making it hard to maintain and test. It is part of the public API and is used in multiple places, so defects here could affect many callers. Refactoring will reduce complexity and improve testability without breaking existing behavior.",
+ "action": "Extract the timestamp parsing, error handling, and age‑validation logic into separate helper methods (e.g., _parse_timestamp, _handle_sig_error, _check_age). Replace the nested if‑blocks with early returns and clearer guard clauses to lower the cyclomatic complexity and improve readability."
+}

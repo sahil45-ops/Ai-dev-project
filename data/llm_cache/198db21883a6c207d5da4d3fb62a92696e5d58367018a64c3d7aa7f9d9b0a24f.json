@@ -1,0 +1,6 @@
+{
+ "priority": "HIGH",
+ "priority_score": 80,
+ "reason": "The method is 87 LOC long, has cyclomatic complexity 17, and performs many responsibilities (state capture, deprecation warning, type processing, exception handling, arbitration). It accesses protected members of Context and catches a broad Exception, making it fragile and hard to maintain. These factors make it a high‑impact technical debt that can easily lead to bugs or regressions.",
+ "action": "Refactor handle_parse_result into smaller, focused helper methods: extract deprecation warning logic, isolate type processing with specific exception handling (e.g., ValueError, TypeError), and move arbitration logic into a dedicated method. Replace protected member accesses with public APIs or redesign Context to expose needed state. This will reduce complexity, improve testability, and eliminate the broad exception catch."
+}

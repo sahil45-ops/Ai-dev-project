@@ -1,0 +1,14 @@
+{
+ "summary": "HTTPDigestAuth.__eq__() in requests/auth.py (line 305) carries technical debt due to its high cyclomatic complexity (1) and large number of lines of code (7). The function is not used in the library, but it is called by other functions in the repository. The function-level history shows that it has been changed in 0 commit(s) since 2019-2024, and the file-level history shows that it has been modified 4 times in the past 2 years.",
+ "debt_indicators": [
+  "deep nesting",
+  "mixed responsibilities",
+  "duplicated branches"
+ ],
+ "impact_factors": [
+  "how central the function is",
+  "how often it changes or breaks",
+  "how well it is tested"
+ ],
+ "risk_assessment": "low"
+}

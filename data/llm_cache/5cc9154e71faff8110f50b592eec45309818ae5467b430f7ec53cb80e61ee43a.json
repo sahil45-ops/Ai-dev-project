@@ -1,0 +1,14 @@
+{
+ "summary": "The `check_compatibility()` function in `requests/__init__.py` has a high cyclomatic complexity of 10 (Radon rank B) and a low maintainability index of 71.29, indicating that it may be difficult to understand and maintain. The function also has several code smells and style-only findings, and it is not well-tested. Additionally, it has a high static debt score of 3.15 / 10.",
+ "debt_indicators": [
+  "deep nesting",
+  "mixed responsibilities",
+  "duplicated branches"
+ ],
+ "impact_factors": [
+  "how central the function is",
+  "how often it changes or breaks",
+  "how well it is tested"
+ ],
+ "risk_assessment": "High"
+}

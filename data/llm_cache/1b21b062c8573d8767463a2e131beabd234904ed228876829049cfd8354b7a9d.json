@@ -1,0 +1,18 @@
+{
+ "summary": "This function, `guess_json_utf()`, in the `requests/utils.py` file, attempts to determine the encoding of a JSON string. It does this by counting the number of null characters in the string and comparing it to the BOM (Byte Order Mark) and the first and third characters of the string. If it detects a BOM, it returns the encoding as ",
+ "debt_indicators": [
+  "function_debt",
+  "function_debt",
+  "function_debt",
+  "function_debt",
+  "function_debt"
+ ],
+ "impact_factors": [
+  "LOC",
+  "LOC",
+  "LOC",
+  "LOC",
+  "LOC"
+ ],
+ "risk_assessment": "Low"
+}

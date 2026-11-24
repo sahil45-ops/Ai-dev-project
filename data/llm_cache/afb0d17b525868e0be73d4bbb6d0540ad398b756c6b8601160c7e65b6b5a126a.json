@@ -1,0 +1,13 @@
+{
+ "summary": "Session.patch() in requests/sessions.py carries technical debt related to high complexity and low maintainability. This issue matters for this repository as it can lead to difficulties in understanding and maintaining the codebase, potentially causing bugs or security vulnerabilities.",
+ "debt_indicators": [
+  "high_complexity",
+  "low_maintainability"
+ ],
+ "impact_factors": [
+  "central_functionality",
+  "high_change_frequency",
+  "well_tested"
+ ],
+ "risk_assessment": "medium"
+}

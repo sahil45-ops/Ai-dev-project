@@ -1,0 +1,16 @@
+{
+ "summary": "SessionRedirectMixin.rebuild_method() in requests/sessions.py carries technical debt related to handling redirects and changing the request method. This debt matters for this repository because it can lead to inconsistent behavior and potential security vulnerabilities. The function has a high cyclomatic complexity of 7, indicating multiple possible execution paths, and a maintainability index of 38.09, indicating it is not well-maintained. The function has been changed in 0 commit(s), and 3 of them are bug fixes. The function is called in 1 call site in the library, and there are no references from tests. The function is considered low-severity, but it is still important to address the technical debt to ensure the reliability and security of the repository.",
+ "debt_indicators": [
+  "deep_nesting",
+  "mixed_responsibilities",
+  "duplicated_lines",
+  "flagged_as_dead_code"
+ ],
+ "impact_factors": [
+  "central_functionality",
+  "frequency_of_changes",
+  "testability",
+  "well_tested"
+ ],
+ "risk_assessment": "Medium"
+}

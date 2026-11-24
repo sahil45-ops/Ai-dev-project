@@ -1,0 +1,6 @@
+{
+ "priority": "MEDIUM",
+ "priority_score": 55,
+ "reason": "The Option.__init__ method is a public API entry point with 17 parameters and moderate cyclomatic complexity. It redefines built‑in names (type, help, prompt) and lacks documentation, making future maintenance harder. While it does not currently cause defects, its size and naming issues increase the risk of bugs during future changes.",
+ "action": "Refactor the constructor by extracting the five logical phases into separate private helper methods, rename parameters that shadow built‑ins (e.g., `type` → `param_type`, `help` → `help_text`, `prompt` → `prompt_flag`), and add a comprehensive docstring describing each parameter and the overall flow."
+}

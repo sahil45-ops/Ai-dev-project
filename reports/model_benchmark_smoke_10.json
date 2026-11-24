@@ -1,0 +1,698 @@
+{
+  "dataset_sha256": "4f9779c8b126f4092fc3eeff179062442cca400bc23a4accdc1a39daf802e43e",
+  "truth_sha256": "93c52f7a6965df24b6d947e187c63b6c5ed83c03a5110d49762e882a544bb58a",
+  "full_dataset_sha256": "b1275cd3e0de0146d8a74cdb453436795154ef9662b042b95b5ee9b35f8857ad",
+  "sample_ids": [
+    "requests/adapters.py::HTTPAdapter.send",
+    "requests/api.py::delete",
+    "requests/api.py::head",
+    "requests/api.py::post",
+    "requests/auth.py::_basic_auth_str",
+    "requests/models.py::RequestEncodingMixin._encode_params",
+    "requests/models.py::Response.__setstate__",
+    "requests/models.py::Response.iter_content.generate",
+    "requests/utils.py::extract_zipped_paths",
+    "requests/utils.py::parse_header_links"
+  ],
+  "pilot": true,
+  "mode": "single",
+  "max_output_tokens": 2048,
+  "context_sha256": "650e1d46ba785b62feec2cf0e0e10bf10b723b1aea9edb5670a8920055fcaee4",
+  "models": [
+    "groq/openai/gpt-oss-20b",
+    "groq/openai/gpt-oss-120b"
+  ],
+  "repeats": 1,
+  "protocol_sha256": "93eb94e012871efab46db4d243cb5d6022c14b6d74e9bedbf2112d0dcfac94f9",
+  "token_estimates_per_model_per_repeat": {
+    "no_context": [
+      7990,
+      4500
+    ],
+    "rag_context": [
+      16027,
+      4500
+    ]
+  },
+  "status": "complete",
+  "runs": [
+    {
+      "key": "groq/openai/gpt-oss-20b | no_context | 1",
+      "model": "groq/openai/gpt-oss-20b",
+      "arm": "no_context",
+      "repeat": 1,
+      "seconds": 73.89298040000722,
+      "mean_call_seconds": 7.388989830011269,
+      "calls_attempted": 10,
+      "schema_acceptance_rate": 1.0,
+      "call_failure_rate": 0.0,
+      "item_failure_rate": 0.0,
+      "input_tokens": 8682,
+      "output_tokens": 3404,
+      "cached_calls": 0,
+      "cost_usd": 0.00167235,
+      "pricing_per_million": [
+        0.075,
+        0.3
+      ],
+      "results": [
+        {
+          "id": "requests/adapters.py::HTTPAdapter.send",
+          "file": "requests/adapters.py",
+          "function": "HTTPAdapter.send",
+          "line": 433,
+          "priority": "HIGH",
+          "priority_score": 90,
+          "reason": "The send method has a cyclomatic complexity of 19, numerous exception branches, duplicated logic, and a pending TODO that will break in a future release. This core networking function is frequently invoked and any failure or maintenance issue can cause widespread runtime errors or security regressions. Refactoring is essential to improve reliability, testability, and future-proofing.",
+          "action": "Extract the exception handling into a dedicated helper (e.g., `_handle_exceptions`) that maps urllib3 errors to requests exceptions, use a single mapping table, add explicit `raise ... from e` clauses, remove the TODO comment, and split the timeout conversion logic into its own method. This will reduce complexity, eliminate duplicated code, and make the method easier to maintain.",
+          "llm_rank": 1
+        },
+        {
+          "id": "requests/api.py::head",
+          "file": "requests/api.py",
+          "function": "head",
+          "line": 88,
+          "priority": "HIGH",
+          "priority_score": 85,
+          "reason": "The head() helper omits a timeout argument when delegating to request(), exposing callers to indefinite hangs. This is a real defect that can affect production traffic and is likely to surface during frequent use of the API. Adding a default timeout or enforcing its presence will prevent silent blocking and improve reliability.",
+          "action": "Add a default timeout (e.g., 5 seconds) to kwargs before calling request, or raise a ValueError if timeout is missing. Update the docstring to document the timeout behavior.",
+          "llm_rank": 2
+        },
+        {
+          "id": "requests/api.py::delete",
+          "file": "requests/api.py",
+          "function": "delete",
+          "line": 148,
+          "priority": "MEDIUM",
+          "priority_score": 55,
+          "reason": "The delete() wrapper omits a timeout argument, which can lead to indefinite hangs if callers forget to specify one. While the function is small, this defect poses a moderate risk to reliability and user experience.",
+          "action": "Add a default timeout parameter to delete() (e.g., timeout=None) and forward it to request(), or enforce that callers must provide a timeout. Update the docstring to reflect the timeout requirement.",
+          "llm_rank": 3
+        },
+        {
+          "id": "requests/api.py::post",
+          "file": "requests/api.py",
+          "function": "post",
+          "line": 103,
+          "priority": "MEDIUM",
+          "priority_score": 55,
+          "reason": "The post() helper does not enforce a timeout, which can lead to indefinite hangs if the caller omits it. This is a real defect that can affect reliability and performance, especially in production environments.",
+          "action": "Add a default timeout (e.g., 30 seconds) to the request call or validate that a timeout is present in kwargs and raise a clear warning if missing.",
+          "llm_rank": 4
+        },
+        {
+          "id": "requests/models.py::RequestEncodingMixin._encode_params",
+          "file": "requests/models.py",
+          "function": "RequestEncodingMixin._encode_params",
+          "line": 107,
+          "priority": "MEDIUM",
+          "priority_score": 55,
+          "reason": "The method has a cyclomatic complexity of 11 and uses legacy Python 2 constructs (basestring) and multiple nested conditionals, making it hard to maintain and potentially error\u2011prone. It is not currently causing defects but its complexity and outdated patterns warrant refactoring before future changes.",
+          "action": "Refactor the method to simplify the conditional logic: replace the basestring check with isinstance(k, str), combine the two early return branches into a single guard, and use a dedicated helper to build the key/value list. This will reduce complexity, improve readability, and align the code with modern Python practices.",
+          "llm_rank": 5
+        },
+        {
+          "id": "requests/utils.py::extract_zipped_paths",
+          "file": "requests/utils.py",
+          "function": "extract_zipped_paths",
+          "line": 263,
+          "priority": "MEDIUM",
+          "priority_score": 55,
+          "reason": "The function has moderate cyclomatic complexity and uses several low-level os operations that can be simplified with pathlib and context managers. It also lacks error handling and cleanup for temporary files, which could lead to resource leaks or race conditions in a frequently used utility. Refactoring will improve readability, maintainability, and reliability without breaking existing behavior.",
+          "action": "Refactor extract_zipped_paths to use pathlib for path manipulation, a context manager for ZipFile, f-strings for joins, and a unique temporary file name. Extract the loop that finds the archive into a helper, add error handling, and ensure the temporary file is cleaned up after use. Add unit tests covering existing and edge cases.",
+          "llm_rank": 6
+        },
+        {
+          "id": "requests/utils.py::parse_header_links",
+          "file": "requests/utils.py",
+          "function": "parse_header_links",
+          "line": 909,
+          "priority": "MEDIUM",
+          "priority_score": 55,
+          "reason": "The function has moderate cyclomatic complexity and uses variable shadowing that can lead to confusion or subtle bugs. It also lacks type hints and robust handling of edge cases in Link header parsing, which could affect downstream code in the requests library.",
+          "action": "Rename the inner variable \u2018value\u2019 to \u2018param_value\u2019 to avoid shadowing, add explicit type hints for the function and its return value, and refactor the parsing logic to use a regular expression that captures the URL and parameters more reliably. Include unit tests for various Link header formats to ensure correctness.",
+          "llm_rank": 7
+        },
+        {
+          "id": "requests/auth.py::_basic_auth_str",
+          "file": "requests/auth.py",
+          "function": "_basic_auth_str",
+          "line": 25,
+          "priority": "LOW",
+          "priority_score": 25,
+          "reason": "The function contains only minor style issues (use of .format instead of f-strings) and legacy compatibility checks that are unlikely to cause defects in current usage. It is small, rarely changed, and does not impact performance or correctness.",
+          "action": "Refactor the function to replace the two .format calls with f-strings, remove the legacy basestring checks (or replace with isinstance(..., (str, bytes))), and update the deprecation warnings to use the new string types. This cleans up the code without affecting functionality.",
+          "llm_rank": 8
+        },
+        {
+          "id": "requests/models.py::Response.__setstate__",
+          "file": "requests/models.py",
+          "function": "Response.__setstate__",
+          "line": 719,
+          "priority": "LOW",
+          "priority_score": 25,
+          "reason": "The method is small, has low complexity, and the ruff warnings are purely stylistic. It does not introduce functional defects and is unlikely to affect frequent changes. The impact is minimal, so it can be addressed opportunistically.",
+          "action": "Replace the setattr calls with direct attribute assignments (e.g., self._content_consumed = True; self.raw = None) and add type hints for clarity.",
+          "llm_rank": 9
+        },
+        {
+          "id": "requests/models.py::Response.iter_content.generate",
+          "file": "requests/models.py",
+          "function": "Response.iter_content.generate",
+          "line": 811,
+          "priority": "LOW",
+          "priority_score": 25,
+          "reason": "The missing exception chaining in the raise statements is a lint warning that does not affect runtime behavior or correctness. It is a cosmetic issue that improves debugging but is not critical for functionality, so it can be addressed opportunistically.",
+          "action": "Add explicit exception chaining to each raise: e.g., `raise ChunkedEncodingError(e) from e` for all four exception types.",
+          "llm_rank": 10
+        }
+      ]
+    },
+    {
+      "key": "groq/openai/gpt-oss-20b | rag_context | 1",
+      "model": "groq/openai/gpt-oss-20b",
+      "arm": "rag_context",
+      "repeat": 1,
+      "seconds": 172.8345514999819,
+      "mean_call_seconds": 17.28324894999387,
+      "calls_attempted": 10,
+      "schema_acceptance_rate": 1.0,
+      "call_failure_rate": 0.0,
+      "item_failure_rate": 0.0,
+      "input_tokens": 18305,
+      "output_tokens": 4759,
+      "cached_calls": 0,
+      "cost_usd": 0.002800575,
+      "pricing_per_million": [
+        0.075,
+        0.3
+      ],
+      "results": [
+        {
+          "id": "requests/adapters.py::HTTPAdapter.send",
+          "file": "requests/adapters.py",
+          "function": "HTTPAdapter.send",
+          "line": 433,
+          "priority": "HIGH",
+          "priority_score": 85,
+          "reason": "The send method is a public API entry point with cyclomatic complexity 19, numerous exception branches, and missing explicit exception chaining, making it fragile and hard to maintain. Its high usage and moderate maintainability index mean defects or future changes are likely to surface here. Refactoring will reduce bugs and improve readability.",
+          "action": "Extract the timeout preparation and exception handling into dedicated helper methods, add explicit 'raise ... from e' for all re\u2011raises, and simplify the main flow to lower complexity and improve testability.",
+          "llm_rank": 1
+        },
+        {
+          "id": "requests/api.py::head",
+          "file": "requests/api.py",
+          "function": "head",
+          "line": 88,
+          "priority": "MEDIUM",
+          "priority_score": 55,
+          "reason": "The head function is part of the public API and omitting a timeout can lead to indefinite hangs for callers. While no current defects are reported, the risk is significant enough to warrant timely remediation, but it is not an urgent defect that blocks frequent changes.",
+          "action": "Add a default timeout (e.g., 30\u202fs) to the head function and propagate it to the underlying request call, or require callers to supply a timeout. This prevents silent hangs and aligns the function with the rest of the API.",
+          "llm_rank": 2
+        },
+        {
+          "id": "requests/api.py::post",
+          "file": "requests/api.py",
+          "function": "post",
+          "line": 103,
+          "priority": "MEDIUM",
+          "priority_score": 55,
+          "reason": "The public API function `post` lacks a timeout argument, which can lead to indefinite hangs for callers. While it is not currently causing defects, the risk is significant enough to warrant timely remediation.",
+          "action": "Add a default timeout (e.g., 30 seconds) to the `post` function signature and pass it to the underlying `request` call, or at least emit a warning if no timeout is supplied.",
+          "llm_rank": 3
+        },
+        {
+          "id": "requests/models.py::RequestEncodingMixin._encode_params",
+          "file": "requests/models.py",
+          "function": "RequestEncodingMixin._encode_params",
+          "line": 107,
+          "priority": "MEDIUM",
+          "priority_score": 55,
+          "reason": "The helper has moderate cyclomatic complexity (11) and 29 LOC, but it is only used internally in two places and has full test coverage. It is not a critical defect source, yet the nested if\u2011else and repeated type checks make the code harder to maintain. Refactoring will improve readability and reduce future maintenance effort.",
+          "action": "Refactor the function to flatten the nested if\u2011else structure: combine the first two branches with a logical or, replace the explicit isinstance checks with a single comprehension that handles string, bytes, file-like, and iterable inputs, and add type hints for clarity.",
+          "llm_rank": 4
+        },
+        {
+          "id": "requests/utils.py::extract_zipped_paths",
+          "file": "requests/utils.py",
+          "function": "extract_zipped_paths",
+          "line": 263,
+          "priority": "MEDIUM",
+          "priority_score": 55,
+          "reason": "The function is part of the public API, has moderate cyclomatic complexity (8) and performs side\u2011effects (writing to a temp directory) that could lead to race conditions or stale files. While it is currently covered by tests and not frequently called, the logic is error\u2011prone and hard to maintain, warranting a medium\u2011priority refactor.",
+          "action": "Refactor extract_zipped_paths to use pathlib for path manipulation, a context\u2011managed ZipFile, and tempfile.NamedTemporaryFile for extraction. Replace string joins with f\u2011strings, eliminate the manual loop by iteratively checking parent directories with pathlib, and ensure the extracted file is cleaned up or uniquely named to avoid collisions. Add type hints and a clearer docstring. This reduces complexity, improves safety, and aligns the code with modern Python practices.",
+          "llm_rank": 5
+        },
+        {
+          "id": "requests/utils.py::parse_header_links",
+          "file": "requests/utils.py",
+          "function": "parse_header_links",
+          "line": 909,
+          "priority": "MEDIUM",
+          "priority_score": 55,
+          "reason": "The function has moderate cyclomatic complexity (6) and a low maintainability index (25.2), yet it is a public API used only once in the library and fully covered by tests. Refactoring would improve readability and future maintenance without introducing risk, but it is not critical to fix immediately.",
+          "action": "Refactor parse_header_links to extract parameter parsing into a helper, use a regular expression to split the header into URL and parameters, and rename local variables to avoid shadowing. Keep the public signature and behavior unchanged, and update the docstring for clarity.",
+          "llm_rank": 6
+        },
+        {
+          "id": "requests/models.py::Response.iter_content.generate",
+          "file": "requests/models.py",
+          "function": "Response.iter_content.generate",
+          "line": 811,
+          "priority": "LOW",
+          "priority_score": 45,
+          "reason": "The missing exception chaining is a style issue that improves debugging but does not currently cause defects. The function is small, rarely modified, and has high test coverage, so it can be addressed opportunistically.",
+          "action": "Add explicit exception chaining to each raise: e.g., raise ChunkedEncodingError(e) from e, and similarly for the other exceptions.",
+          "llm_rank": 7
+        },
+        {
+          "id": "requests/api.py::delete",
+          "file": "requests/api.py",
+          "function": "delete",
+          "line": 148,
+          "priority": "LOW",
+          "priority_score": 25,
+          "reason": "The delete wrapper is a public API but currently lacks a timeout argument, which could lead to indefinite hangs if used by callers. No defect history or frequent usage is recorded, and the function is simple, so the risk is moderate and can be addressed opportunistically.",
+          "action": "Add a default timeout to the request call or explicitly pass a timeout argument, e.g., `return request(\"delete\", url, timeout=DEFAULT_TIMEOUT, **kwargs)` or raise a warning if timeout is missing.",
+          "llm_rank": 8
+        },
+        {
+          "id": "requests/auth.py::_basic_auth_str",
+          "file": "requests/auth.py",
+          "function": "_basic_auth_str",
+          "line": 25,
+          "priority": "LOW",
+          "priority_score": 25,
+          "reason": "The helper is small, only 4 call sites, fully covered by tests, and slated for removal in a future major release. It does not currently cause defects or performance issues, so it can be addressed opportunistically.",
+          "action": "Replace the two format() calls with f-strings and remove the legacy basestring checks (use isinstance(..., str) instead). This cleans up the code while preserving the deprecation warnings and backward\u2011compatibility logic.",
+          "llm_rank": 9
+        },
+        {
+          "id": "requests/models.py::Response.__setstate__",
+          "file": "requests/models.py",
+          "function": "Response.__setstate__",
+          "line": 719,
+          "priority": "LOW",
+          "priority_score": 20,
+          "reason": "The method merely assigns attributes from a state dictionary and then sets two constants; the use of setattr with constant names is a style issue that does not affect functionality or performance. It is rarely touched and has no known defects, so it is low impact.",
+          "action": "Replace the two setattr calls with direct assignments: `self._content_consumed = True` and `self.raw = None` to improve readability and remove the lint warning.",
+          "llm_rank": 10
+        }
+      ]
+    },
+    {
+      "key": "groq/openai/gpt-oss-120b | no_context | 1",
+      "model": "groq/openai/gpt-oss-120b",
+      "arm": "no_context",
+      "repeat": 1,
+      "seconds": 30.753807400004007,
+      "mean_call_seconds": 3.075195849989541,
+      "calls_attempted": 10,
+      "schema_acceptance_rate": 1.0,
+      "call_failure_rate": 0.0,
+      "item_failure_rate": 0.0,
+      "input_tokens": 8682,
+      "output_tokens": 3122,
+      "cached_calls": 0,
+      "cost_usd": 0.0031755,
+      "pricing_per_million": [
+        0.15,
+        0.6
+      ],
+      "results": [
+        {
+          "id": "requests/adapters.py::HTTPAdapter.send",
+          "file": "requests/adapters.py",
+          "function": "HTTPAdapter.send",
+          "line": 433,
+          "priority": "HIGH",
+          "priority_score": 85,
+          "reason": "The method has a cyclomatic complexity of 19, many duplicated exception\u2011handling branches, and missing explicit exception chaining, making it hard to understand and error\u2011prone in a core networking component that is exercised on every request.",
+          "action": "Extract timeout conversion, connection acquisition, and exception\u2011mapping logic into dedicated private helper methods; simplify the main flow; add explicit \"raise ... from e\" chaining; and remove the legacy TODO after the 3.0.0 migration, thereby reducing complexity below 10 and improving maintainability.",
+          "llm_rank": 1
+        },
+        {
+          "id": "requests/api.py::head",
+          "file": "requests/api.py",
+          "function": "head",
+          "line": 88,
+          "priority": "HIGH",
+          "priority_score": 72,
+          "reason": "The head() wrapper forwards to request without a timeout, so callers can inadvertently perform a request that hangs indefinitely, leading to reliability issues in production systems.",
+          "action": "Add a sensible default timeout (e.g., kwargs.setdefault('timeout', 10)) or require callers to pass a timeout, and update documentation accordingly.",
+          "llm_rank": 2
+        },
+        {
+          "id": "requests/models.py::Response.iter_content.generate",
+          "file": "requests/models.py",
+          "function": "Response.iter_content.generate",
+          "line": 811,
+          "priority": "MEDIUM",
+          "priority_score": 68,
+          "reason": "The function re\u2011raises several low\u2011level exceptions without using \"raise ... from e\", which breaks exception chaining and makes debugging harder. Combined with a cyclomatic complexity of 8 and a low maintainability index, this code is a moderate source of future defects.",
+          "action": "Update each raise to include the original exception (e.g., \"raise ChunkedEncodingError(e) from e\") and consider extracting the urllib3\u2011specific branch into a separate helper to lower complexity.",
+          "llm_rank": 3
+        },
+        {
+          "id": "requests/auth.py::_basic_auth_str",
+          "file": "requests/auth.py",
+          "function": "_basic_auth_str",
+          "line": 25,
+          "priority": "MEDIUM",
+          "priority_score": 58,
+          "reason": "The function retains Python\u20112 compatibility (basestring checks) and emits deprecation warnings for non\u2011string inputs, which adds maintenance overhead and will break in the upcoming 3.0 release. Additionally, style issues (use of .format) are minor but indicate outdated code. Refactoring now prevents future defects and cleans up the API.",
+          "action": "Remove the basestring compatibility block, enforce that username and password are already str/bytes, drop the DeprecationWarning logic, and replace the .format calls with f\u2011strings for clearer, modern code.",
+          "llm_rank": 4
+        },
+        {
+          "id": "requests/models.py::RequestEncodingMixin._encode_params",
+          "file": "requests/models.py",
+          "function": "RequestEncodingMixin._encode_params",
+          "line": 107,
+          "priority": "MEDIUM",
+          "priority_score": 58,
+          "reason": "The method\u2019s cyclomatic complexity of 11 and a very low maintainability index (21.89) indicate tangled branching and duplicated type checks, which can lead to bugs and make future changes error\u2011prone. A ruff warning already points out a simple logical\u2011or simplification, so refactoring now will noticeably improve readability and reliability.",
+          "action": "Refactor _encode_params to use early returns and combine the first two type checks (str/bytes and file\u2011like objects) into a single condition, extract the encoding loop into a small helper function, add proper type hints, and update tests to cover edge cases.",
+          "llm_rank": 5
+        },
+        {
+          "id": "requests/utils.py::parse_header_links",
+          "file": "requests/utils.py",
+          "function": "parse_header_links",
+          "line": 909,
+          "priority": "MEDIUM",
+          "priority_score": 57,
+          "reason": "The function has a low maintainability index and a cyclomatic complexity of 6, making it harder to reason about and extend, especially when handling malformed or malicious header values. It also lacks type hints, validation, and clear separation of concerns, which can lead to bugs in security\u2011critical HTTP handling.",
+          "action": "Add type annotations, extract the parameter\u2011parsing loop into a dedicated helper, and replace the ad\u2011hoc string manipulation with robust parsing (e.g., using urllib.parse). Include comprehensive unit tests for edge\u2011case headers and enforce validation of URLs and parameters.",
+          "llm_rank": 6
+        },
+        {
+          "id": "requests/api.py::delete",
+          "file": "requests/api.py",
+          "function": "delete",
+          "line": 148,
+          "priority": "MEDIUM",
+          "priority_score": 55,
+          "reason": "The delete() wrapper forwards kwargs directly to request without enforcing a timeout, so callers may unintentionally omit it and cause the program to hang indefinitely. This risk is significant for production code that frequently uses HTTP DELETE calls.",
+          "action": "Introduce a default timeout (e.g., timeout=5) in delete() and propagate it, or validate that a timeout is provided in kwargs, updating the function signature to include timeout with a sensible default.",
+          "llm_rank": 7
+        },
+        {
+          "id": "requests/api.py::post",
+          "file": "requests/api.py",
+          "function": "post",
+          "line": 103,
+          "priority": "MEDIUM",
+          "priority_score": 55,
+          "reason": "The wrapper does not set a default timeout, so callers may inadvertently cause the program to hang indefinitely; this can lead to production outages and makes debugging harder.",
+          "action": "Add a sensible default timeout (e.g., 10 seconds) to the post function and propagate it to the underlying request call, or enforce that timeout is required via kwargs.",
+          "llm_rank": 8
+        },
+        {
+          "id": "requests/utils.py::extract_zipped_paths",
+          "file": "requests/utils.py",
+          "function": "extract_zipped_paths",
+          "line": 263,
+          "priority": "MEDIUM",
+          "priority_score": 55,
+          "reason": "The function has low maintainability (MI 25) and a relatively high cyclomatic complexity, plus it leaks ZipFile resources and uses outdated string concatenation, which can cause subtle bugs and resource exhaustion in zip handling paths.",
+          "action": "Refactor extract_zipped_paths: use pathlib for path manipulation, replace the manual split loop with pathlib's parents search, open ZipFile via a context manager, switch to f-strings, add type hints, and ensure temporary files are cleaned up or uniquely named.",
+          "llm_rank": 9
+        },
+        {
+          "id": "requests/models.py::Response.__setstate__",
+          "file": "requests/models.py",
+          "function": "Response.__setstate__",
+          "line": 719,
+          "priority": "LOW",
+          "priority_score": 25,
+          "reason": "The method uses setattr with constant attribute names, which ruff flags as unnecessary and can obscure simple attribute assignments, but the code is tiny and rarely changed, so the risk is minimal.",
+          "action": "Replace the setattr calls with direct attribute assignments (e.g., self._content_consumed = True; self.raw = None) and remove the loop that sets attributes via setattr.",
+          "llm_rank": 10
+        }
+      ]
+    },
+    {
+      "key": "groq/openai/gpt-oss-120b | rag_context | 1",
+      "model": "groq/openai/gpt-oss-120b",
+      "arm": "rag_context",
+      "repeat": 1,
+      "seconds": 164.46392690000357,
+      "mean_call_seconds": 16.446219890005885,
+      "calls_attempted": 10,
+      "schema_acceptance_rate": 1.0,
+      "call_failure_rate": 0.0,
+      "item_failure_rate": 0.0,
+      "input_tokens": 18305,
+      "output_tokens": 3559,
+      "cached_calls": 0,
+      "cost_usd": 0.00488115,
+      "pricing_per_million": [
+        0.15,
+        0.6
+      ],
+      "results": [
+        {
+          "id": "requests/adapters.py::HTTPAdapter.send",
+          "file": "requests/adapters.py",
+          "function": "HTTPAdapter.send",
+          "line": 433,
+          "priority": "HIGH",
+          "priority_score": 82,
+          "reason": "The method has a cyclomatic complexity of 19, multiple nested exception branches, and numerous raise\u2011missing\u2011from warnings, making it error\u2011prone and hard to maintain. It is part of the public API with many call sites and test coverage, so defects here impact many users.",
+          "action": "Refactor send() by extracting timeout parsing and each exception\u2011handling block into separate private helpers, add explicit exception chaining (raise ... from e), and eliminate the TODO branch once the 3.0.0 removal is done, thereby reducing complexity and improving readability.",
+          "llm_rank": 1
+        },
+        {
+          "id": "requests/api.py::post",
+          "file": "requests/api.py",
+          "function": "post",
+          "line": 103,
+          "priority": "MEDIUM",
+          "priority_score": 58,
+          "reason": "post() is part of the public API and is exercised by many tests; without an explicit timeout the call can block indefinitely, which is a reliability risk in production. The missing timeout is flagged by pylint and mirrors identical issues in other verb helpers, indicating a systematic oversight.",
+          "action": "Add an optional timeout argument (e.g., default=10) to post (and similar helpers) and forward it to the underlying request call; update the docstring to document the timeout and adjust tests to cover the new default behavior.",
+          "llm_rank": 2
+        },
+        {
+          "id": "requests/utils.py::extract_zipped_paths",
+          "file": "requests/utils.py",
+          "function": "extract_zipped_paths",
+          "line": 263,
+          "priority": "MEDIUM",
+          "priority_score": 55,
+          "reason": "The function has low maintainability (MI\u202f25.2) and moderate cyclomatic complexity, uses a manual loop that can be error\u2011prone, and opens ZipFile without a context manager, risking resource leaks. It is part of the public API and has recent bug\u2011fix activity, so fixing it will reduce defect risk without massive effort.",
+          "action": "Refactor extract_zipped_paths: replace os.path logic with pathlib, use f-strings instead of string joins, rewrite the archive/member discovery loop for clarity, open the zip with a context manager (with zipfile.ZipFile(archive) as zip_file), add type hints and improve the docstring, and ensure proper cleanup of temporary files.",
+          "llm_rank": 3
+        },
+        {
+          "id": "requests/api.py::head",
+          "file": "requests/api.py",
+          "function": "head",
+          "line": 88,
+          "priority": "MEDIUM",
+          "priority_score": 48,
+          "reason": "head() forwards kwargs to request without a timeout, so callers can block indefinitely; as a public API function this can cause production hangs even though current test coverage is high.",
+          "action": "Add a timeout parameter (with a sensible default) to the function signature and ensure kwargs includes it before calling request; update the docstring to reflect the new argument.",
+          "llm_rank": 4
+        },
+        {
+          "id": "requests/auth.py::_basic_auth_str",
+          "file": "requests/auth.py",
+          "function": "_basic_auth_str",
+          "line": 25,
+          "priority": "MEDIUM",
+          "priority_score": 48,
+          "reason": "The function uses legacy type checks (basestring) and format strings that trigger deprecation warnings, which will need removal for the upcoming 3.0 release. While fully covered by tests and not causing current defects, the style and compatibility code add maintenance overhead.",
+          "action": "Replace the format calls with f-strings, update the type checks to use isinstance(..., (str, bytes)) (or import basestring from six if needed), simplify the encoding logic, and add type hints; schedule this refactor before the 3.0 release.",
+          "llm_rank": 5
+        },
+        {
+          "id": "requests/models.py::RequestEncodingMixin._encode_params",
+          "file": "requests/models.py",
+          "function": "RequestEncodingMixin._encode_params",
+          "line": 107,
+          "priority": "MEDIUM",
+          "priority_score": 45,
+          "reason": "The function has moderate cyclomatic complexity (11) and a low maintainability index, but it is a private helper with only two call sites and full test coverage, so the risk of immediate defects is low. Simplifying the conditional logic and extracting the encoding loop will improve readability and reduce future maintenance cost.",
+          "action": "Refactor _encode_params by merging the first two checks into a single `if isinstance(data, (str, bytes)) or hasattr(data, \"read\"):` branch, streamline the iterable handling, and extract the inner encoding loop into a small helper (or use a dict/comprehension) with added type hints to lower cyclomatic complexity.",
+          "llm_rank": 6
+        },
+        {
+          "id": "requests/utils.py::parse_header_links",
+          "file": "requests/utils.py",
+          "function": "parse_header_links",
+          "line": 909,
+          "priority": "MEDIUM",
+          "priority_score": 38,
+          "reason": "The function has a low maintainability index and moderate cyclomatic complexity, making it harder to understand and maintain, yet it is only used in a single place with full test coverage, limiting immediate risk.",
+          "action": "Refactor parse_header_links to simplify parsing (e.g., use a regular expression or urllib.parse utilities), add type hints and clearer error handling, and improve documentation to enhance readability and robustness.",
+          "llm_rank": 7
+        },
+        {
+          "id": "requests/models.py::Response.iter_content.generate",
+          "file": "requests/models.py",
+          "function": "Response.iter_content.generate",
+          "line": 811,
+          "priority": "LOW",
+          "priority_score": 28,
+          "reason": "The function only lacks explicit exception chaining (raise ... from e), which hampers debugging but does not affect current behavior; test coverage is high and the code path is rarely exercised. The fix is straightforward and low risk.",
+          "action": "Update each except block to use exception chaining, e.g., 'except ProtocolError as e: raise ChunkedEncodingError(e) from e', and similarly for DecodeError, ReadTimeoutError, and SSLError.",
+          "llm_rank": 8
+        },
+        {
+          "id": "requests/models.py::Response.__setstate__",
+          "file": "requests/models.py",
+          "function": "Response.__setstate__",
+          "line": 719,
+          "priority": "LOW",
+          "priority_score": 27,
+          "reason": "The method only handles unpickling and uses setattr with constant attribute names, which is a minor style issue; it has no functional impact, is covered by tests, and is rarely exercised. Refactoring will improve readability but carries low risk and low business impact.",
+          "action": "Replace the setattr loop with a direct attribute update (e.g., self.__dict__.update(state)) and assign _content_consumed and raw via direct attribute access instead of setattr.",
+          "llm_rank": 9
+        },
+        {
+          "id": "requests/api.py::delete",
+          "file": "requests/api.py",
+          "function": "delete",
+          "line": 148,
+          "priority": "LOW",
+          "priority_score": 22,
+          "reason": "The function lacks a timeout argument, which can cause the program to hang if a DELETE request never returns. However, the function has no internal call sites and modest test coverage, so the risk of defects is low and it is not a frequent change point.",
+          "action": "Add an optional timeout parameter (with a sensible default) to delete() and forward it to request(), updating the docstring accordingly.",
+          "llm_rank": 10
+        }
+      ]
+    }
+  ],
+  "evaluation": {
+    "n_items": 10,
+    "n_positive": 1,
+    "methods": {
+      "groq/openai/gpt-oss-20b | no_context | 1": {
+        "spearman_vs_fix_commits": 0.5649,
+        "spearman_vs_change_commits": 0.2076,
+        "auc_future_defect": 1.0,
+        "ndcg@10_fix_commits": 1.0,
+        "ndcg@10_change_commits": 0.8424,
+        "precision@5": 0.2,
+        "precision@10": 0.1,
+        "spearman_vs_change_commits_ci95": [
+          -0.6271,
+          0.825
+        ],
+        "auc_future_defect_ci95": [
+          1.0,
+          1.0
+        ],
+        "ndcg@10_fix_commits_ci95": [
+          1.0,
+          1.0
+        ],
+        "precision@5_ci95": [
+          0.0,
+          0.6
+        ],
+        "precision@10_ci95": [
+          0.0,
+          0.3
+        ]
+      },
+      "groq/openai/gpt-oss-20b | rag_context | 1": {
+        "spearman_vs_fix_commits": 0.559,
+        "spearman_vs_change_commits": 0.3632,
+        "auc_future_defect": 1.0,
+        "ndcg@10_fix_commits": 1.0,
+        "ndcg@10_change_commits": 0.8511,
+        "precision@5": 0.2,
+        "precision@10": 0.1,
+        "spearman_vs_change_commits_ci95": [
+          -0.5132,
+          0.8492
+        ],
+        "auc_future_defect_ci95": [
+          1.0,
+          1.0
+        ],
+        "ndcg@10_fix_commits_ci95": [
+          1.0,
+          1.0
+        ],
+        "precision@5_ci95": [
+          0.0,
+          0.6
+        ],
+        "precision@10_ci95": [
+          0.0,
+          0.3
+        ]
+      },
+      "groq/openai/gpt-oss-120b | no_context | 1": {
+        "spearman_vs_fix_commits": 0.5303,
+        "spearman_vs_change_commits": 0.4002,
+        "auc_future_defect": 1.0,
+        "ndcg@10_fix_commits": 1.0,
+        "ndcg@10_change_commits": 0.8761,
+        "precision@5": 0.2,
+        "precision@10": 0.1,
+        "spearman_vs_change_commits_ci95": [
+          -0.3536,
+          0.9001
+        ],
+        "auc_future_defect_ci95": [
+          1.0,
+          1.0
+        ],
+        "ndcg@10_fix_commits_ci95": [
+          1.0,
+          1.0
+        ],
+        "precision@5_ci95": [
+          0.0,
+          0.6
+        ],
+        "precision@10_ci95": [
+          0.0,
+          0.3
+        ]
+      },
+      "groq/openai/gpt-oss-120b | rag_context | 1": {
+        "spearman_vs_fix_commits": 0.5238,
+        "spearman_vs_change_commits": 0.5878,
+        "auc_future_defect": 1.0,
+        "ndcg@10_fix_commits": 1.0,
+        "ndcg@10_change_commits": 0.8916,
+        "precision@5": 0.2,
+        "precision@10": 0.1,
+        "spearman_vs_change_commits_ci95": [
+          -0.0355,
+          0.9324
+        ],
+        "auc_future_defect_ci95": [
+          1.0,
+          1.0
+        ],
+        "ndcg@10_fix_commits_ci95": [
+          1.0,
+          1.0
+        ],
+        "precision@5_ci95": [
+          0.0,
+          0.6
+        ],
+        "precision@10_ci95": [
+          0.0,
+          0.3
+        ]
+      }
+    }
+  },
+  "consistency": [],
+  "notes": [
+    "All quality metrics use the intersection of successful items across every run.",
+    "Inspect failure rates and shared sample size before comparing quality.",
+    "Schema acceptance includes transport/refusal failures; raw invalid-JSON rate is not exposed by every provider.",
+    "Costs use supplied per-million token rates; unknown prices are null. Provider retries may incur unreported usage.",
+    "Independent repeats use no disk cache. No best model is declared from incomplete evidence."
+  ]
+}

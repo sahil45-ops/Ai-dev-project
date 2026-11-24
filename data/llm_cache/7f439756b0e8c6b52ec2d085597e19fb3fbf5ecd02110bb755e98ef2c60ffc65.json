@@ -1,0 +1,5 @@
+{
+ "priority": "MEDIUM",
+ "priority_score": 50,
+ "reason": "The function carries technical debt in the form of deep nesting, mixed responsibilities, duplicated branches, and a composite static debt score of 6.73/10. It is also moderately central, moderately often changed, and moderately well-tested. The function is not highly central, highly often changed, or highly well-tested, but it is moderately complex and has a moderate impact on the codebase."
+}

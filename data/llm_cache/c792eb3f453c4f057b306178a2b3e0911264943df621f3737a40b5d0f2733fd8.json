@@ -1,0 +1,5 @@
+{
+ "priority": "MEDIUM",
+ "priority_score": 60,
+ "reason": "The code has a high cyclomatic complexity of 6, indicating that it is difficult to understand and maintain. Additionally, the code has a low code maintainability index of 84.22, suggesting that it is not well-organized and can be improved."
+}

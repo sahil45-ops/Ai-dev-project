@@ -1,0 +1,13 @@
+{
+ "summary": "RequestHooksMixin.register_hook() in requests/models.py carries technical debt related to duplicated code and inconsistent naming conventions. This issue matters for this repository because duplicated code can lead to maintenance challenges and inconsistencies in naming conventions can make the code harder to understand and maintain.",
+ "debt_indicators": [
+  "duplicated lines",
+  "mixed responsibilities"
+ ],
+ "impact_factors": [
+  "how central the function is",
+  "how often it changes or breaks",
+  "how well it is tested"
+ ],
+ "risk_assessment": "medium"
+}

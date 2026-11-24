@@ -1,0 +1,5 @@
+{
+ "priority": "HIGH",
+ "priority_score": 80,
+ "reason": "The item under review carries technical debt due to its high cyclomatic complexity (1) and large lines of code (7), which suggests that it is actively causing or very likely to cause defects or slow down frequent changes. Additionally, the function is not well-maintained, with a maintainability index of 47.35 and a low test coverage of 87.9%, which further highlights the need for refactoring. The lack of docstrings also suggests that the function is not well-documented, which could make it difficult for future developers to understand and maintain."
+}

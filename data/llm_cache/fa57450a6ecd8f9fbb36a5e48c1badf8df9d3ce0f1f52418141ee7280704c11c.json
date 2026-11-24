@@ -1,0 +1,16 @@
+{
+ "summary": "from_key_val_list() in requests/utils.py carries technical debt related to handling invalid input types. The function is not well-documented and does not provide clear error messages. Additionally, the function is not well-tested, and there are no calls to it in the library or tests.",
+ "debt_indicators": [
+  "Mixed responsibilities",
+  "Deep nesting",
+  "Duplicated code"
+ ],
+ "impact_factors": [
+  "Function-level history: changed in 1 commit(s), 1 of them bug fixes",
+  "File-level history: 18 commit(s), 8 defect-linked, 5 author(s), last change 32 day(s) before snapshot",
+  "Test coverage: function 16.7%, file 87.8%",
+  "Documentation: 'Take an object and test to see if it can be represented as a dictionary. Unless it can not be represented as such, return an OrderedDict, e.g., :: >>> from_key_val_list([('key', 'val')]) OrderedDict([('key', 'val')]) >>> from_key_val_list('string') Traceback (most recent call last): ... ValueError: \"",
+  "Code smells: 1 [lint]"
+ ],
+ "risk_assessment": "Severity: LOW"
+}

@@ -1,0 +1,16 @@
+{
+ "summary": "The `handle_redirect` function in the `requests/auth.py` file carries technical debt related to handling redirects. This function is called from the `HTTPDigestAuth` class, which is part of the `requests` library. The function has a complexity of 2 and a maintainability index of 47.35. This indicates that the function is relatively simple and maintainable, but it still carries some technical debt. The function is called from 4 different places in the library, and it has been modified in 0 commit(s) in the past. The function has a composite static debt score of 2.51/10.",
+ "debt_indicators": [
+  "deep_nesting",
+  "mixed_responsibilities",
+  "duplicated_lines",
+  "flagged_as_dead_code"
+ ],
+ "impact_factors": [
+  "central_functionality",
+  "frequency_of_changes",
+  "testability",
+  "well_tested"
+ ],
+ "risk_assessment": "LOW"
+}

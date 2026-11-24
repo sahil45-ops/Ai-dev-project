@@ -1,0 +1,6 @@
+{
+ "priority": "HIGH",
+ "priority_score": 85,
+ "reason": "The function has a cyclomatic complexity of 16 and a low maintainability index, yet it is part of the public API and has a history of defect‑linked commits. Its logic is tangled with environment handling, error handling, and platform specific hacks, making it fragile and hard to test. Refactoring will reduce future bugs and improve testability.",
+ "action": "Refactor get_netrc_auth into smaller, well‑named helper functions: separate netrc file discovery, authentication extraction, and error handling. Replace the nested try/except with clearer control flow, use a context manager for file access, and add comprehensive unit tests for each helper. This will lower complexity, improve readability, and make the function easier to maintain."
+}

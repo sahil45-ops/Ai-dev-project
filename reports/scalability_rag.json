@@ -1,0 +1,120 @@
+{
+  "environment": {
+    "python": "3.13.5 | packaged by Anaconda, Inc. | (main, Jun 12 2025, 16:37:03) [MSC v.1929 64 bit (AMD64)]",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "cpu_count": 18,
+    "ram_mb": 15805.3671875
+  },
+  "budgets": {
+    "seconds": 180.0,
+    "memory_mb": 4096
+  },
+  "enabled_optional_stages": [
+    "--rag"
+  ],
+  "runs": [
+    {
+      "stages_seconds": {
+        "function_index": 0.024507900001481175,
+        "duplication": 0.0032809999538585544,
+        "call_graph": 0.006119700032286346,
+        "rag_initialization": 5.86066090001259,
+        "rag_index": 38.017725299985614,
+        "rag_retrieval": 1.9455147000262514
+      },
+      "scope": {
+        "static": false,
+        "history": false,
+        "rag": true
+      },
+      "source_sha256": "611cf8ab96fe0ec5849577b7fde34fe6ece1e521031125df7b43cf7dec4910de",
+      "python_files": 5,
+      "physical_lines": 495,
+      "kloc": 0.495,
+      "functions": 100,
+      "rag_queries": 100,
+      "rag_mean_retrieval_seconds": 0.019455147000262515,
+      "status": "complete",
+      "llm_tokens": null,
+      "llm_cost_usd": null,
+      "name": "synthetic_small",
+      "source": "C:\\Users\\ASAD AHMAD\\Downloads\\devvv (3)\\devvv\\Intelligent_Technical_Debt_and_Refactoring-main\\Intelligent_Technical_Debt_and_Refactoring-main\\targets\\benchmark-fixtures\\small",
+      "wall_seconds": 48.722970900009386,
+      "peak_tree_rss_mb": 626.16796875,
+      "log_tail": "\nLoading weights:   0%|          | 0/103 [00:00<?, ?it/s]\nLoading weights: 100%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588| 103/103 [00:00<00:00, 1611.20it/s]\n\u001b[1mBertModel LOAD REPORT\u001b[0m from: sentence-transformers/all-MiniLM-L6-v2\nKey                     | Status     |  | \n------------------------+------------+--+-\nembeddings.position_ids | UNEXPECTED |  | \n\nNotes:\n- UNEXPECTED:\tcan be ignored when loading from different task/architecture; not ok if you expect identical arch.\n",
+      "repeat": 1
+    },
+    {
+      "stages_seconds": {
+        "function_index": 0.39670820004539564,
+        "duplication": 0.02867789997253567,
+        "call_graph": 0.05990389996441081,
+        "rag_initialization": 3.057825199968647,
+        "rag_index": 59.32882170000812,
+        "rag_retrieval": 2.8097378999809735
+      },
+      "scope": {
+        "static": false,
+        "history": false,
+        "rag": true
+      },
+      "source_sha256": "1260db70bb2161e469aa752be2dc846e4fad3331befb8170c79981e9c411b0f4",
+      "python_files": 50,
+      "physical_lines": 4950,
+      "kloc": 4.95,
+      "functions": 1000,
+      "rag_queries": 100,
+      "rag_mean_retrieval_seconds": 0.028097378999809734,
+      "status": "complete",
+      "llm_tokens": null,
+      "llm_cost_usd": null,
+      "name": "synthetic_medium",
+      "source": "C:\\Users\\ASAD AHMAD\\Downloads\\devvv (3)\\devvv\\Intelligent_Technical_Debt_and_Refactoring-main\\Intelligent_Technical_Debt_and_Refactoring-main\\targets\\benchmark-fixtures\\medium",
+      "wall_seconds": 70.12899339996511,
+      "peak_tree_rss_mb": 650.734375,
+      "log_tail": "\nLoading weights:   0%|          | 0/103 [00:00<?, ?it/s]\nLoading weights: 100%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588| 103/103 [00:00<00:00, 1806.25it/s]\n\u001b[1mBertModel LOAD REPORT\u001b[0m from: sentence-transformers/all-MiniLM-L6-v2\nKey                     | Status     |  | \n------------------------+------------+--+-\nembeddings.position_ids | UNEXPECTED |  | \n\nNotes:\n- UNEXPECTED:\tcan be ignored when loading from different task/architecture; not ok if you expect identical arch.\n",
+      "repeat": 1
+    },
+    {
+      "stages_seconds": {
+        "function_index": 1.7555759000242688,
+        "duplication": 0.18031080003129318,
+        "call_graph": 0.4468330999952741,
+        "rag_initialization": 4.781919099972583,
+        "rag_index": 120.02039640001021,
+        "rag_retrieval": 3.5182274999679066
+      },
+      "scope": {
+        "static": false,
+        "history": false,
+        "rag": true
+      },
+      "source_sha256": "0b718a324e026c19db9ca9266853a1c3b0623ad4c2ff91ad415e878d6d361d64",
+      "python_files": 250,
+      "physical_lines": 24750,
+      "kloc": 24.75,
+      "functions": 5000,
+      "rag_queries": 100,
+      "rag_mean_retrieval_seconds": 0.03518227499967907,
+      "status": "complete",
+      "llm_tokens": null,
+      "llm_cost_usd": null,
+      "name": "synthetic_large",
+      "source": "C:\\Users\\ASAD AHMAD\\Downloads\\devvv (3)\\devvv\\Intelligent_Technical_Debt_and_Refactoring-main\\Intelligent_Technical_Debt_and_Refactoring-main\\targets\\benchmark-fixtures\\large",
+      "wall_seconds": 138.82059109996771,
+      "peak_tree_rss_mb": 694.546875,
+      "log_tail": "\nLoading weights:   0%|          | 0/103 [00:00<?, ?it/s]\nLoading weights: 100%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588| 103/103 [00:00<00:00, 4665.67it/s]\n\u001b[1mBertModel LOAD REPORT\u001b[0m from: sentence-transformers/all-MiniLM-L6-v2\nKey                     | Status     |  | \n------------------------+------------+--+-\nembeddings.position_ids | UNEXPECTED |  | \n\nNotes:\n- UNEXPECTED:\tcan be ignored when loading from different task/architecture; not ok if you expect identical arch.\n",
+      "repeat": 1
+    }
+  ],
+  "largest_successful_kloc": 24.75,
+  "maximum_supported_kloc": null,
+  "limitations": [
+    "Observed bound applies only to these repositories and enabled stages.",
+    "RSS is sampled every 100ms across the process tree; brief peaks can be missed.",
+    "RAG indexes all functions as a load probe; this is not ranking quality evaluation.",
+    "LLM usage and cost are measured separately by run_model_benchmark.py.",
+    "Analyzer wrappers may report empty findings on tool failures; inspect logs.",
+    "Repeated runs can benefit from OS/model caches; record cold and warm runs separately."
+  ]
+}

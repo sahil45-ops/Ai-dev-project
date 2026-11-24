@@ -1,0 +1,6 @@
+{
+ "priority": "MEDIUM",
+ "priority_score": 55,
+ "reason": "The function has high cyclomatic complexity (19) and a low maintainability index, making it error‑prone and hard to test. It is part of the public API and performs several distinct responsibilities (JSON handling, iterable streaming, file uploads, raw data encoding), which should be modularized to improve readability and reduce future defects.",
+ "action": "Refactor the method into smaller helper functions: separate JSON preparation, iterable streaming, file upload encoding, and raw data handling. Extract content‑length and content‑type header logic into its own method. Add explicit 'raise ... from ve' for the JSON error to preserve exception context."
+}

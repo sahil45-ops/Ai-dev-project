@@ -1,0 +1,6 @@
+{
+ "priority": "LOW",
+ "priority_score": 25,
+ "reason": "The method has moderate cyclomatic complexity (6) and 21 LOC, but it is rarely modified and has no defect history. It is a public API used only a few times, so the risk of breaking changes is low. Refactoring would mainly improve readability rather than fix a defect.",
+ "action": "Extract the fallback handling logic into a separate helper method (e.g., `_prepare_fallback_kwargs`) to reduce complexity and improve clarity, while keeping the public API unchanged."
+}

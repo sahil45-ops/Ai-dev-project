@@ -1,0 +1,6 @@
+{
+ "action": "Extract the file upload logic into a separate function to reduce technical debt.",
+ "refactoring_type": "extract_method",
+ "expected_benefit": "Reduces technical debt by extracting the file upload logic into a separate function, improving maintainability and readability of the code. Reduces cyclomatic complexity by 10, improves composite static debt score by 1.5, and reduces duplicated lines by 10.",
+ "risk": "The extracted function may introduce new technical debt if not implemented correctly. However, the overall technical debt of the `PreparedRequest.prepare_body()` function is significantly reduced, making it a low-risk refactoring."
+}

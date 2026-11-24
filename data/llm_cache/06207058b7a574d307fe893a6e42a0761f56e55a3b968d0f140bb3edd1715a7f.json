@@ -1,0 +1,5 @@
+{
+ "priority": "LOW",
+ "priority_score": 20,
+ "reason": "The function has a low impact on the codebase and is not frequently changed or broken. It is also not well-tested, which increases the risk of defects. Additionally, the function is not flagged as dead code, which means it is still being used in the codebase. Therefore, it should be left alone."
+}

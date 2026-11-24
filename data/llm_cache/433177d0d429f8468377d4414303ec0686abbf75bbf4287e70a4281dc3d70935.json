@@ -1,0 +1,14 @@
+{
+ "summary": "The `unquote_unreserved()` function in the `requests/utils.py` file carries technical debt related to URL encoding and decoding. This function is responsible for unescaping percent-encoded characters in a URI that are unreserved characters. The function has a cyclomatic complexity of 6, indicating a moderate level of complexity. Additionally, the function has a maintainability index of 25.2, which is considered low. The function has 1 function-level call site and 1 reference from a test, indicating that it is not heavily used in the library or tests.",
+ "debt_indicators": [
+  "deep nesting",
+  "mixed responsibilities",
+  "duplicated branches"
+ ],
+ "impact_factors": [
+  "how central the function is",
+  "how often it changes or breaks",
+  "how well it is tested"
+ ],
+ "risk_assessment": "Medium risk of breaking changes or introducing new bugs. The function is not heavily used in the library or tests, but it is called by a single function-level call site and referenced from a test. The cyclomatic complexity and maintainability index indicate a moderate level of complexity, which could lead to unexpected behavior or bugs if not properly maintained. The function has a relatively low call count and test coverage, which could also increase the risk of breaking changes or introducing new bugs. However, the function is not heavily used, and the cyclomatic complexity and maintainability index are moderate, which could be mitigated with proper testing and maintenance. Overall, the risk of breaking changes or introducing new bugs is moderate, but it could be higher if not properly maintained or tested. The function should be reviewed and maintained regularly to ensure that it remains stable and reliable."
+}

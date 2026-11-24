@@ -1,0 +1,6 @@
+{
+ "action": "Extract a separate function to handle the bypass logic.",
+ "refactoring_type": "extract_method",
+ "expected_benefit": "Reduced duplicated code and improved maintainability.",
+ "risk": "Medium"
+}

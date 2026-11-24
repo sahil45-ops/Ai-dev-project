@@ -1,0 +1,15 @@
+{
+ "summary": "The `remove_cookie_by_name()` function in requests/cookies.py carries technical debt related to duplicated code and inconsistent naming conventions. This debt matters for this repository because it can lead to code duplication, make maintenance more challenging, and potentially cause bugs to be introduced or harder to track down.",
+ "debt_indicators": [
+  "Deep nesting",
+  "Mixed responsibilities",
+  "Duplicated code",
+  "Inconsistent naming conventions"
+ ],
+ "impact_factors": [
+  "Centrality of the function",
+  "Frequency of changes or breaks",
+  "Test coverage"
+ ],
+ "risk_assessment": "Medium to High"
+}

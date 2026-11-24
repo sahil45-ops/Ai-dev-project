@@ -26,9 +26,16 @@ import sys
 from datetime import datetime, timezone
 
 import config
-from agents.prompts import read_function_source
+from agents.prompts import coverage_is_known, read_function_source
 from evaluation.evaluate import collect_methods
 from evaluation.expert import load_raters
+from evaluation.explanations import (
+    ADVANCED,
+    BASE,
+    HISTORY,
+    evidence_for,
+    explain_heuristic,
+)
 
 _NEIGHBOUR_RE = re.compile(
     r"### Result \d+ \(Score: (?P<score>[\d.]+), Distance: (?P<dist>[\d.]+)\)\s*\n"
@@ -43,7 +50,7 @@ _ITEM_FIELDS = (
     "duplicate_lines", "dead_code", "static_score", "static_rank", "callers",
     "test_references", "is_private", "func_commits", "func_fix_commits", "recent_commits",
     "defect_commits", "commit_authors", "last_modified_days", "function_coverage",
-    "test_coverage", "docstring",
+    "test_coverage", "docstring", "coverage_known", "code_churn", "recurring_bug_file",
 )
 
 
@@ -60,9 +67,16 @@ def build_payload(repo: str) -> dict:
     if not items:
         raise SystemExit(f"[error] {paths['items']} not found — run run_dataset.py first.")
 
+    history_items = _load(os.path.join(config.REPORTS_DIR, f"{repo}_history_ablation_items.json"), []) or []
+    history_by_id = {x["id"]: x for x in history_items}
+    items = [{**item, **{k: history_by_id[item["id"]][k] for k in
+               ("code_churn", "recurring_bug_file") if item["id"] in history_by_id
+               and k in history_by_id[item["id"]]}} for item in items]
+
     slim = []
     for item in items:
         record = {k: item.get(k) for k in _ITEM_FIELDS}
+        record["coverage_known"] = coverage_is_known(item)
         record["source"] = read_function_source(item)
         slim.append(record)
 
@@ -112,6 +126,10 @@ def build_payload(repo: str) -> dict:
         "expertSample": _load(paths["expert_sample"], []),
         "raters": [{"rater": r["rater"], "count": len(r["scores"])} for r in raters],
         "methodScores": {name: m["scores"] for name, m in methods.items()},
+        "explanations": explain_heuristic(items),
+        "advancedExplanations": explain_heuristic(items, BASE + HISTORY + ADVANCED),
+        "evidence": {x["id"]: evidence_for(x) for x in items},
+        "historyAblation": _load(os.path.join(config.REPORTS_DIR, f"{repo}_history_ablation.json"), {}),
         "neighbours": neighbours,
         "runs": {"llm": run_info(llm, "llm_rankings"),
                  "llm_nocontext": run_info(llm_nc, "llm_rankings_nocontext")},

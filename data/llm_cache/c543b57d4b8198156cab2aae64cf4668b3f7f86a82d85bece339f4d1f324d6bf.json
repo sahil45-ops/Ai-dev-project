@@ -1,0 +1,24 @@
+{
+ "summary": "This function adds any headers needed by the connection. As of v2.0 this does nothing by default, but is left for overriding by users that subclass the :class:`HTTPAdapter <requests.adapters.HTTPAdapter>`. This should not be called from user code, and is only exposed for use when subclassing the :class:`HTTPAdapter <requests.adapters.HTTPAdapter>`.",
+ "debt_indicators": [
+  "Cyclomatic complexity: 1 (Radon rank A)",
+  "LOC: 13 | Parameters: 1",
+  "File maintainability index: 51.8",
+  "Code smells (lint/refactor findings): 2 [lint]",
+  "Style-only findings: 0",
+  "Duplicated lines: 0",
+  "Flagged as dead code: no",
+  "Composite static debt score: 2.13 / 10"
+ ],
+ "impact_factors": [
+  "Severity: LOW",
+  "Severity: LOW",
+  "Severity: LOW",
+  "Severity: LOW",
+  "Severity: LOW",
+  "Severity: LOW",
+  "Severity: LOW",
+  "Severity: LOW"
+ ],
+ "risk_assessment": "Low"
+}

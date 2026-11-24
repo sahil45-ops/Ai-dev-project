@@ -1,0 +1,212 @@
+{
+  "as_of": "2024-01-01T00:00:00+00:00",
+  "history_window_days": 730,
+  "evaluation": {
+    "n_items": 84,
+    "n_positive": 7,
+    "methods": {
+      "static_score": {
+        "spearman_vs_fix_commits": 0.3331,
+        "spearman_vs_change_commits": 0.4231,
+        "auc_future_defect": 0.8516,
+        "ndcg@10_fix_commits": 0.4724,
+        "ndcg@10_change_commits": 0.6729,
+        "precision@5": 0.4,
+        "precision@10": 0.4,
+        "precision@20": 0.3,
+        "spearman_vs_change_commits_ci95": [
+          0.216,
+          0.6057
+        ],
+        "auc_future_defect_ci95": [
+          0.65,
+          0.9797
+        ],
+        "ndcg@10_fix_commits_ci95": [
+          0.1391,
+          0.7484
+        ],
+        "precision@5_ci95": [
+          0.0,
+          1.0
+        ],
+        "precision@10_ci95": [
+          0.1,
+          0.7
+        ],
+        "precision@20_ci95": [
+          0.1,
+          0.45
+        ]
+      },
+      "complexity": {
+        "spearman_vs_fix_commits": 0.3293,
+        "spearman_vs_change_commits": 0.5199,
+        "auc_future_defect": 0.8432,
+        "ndcg@10_fix_commits": 0.5276,
+        "ndcg@10_change_commits": 0.7438,
+        "precision@5": 0.6,
+        "precision@10": 0.4,
+        "precision@20": 0.25,
+        "spearman_vs_change_commits_ci95": [
+          0.3411,
+          0.662
+        ],
+        "auc_future_defect_ci95": [
+          0.6626,
+          0.9781
+        ],
+        "ndcg@10_fix_commits_ci95": [
+          0.0918,
+          0.816
+        ],
+        "precision@5_ci95": [
+          0.0,
+          1.0
+        ],
+        "precision@10_ci95": [
+          0.0,
+          0.7
+        ],
+        "precision@20_ci95": [
+          0.05,
+          0.45
+        ]
+      },
+      "context_heuristic": {
+        "spearman_vs_fix_commits": 0.3804,
+        "spearman_vs_change_commits": 0.4119,
+        "auc_future_defect": 0.8961,
+        "ndcg@10_fix_commits": 0.5463,
+        "ndcg@10_change_commits": 0.5122,
+        "precision@5": 0.6,
+        "precision@10": 0.3,
+        "precision@20": 0.3,
+        "spearman_vs_change_commits_ci95": [
+          0.2226,
+          0.5745
+        ],
+        "auc_future_defect_ci95": [
+          0.8,
+          0.9671
+        ],
+        "ndcg@10_fix_commits_ci95": [
+          0.0,
+          0.8953
+        ],
+        "precision@5_ci95": [
+          0.0,
+          1.0
+        ],
+        "precision@10_ci95": [
+          0.0,
+          0.6
+        ],
+        "precision@20_ci95": [
+          0.05,
+          0.45
+        ]
+      },
+      "context_no_history": {
+        "spearman_vs_fix_commits": 0.3208,
+        "spearman_vs_change_commits": 0.3622,
+        "auc_future_defect": 0.8349,
+        "ndcg@10_fix_commits": 0.3283,
+        "ndcg@10_change_commits": 0.256,
+        "precision@5": 0.4,
+        "precision@10": 0.2,
+        "precision@20": 0.25,
+        "spearman_vs_change_commits_ci95": [
+          0.1604,
+          0.542
+        ],
+        "auc_future_defect_ci95": [
+          0.7089,
+          0.9408
+        ],
+        "ndcg@10_fix_commits_ci95": [
+          0.0,
+          0.7298
+        ],
+        "precision@5_ci95": [
+          0.0,
+          0.8
+        ],
+        "precision@10_ci95": [
+          0.0,
+          0.5
+        ],
+        "precision@20_ci95": [
+          0.05,
+          0.4
+        ]
+      },
+      "context_advanced": {
+        "spearman_vs_fix_commits": 0.3226,
+        "spearman_vs_change_commits": 0.2549,
+        "auc_future_defect": 0.8349,
+        "ndcg@10_fix_commits": 0.3712,
+        "ndcg@10_change_commits": 0.4177,
+        "precision@5": 0.2,
+        "precision@10": 0.2,
+        "precision@20": 0.2,
+        "spearman_vs_change_commits_ci95": [
+          0.0451,
+          0.4481
+        ],
+        "auc_future_defect_ci95": [
+          0.7243,
+          0.9295
+        ],
+        "ndcg@10_fix_commits_ci95": [
+          0.0,
+          0.7429
+        ],
+        "precision@5_ci95": [
+          0.0,
+          0.6
+        ],
+        "precision@10_ci95": [
+          0.0,
+          0.5
+        ],
+        "precision@20_ci95": [
+          0.05,
+          0.4
+        ]
+      }
+    }
+  },
+  "paired": [
+    {
+      "comparison": "context_heuristic vs context_no_history",
+      "truth": "changes",
+      "delta_spearman": 0.0497,
+      "ci95": [
+        -0.1622,
+        0.2599
+      ],
+      "n_items": 84,
+      "inference": "Exploratory paired item bootstrap; unadjusted for multiple comparisons.",
+      "significant": false
+    },
+    {
+      "comparison": "context_advanced vs context_heuristic",
+      "truth": "changes",
+      "delta_spearman": -0.157,
+      "ci95": [
+        -0.2556,
+        -0.0669
+      ],
+      "n_items": 84,
+      "inference": "Exploratory paired item bootstrap; unadjusted for multiple comparisons.",
+      "significant": true
+    }
+  ],
+  "notes": [
+    "Historical labels are proxies, not expert judgments.",
+    "Advanced features are added jointly; this does not isolate each feature's causal effect.",
+    "Contributor counts and recency use existing pre-cutoff dataset values.",
+    "Exploratory intervals are not adjusted for multiple comparisons."
+  ]
+}

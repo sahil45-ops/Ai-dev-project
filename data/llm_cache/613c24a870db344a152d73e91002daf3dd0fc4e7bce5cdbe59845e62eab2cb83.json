@@ -1,0 +1,14 @@
+{
+ "summary": "The Response.iter_content() function in requests/models.py carries technical debt related to handling large response data efficiently. This function is used to iterate over the response data, either by reading it in chunks or by streaming it. The function has a high cyclomatic complexity of 7, indicating that it has multiple conditional statements and nested loops. Additionally, the function has a low maintainability index of 21.89, suggesting that it is not well-structured and follows good coding practices. The function also has a high composite static debt score of 4.52/10, indicating that it is a significant source of technical debt for the repository.",
+ "debt_indicators": [
+  "deep nesting",
+  "mixed responsibilities",
+  "duplicated branches"
+ ],
+ "impact_factors": [
+  "how central the function is",
+  "how often it changes or breaks",
+  "how well it is tested"
+ ],
+ "risk_assessment": "high"
+}

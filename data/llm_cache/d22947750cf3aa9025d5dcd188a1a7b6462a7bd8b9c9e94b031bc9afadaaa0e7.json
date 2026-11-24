@@ -1,0 +1,6 @@
+{
+ "priority": "MEDIUM",
+ "priority_score": 55,
+ "reason": "The method has a cyclomatic complexity of 21 and a low maintainability index, making it error‑prone and hard to understand.  It is used in request construction, so a bug would affect many requests, yet it is only called once, so it is not a critical hotspot.  Refactoring will reduce future defect risk and improve testability.",
+ "action": "Refactor _encode_files into smaller, well‑named helper functions: separate data field processing from file field processing, replace nested conditionals with early returns, and add comprehensive unit tests for each helper.  This will lower complexity, improve readability, and make the code easier to maintain."
+}

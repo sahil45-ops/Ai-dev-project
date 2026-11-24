@@ -1,0 +1,648 @@
+{
+  "dataset_sha256": "61ab1ca6cee0b4c15d07c19cd86a981901bacbdfb21958c773e052b17f5d5e9c",
+  "truth_sha256": "93c52f7a6965df24b6d947e187c63b6c5ed83c03a5110d49762e882a544bb58a",
+  "full_dataset_sha256": "b1275cd3e0de0146d8a74cdb453436795154ef9662b042b95b5ee9b35f8857ad",
+  "sample_ids": [
+    "requests/adapters.py::BaseAdapter.send",
+    "requests/adapters.py::HTTPAdapter.add_headers",
+    "requests/adapters.py::HTTPAdapter.send",
+    "requests/api.py::delete",
+    "requests/api.py::get",
+    "requests/api.py::head",
+    "requests/api.py::patch",
+    "requests/api.py::post",
+    "requests/auth.py::HTTPBasicAuth.__eq__",
+    "requests/auth.py::_basic_auth_str",
+    "requests/cookies.py::merge_cookies",
+    "requests/help.py::_implementation",
+    "requests/models.py::PreparedRequest.prepare_auth",
+    "requests/models.py::PreparedRequest.prepare_body",
+    "requests/models.py::RequestEncodingMixin._encode_files",
+    "requests/models.py::RequestEncodingMixin._encode_params",
+    "requests/models.py::Response.__setstate__",
+    "requests/models.py::Response.iter_content.generate",
+    "requests/models.py::Response.json",
+    "requests/models.py::Response.raise_for_status",
+    "requests/sessions.py::Session.__init__",
+    "requests/sessions.py::Session.merge_environment_settings",
+    "requests/sessions.py::Session.put",
+    "requests/sessions.py::SessionRedirectMixin.rebuild_method",
+    "requests/sessions.py::SessionRedirectMixin.resolve_redirects",
+    "requests/sessions.py::SessionRedirectMixin.should_strip_auth",
+    "requests/utils.py::extract_zipped_paths",
+    "requests/utils.py::get_encodings_from_content",
+    "requests/utils.py::parse_header_links",
+    "requests/utils.py::prepend_scheme_if_needed"
+  ],
+  "pilot": true,
+  "mode": "single",
+  "workers": 4,
+  "max_output_tokens": 2048,
+  "context_sha256": "7123ad0383e58ef862d574ba68d9e869f96dbf5f09aca820f31618a23cfbd7d6",
+  "models": [
+    "groq/openai/gpt-oss-20b",
+    "groq/openai/gpt-oss-120b"
+  ],
+  "repeats": 2,
+  "protocol_sha256": "93eb94e012871efab46db4d243cb5d6022c14b6d74e9bedbf2112d0dcfac94f9",
+  "token_estimates_per_model_per_repeat": {
+    "no_context": [
+      24414,
+      13500
+    ],
+    "rag_context": [
+      47897,
+      13500
+    ]
+  },
+  "status": "invalid_rate_limited",
+  "runs": [
+    {
+      "key": "groq/openai/gpt-oss-20b | no_context | 1",
+      "model": "groq/openai/gpt-oss-20b",
+      "arm": "no_context",
+      "repeat": 1,
+      "workers": 4,
+      "seconds": 86.80879550002282,
+      "mean_call_seconds": 10.949720596663731,
+      "calls_attempted": 30,
+      "schema_acceptance_rate": 0.5333333333333333,
+      "call_failure_rate": 0.4666666666666667,
+      "item_failure_rate": 0.4666666666666667,
+      "input_tokens": 12937,
+      "output_tokens": 7264,
+      "cached_calls": 0,
+      "cost_usd": 0.003149475,
+      "pricing_per_million": [
+        0.075,
+        0.3
+      ],
+      "results": [
+        {
+          "id": "requests/adapters.py::HTTPAdapter.send",
+          "file": "requests/adapters.py",
+          "function": "HTTPAdapter.send",
+          "line": 433,
+          "priority": "HIGH",
+          "priority_score": 85,
+          "reason": "The send method has a cyclomatic complexity of 19, numerous duplicated exception handling branches, and several lint warnings about missing exception chaining. This core networking function is frequently invoked and any failure or maintenance issue here can cause widespread runtime errors or slow down future changes. Refactoring is needed immediately to improve reliability and maintainability.",
+          "action": "Extract the exception handling into a dedicated helper method (e.g., _handle_exceptions) that maps urllib3 exceptions to requests exceptions via a dictionary, use explicit 'raise ... from e' for proper exception chaining, remove the TODO comment, and consolidate timeout conversion logic into a separate utility. This will reduce complexity, eliminate duplication, and make the code easier to test and maintain.",
+          "llm_rank": 1
+        },
+        {
+          "id": "requests/api.py::get",
+          "file": "requests/api.py",
+          "function": "get",
+          "line": 62,
+          "priority": "HIGH",
+          "priority_score": 85,
+          "reason": "The wrapper omits a timeout, exposing callers to indefinite hangs and potential resource exhaustion. This is a real defect that can surface in production, warranting immediate attention.",
+          "action": "Add a default timeout (e.g., 30 seconds) to the request call or enforce that callers provide a timeout by raising an informative exception if missing.",
+          "llm_rank": 2
+        },
+        {
+          "id": "requests/api.py::head",
+          "file": "requests/api.py",
+          "function": "head",
+          "line": 88,
+          "priority": "HIGH",
+          "priority_score": 85,
+          "reason": "The head() helper omits a timeout argument, exposing callers to indefinite hangs and potential denial\u2011of\u2011service scenarios. This is a critical defect that can affect any code path that uses HEAD requests, warranting immediate remediation.",
+          "action": "Add a default timeout (e.g., 5 seconds) or require callers to supply a timeout. Update the signature to accept a timeout kwarg, set a sensible default, and document the change in the docstring.",
+          "llm_rank": 3
+        },
+        {
+          "id": "requests/models.py::RequestEncodingMixin._encode_params",
+          "file": "requests/models.py",
+          "function": "RequestEncodingMixin._encode_params",
+          "line": 107,
+          "priority": "HIGH",
+          "priority_score": 85,
+          "reason": "The method has high cyclomatic complexity (11) and contains Python\u20112 specific code (basestring) that will fail in Python\u202f3, making it a potential source of runtime errors in a widely used library. Simplifying the logic and updating the string checks will reduce maintenance burden and improve reliability.",
+          "action": "Refactor the method to replace the Python\u20112 basestring check with isinstance(vs, (str, bytes)), combine the nested if branches using logical or, and rewrite the loop with a list comprehension that builds the result list in a single pass. Add type hints and unit tests to verify that the encoding behavior remains unchanged.",
+          "llm_rank": 4
+        },
+        {
+          "id": "requests/api.py::patch",
+          "file": "requests/api.py",
+          "function": "patch",
+          "line": 133,
+          "priority": "HIGH",
+          "priority_score": 80,
+          "reason": "The patch() wrapper omits a timeout argument, which can cause requests to hang indefinitely. This is a critical defect that can affect any client using the library, leading to resource exhaustion and degraded reliability.",
+          "action": "Add a default timeout (e.g., 30 seconds) to the patch() call or enforce that callers must provide a timeout. For example:\n\n```python\ndef patch(url, data=None, **kwargs):\n    if 'timeout' not in kwargs:\n        kwargs['timeout'] = 30  # default timeout\n    return request(\"patch\", url, data=data, **kwargs)\n```\n",
+          "llm_rank": 5
+        },
+        {
+          "id": "requests/api.py::delete",
+          "file": "requests/api.py",
+          "function": "delete",
+          "line": 148,
+          "priority": "MEDIUM",
+          "priority_score": 55,
+          "reason": "The delete() helper omits a timeout argument, which can lead to indefinite hangs when the underlying request() call blocks. Although the function is trivial and the static debt score is low, this defect poses a real risk to reliability and should be addressed before frequent changes or deployments.",
+          "action": "Add a default timeout to delete() (e.g., timeout=30) and forward it to request(), or require callers to supply a timeout explicitly. This ensures all DELETE requests have a bounded wait time and eliminates the missing-timeout lint warning.",
+          "llm_rank": 6
+        },
+        {
+          "id": "requests/sessions.py::Session.merge_environment_settings",
+          "file": "requests/sessions.py",
+          "function": "Session.merge_environment_settings",
+          "line": 750,
+          "priority": "MEDIUM",
+          "priority_score": 55,
+          "reason": "The method has moderate cyclomatic complexity (8) and mixes several responsibilities\u2014environment proxy handling, verification logic, and merging settings\u2014making it harder to maintain and test. While it does not currently cause defects, simplifying it would reduce future maintenance risk.",
+          "action": "Extract the environment proxy and verification logic into separate helper functions, then have merge_environment_settings delegate to those helpers. Add type hints and docstrings to clarify each step.",
+          "llm_rank": 7
+        },
+        {
+          "id": "requests/sessions.py::SessionRedirectMixin.should_strip_auth",
+          "file": "requests/sessions.py",
+          "function": "SessionRedirectMixin.should_strip_auth",
+          "line": 127,
+          "priority": "MEDIUM",
+          "priority_score": 55,
+          "reason": "The method has a cyclomatic complexity of 10 and contains several nested conditionals that make it hard to read and maintain. While it does not currently cause defects, the complexity increases the risk of future bugs and makes unit testing more difficult. Refactoring will improve clarity and reduce the chance of regressions.",
+          "action": "Refactor the method by extracting each logical check into small, well\u2011named helper functions (e.g., `is_host_changed`, `is_http_to_https_on_default_ports`, `is_default_port_change`). Use guard clauses to return early, flatten the nesting, and replace the complex tuple logic with clearer boolean expressions. This will reduce cyclomatic complexity and improve testability.",
+          "llm_rank": 8
+        },
+        {
+          "id": "requests/utils.py::get_encodings_from_content",
+          "file": "requests/utils.py",
+          "function": "get_encodings_from_content",
+          "line": 484,
+          "priority": "MEDIUM",
+          "priority_score": 55,
+          "reason": "The function is already marked as deprecated and will be removed in a future release, but it is still present and emits a deprecation warning on every call, which can clutter logs. The code also uses the deprecated regex flag alias `re.I`, which triggers lint warnings. Refactoring this small function will reduce noise and future maintenance effort.",
+          "action": "Replace the `re.I` flag with `re.IGNORECASE`, remove the per\u2011call deprecation warning (or change it to a single warning), and add a comment noting that the function will be removed in requests 3.0. This cleans up lint issues and reduces runtime noise while keeping the API stable until removal.",
+          "llm_rank": 9
+        },
+        {
+          "id": "requests/utils.py::parse_header_links",
+          "file": "requests/utils.py",
+          "function": "parse_header_links",
+          "line": 909,
+          "priority": "MEDIUM",
+          "priority_score": 55,
+          "reason": "The function has moderate cyclomatic complexity and uses variable shadowing that can lead to subtle bugs. It also lacks type hints and robust error handling for malformed headers, which could surface in edge cases. Refactoring will improve maintainability and reduce future defect risk.",
+          "action": "Refactor parse_header_links to use a dedicated regex for parsing the Link header, rename inner variables to avoid shadowing, add type hints, and implement comprehensive unit tests covering edge cases.",
+          "llm_rank": 10
+        },
+        {
+          "id": "requests/cookies.py::merge_cookies",
+          "file": "requests/cookies.py",
+          "function": "merge_cookies",
+          "line": 542,
+          "priority": "MEDIUM",
+          "priority_score": 45,
+          "reason": "The function contains a lint warning (TRY004) that it should raise TypeError instead of ValueError for an invalid type, which can lead to subtle bugs when callers rely on the exception type. The code is small but used in many places, so correcting the exception type improves API consistency and error handling. The complexity and size are modest, so it is a medium\u2011priority fix that can be applied when touching the code.",
+          "action": "Replace the ValueError with a TypeError for the invalid type check, add explicit type hints for the parameters and return value, and optionally rename the function to merge_cookiejar for clarity.",
+          "llm_rank": 11
+        },
+        {
+          "id": "requests/models.py::PreparedRequest.prepare_auth",
+          "file": "requests/models.py",
+          "function": "PreparedRequest.prepare_auth",
+          "line": 588,
+          "priority": "LOW",
+          "priority_score": 30,
+          "reason": "The method contains an unused parameter and moderate cyclomatic complexity, but it does not currently cause defects or performance issues. Cleaning up the signature will improve readability and maintainability without affecting functionality.",
+          "action": "Remove the unused 'url' parameter from the prepare_auth method signature and update all call sites accordingly. Optionally refactor the auth handling logic into a small helper to reduce complexity.",
+          "llm_rank": 12
+        },
+        {
+          "id": "requests/models.py::Response.raise_for_status",
+          "file": "requests/models.py",
+          "function": "Response.raise_for_status",
+          "line": 992,
+          "priority": "LOW",
+          "priority_score": 25,
+          "reason": "The raise_for_status method is small (28 LOC) with moderate cyclomatic complexity (6) and no current defects. It is a standard part of the requests library and unlikely to cause immediate issues. Refactoring would improve readability but is not urgent.",
+          "action": "Extract the error message construction into a separate helper function or use a mapping of status ranges to message prefixes to reduce complexity and improve maintainability.",
+          "llm_rank": 13
+        },
+        {
+          "id": "requests/sessions.py::Session.put",
+          "file": "requests/sessions.py",
+          "function": "Session.put",
+          "line": 639,
+          "priority": "LOW",
+          "priority_score": 25,
+          "reason": "The put method is a trivial wrapper around request and is duplicated across other HTTP verb methods. It does not introduce defects or performance issues, so it is low impact and can be addressed when refactoring the session API.",
+          "action": "Extract a generic helper (e.g., _method(name, url, **kwargs)) and generate the verb methods (get, post, put, delete, etc.) programmatically to eliminate duplication.",
+          "llm_rank": 14
+        },
+        {
+          "id": "requests/adapters.py::BaseAdapter.send",
+          "file": "requests/adapters.py",
+          "function": "BaseAdapter.send",
+          "line": 76,
+          "priority": "LOW",
+          "priority_score": 20,
+          "reason": "The BaseAdapter.send method is a simple abstract placeholder that raises NotImplementedError. It does not currently cause defects or hinder frequent changes, and the static analysis indicates minimal technical debt. Converting it to an abstract base class would improve clarity but is not urgent.",
+          "action": "Refactor BaseAdapter to inherit from abc.ABC and decorate send with @abstractmethod, replacing the NotImplementedError raise with a clear abstract method declaration.",
+          "llm_rank": 15
+        },
+        {
+          "id": "requests/adapters.py::HTTPAdapter.add_headers",
+          "file": "requests/adapters.py",
+          "function": "HTTPAdapter.add_headers",
+          "line": 398,
+          "priority": "LOW",
+          "priority_score": 15,
+          "reason": "The method contains only a pass statement, which is flagged as unnecessary by linters but does not affect functionality. It is a placeholder intended for subclass overrides, so it poses no immediate defect risk.",
+          "action": "Replace the unnecessary pass with a simple return statement (e.g., `return`) to satisfy linters while preserving the method\u2019s intended no-op behavior.",
+          "llm_rank": 16
+        },
+        {
+          "id": "requests/auth.py::HTTPBasicAuth.__eq__",
+          "file": "requests/auth.py",
+          "function": "HTTPBasicAuth.__eq__",
+          "line": 83,
+          "error": "Groq request failed (RateLimitError); check credentials, model and quota."
+        },
+        {
+          "id": "requests/auth.py::_basic_auth_str",
+          "file": "requests/auth.py",
+          "function": "_basic_auth_str",
+          "line": 25,
+          "error": "Groq request failed (RateLimitError); check credentials, model and quota."
+        },
+        {
+          "id": "requests/help.py::_implementation",
+          "file": "requests/help.py",
+          "function": "_implementation",
+          "line": 34,
+          "error": "Groq request failed (RateLimitError); check credentials, model and quota."
+        },
+        {
+          "id": "requests/api.py::post",
+          "file": "requests/api.py",
+          "function": "post",
+          "line": 103,
+          "error": "Groq request failed (RateLimitError); check credentials, model and quota."
+        },
+        {
+          "id": "requests/models.py::Response.__setstate__",
+          "file": "requests/models.py",
+          "function": "Response.__setstate__",
+          "line": 719,
+          "error": "Groq request failed (RateLimitError); check credentials, model and quota."
+        },
+        {
+          "id": "requests/models.py::PreparedRequest.prepare_body",
+          "file": "requests/models.py",
+          "function": "PreparedRequest.prepare_body",
+          "line": 494,
+          "error": "Groq request failed (RateLimitError); check credentials, model and quota."
+        },
+        {
+          "id": "requests/models.py::RequestEncodingMixin._encode_files",
+          "file": "requests/models.py",
+          "function": "RequestEncodingMixin._encode_files",
+          "line": 137,
+          "error": "Groq request failed (RateLimitError); check credentials, model and quota."
+        },
+        {
+          "id": "requests/models.py::Response.iter_content.generate",
+          "file": "requests/models.py",
+          "function": "Response.iter_content.generate",
+          "line": 811,
+          "error": "Groq request failed (RateLimitError); check credentials, model and quota."
+        },
+        {
+          "id": "requests/models.py::Response.json",
+          "file": "requests/models.py",
+          "function": "Response.json",
+          "line": 942,
+          "error": "Groq request failed (RateLimitError); check credentials, model and quota."
+        },
+        {
+          "id": "requests/sessions.py::Session.__init__",
+          "file": "requests/sessions.py",
+          "function": "Session.__init__",
+          "line": 390,
+          "error": "Groq request failed (RateLimitError); check credentials, model and quota."
+        },
+        {
+          "id": "requests/sessions.py::SessionRedirectMixin.rebuild_method",
+          "file": "requests/sessions.py",
+          "function": "SessionRedirectMixin.rebuild_method",
+          "line": 333,
+          "error": "Groq request failed (RateLimitError); check credentials, model and quota."
+        },
+        {
+          "id": "requests/sessions.py::SessionRedirectMixin.resolve_redirects",
+          "file": "requests/sessions.py",
+          "function": "SessionRedirectMixin.resolve_redirects",
+          "line": 159,
+          "error": "Groq request failed (RateLimitError); check credentials, model and quota."
+        },
+        {
+          "id": "requests/utils.py::extract_zipped_paths",
+          "file": "requests/utils.py",
+          "function": "extract_zipped_paths",
+          "line": 263,
+          "error": "Groq request failed (RateLimitError); check credentials, model and quota."
+        },
+        {
+          "id": "requests/utils.py::prepend_scheme_if_needed",
+          "file": "requests/utils.py",
+          "function": "prepend_scheme_if_needed",
+          "line": 984,
+          "error": "Groq request failed (RateLimitError); check credentials, model and quota."
+        }
+      ]
+    },
+    {
+      "key": "groq/openai/gpt-oss-20b | no_context | 2",
+      "model": "groq/openai/gpt-oss-20b",
+      "arm": "no_context",
+      "repeat": 2,
+      "workers": 4,
+      "seconds": 121.06332910002675,
+      "mean_call_seconds": 14.516602913327127,
+      "calls_attempted": 30,
+      "schema_acceptance_rate": 0.4666666666666667,
+      "call_failure_rate": 0.5333333333333333,
+      "item_failure_rate": 0.5333333333333333,
+      "input_tokens": 11192,
+      "output_tokens": 5412,
+      "cached_calls": 0,
+      "cost_usd": 0.002463,
+      "pricing_per_million": [
+        0.075,
+        0.3
+      ],
+      "results": [
+        {
+          "id": "requests/api.py::post",
+          "file": "requests/api.py",
+          "function": "post",
+          "line": 103,
+          "priority": "HIGH",
+          "priority_score": 85,
+          "reason": "The post() wrapper omits a timeout argument, which can cause the application to hang indefinitely if the server is unresponsive. This is a critical defect that can affect reliability and user experience, warranting immediate attention.",
+          "action": "Add a default timeout to the request call (e.g., timeout=30) or raise a warning if no timeout is supplied. Update the function signature to include a timeout parameter with a sensible default and pass it to request().",
+          "llm_rank": 1
+        },
+        {
+          "id": "requests/api.py::delete",
+          "file": "requests/api.py",
+          "function": "delete",
+          "line": 148,
+          "priority": "MEDIUM",
+          "priority_score": 55,
+          "reason": "The delete wrapper omits a timeout argument, which can lead to indefinite hangs if the underlying request() does not enforce a default. While the function is small, this defect can affect reliability in production, warranting a medium\u2011level fix.",
+          "action": "Add a default timeout parameter to delete() (e.g., timeout=30) and forward it to request(), or modify request() to enforce a default timeout if none is supplied.",
+          "llm_rank": 2
+        },
+        {
+          "id": "requests/cookies.py::merge_cookies",
+          "file": "requests/cookies.py",
+          "function": "merge_cookies",
+          "line": 542,
+          "priority": "MEDIUM",
+          "priority_score": 55,
+          "reason": "The function has a lint warning (TRY004) and moderate cyclomatic complexity; it could be simplified and made more robust by using TypeError for type errors and adding type hints. While not critical, cleaning it up will improve maintainability and reduce future bugs.",
+          "action": "Refactor merge_cookies to raise TypeError instead of ValueError for invalid cookiejar types, add explicit type hints for parameters and return value, and simplify the logic by using cookiejar.update directly when available, falling back to set_cookie in a loop. Update the docstring to reflect the new behavior and remove the nested if/elif structure for clarity.",
+          "llm_rank": 3
+        },
+        {
+          "id": "requests/help.py::_implementation",
+          "file": "requests/help.py",
+          "function": "_implementation",
+          "line": 34,
+          "priority": "MEDIUM",
+          "priority_score": 55,
+          "reason": "The function has moderate cyclomatic complexity and several lint warnings, including unsafe access to sys.pypy_version_info which may not exist on CPython, and repetitive code for Jython/IronPython. While it currently works, it is fragile and hard to maintain, warranting a medium priority fix.",
+          "action": "Refactor the function to use a mapping of implementation names to version extraction logic, replace string joins and format calls with f-strings, guard sys.pypy_version_info access with getattr or try/except, and combine the Jython/IronPython branches into a single default case. This reduces complexity, eliminates lint warnings, and improves robustness.",
+          "llm_rank": 4
+        },
+        {
+          "id": "requests/models.py::Response.iter_content.generate",
+          "file": "requests/models.py",
+          "function": "Response.iter_content.generate",
+          "line": 811,
+          "priority": "MEDIUM",
+          "priority_score": 55,
+          "reason": "The missing exception chaining in the raise statements reduces debuggability and obscures the original exception context. While not a functional bug, it hampers maintainability and can lead to harder-to-trace errors in production. Refactoring to include explicit 'from e' improves clarity and aligns with best practices.",
+          "action": "Update the raise statements in Response.iter_content.generate() to use explicit exception chaining: e.g., raise ChunkedEncodingError(e) from e, and similarly for the other exceptions.",
+          "llm_rank": 5
+        },
+        {
+          "id": "requests/models.py::Response.json",
+          "file": "requests/models.py",
+          "function": "Response.json",
+          "line": 942,
+          "priority": "MEDIUM",
+          "priority_score": 55,
+          "reason": "The json() method contains duplicated error\u2011handling logic and raises exceptions without preserving the original traceback, which can obscure debugging. While it does not currently break functionality, the duplication and missing 'from e' make the code harder to maintain and could lead to subtle bugs if the error context is lost. Refactoring will improve readability and future-proof the method.",
+          "action": "Extract the JSON decoding and error handling into a private helper (e.g., _decode_json) that performs the encoding detection, decoding, and raises RequestsJSONDecodeError with 'from e'. Then replace the duplicated blocks in json() with a single call to this helper, ensuring consistent exception chaining and reducing cyclomatic complexity.",
+          "llm_rank": 6
+        },
+        {
+          "id": "requests/sessions.py::SessionRedirectMixin.rebuild_method",
+          "file": "requests/sessions.py",
+          "function": "SessionRedirectMixin.rebuild_method",
+          "line": 333,
+          "priority": "MEDIUM",
+          "priority_score": 55,
+          "reason": "The method has moderate cyclomatic complexity and repeated logic, leading to a low maintainability index. While it functions correctly, the duplicated conditions and false\u2011positive lint errors can hinder readability and future maintenance. Refactoring will improve clarity without breaking behavior.",
+          "action": "Refactor rebuild_method to use a mapping of status codes to target methods, factor out the HEAD check, add explicit type hints for prepared_request and response, and suppress the false\u2011positive pylint no\u2011member warnings. This reduces complexity, eliminates duplication, and improves maintainability.",
+          "llm_rank": 7
+        },
+        {
+          "id": "requests/utils.py::get_encodings_from_content",
+          "file": "requests/utils.py",
+          "function": "get_encodings_from_content",
+          "line": 484,
+          "priority": "MEDIUM",
+          "priority_score": 55,
+          "reason": "The function is deprecated and will be removed in a future release, yet it remains in the codebase and is still invoked by other modules. Its current implementation issues a deprecation warning on every call, which can clutter logs, and uses the deprecated regex alias `re.I`. While not currently causing defects, it poses a maintenance risk and should be addressed before the next major release.",
+          "action": "Move the regex patterns to module-level constants using `re.IGNORECASE`, replace the function with a lightweight wrapper that logs the deprecation warning only once (e.g., using a module-level flag), and update all callers to use the new implementation or remove the function entirely if it is no longer needed. This will eliminate repeated warnings and prepare the code for removal in the upcoming 3.0 release.",
+          "llm_rank": 8
+        },
+        {
+          "id": "requests/utils.py::parse_header_links",
+          "file": "requests/utils.py",
+          "function": "parse_header_links",
+          "line": 909,
+          "priority": "MEDIUM",
+          "priority_score": 55,
+          "reason": "The function has moderate cyclomatic complexity and contains a variable shadowing bug (inner \u2018value\u2019 shadows the parameter), which can lead to subtle parsing errors. It also relies on fragile string manipulation that may break on edge\u2011case headers. Refactoring will improve reliability and maintainability.",
+          "action": "Rewrite parse_header_links to avoid variable shadowing and use a robust parsing approach: replace the inner loop with a regex that captures the URL and key/value pairs, rename the inner variable to avoid shadowing, add type hints, and include comprehensive unit tests for various Link header formats.",
+          "llm_rank": 9
+        },
+        {
+          "id": "requests/utils.py::prepend_scheme_if_needed",
+          "file": "requests/utils.py",
+          "function": "prepend_scheme_if_needed",
+          "line": 984,
+          "priority": "MEDIUM",
+          "priority_score": 55,
+          "reason": "The function is a small utility but is invoked throughout the requests library, so changes affect many callers. Unused variables and suboptimal string handling indicate maintainability issues, yet the function is not currently causing defects. Refactoring will improve clarity and reduce future bugs.",
+          "action": "Refactor the function to use urllib.parse.urlparse directly, remove the unused host and port variables, replace the auth concatenation with an f-string, and simplify the netloc handling logic. Ensure the updated implementation passes existing tests and add a unit test for URLs lacking a scheme.",
+          "llm_rank": 10
+        },
+        {
+          "id": "requests/models.py::Response.raise_for_status",
+          "file": "requests/models.py",
+          "function": "Response.raise_for_status",
+          "line": 992,
+          "priority": "LOW",
+          "priority_score": 25,
+          "reason": "The raise_for_status method is small (28 LOC) with moderate cyclomatic complexity (6). It does not currently cause defects or performance issues, and the logic is straightforward. Refactoring would improve readability but is not urgent.",
+          "action": "Extract the error message construction into a separate helper function (e.g., _format_error_message) and use a mapping for status code ranges to reduce branching and improve maintainability.",
+          "llm_rank": 11
+        },
+        {
+          "id": "requests/adapters.py::HTTPAdapter.add_headers",
+          "file": "requests/adapters.py",
+          "function": "HTTPAdapter.add_headers",
+          "line": 398,
+          "priority": "LOW",
+          "priority_score": 15,
+          "reason": "The method contains only a pass statement, which is flagged as unnecessary by linters. It does not affect runtime behavior and is intended for subclass overrides, so it poses no immediate defect risk.",
+          "action": "Replace the empty pass with an ellipsis (\u2026 ) to indicate an intentional no-op placeholder and satisfy linters.",
+          "llm_rank": 12
+        },
+        {
+          "id": "requests/auth.py::HTTPBasicAuth.__eq__",
+          "file": "requests/auth.py",
+          "function": "HTTPBasicAuth.__eq__",
+          "line": 83,
+          "priority": "LOW",
+          "priority_score": 15,
+          "reason": "The __eq__ implementation is straightforward and unlikely to cause defects; it simply compares username and password attributes. The code is small, has low complexity, and is not frequently modified, so it poses minimal risk. Adding a type check would make it more robust but is not urgent.",
+          "action": "Add an isinstance check for the other object before comparing attributes, e.g., return isinstance(other, HTTPBasicAuth) and then compare username and password.",
+          "llm_rank": 13
+        },
+        {
+          "id": "requests/adapters.py::BaseAdapter.send",
+          "file": "requests/adapters.py",
+          "function": "BaseAdapter.send",
+          "line": 76,
+          "priority": "LOW",
+          "priority_score": 10,
+          "reason": "The BaseAdapter.send method is a minimal abstract stub with no implementation; its current form is acceptable and not causing defects. The only improvement is to enforce its abstract nature with an @abstractmethod decorator, which is a cosmetic change with negligible impact.",
+          "action": "Add the @abstractmethod decorator to BaseAdapter.send to clearly indicate it must be overridden by subclasses.",
+          "llm_rank": 14
+        },
+        {
+          "id": "requests/api.py::get",
+          "file": "requests/api.py",
+          "function": "get",
+          "line": 62,
+          "error": "Groq request failed (RateLimitError); check credentials, model and quota."
+        },
+        {
+          "id": "requests/api.py::patch",
+          "file": "requests/api.py",
+          "function": "patch",
+          "line": 133,
+          "error": "Groq request failed (RateLimitError); check credentials, model and quota."
+        },
+        {
+          "id": "requests/adapters.py::HTTPAdapter.send",
+          "file": "requests/adapters.py",
+          "function": "HTTPAdapter.send",
+          "line": 433,
+          "error": "Groq request failed (RateLimitError); check credentials, model and quota."
+        },
+        {
+          "id": "requests/api.py::head",
+          "file": "requests/api.py",
+          "function": "head",
+          "line": 88,
+          "error": "Groq request failed (RateLimitError); check credentials, model and quota."
+        },
+        {
+          "id": "requests/models.py::PreparedRequest.prepare_auth",
+          "file": "requests/models.py",
+          "function": "PreparedRequest.prepare_auth",
+          "line": 588,
+          "error": "Groq request failed (RateLimitError); check credentials, model and quota."
+        },
+        {
+          "id": "requests/auth.py::_basic_auth_str",
+          "file": "requests/auth.py",
+          "function": "_basic_auth_str",
+          "line": 25,
+          "error": "Groq request failed (RateLimitError); check credentials, model and quota."
+        },
+        {
+          "id": "requests/models.py::RequestEncodingMixin._encode_params",
+          "file": "requests/models.py",
+          "function": "RequestEncodingMixin._encode_params",
+          "line": 107,
+          "error": "Groq request failed (RateLimitError); check credentials, model and quota."
+        },
+        {
+          "id": "requests/models.py::PreparedRequest.prepare_body",
+          "file": "requests/models.py",
+          "function": "PreparedRequest.prepare_body",
+          "line": 494,
+          "error": "Groq request failed (RateLimitError); check credentials, model and quota."
+        },
+        {
+          "id": "requests/models.py::RequestEncodingMixin._encode_files",
+          "file": "requests/models.py",
+          "function": "RequestEncodingMixin._encode_files",
+          "line": 137,
+          "error": "Groq request failed (RateLimitError); check credentials, model and quota."
+        },
+        {
+          "id": "requests/models.py::Response.__setstate__",
+          "file": "requests/models.py",
+          "function": "Response.__setstate__",
+          "line": 719,
+          "error": "Groq request failed (RateLimitError); check credentials, model and quota."
+        },
+        {
+          "id": "requests/sessions.py::Session.__init__",
+          "file": "requests/sessions.py",
+          "function": "Session.__init__",
+          "line": 390,
+          "error": "Groq request failed (RateLimitError); check credentials, model and quota."
+        },
+        {
+          "id": "requests/sessions.py::Session.merge_environment_settings",
+          "file": "requests/sessions.py",
+          "function": "Session.merge_environment_settings",
+          "line": 750,
+          "error": "Groq request failed (RateLimitError); check credentials, model and quota."
+        },
+        {
+          "id": "requests/sessions.py::Session.put",
+          "file": "requests/sessions.py",
+          "function": "Session.put",
+          "line": 639,
+          "error": "Groq request failed (RateLimitError); check credentials, model and quota."
+        },
+        {
+          "id": "requests/sessions.py::SessionRedirectMixin.should_strip_auth",
+          "file": "requests/sessions.py",
+          "function": "SessionRedirectMixin.should_strip_auth",
+          "line": 127,
+          "error": "Groq request failed (RateLimitError); check credentials, model and quota."
+        },
+        {
+          "id": "requests/utils.py::extract_zipped_paths",
+          "file": "requests/utils.py",
+          "function": "extract_zipped_paths",
+          "line": 263,
+          "error": "Groq request failed (RateLimitError); check credentials, model and quota."
+        },
+        {
+          "id": "requests/sessions.py::SessionRedirectMixin.resolve_redirects",
+          "file": "requests/sessions.py",
+          "function": "SessionRedirectMixin.resolve_redirects",
+          "line": 159,
+          "error": "Groq request failed (RateLimitError); check credentials, model and quota."
+        }
+      ]
+    }
+  ],
+  "exclusion_reason": "Interrupted after concurrent Groq calls produced 46.7% and 53.3% item failure rates for the first two recorded runs; excluded from model comparisons."
+}

@@ -1,0 +1,6 @@
+{
+ "priority": "MEDIUM",
+ "priority_score": 55,
+ "reason": "The constructor is part of the public API and is invoked in many places, yet its maintainability index is 0.0 and it defines 12 parameters, making it error‑prone.  The redefinition of the built‑in name ‘help’ is a lint issue that can confuse developers and may lead to subtle bugs.  While the function’s complexity is low, the high number of parameters and poor maintainability warrant a medium‑priority refactor.",
+ "action": "Rename the parameter ‘help’ to ‘help_text’ to avoid shadowing the built‑in, add a backward‑compatibility alias (e.g., ``help = help_text``), and update the docstring to explain the change.  This small change improves readability and maintainability without altering the public API signature."
+}

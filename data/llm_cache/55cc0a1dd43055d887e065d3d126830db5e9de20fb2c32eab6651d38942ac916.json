@@ -1,0 +1,5 @@
+{
+ "priority": "LOW",
+ "priority_score": 3,
+ "reason": "The `_basic_auth_str()` function in the `requests/auth.py` file carries technical debt related to the use of non-standard encoding and the lack of clear documentation. This issue matters for this repository because it can lead to compatibility issues with older versions of the library and may cause unexpected behavior when dealing with non-string inputs."
+}
